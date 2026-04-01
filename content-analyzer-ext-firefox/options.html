@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Configuración de Extensión</title>
+    <style>
+      body { font-family: sans-serif; padding: 20px; background-color: #f4f6f8; color: #333; display: flex; flex-direction: column; align-items: center; }
+      .container { max-width: 800px; width: 100%; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+      h1, h2 { color: #1e3a8a; }
+      .form-group { margin-bottom: 15px; }
+      label { display: block; margin-bottom: 5px; font-weight: bold; }
+      input, select, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+      textarea { resize: vertical; min-height: 80px; }
+      button { background: #2563eb; color: #fff; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background 0.2s; }
+      button:hover { background: #1d4ed8; }
+      table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+      th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      th { background-color: #f8fafc; }
+      .delete-btn { background: #ef4444; padding: 5px 10px; font-size: 12px; }
+      .delete-btn:hover { background: #b91c1c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 data-i18n="optTitle">Configuración de IA</h1>
+        <div style="background:#e0f2fe; padding:15px; border-radius:6px; margin-bottom:20px;">
+            <h2 id="formTitle" data-i18n="optAddService">Añadir Nuevo Servicio</h2>
+            <form id="addServiceForm">
+                <div class="form-group">
+                    <label data-i18n="optNameLabel">Nombre identificativo</label>
+                    <input type="text" id="m_name" required placeholder="Ej: Ollama Llama3 Resumen" data-i18n="optNamePlaceholder">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="optTypeLabel">Tipo</label>
+                    <select id="m_type">
+                        <option value="ollama" selected>Ollama</option>
+                        <option value="openai">OpenAI (o compatible)</option>
+                        <option value="anthropic">Anthropic</option>
+                        <option value="gemini">Gemini</option>
+                    </select>
+                </div>
+                <div class="form-group" id="url_group">
+                    <label data-i18n="optUrlLabel">URL del Servicio</label>
+                    <input type="url" id="m_url" required placeholder="Ej: http://localhost:11434">
+                    <small style="color:#666" id="url_hint" data-i18n="optUrlHint">Al escribir la URL se consultarán los modelos disponibles.</small>
+                </div>
+                <div class="form-group">
+                    <label id="apikey_label" data-i18n="optApiKeyLabel">Clave de API (opcional)</label>
+                    <input type="text" id="m_apikey">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="optModelLabel">Modelo a usar</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select id="m_model" required style="flex-grow: 1;">
+                            <option value="" data-i18n="optModelEmpty">-- Introduce configuración válida --</option>
+                        </select>
+                        <button type="button" id="btnReloadModels" style="padding: 8px; font-size: 16px; background: #e2e8f0; color: #333; border: 1px solid #ccc; width: auto;" title="Recargar modelos">🔄</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="optPromptLabel">Prompt</label>
+                    <textarea id="m_prompt" required placeholder="Ej: Analiza este texto y dime tus conclusiones" data-i18n="optPromptPlaceholder"></textarea>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+                    <input type="checkbox" id="m_use_markdown" checked style="width: auto;">
+                    <label for="m_use_markdown" style="font-weight: normal; margin-bottom: 0;">Convertir contenido a Markdown (desmarcar para procesar HTML directamente)</label>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+                    <input type="checkbox" id="m_link_web" style="width: auto;">
+                    <label for="m_link_web" style="font-weight: normal; margin-bottom: 0;">Vincular y limitar este servicio a uno o varios dominios</label>
+                </div>
+                <div class="form-group" id="linked_url_group" style="display:none;">
+                    <label>Dominios a vincular (separados por comas)</label>
+                    <input type="text" id="m_linked_web_url" placeholder="Ej: example.com, openai.com">
+                </div>
+                <button type="submit" id="submitBtn" data-i18n="optSaveBtn">Guardar Servicio</button>
+                <button type="button" id="cancelEditBtn" style="background:#94a3b8; display:none; margin-left:10px;" data-i18n="optCancelBtn">Cancelar</button>
+            </form>
+        </div>
+
+        <h2 data-i18n="optListTitle">Servicios Configurados</h2>
+        <table id="servicesTable">
+            <thead>
+                <tr>
+                    <th data-i18n="thName">Nombre</th>
+                    <th data-i18n="thType">Tipo</th>
+                    <th data-i18n="thDomains">Dominios vinculados</th>
+                    <th data-i18n="thModel">Modelo</th>
+                    <th data-i18n="thActions">Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="i18n.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

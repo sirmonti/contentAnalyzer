@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "Analizzatore di contenuti"
+  },
+  "extDesc": {
+    "message": "Elabora i contenuti selezionati con l'IA"
+  },
+  "popupTitle": {
+    "message": "Analizza contenuto"
+  },
+  "selectService": {
+    "message": "Elabora con IA"
+  },
+  "btnExtractBrowser": {
+    "message": "Estrai nel browser"
+  },
+  "btnExtractDisk": {
+    "message": "Salva su disco"
+  },
+  "statusProcessing": {
+    "message": "Elaborazione..."
+  },
+  "statusSaved": {
+    "message": "Salvato nei download"
+  },
+  "statusSelectService": {
+    "message": "Seleziona fornitore"
+  },
+  "optPageTitle": {
+    "message": "Configura servizi"
+  },
+  "optTitle": {
+    "message": "Configurazione IA"
+  },
+  "optAddService": {
+    "message": "Aggiungi nuovo servizio"
+  },
+  "optNameLabel": {
+    "message": "Nome identificativo"
+  },
+  "optNamePlaceholder": {
+    "message": "Es: Riassunto Ollama Llama3"
+  },
+  "optTypeLabel": {
+    "message": "Tipo"
+  },
+  "optUrlLabel": {
+    "message": "URL del Servizio"
+  },
+  "optUrlHint": {
+    "message": "I modelli disponibili saranno interrogati quando si digita l'URL."
+  },
+  "optApiKeyLabel": {
+    "message": "Chiave API (opzionale)"
+  },
+  "optModelLabel": {
+    "message": "Modello da utilizzare"
+  },
+  "optModelEmpty": {
+    "message": "-- Inserisci config valida --"
+  },
+  "optModelLoading": {
+    "message": "Caricamento servizi..."
+  },
+  "optPromptLabel": {
+    "message": "Prompt"
+  },
+  "optPromptPlaceholder": {
+    "message": "Analizza questo testo e dimmi le tue conclusioni"
+  },
+  "optSaveBtn": {
+    "message": "Salva servizio"
+  },
+  "optCancelBtn": {
+    "message": "Annulla"
+  },
+  "optListTitle": {
+    "message": "Servizi configurati"
+  },
+  "thName": {
+    "message": "Nome"
+  },
+  "thType": {
+    "message": "Tipo"
+  },
+  "thUrl": {
+    "message": "URL"
+  },
+  "thDomains": {
+    "message": "Domini collegati"
+  },
+  "thModel": {
+    "message": "Modello"
+  },
+  "thActions": {
+    "message": "Azioni"
+  },
+  "btnEdit": {
+    "message": "Modifica"
+  },
+  "btnDelete": {
+    "message": "Elimina"
+  },
+  "alertServiceExists": {
+    "message": "Esiste già un servizio con questo nome"
+  },
+  "resPageTitle": {
+    "message": "Risultato IA - Analizzatore"
+  },
+  "resHeader": {
+    "message": "Risultato - "
+  },
+  "resSaving": {
+    "message": "Salvataggio..."
+  },
+  "resSaveBtn": {
+    "message": "Salva come file"
+  },
+  "resInvalidId": {
+    "message": "ID esecuzione errato."
+  },
+  "resDataNotFound": {
+    "message": "Dati articolo non trovati."
+  },
+  "resReconnecting": {
+    "message": "Nuovo tentativo... (Tentativo $1/$2)"
+  },
+  "resConnError": {
+    "message": "Errore: La connessione si è chiusa inaspettatamente più volte."
+  },
+  "resAIError": {
+    "message": "Errore IA: $1"
+  },
+  "resDefaultFilename": {
+    "message": "risposta_ia"
+  },
+  "errUnsupportedService": {
+    "message": "Servizio non supportato: $1"
+  },
+  "errDownload": {
+    "message": "Errore di download"
+  },
+  "extIconTitle": {
+    "message": "Analizza contenuto"
+  },
+  "errNoServices": {
+    "message": "Nessun servizio attivo."
+  },
+  "errNoModels": {
+    "message": "Nessun modello trovato"
+  },
+  "errConn": {
+    "message": "Errore"
+  },
+  "optEditService": {
+    "message": "Modifica"
+  },
+  "optSaveChanges": {
+    "message": "Salva"
+  },
+  "errNoTab": {
+    "message": "Nessuna scheda attiva"
+  },
+  "errParse": {
+    "message": "Errore di analisi: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 Punta alla sezione da estrarre e CLICCA"
+  },
+  "capAllBtn": {
+    "message": "Cattura l'intera pagina"
+  }
+}

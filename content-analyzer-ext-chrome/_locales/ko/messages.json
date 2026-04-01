@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "콘텐츠 분석기"
+  },
+  "extDesc": {
+    "message": "AI로 선택한 콘텐츠를 처리합니다"
+  },
+  "popupTitle": {
+    "message": "콘텐츠 분석"
+  },
+  "selectService": {
+    "message": "AI로 처리"
+  },
+  "btnExtractBrowser": {
+    "message": "브라우저에서 추출"
+  },
+  "btnExtractDisk": {
+    "message": "디스크에 저장"
+  },
+  "statusProcessing": {
+    "message": "처리 중..."
+  },
+  "statusSaved": {
+    "message": "다운로드에 저장됨"
+  },
+  "statusSelectService": {
+    "message": "제공자 선택"
+  },
+  "optPageTitle": {
+    "message": "서비스 구성"
+  },
+  "optTitle": {
+    "message": "AI 설정"
+  },
+  "optAddService": {
+    "message": "새 서비스 추가"
+  },
+  "optNameLabel": {
+    "message": "식별 이름"
+  },
+  "optNamePlaceholder": {
+    "message": "예: Ollama Llama3 요약"
+  },
+  "optTypeLabel": {
+    "message": "유형"
+  },
+  "optUrlLabel": {
+    "message": "서비스 URL"
+  },
+  "optUrlHint": {
+    "message": "URL을 입력하면 사용 가능한 모델이 조회됩니다。"
+  },
+  "optApiKeyLabel": {
+    "message": "API 키(선택 사항)"
+  },
+  "optModelLabel": {
+    "message": "사용할 모델"
+  },
+  "optModelEmpty": {
+    "message": "-- 올바른 구성 입력 --"
+  },
+  "optModelLoading": {
+    "message": "서비스 로드 중..."
+  },
+  "optPromptLabel": {
+    "message": "프롬프트"
+  },
+  "optPromptPlaceholder": {
+    "message": "이 텍스트를 분석하고 결론을 알려주세요"
+  },
+  "optSaveBtn": {
+    "message": "서비스 저장"
+  },
+  "optCancelBtn": {
+    "message": "취소"
+  },
+  "optListTitle": {
+    "message": "구성된 서비스"
+  },
+  "thName": {
+    "message": "이름"
+  },
+  "thType": {
+    "message": "유형"
+  },
+  "thUrl": {
+    "message": "URL"
+  },
+  "thDomains": {
+    "message": "연결된 도메인"
+  },
+  "thModel": {
+    "message": "모델"
+  },
+  "thActions": {
+    "message": "작업"
+  },
+  "btnEdit": {
+    "message": "편집"
+  },
+  "btnDelete": {
+    "message": "삭제"
+  },
+  "alertServiceExists": {
+    "message": "해당 이름의 서비스가 이미 존재합니다"
+  },
+  "resPageTitle": {
+    "message": "AI 결과 - 분석기"
+  },
+  "resHeader": {
+    "message": "결과 - "
+  },
+  "resSaving": {
+    "message": "저장 중..."
+  },
+  "resSaveBtn": {
+    "message": "파일로 저장"
+  },
+  "resInvalidId": {
+    "message": "잘못된 ID입니다."
+  },
+  "resDataNotFound": {
+    "message": "기사 데이터를 찾을 수 없습니다."
+  },
+  "resReconnecting": {
+    "message": "쿼리 재시도 중... ($1/$2 번째 시도)"
+  },
+  "resConnError": {
+    "message": "오류: 연결이 예기치 않게 계속 닫혔습니다."
+  },
+  "resAIError": {
+    "message": "AI 오류: $1"
+  },
+  "resDefaultFilename": {
+    "message": "ai_응답"
+  },
+  "errUnsupportedService": {
+    "message": "지원되지 않는 서비스: $1"
+  },
+  "errDownload": {
+    "message": "다운로드 오류"
+  },
+  "extIconTitle": {
+    "message": "콘텐츠 분석"
+  },
+  "errNoServices": {
+    "message": "활성 서비스가 없습니다."
+  },
+  "errNoModels": {
+    "message": "모델 없음"
+  },
+  "errConn": {
+    "message": "오류"
+  },
+  "optEditService": {
+    "message": "편집"
+  },
+  "optSaveChanges": {
+    "message": "저장"
+  },
+  "errNoTab": {
+    "message": "활성 탭 없음"
+  },
+  "errParse": {
+    "message": "구문 분석 오류: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 추출할 섹션을 가리키고 클릭하세요."
+  },
+  "capAllBtn": {
+    "message": "전체 페이지 갈무리"
+  }
+}

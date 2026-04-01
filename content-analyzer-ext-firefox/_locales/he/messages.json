@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "מנתח תוכן"
+  },
+  "extDesc": {
+    "message": "מעבד תוכן נבחר בעזרת בינה מלאכותית"
+  },
+  "popupTitle": {
+    "message": "ניתוח תוכן"
+  },
+  "selectService": {
+    "message": "שירות בינה מלאכותית:"
+  },
+  "btnExtractBrowser": {
+    "message": "חילוץ בדפדפן"
+  },
+  "btnExtractDisk": {
+    "message": "שמירה בדיסק (.md)"
+  },
+  "statusProcessing": {
+    "message": "מעבד..."
+  },
+  "statusSaved": {
+    "message": "נשמר בהורדות"
+  },
+  "statusSelectService": {
+    "message": "בחר ספק"
+  },
+  "optPageTitle": {
+    "message": "הגדרת שירותים"
+  },
+  "optTitle": {
+    "message": "תצורת בינה מלאכותית"
+  },
+  "optAddService": {
+    "message": "הוספת שירות חדש"
+  },
+  "optNameLabel": {
+    "message": "שם מזהה"
+  },
+  "optNamePlaceholder": {
+    "message": "לדוגמה: Ollama Llama3 Summary"
+  },
+  "optTypeLabel": {
+    "message": "סוג"
+  },
+  "optUrlLabel": {
+    "message": "כתובת השירות"
+  },
+  "optUrlHint": {
+    "message": "המודלים הזמינים ייבדקו בעת הקלדת הכתובת."
+  },
+  "optApiKeyLabel": {
+    "message": "מפתח API (אופציונלי)"
+  },
+  "optModelLabel": {
+    "message": "מודל לשימוש"
+  },
+  "optModelEmpty": {
+    "message": "-- הזן תצורה חוקית --"
+  },
+  "optModelLoading": {
+    "message": "טוען שירותים..."
+  },
+  "optPromptLabel": {
+    "message": "הנחיה"
+  },
+  "optPromptPlaceholder": {
+    "message": "לדוגמה: סכם את המאמר הזה:\\n\\n"
+  },
+  "optSaveBtn": {
+    "message": "שמירת שירות"
+  },
+  "optCancelBtn": {
+    "message": "ביטול"
+  },
+  "optListTitle": {
+    "message": "שירותים מוגדרים"
+  },
+  "thName": {
+    "message": "שם"
+  },
+  "thType": {
+    "message": "סוג"
+  },
+  "thUrl": {
+    "message": "כתובת"
+  },
+  "thModel": {
+    "message": "מודל"
+  },
+  "thActions": {
+    "message": "פעולות"
+  },
+  "btnEdit": {
+    "message": "עריכה"
+  },
+  "btnDelete": {
+    "message": "מחיקה"
+  },
+  "alertServiceExists": {
+    "message": "שירות בשם זה כבר קיים"
+  },
+  "resPageTitle": {
+    "message": "תוצאת AI - מנתח"
+  },
+  "resHeader": {
+    "message": "תוצאה - "
+  },
+  "resSaving": {
+    "message": "שומר..."
+  },
+  "resSaveBtn": {
+    "message": "שמירה כקובץ"
+  },
+  "resInvalidId": {
+    "message": "מזהה ביצוע לא חוקי."
+  },
+  "resDataNotFound": {
+    "message": "נתוני המאמר לא נמצאו."
+  },
+  "resReconnecting": {
+    "message": "מנסה שוב... (ניסיון $1/$2)"
+  },
+  "resConnError": {
+    "message": "שגיאה: החיבור נסגר שוב ושוב באופן בלתי צפוי."
+  },
+  "resAIError": {
+    "message": "שגיאת בינה מלאכותית: $1"
+  },
+  "resDefaultFilename": {
+    "message": "תשובת_בינה_מלאכותית"
+  },
+  "errUnsupportedService": {
+    "message": "שירות לא נתמך: $1"
+  },
+  "errDownload": {
+    "message": "שגיאת הורדה"
+  },
+  "extIconTitle": {
+    "message": "ניתוח תוכן"
+  },
+  "errNoServices": {
+    "message": "אין שירותים מוגדרים."
+  },
+  "errNoModels": {
+    "message": "לא נמצאו מודלים"
+  },
+  "errConn": {
+    "message": "שגיאת חיבור"
+  },
+  "optEditService": {
+    "message": "עריכת שירות"
+  },
+  "optSaveChanges": {
+    "message": "שמירת שינויים"
+  },
+  "errNoTab": {
+    "message": "אין כרטיסייה פעילה"
+  },
+  "errParse": {
+    "message": "שגיאת לכידה: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 הצבע על החלק לחילוץ ולחץ"
+  },
+  "capAllBtn": {
+    "message": "לכידת הדף כולו"
+  }
+}

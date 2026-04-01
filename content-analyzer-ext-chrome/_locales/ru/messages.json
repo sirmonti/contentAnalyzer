@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "Анализатор контента"
+  },
+  "extDesc": {
+    "message": "Обрабатывает выбранный контент с помощью ИИ"
+  },
+  "popupTitle": {
+    "message": "Анализировать контент"
+  },
+  "selectService": {
+    "message": "Обработка с помощью ИИ"
+  },
+  "btnExtractBrowser": {
+    "message": "Извлечь в браузере"
+  },
+  "btnExtractDisk": {
+    "message": "Сохранить на диск"
+  },
+  "statusProcessing": {
+    "message": "Обработка..."
+  },
+  "statusSaved": {
+    "message": "Сохранено в загрузках"
+  },
+  "statusSelectService": {
+    "message": "Выберите провайдера"
+  },
+  "optPageTitle": {
+    "message": "Настроить службы"
+  },
+  "optTitle": {
+    "message": "Настройки ИИ"
+  },
+  "optAddService": {
+    "message": "Добавить новую службу"
+  },
+  "optNameLabel": {
+    "message": "Название сервиса"
+  },
+  "optNamePlaceholder": {
+    "message": "Например: Резюме Ollama Llama3"
+  },
+  "optTypeLabel": {
+    "message": "Тип"
+  },
+  "optUrlLabel": {
+    "message": "URL службы"
+  },
+  "optUrlHint": {
+    "message": "При вводе URL-адреса будут запрошены доступные модели."
+  },
+  "optApiKeyLabel": {
+    "message": "Ключ API (необязательно)"
+  },
+  "optModelLabel": {
+    "message": "Модель для использования"
+  },
+  "optModelEmpty": {
+    "message": "-- Введите действительную конфигурацию --"
+  },
+  "optModelLoading": {
+    "message": "Загрузка служб..."
+  },
+  "optPromptLabel": {
+    "message": "Промпт"
+  },
+  "optPromptPlaceholder": {
+    "message": "Проанализируй этот текст и сделай выводы"
+  },
+  "optSaveBtn": {
+    "message": "Сохранить службу"
+  },
+  "optCancelBtn": {
+    "message": "Отмена"
+  },
+  "optListTitle": {
+    "message": "Настроенные службы"
+  },
+  "thName": {
+    "message": "Имя"
+  },
+  "thType": {
+    "message": "Тип"
+  },
+  "thUrl": {
+    "message": "URL"
+  },
+  "thDomains": {
+    "message": "Связанные домены"
+  },
+  "thModel": {
+    "message": "Модель"
+  },
+  "thActions": {
+    "message": "Действия"
+  },
+  "btnEdit": {
+    "message": "Изменить"
+  },
+  "btnDelete": {
+    "message": "Удалить"
+  },
+  "alertServiceExists": {
+    "message": "Служба с таким именем уже существует"
+  },
+  "resPageTitle": {
+    "message": "Результат ИИ - Анализатор"
+  },
+  "resHeader": {
+    "message": "Результат - "
+  },
+  "resSaving": {
+    "message": "Сохранение..."
+  },
+  "resSaveBtn": {
+    "message": "Сохранить как файл"
+  },
+  "resInvalidId": {
+    "message": "Недействительный ID."
+  },
+  "resDataNotFound": {
+    "message": "Данные статьи не найдены."
+  },
+  "resReconnecting": {
+    "message": "Повторная попытка... (Попытка $1/$2)"
+  },
+  "resConnError": {
+    "message": "Ошибка: Соединение неоднократно прерывалось."
+  },
+  "resAIError": {
+    "message": "Ошибка ИИ: $1"
+  },
+  "resDefaultFilename": {
+    "message": "ответ_ии"
+  },
+  "errUnsupportedService": {
+    "message": "Неподдерживаемая служба: $1"
+  },
+  "errDownload": {
+    "message": "Ошибка загрузки"
+  },
+  "extIconTitle": {
+    "message": "Анализировать контент"
+  },
+  "errNoServices": {
+    "message": "Нет активных служб."
+  },
+  "errNoModels": {
+    "message": "Нет моделей"
+  },
+  "errConn": {
+    "message": "Ошибка"
+  },
+  "optEditService": {
+    "message": "Изменить"
+  },
+  "optSaveChanges": {
+    "message": "Сохранить"
+  },
+  "errNoTab": {
+    "message": "Нет активной вкладки"
+  },
+  "errParse": {
+    "message": "Ошибка парсинга: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 Наведите на раздел для извлечения и НАЖМИТЕ"
+  },
+  "capAllBtn": {
+    "message": "Захватить всю страницу"
+  }
+}

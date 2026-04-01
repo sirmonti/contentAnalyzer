@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "コンテンツアナライザー"
+  },
+  "extDesc": {
+    "message": "選択したコンテンツをAIで処理します"
+  },
+  "popupTitle": {
+    "message": "コンテンツを分析"
+  },
+  "selectService": {
+    "message": "AIで処理"
+  },
+  "btnExtractBrowser": {
+    "message": "ブラウザで抽出"
+  },
+  "btnExtractDisk": {
+    "message": "ディスクに保存"
+  },
+  "statusProcessing": {
+    "message": "処理中..."
+  },
+  "statusSaved": {
+    "message": "ダウンロードに保存"
+  },
+  "statusSelectService": {
+    "message": "プロバイダを選択"
+  },
+  "optPageTitle": {
+    "message": "サービスを構成"
+  },
+  "optTitle": {
+    "message": "AI設定"
+  },
+  "optAddService": {
+    "message": "新しいサービスを追加"
+  },
+  "optNameLabel": {
+    "message": "識別名"
+  },
+  "optNamePlaceholder": {
+    "message": "例：Ollama Llama3 要約"
+  },
+  "optTypeLabel": {
+    "message": "タイプ"
+  },
+  "optUrlLabel": {
+    "message": "サービス URL"
+  },
+  "optUrlHint": {
+    "message": "URLを入力すると、利用可能なモデルが照会されます。"
+  },
+  "optApiKeyLabel": {
+    "message": "API キー（オプション）"
+  },
+  "optModelLabel": {
+    "message": "使用するモデル"
+  },
+  "optModelEmpty": {
+    "message": "-- 有効な構成を入力 --"
+  },
+  "optModelLoading": {
+    "message": "サービスをロード中..."
+  },
+  "optPromptLabel": {
+    "message": "プロンプト"
+  },
+  "optPromptPlaceholder": {
+    "message": "このテキストを分析し、結論を出してください"
+  },
+  "optSaveBtn": {
+    "message": "サービスを保存"
+  },
+  "optCancelBtn": {
+    "message": "キャンセル"
+  },
+  "optListTitle": {
+    "message": "構成されたサービス"
+  },
+  "thName": {
+    "message": "名前"
+  },
+  "thType": {
+    "message": "タイプ"
+  },
+  "thUrl": {
+    "message": "URL"
+  },
+  "thDomains": {
+    "message": "リンクされたドメイン"
+  },
+  "thModel": {
+    "message": "モデル"
+  },
+  "thActions": {
+    "message": "アクション"
+  },
+  "btnEdit": {
+    "message": "編集"
+  },
+  "btnDelete": {
+    "message": "削除"
+  },
+  "alertServiceExists": {
+    "message": "その名前のサービスはすでに存在します"
+  },
+  "resPageTitle": {
+    "message": "AI結果 - アナライザー"
+  },
+  "resHeader": {
+    "message": "結果 - "
+  },
+  "resSaving": {
+    "message": "保存中..."
+  },
+  "resSaveBtn": {
+    "message": "ファイルとして保存"
+  },
+  "resInvalidId": {
+    "message": "無効なID。"
+  },
+  "resDataNotFound": {
+    "message": "記事データが見つかりません。"
+  },
+  "resReconnecting": {
+    "message": "再試行しています... (試行 $1/$2)"
+  },
+  "resConnError": {
+    "message": "エラー：接続が予期せず繰り返し切断されました。"
+  },
+  "resAIError": {
+    "message": "AIエラー: $1"
+  },
+  "resDefaultFilename": {
+    "message": "ai_応答"
+  },
+  "errUnsupportedService": {
+    "message": "サポートされていないサービス: $1"
+  },
+  "errDownload": {
+    "message": "ダウンロードエラー"
+  },
+  "extIconTitle": {
+    "message": "コンテンツを分析"
+  },
+  "errNoServices": {
+    "message": "アクティブなサービスはありません。"
+  },
+  "errNoModels": {
+    "message": "モデルなし"
+  },
+  "errConn": {
+    "message": "エラー"
+  },
+  "optEditService": {
+    "message": "編集"
+  },
+  "optSaveChanges": {
+    "message": "保存"
+  },
+  "errNoTab": {
+    "message": "アクティブなタブがありません"
+  },
+  "errParse": {
+    "message": "解析エラー: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 抽出するセクションをポイントしてクリックします"
+  },
+  "capAllBtn": {
+    "message": "ページ全体をキャプチャ"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "Analizator treści"
+  },
+  "extDesc": {
+    "message": "Przetwarza wybraną treść za pomocą AI"
+  },
+  "popupTitle": {
+    "message": "Analizuj treść"
+  },
+  "selectService": {
+    "message": "Przetwarzaj z AI"
+  },
+  "btnExtractBrowser": {
+    "message": "Wyodrębnij w przeglądarce"
+  },
+  "btnExtractDisk": {
+    "message": "Zapisz na dysku"
+  },
+  "statusProcessing": {
+    "message": "Przetwarzanie..."
+  },
+  "statusSaved": {
+    "message": "Zapisano w pobranych"
+  },
+  "statusSelectService": {
+    "message": "Wybierz dostawcę"
+  },
+  "optPageTitle": {
+    "message": "Skonfiguruj usługi"
+  },
+  "optTitle": {
+    "message": "Konfiguracja AI"
+  },
+  "optAddService": {
+    "message": "Dodaj nową usługę"
+  },
+  "optNameLabel": {
+    "message": "Nazwa identyfikacyjna"
+  },
+  "optNamePlaceholder": {
+    "message": "Nadz: Ollama Llama3 Podsumowanie"
+  },
+  "optTypeLabel": {
+    "message": "Typ"
+  },
+  "optUrlLabel": {
+    "message": "URL Usługi"
+  },
+  "optUrlHint": {
+    "message": "Dostępne modele zostaną przeszukane po wpisaniu adresu URL."
+  },
+  "optApiKeyLabel": {
+    "message": "Klucz API (opcjonalnie)"
+  },
+  "optModelLabel": {
+    "message": "Model do użycia"
+  },
+  "optModelEmpty": {
+    "message": "-- Wprowadź prawidłową konfigurację --"
+  },
+  "optModelLoading": {
+    "message": "Ładowanie usług..."
+  },
+  "optPromptLabel": {
+    "message": "Podpowiedź"
+  },
+  "optPromptPlaceholder": {
+    "message": "Przeanalizuj ten tekst i podaj mi swoje wnioski"
+  },
+  "optSaveBtn": {
+    "message": "Zapisz usługę"
+  },
+  "optCancelBtn": {
+    "message": "Anuluj"
+  },
+  "optListTitle": {
+    "message": "Skonfigurowane usługi"
+  },
+  "thName": {
+    "message": "Nazwa"
+  },
+  "thType": {
+    "message": "Typ"
+  },
+  "thUrl": {
+    "message": "URL"
+  },
+  "thDomains": {
+    "message": "Połączone domeny"
+  },
+  "thModel": {
+    "message": "Model"
+  },
+  "thActions": {
+    "message": "Akcje"
+  },
+  "btnEdit": {
+    "message": "Edycja"
+  },
+  "btnDelete": {
+    "message": "Usuń"
+  },
+  "alertServiceExists": {
+    "message": "Usługa o tej nazwie już istnieje"
+  },
+  "resPageTitle": {
+    "message": "Wynik AI - Analizator"
+  },
+  "resHeader": {
+    "message": "Wynik - "
+  },
+  "resSaving": {
+    "message": "Zapisywanie..."
+  },
+  "resSaveBtn": {
+    "message": "Zapisz jako Markdown"
+  },
+  "resInvalidId": {
+    "message": "Nieprawidłowy ID."
+  },
+  "resDataNotFound": {
+    "message": "Nie znaleziono danych artykułu."
+  },
+  "resReconnecting": {
+    "message": "Ponawiam zapytanie... (Próba $1/$2)"
+  },
+  "resConnError": {
+    "message": "Błąd: Połączenie zostało wielokrotnie niespodziewanie zamknięte."
+  },
+  "resAIError": {
+    "message": "Błąd AI: $1"
+  },
+  "resDefaultFilename": {
+    "message": "odpowiedz_ai"
+  },
+  "errUnsupportedService": {
+    "message": "Nieobsługiwana usługa: $1"
+  },
+  "errDownload": {
+    "message": "Błąd pobierania"
+  },
+  "extIconTitle": {
+    "message": "Analizuj treść"
+  },
+  "errNoServices": {
+    "message": "Brak aktywnych usług."
+  },
+  "errNoModels": {
+    "message": "Nie znaleziono"
+  },
+  "errConn": {
+    "message": "Błąd"
+  },
+  "optEditService": {
+    "message": "Edytuj"
+  },
+  "optSaveChanges": {
+    "message": "Zapisz"
+  },
+  "errNoTab": {
+    "message": "Brak aktywnej karty"
+  },
+  "errParse": {
+    "message": "Błąd parsowania: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 Wskaż sekcję do wyodrębnienia i KLIKNIJ"
+  },
+  "capAllBtn": {
+    "message": "Zdobądź całą stronę"
+  }
+}

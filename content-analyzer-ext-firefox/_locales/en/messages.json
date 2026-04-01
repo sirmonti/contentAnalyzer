@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "Content Analyzer"
+  },
+  "extDesc": {
+    "message": "Processes selected content with AI"
+  },
+  "popupTitle": {
+    "message": "Analyze Content"
+  },
+  "selectService": {
+    "message": "AI Service:"
+  },
+  "btnExtractBrowser": {
+    "message": "Extract in browser"
+  },
+  "btnExtractDisk": {
+    "message": "Save to disk (.md)"
+  },
+  "statusProcessing": {
+    "message": "Processing..."
+  },
+  "statusSaved": {
+    "message": "Saved to downloads"
+  },
+  "statusSelectService": {
+    "message": "Select provider"
+  },
+  "optPageTitle": {
+    "message": "Configure services"
+  },
+  "optTitle": {
+    "message": "AI Configuration"
+  },
+  "optAddService": {
+    "message": "Add New Service"
+  },
+  "optNameLabel": {
+    "message": "Identifier Name"
+  },
+  "optNamePlaceholder": {
+    "message": "Ex: Ollama Llama3 Summary"
+  },
+  "optTypeLabel": {
+    "message": "Type"
+  },
+  "optUrlLabel": {
+    "message": "Service URL"
+  },
+  "optUrlHint": {
+    "message": "Available models will be queried when typing the URL."
+  },
+  "optApiKeyLabel": {
+    "message": "API Key (optional)"
+  },
+  "optModelLabel": {
+    "message": "Model to use"
+  },
+  "optModelEmpty": {
+    "message": "-- Enter valid config --"
+  },
+  "optModelLoading": {
+    "message": "Loading services..."
+  },
+  "optPromptLabel": {
+    "message": "Prompt"
+  },
+  "optPromptPlaceholder": {
+    "message": "Analyze this text and give me your conclusions"
+  },
+  "optSaveBtn": {
+    "message": "Save Service"
+  },
+  "optCancelBtn": {
+    "message": "Cancel"
+  },
+  "optListTitle": {
+    "message": "Configured Services"
+  },
+  "thName": {
+    "message": "Name"
+  },
+  "thType": {
+    "message": "Type"
+  },
+  "thUrl": {
+    "message": "URL"
+  },
+  "thDomains": {
+    "message": "Linked domains"
+  },
+  "thModel": {
+    "message": "Model"
+  },
+  "thActions": {
+    "message": "Actions"
+  },
+  "btnEdit": {
+    "message": "Edit"
+  },
+  "btnDelete": {
+    "message": "Delete"
+  },
+  "alertServiceExists": {
+    "message": "Service with that name already exists"
+  },
+  "resPageTitle": {
+    "message": "AI Result - Analyzer"
+  },
+  "resHeader": {
+    "message": "Result - "
+  },
+  "resSaving": {
+    "message": "Saving..."
+  },
+  "resSaveBtn": {
+    "message": "Save as Markdown"
+  },
+  "resInvalidId": {
+    "message": "Invalid execution ID."
+  },
+  "resDataNotFound": {
+    "message": "Article data not found."
+  },
+  "resReconnecting": {
+    "message": "Retrying query... (Attempt $1/$2)"
+  },
+  "resConnError": {
+    "message": "Error: Unexpectedly closed repeatedly."
+  },
+  "resAIError": {
+    "message": "AI Error: $1"
+  },
+  "resDefaultFilename": {
+    "message": "ai_response"
+  },
+  "errUnsupportedService": {
+    "message": "Unsupported service: $1"
+  },
+  "errDownload": {
+    "message": "Download error"
+  },
+  "extIconTitle": {
+    "message": "Analyze Content"
+  },
+  "errNoServices": {
+    "message": "No active services."
+  },
+  "errNoModels": {
+    "message": "No models found"
+  },
+  "errConn": {
+    "message": "Connection error"
+  },
+  "optEditService": {
+    "message": "Edit Service"
+  },
+  "optSaveChanges": {
+    "message": "Save Changes"
+  },
+  "errNoTab": {
+    "message": "No active tab"
+  },
+  "errParse": {
+    "message": "Capture error: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 Point to the section to extract and CLICK"
+  },
+  "capAllBtn": {
+    "message": "Capture entire page"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "extName": {
+    "message": "Inhaltsanalysator"
+  },
+  "extDesc": {
+    "message": "Verarbeitet ausgewählte Inhalte mit KI"
+  },
+  "popupTitle": {
+    "message": "Inhalte analysieren"
+  },
+  "selectService": {
+    "message": "Mit KI verarbeiten"
+  },
+  "btnExtractBrowser": {
+    "message": "Im Browser extrahieren"
+  },
+  "btnExtractDisk": {
+    "message": "Auf Festplatte speichern"
+  },
+  "statusProcessing": {
+    "message": "Wird bearbeitet..."
+  },
+  "statusSaved": {
+    "message": "In Downloads gespeichert"
+  },
+  "statusSelectService": {
+    "message": "Anbieter auswählen"
+  },
+  "optPageTitle": {
+    "message": "Dienste konfigurieren"
+  },
+  "optTitle": {
+    "message": "KI-Konfiguration"
+  },
+  "optAddService": {
+    "message": "Neuen Dienst hinzufügen"
+  },
+  "optNameLabel": {
+    "message": "Kennziffer Name"
+  },
+  "optNamePlaceholder": {
+    "message": "Bsp: Ollama Llama3 Zusammenfassung"
+  },
+  "optTypeLabel": {
+    "message": "Typ"
+  },
+  "optUrlLabel": {
+    "message": "Dienst-URL"
+  },
+  "optUrlHint": {
+    "message": "Verfügbare Modelle werden bei der Eingabe der URL abgefragt."
+  },
+  "optApiKeyLabel": {
+    "message": "API-Schlüssel (optional)"
+  },
+  "optModelLabel": {
+    "message": "Zu verwendendes Modell"
+  },
+  "optModelEmpty": {
+    "message": "-- Gültige Konfiguration eingeben --"
+  },
+  "optModelLoading": {
+    "message": "Dienste werden geladen..."
+  },
+  "optPromptLabel": {
+    "message": "Forderung"
+  },
+  "optPromptPlaceholder": {
+    "message": "Analysieren Sie diesen Text und geben Sie mir Ihre Schlussfolgerungen"
+  },
+  "optSaveBtn": {
+    "message": "Dienst speichern"
+  },
+  "optCancelBtn": {
+    "message": "Stornieren"
+  },
+  "optListTitle": {
+    "message": "Konfigurierte Dienste"
+  },
+  "thName": {
+    "message": "Name"
+  },
+  "thType": {
+    "message": "Typ"
+  },
+  "thUrl": {
+    "message": "URL"
+  },
+  "thDomains": {
+    "message": "Verknüpfte Domänen"
+  },
+  "thModel": {
+    "message": "Modell"
+  },
+  "thActions": {
+    "message": "Aktionen"
+  },
+  "btnEdit": {
+    "message": "Bearbeiten"
+  },
+  "btnDelete": {
+    "message": "Löschen"
+  },
+  "alertServiceExists": {
+    "message": "Es existiert bereits ein Dienst mit diesem Namen"
+  },
+  "resPageTitle": {
+    "message": "KI-Ergebnis - Analysator"
+  },
+  "resHeader": {
+    "message": "Ergebnis - "
+  },
+  "resSaving": {
+    "message": "Speichern..."
+  },
+  "resSaveBtn": {
+    "message": "Als Markdown speichern"
+  },
+  "resInvalidId": {
+    "message": "Ungültige Ausführungs-ID."
+  },
+  "resDataNotFound": {
+    "message": "Artikeldaten nicht gefunden."
+  },
+  "resReconnecting": {
+    "message": "Wiederhole Anfrage... (Versuch $1/$2)"
+  },
+  "resConnError": {
+    "message": "Fehler: Die Verbindung wurde wiederholt unerwartet geschlossen."
+  },
+  "resAIError": {
+    "message": "KI-Fehler: $1"
+  },
+  "resDefaultFilename": {
+    "message": "ki_antwort"
+  },
+  "errUnsupportedService": {
+    "message": "Nicht unterstützter Dienst: $1"
+  },
+  "errDownload": {
+    "message": "Download-Fehler"
+  },
+  "extIconTitle": {
+    "message": "Inhalte analysieren"
+  },
+  "errNoServices": {
+    "message": "Keine aktiven Dienste."
+  },
+  "errNoModels": {
+    "message": "Keine modelle gefunden"
+  },
+  "errConn": {
+    "message": "Fehler"
+  },
+  "optEditService": {
+    "message": "Bearbeiten"
+  },
+  "optSaveChanges": {
+    "message": "Speichern"
+  },
+  "errNoTab": {
+    "message": "Kein aktiver Tab"
+  },
+  "errParse": {
+    "message": "Fehler beim Parsen: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 Zeigen Sie auf den zu extrahierenden Bereich und KLICKEN Sie"
+  },
+  "capAllBtn": {
+    "message": "Ganze Seite erfassen"
+  }
+}
