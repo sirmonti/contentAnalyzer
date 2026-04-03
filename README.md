@@ -1,6 +1,6 @@
 # Content Analyzer Extension
 
-![Icon](Logo/Logo320.png)
+![Icon](Logo/Icono128.png)
 
 This project provides a versatile browser extension designed for both **Firefox** and **Chrome**. Its core purpose is to process web content by passing it through various Artificial Intelligence (AI) services. 
 
