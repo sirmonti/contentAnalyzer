@@ -408,7 +408,7 @@ async function handleAction(type, serviceData = null) {
                 serviceData,                                 // LLM service config
                 api.i18n.getMessage("tipInstruction"),       // Instruction tooltip text
                 api.i18n.getMessage("capAllBtn"),            // "Capture all" button text
-                api.i18n.getMessage("errParse")              // Conversion error message
+                api.i18n.getMessage("errParse", ["$1"])      // Pass "$1" as-is for later replacement
             ]
         });
 

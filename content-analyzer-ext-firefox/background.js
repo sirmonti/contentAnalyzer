@@ -136,7 +136,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (!driver) {
             sendResponse({
                 success: false,
-                error: browser.i18n.getMessage("errUnsupportedService").replace("$1", "")
+                error: browser.i18n.getMessage("errUnsupportedService", [""])
             });
             return false; // false = response already sent (not async)
         }
@@ -178,7 +178,7 @@ browser.runtime.onConnect.addListener((port) => {
 
                     if (!driver) {
                         throw new Error(
-                            browser.i18n.getMessage("errUnsupportedService").replace("$1", type)
+                            browser.i18n.getMessage("errUnsupportedService", [type])
                         );
                     }
 

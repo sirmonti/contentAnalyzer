@@ -184,8 +184,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Keep already received text visible (resultText persists between attempts).
             if (retryCount > 0) {
                 statusDiv.style.display = "block";
-                const msgBase = api.i18n.getMessage("resReconnecting") || "Retrying query... (Attempt $1/$2)";
-                statusDiv.innerHTML = `<span>${msgBase.replace("$1", retryCount).replace("$2", MAX_RETRIES)}</span>`;
+                const msgBase = api.i18n.getMessage("resReconnecting", [retryCount.toString(), MAX_RETRIES.toString()]) || `Retrying query... (Attempt ${retryCount}/${MAX_RETRIES})`;
+                statusDiv.innerHTML = `<span>${msgBase}</span>`;
                 // Don't clear resultBox or resultText: keep previous progress
             }
 
@@ -327,8 +327,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     } catch (e) {
         // Catch unexpected errors (e.g.: corrupt storage, malformed data)
-        let msg = api.i18n.getMessage("resAIError") || "Error communicating with AI: $1";
-        document.getElementById("status").innerHTML = `<span style="color:#ff5555">${msg.replace("$1", e.message)}</span>`;
+        const msg = api.i18n.getMessage("resAIError", [e.message]) || `AI Error: ${e.message}`;
+        document.getElementById("status").innerHTML = `<span style="color:#ff5555">${msg}</span>`;
         document.getElementById("status").className = ""; // Remove loading animation
     }
 });

@@ -181,7 +181,7 @@ async function handleAction(type, serviceData = null) {
         // as both scripts share the same ISOLATED world of the tab.
         await api.scripting.executeScript({
             target: { tabId: tab.id },
-            func: (actionType, servData, srvMsgTip, srvMsgCapAll, srvMsgErrParse) => {
+            func: (actionType, servData, srvMsgTip, srvMsgCapAll) => {
 
                 // Guard: don't activate selector if one is already active
                 if (window._articleExtractorActive) return;
@@ -276,7 +276,8 @@ async function handleAction(type, serviceData = null) {
                         });
 
                     } catch (err) {
-                        alert(srvMsgErrParse.replace("$1", err.message));
+                        const failMsg = extApi.i18n.getMessage("errParse", [err.message]) || `Capture error: ${err.message}`;
+                        alert(failMsg);
                     }
                 };
 
@@ -314,8 +315,7 @@ async function handleAction(type, serviceData = null) {
                 type,
                 serviceData,
                 api.i18n.getMessage("tipInstruction"),
-                api.i18n.getMessage("capAllBtn"),
-                api.i18n.getMessage("errParse")
+                api.i18n.getMessage("capAllBtn")
             ]
         });
 

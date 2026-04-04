@@ -146,7 +146,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (!driver) {
             sendResponse({
                 success: false,
-                error: chrome.i18n.getMessage("errUnsupportedService").replace("$1", "")
+                error: chrome.i18n.getMessage("errUnsupportedService", [""])
             });
             return false; // false = sync response already sent
         }
@@ -194,7 +194,7 @@ chrome.runtime.onConnect.addListener((port) => {
 
                     if (!driver) {
                         throw new Error(
-                            chrome.i18n.getMessage("errUnsupportedService").replace("$1", type)
+                            chrome.i18n.getMessage("errUnsupportedService", [type])
                         );
                     }
 
