@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Content Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="privacy.html" class="active">Privacy Policy</a>
+</nav>
+
+<main>
+    <h1>Privacy Policy for contentAnalyzer</h1>
+    <p><strong>Last Updated: April 2026</strong></p>
+
+    <h2>1. Introduction</h2>
+    <p>The "contentAnalyzer" Chrome extension (the "Extension") is designed to process the content of the current webpage using artificial intelligence services configured by the user. This Privacy Policy explains our commitment to your privacy and how data is handled.</p>
+
+    <h2>2. No Data Collection by the Developer</h2>
+    <p>We value your privacy above all. The developer of this Extension <span class="highlight">does not collect, store, or transmit any of your personal data, browsing history, or processed content to any server controlled by the developer.</span></p>
+    <p>All configuration settings (such as API keys or custom prompts) are stored locally within your browser's storage (e.g., <code>chrome.storage.local</code>) and are never accessible to the developer.</p>
+
+    <h2>3. Data Transmission to Third-Party Services</h2>
+    <p>To provide its core functionality, the Extension sends the content of the webpage you choose to analyze to the third-party AI service provider (the "AI Service") that <strong>you</strong> have configured in the settings.</p>
+
+    <h3>3.1. User-Configured Services</h3>
+    <p>The Extension only communicates with the specific endpoints/APIs provided by the user. Because these services are selected and configured by the user, the developer of "contentAnalyzer" has no control over how these third-party sites handle the data sent to them.</p>
+
+    <h3>3.2. Third-Party Privacy Policies</h3>
+    <p>The developer cannot be held responsible for the privacy practices, data retention policies, or security measures of the AI Services you choose to use. Before using the Extension with a specific service, we strongly recommend that you review the Privacy Policy and Terms of Service of that provider (e.g., OpenAI, Anthropic, Google, or any custom LLM provider).</p>
+
+    <h2>4. Permissions</h2>
+    <p>The Extension requires specific permissions to function:</p>
+    <ul>
+        <li><strong><code>activeTab</code> or <code>&lt;all_urls&gt;</code></strong>: To read the content of the page you wish to analyze.</li>
+        <li><strong><code>storage</code></strong>: To save your configuration and API settings locally.</li>
+        <li><strong><code>host permissions</code></strong>: To send the content to the AI Service API you have specified.</li>
+    </ul>
+
+    <h2>5. Security</h2>
+    <p>While the Extension facilitates the transmission of data via standard web protocols, the security of the data once it leaves your browser depends entirely on the AI Service you have configured. We recommend using services that provide secure (HTTPS) API endpoints.</p>
+
+    <h2>6. Changes to This Policy</h2>
+    <p>The developer reserves the right to update this Privacy Policy at any time. Any changes will be reflected in a new version of the Extension and updated on this page.</p>
+
+    <h2>7. Contact</h2>
+    <p>If you have any questions regarding this Privacy Policy, please contact the developer through the support channels provided in the Chrome Web Store.</p>
+</main>
+
+</body>
+</html>
