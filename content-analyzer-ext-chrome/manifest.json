@@ -3,6 +3,7 @@
   "name": "__MSG_extName__",
   "version": "1.1",
   "description": "__MSG_extDesc__",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtceucEeUvBegZA1jYSc+2LBSqMiJK67tS4icmSohpQLfiWGsF394W0ZvFgxlgX8mahx5R+iUScThkqh3MWSRhiM+oq6UPBEUL1Wb/jbA/QQdJXidxua9yX80Qb9QnU6/rMq0seiSA3CgWwERJjPd6z1ksK0YO3urDts7P6JxBrEhrmXTC9VXxZWn5RvtEt+cxTKvEEiXyvNiYVdXmv2yGVzjq4aBu8NUiET66MqM2u0Hwjqdci0cIVHz8HbOhapAoVR4XGwqIiVFiQsNu0hdnl5urGm0bTpfwbwql3N1yiNab1gj3fOwhCkD9cxbUiBQaLKv7HJZRODNPShRT4SFHQIDAQAB",
   "default_locale": "en",
   "permissions": [
     "activeTab",
