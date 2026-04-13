@@ -61,11 +61,12 @@ Below are a few examples showcasing how you can structure your services:
 
 ## Browser Installation
 
-1. **Google Chrome**: 
-  Pending upload to Chrome Web Store
+1. **Google Chrome (And Chromium based browsers)**: 
+  Install from [Chrome Web Store](https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja)
+
 
 2. **Mozilla Firefox**:
-  Pending upload to Firefox Add-ons
+  Install from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/)
 
 ---
 **Note:** Ensure you have configured the global settings (API Keys or local Ollama instances) properly in the extension's Options page before running any captures.
