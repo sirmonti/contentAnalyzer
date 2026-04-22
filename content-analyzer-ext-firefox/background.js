@@ -208,3 +208,72 @@ browser.runtime.onConnect.addListener((port) => {
         });
     }
 });
+
+// ============================================================
+// CONTEXT MENUS (FIREFOX)
+// ============================================================
+// Creates a context menu when text is selected, displaying available AI services.
+
+async function updateContextMenus() {
+    await browser.menus.removeAll();
+
+    const data = await browser.storage.local.get("llm_services");
+    const servicesList = data.llm_services || [];
+
+    if (servicesList.length === 0) return;
+
+    browser.menus.create({
+        id: "ca-parent",
+        title: browser.i18n.getMessage("extName") || "Content Analyzer",
+        contexts: ["selection"]
+    });
+
+    servicesList.forEach((m, index) => {
+        browser.menus.create({
+            id: `llm-service-${index}`,
+            parentId: "ca-parent",
+            title: "🤖 " + m.name,
+            contexts: ["selection"]
+        });
+    });
+}
+
+// In Firefox background script module, we can just call it once to initialize.
+updateContextMenus();
+
+browser.storage.local.onChanged.addListener((changes) => {
+    if (changes.llm_services) {
+        updateContextMenus();
+    }
+});
+
+browser.menus.onClicked.addListener(async (info, tab) => {
+    if (info.menuItemId.startsWith("llm-service-")) {
+        const index = parseInt(info.menuItemId.substring("llm-service-".length), 10);
+        const data = await browser.storage.local.get("llm_services");
+        const servicesList = data.llm_services || [];
+        const serviceData = servicesList[index];
+
+        if (!serviceData) return;
+
+        let domain = "";
+        try { if (tab && tab.url) domain = new URL(tab.url).hostname; } catch(e) {}
+
+        const executionId = Date.now().toString();
+        const markdown = info.selectionText || "";
+
+        browser.storage.local.set({
+            [`exec_${executionId}`]: {
+                markdown:  markdown,
+                title:     tab ? tab.title : "",
+                service:   serviceData,
+                url:       tab ? tab.url : "",
+                domain:    domain,
+                lang:      "NONE",
+                syslang:   navigator.language
+            }
+        }).then(() => {
+            browser.tabs.create({ url: `result.html?id=${executionId}` });
+        });
+    }
+});

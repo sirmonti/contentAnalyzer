@@ -238,7 +238,7 @@ async function handleAction(type, serviceData = null) {
         await api.scripting.executeScript({
             target: { tabId: tab.id },
             world: "MAIN",
-            func: (actionType, servData, srvMsgTip, srvMsgCapAll, srvMsgErrParse) => {
+            func: (actionType, servData, srvMsgTip, srvMsgCapAll, srvMsgCancel, srvMsgErrParse) => {
 
                 // Guard: If selector already active (user clicked popup again),
                 // don't activate another one on top to avoid duplicate listeners.
@@ -296,6 +296,12 @@ async function handleAction(type, serviceData = null) {
                         lastHovered.style.cursor  = originalCursors.get(lastHovered) || '';
                     }
                     window._articleExtractorActive = false; // Free guard for future uses
+
+                    if (e.target.id === 'article-extractor-cancel') {
+                        const tip = document.getElementById('article-extractor-tip');
+                        if (tip) tip.remove();
+                        return;
+                    }
 
                     // Determine target element:
                     // If user pressed "Capture all" button, use full document.body.
@@ -397,7 +403,8 @@ async function handleAction(type, serviceData = null) {
                 //   - "Capture all" button to select document.body without clicking
                 tip.innerHTML = `
                     <div style="margin-bottom: 8px;">${srvMsgTip}</div>
-                    <button id="article-extractor-capture-all" style="width: 100%; border: none; background: #fff; color: #10b981; padding: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">${srvMsgCapAll}</button>
+                    <button id="article-extractor-capture-all" style="width: 100%; border: none; background: #fff; color: #10b981; padding: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2); margin-bottom: 6px;">${srvMsgCapAll}</button>
+                    <button id="article-extractor-cancel" style="width: 100%; border: none; background: rgba(0,0,0,0.2); color: #fff; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-weight: bold;">${srvMsgCancel}</button>
                 `;
                 document.body.appendChild(tip);
             },
@@ -408,6 +415,7 @@ async function handleAction(type, serviceData = null) {
                 serviceData,                                 // LLM service config
                 api.i18n.getMessage("tipInstruction"),       // Instruction tooltip text
                 api.i18n.getMessage("capAllBtn"),            // "Capture all" button text
+                api.i18n.getMessage("optCancelBtn"),         // Cancel text
                 api.i18n.getMessage("errParse", ["$1"])      // Pass "$1" as-is for later replacement
             ]
         });

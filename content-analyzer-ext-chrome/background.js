@@ -223,3 +223,72 @@ chrome.runtime.onConnect.addListener((port) => {
         });
     }
 });
+
+// ============================================================
+// CONTEXT MENUS (CHROME)
+// ============================================================
+// Creates a context menu when text is selected, displaying available AI services.
+
+async function updateContextMenus() {
+    await chrome.contextMenus.removeAll();
+
+    const data = await chrome.storage.local.get("llm_services");
+    const servicesList = data.llm_services || [];
+
+    if (servicesList.length === 0) return;
+
+    chrome.contextMenus.create({
+        id: "ca-parent",
+        title: chrome.i18n.getMessage("extName") || "Content Analyzer",
+        contexts: ["selection"]
+    });
+
+    servicesList.forEach((m, index) => {
+        chrome.contextMenus.create({
+            id: `llm-service-${index}`,
+            parentId: "ca-parent",
+            title: "🤖 " + m.name,
+            contexts: ["selection"]
+        });
+    });
+}
+
+chrome.runtime.onInstalled.addListener(() => updateContextMenus());
+chrome.runtime.onStartup.addListener(() => updateContextMenus());
+
+chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === "local" && changes.llm_services) {
+        updateContextMenus();
+    }
+});
+
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+    if (info.menuItemId.startsWith("llm-service-")) {
+        const index = parseInt(info.menuItemId.substring("llm-service-".length), 10);
+        const data = await chrome.storage.local.get("llm_services");
+        const servicesList = data.llm_services || [];
+        const serviceData = servicesList[index];
+
+        if (!serviceData) return;
+
+        let domain = "";
+        try { if (tab && tab.url) domain = new URL(tab.url).hostname; } catch(e) {}
+
+        const executionId = Date.now().toString();
+        const markdown = info.selectionText || "";
+
+        chrome.storage.local.set({
+            [`exec_${executionId}`]: {
+                markdown:  markdown,
+                title:     tab ? tab.title : "",
+                service:   serviceData,
+                url:       tab ? tab.url : "",
+                domain:    domain,
+                lang:      "NONE",
+                syslang:   navigator.language
+            }
+        }).then(() => {
+            chrome.tabs.create({ url: `result.html?id=${executionId}` });
+        });
+    }
+});

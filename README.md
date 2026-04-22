@@ -9,6 +9,7 @@ Unlike typical web page summarizers, this extension allows you to create **multi
 ## Key Features
 
 *   **Custom Content Capture**: You can easily select a specific part of a web page using an interactive "hover tool", or opt to capture the entire page content.
+*   **Right-Click Contextual Capture**: Simply highlight any block of text on a web page, right-click, and open the extension's context menu. A submenu will display all your configured AI services, allowing you to instantly send the selected text to the service of your choice.
 *   **Multiple Custom AI Prompts**: Create different services tailored to your exact needs (e.g., "Summarize article", "Extract JSON data", "Translate to Spanish", etc.).
 *   **Domain-Specific Servicing**: You can link your custom services to specific web domains. This helps keep your extension clean by only showing relevant AI tools (e.g., a "Code Review" service that only activates when you browse github.com or stackoverflow.com).
 *   **Widespread LLM Compatibility**: Fully supports connections (including text streaming) with local servers via **Ollama**, as well as cloud API providers like **OpenAI**, **Anthropic**, and **Google Gemini**.

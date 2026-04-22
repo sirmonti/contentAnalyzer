@@ -1,14 +1,15 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "version": "1.1",
+  "version": "2.0",
   "description": "__MSG_extDesc__",
   "default_locale": "en",
   "permissions": [
     "activeTab",
     "scripting",
     "downloads",
-    "storage"
+    "storage",
+    "menus"
   ],
   "host_permissions": [
     "<all_urls>"

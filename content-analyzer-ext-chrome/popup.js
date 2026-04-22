@@ -181,7 +181,7 @@ async function handleAction(type, serviceData = null) {
         // as both scripts share the same ISOLATED world of the tab.
         await api.scripting.executeScript({
             target: { tabId: tab.id },
-            func: (actionType, servData, srvMsgTip, srvMsgCapAll) => {
+            func: (actionType, servData, srvMsgTip, srvMsgCapAll, srvMsgCancel) => {
 
                 // Guard: don't activate selector if one is already active
                 if (window._articleExtractorActive) return;
@@ -232,6 +232,12 @@ async function handleAction(type, serviceData = null) {
                         lastHovered.style.cursor  = originalCursors.get(lastHovered) || '';
                     }
                     window._articleExtractorActive = false;
+
+                    if (e.target.id === 'article-extractor-cancel') {
+                        const tip = document.getElementById('article-extractor-tip');
+                        if (tip) tip.remove();
+                        return;
+                    }
 
                     // If user clicked "Capture all", use full document.body.
                     // Otherwise, process the element they clicked on.
@@ -304,7 +310,8 @@ async function handleAction(type, serviceData = null) {
                 tip.style.boxShadow   = '0 4px 6px rgba(0,0,0,0.3)';
                 tip.innerHTML = `
                     <div style="margin-bottom: 8px;">${srvMsgTip}</div>
-                    <button id="article-extractor-capture-all" style="width: 100%; border: none; background: #fff; color: #10b981; padding: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">${srvMsgCapAll}</button>
+                    <button id="article-extractor-capture-all" style="width: 100%; border: none; background: #fff; color: #10b981; padding: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; box-shadow: 0 1px 3px rgba(0,0,0,0.2); margin-bottom: 6px;">${srvMsgCapAll}</button>
+                    <button id="article-extractor-cancel" style="width: 100%; border: none; background: rgba(0,0,0,0.2); color: #fff; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-weight: bold;">${srvMsgCancel}</button>
                 `;
                 document.body.appendChild(tip);
             },
@@ -315,7 +322,8 @@ async function handleAction(type, serviceData = null) {
                 type,
                 serviceData,
                 api.i18n.getMessage("tipInstruction"),
-                api.i18n.getMessage("capAllBtn")
+                api.i18n.getMessage("capAllBtn"),
+                api.i18n.getMessage("optCancelBtn")
             ]
         });
 
