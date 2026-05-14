@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Contact Us - Content Analyzer</title>
+    <title>Message Sent - Content Analyzer</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -12,10 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap"
         rel="stylesheet" />
-
-    <!-- Google reCAPTCHA v2 -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -211,78 +207,27 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="flex-1 lg:ml-sidebar-width bg-background-canvas min-h-screen flex flex-col">
-            <article
-                class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border-l border-r border-border-subtle flex-1">
-                <header class="mb-xl pb-md border-b border-border-subtle">
-                    <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Content
-                        Analyzer</p>
-                    <h1 class="font-article-title text-article-title text-text-primary">Contact Us</h1>
-                    <p class="font-caption text-caption text-text-secondary mt-sm">Feedback, bug reports, and general
-                        inquiries</p>
-                </header>
+        <main class="flex-1 lg:ml-sidebar-width bg-background-canvas min-h-screen flex flex-col justify-between">
+            <div class="max-w-container-max mx-auto p-md md:p-xl w-full flex-1">
 
-                <div class="font-body text-body text-text-primary space-y-lg leading-relaxed">
+                <section class="bg-surface-article border border-border-subtle p-xl mb-xl">
+                    <h1 class="font-article-title text-article-title text-text-primary mb-md leading-tight text-center">
+                        Message Sent Successfully
+                    </h1>
+                    <div class="flex flex-col items-center justify-center py-lg">
+                        <span class="material-symbols-outlined text-[64px] text-status-success mb-md">check_circle</span>
+                        <p class="font-body text-body text-text-secondary max-w-[600px] text-center mb-xl">
+                            Thank you for your interest. We have successfully received your message and will review it shortly.
+                        </p>
+                        
+                        <a href="index.html"
+                            class="bg-primary-container text-on-primary font-body-bold h-[32px] px-md py-sm rounded-none border border-transparent hover:bg-primary-hover inline-flex items-center justify-center gap-xs">
+                            <span class="material-symbols-outlined text-[18px]">arrow_back</span> Return to Home
+                        </a>
+                    </div>
+                </section>
 
-                    <section class="max-w-[700px]">
-                        <p class="mb-lg">We welcome your feedback and questions regarding the Content Analyzer
-                            extension. Please use the form below to get in touch with the development team. All fields
-                            are required.</p>
-
-                        <!-- Form Container -->
-                        <div class="bg-surface-header border border-border-subtle p-md lg:p-xl">
-                            <form action="https://cgi.svnt.com/cgimail?contentAnalyzer" method="POST"
-                                class="flex flex-col gap-md">
-
-                                <!-- Name Field -->
-                                <div>
-                                    <label for="name"
-                                        class="font-body-bold text-body-bold text-text-primary block mb-xs">Full
-                                        Name</label>
-                                    <input type="text" id="name" name="name" required
-                                        class="w-full bg-surface-lowest border border-border-subtle p-sm font-body text-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors rounded-none placeholder:text-text-secondary"
-                                        placeholder="John Doe">
-                                </div>
-
-                                <!-- Email Field -->
-                                <div>
-                                    <label for="email"
-                                        class="font-body-bold text-body-bold text-text-primary block mb-xs">Email
-                                        Address</label>
-                                    <input type="email" id="email" name="email" required
-                                        class="w-full bg-surface-lowest border border-border-subtle p-sm font-body text-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors rounded-none placeholder:text-text-secondary"
-                                        placeholder="john@example.com">
-                                </div>
-
-                                <!-- Message Field -->
-                                <div>
-                                    <label for="message"
-                                        class="font-body-bold text-body-bold text-text-primary block mb-xs">Message</label>
-                                    <textarea id="message" name="message" rows="6" required
-                                        class="w-full bg-surface-lowest border border-border-subtle p-sm font-body text-body focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors rounded-none placeholder:text-text-secondary resize-y"
-                                        placeholder="How can we help you?"></textarea>
-                                </div>
-
-                                <!-- Google reCAPTCHA -->
-                                <div class="mt-xs">
-                                    <div class="g-recaptcha" data-sitekey="6LdrK2IaAAAAAJZ7_PGMMX8k1HMfqmsPWJAkrdCC">
-                                    </div>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <div class="mt-sm">
-                                    <button type="submit"
-                                        class="bg-primary-container text-on-primary font-body-bold h-[40px] px-lg rounded-none border border-transparent hover:bg-primary-hover flex items-center justify-center gap-xs transition-colors">
-                                        <span class="material-symbols-outlined text-[18px]">send</span> Send Message
-                                    </button>
-                                </div>
-
-                            </form>
-                        </div>
-                    </section>
-
-                </div>
-            </article>
+            </div>
 
             <!-- Footer -->
             <footer
@@ -301,6 +246,7 @@
                         href="contact.html">Contact</a>
                 </div>
             </footer>
+
         </main>
     </div>
 
