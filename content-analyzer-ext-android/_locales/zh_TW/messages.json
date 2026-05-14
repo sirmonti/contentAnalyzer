@@ -169,5 +169,26 @@
   },
   "capAllBtn": {
     "message": "截取整个页面"
+  },
+  "contextSaveHtml": {
+    "message": "将所选内容保存为 HTML"
+  },
+  "contextSaveMd": {
+    "message": "将所选内容保存为 Markdown"
+  },
+  "resHelp": {
+    "message": "帮助"
+  },
+  "resPrivacy": {
+    "message": "隐私"
+  },
+  "resContact": {
+    "message": "联系我们"
+  },
+  "resSysLang": {
+    "message": "系统语言"
+  },
+  "resPageLang": {
+    "message": "页面语言"
   }
 }

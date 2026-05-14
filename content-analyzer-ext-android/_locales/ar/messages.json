@@ -1,0 +1,170 @@
+{
+  "extName": {
+    "message": "محلل المحتوى"
+  },
+  "extDesc": {
+    "message": "يعالج المحتوى المحدد بالذكاء الاصطناعي"
+  },
+  "popupTitle": {
+    "message": "تحليل المحتوى"
+  },
+  "selectService": {
+    "message": "خدمة الذكاء الاصطناعي:"
+  },
+  "btnExtractBrowser": {
+    "message": "استخراج في المتصفح"
+  },
+  "btnExtractDisk": {
+    "message": "حفظ على القرص (.md)"
+  },
+  "statusProcessing": {
+    "message": "جاري المعالجة..."
+  },
+  "statusSaved": {
+    "message": "تم الحفظ في التنزيلات"
+  },
+  "statusSelectService": {
+    "message": "حدد المزود"
+  },
+  "optPageTitle": {
+    "message": "تكوين الخدمات"
+  },
+  "optTitle": {
+    "message": "تكوين الذكاء الاصطناعي"
+  },
+  "optAddService": {
+    "message": "إضافة خدمة جديدة"
+  },
+  "optNameLabel": {
+    "message": "اسم المعرف"
+  },
+  "optNamePlaceholder": {
+    "message": "مثال: Ollama Llama3 Summary"
+  },
+  "optTypeLabel": {
+    "message": "النوع"
+  },
+  "optUrlLabel": {
+    "message": "رابط الخدمة"
+  },
+  "optUrlHint": {
+    "message": "سيتم الاستعلام عن النماذج المتاحة عند كتابة الرابط."
+  },
+  "optApiKeyLabel": {
+    "message": "مفتاح API (اختياري)"
+  },
+  "optModelLabel": {
+    "message": "النموذج المراد استخدامه"
+  },
+  "optModelEmpty": {
+    "message": "-- أدخل تكويناً صالحاً --"
+  },
+  "optModelLoading": {
+    "message": "جاري تحميل الخدمات..."
+  },
+  "optPromptLabel": {
+    "message": "الموجه"
+  },
+  "optPromptPlaceholder": {
+    "message": "مثال: لخص هذا المقال:\\n\\n"
+  },
+  "optSaveBtn": {
+    "message": "حفظ الخدمة"
+  },
+  "optCancelBtn": {
+    "message": "إلغاء"
+  },
+  "optListTitle": {
+    "message": "الخدمات المكونة"
+  },
+  "thName": {
+    "message": "الاسم"
+  },
+  "thType": {
+    "message": "النوع"
+  },
+  "thUrl": {
+    "message": "الرابط"
+  },
+  "thModel": {
+    "message": "النموذج"
+  },
+  "thActions": {
+    "message": "الإجراءات"
+  },
+  "btnEdit": {
+    "message": "تعديل"
+  },
+  "btnDelete": {
+    "message": "حذف"
+  },
+  "alertServiceExists": {
+    "message": "توجد خدمة بهذا الاسم بالفعل"
+  },
+  "resPageTitle": {
+    "message": "نتيجة الذكاء الاصطناعي - المحلل"
+  },
+  "resHeader": {
+    "message": "النتيجة - "
+  },
+  "resSaving": {
+    "message": "جاري الحفظ..."
+  },
+  "resSaveBtn": {
+    "message": "حفظ كملف"
+  },
+  "resInvalidId": {
+    "message": "معرف تنفيذ غير صالح."
+  },
+  "resDataNotFound": {
+    "message": "لم يتم العثور على بيانات المقال."
+  },
+  "resReconnecting": {
+    "message": "إعادة المحاولة... (محاولة $1/$2)"
+  },
+  "resConnError": {
+    "message": "خطأ: أُغلق الاتصال بشكل متكرر."
+  },
+  "resAIError": {
+    "message": "خطأ في الذكاء الاصطناعي: $1"
+  },
+  "resDefaultFilename": {
+    "message": "استجابة_الذكاء_الاصطناعي"
+  },
+  "errUnsupportedService": {
+    "message": "خدمة غير مدعومة: $1"
+  },
+  "errDownload": {
+    "message": "خطأ في التنزيل"
+  },
+  "extIconTitle": {
+    "message": "تحليل المحتوى"
+  },
+  "errNoServices": {
+    "message": "لا توجد خدمات مكونة."
+  },
+  "errNoModels": {
+    "message": "لم يتم العثور على نماذج"
+  },
+  "errConn": {
+    "message": "خطأ في الاتصال"
+  },
+  "optEditService": {
+    "message": "تعديل الخدمة"
+  },
+  "optSaveChanges": {
+    "message": "حفظ التغييرات"
+  },
+  "errNoTab": {
+    "message": "لا توجد علامة تبويب نشطة"
+  },
+  "errParse": {
+    "message": "خطأ في الالتقاط: $1"
+  },
+  "tipInstruction": {
+    "message": "🤖 أشر إلى القسم المراد استخراجه وانقر"
+  },
+  "capAllBtn": {
+    "message": "التقاط الصفحة بأكملها"
+  }
+}

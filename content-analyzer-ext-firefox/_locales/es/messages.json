@@ -169,5 +169,26 @@
   },
   "capAllBtn": {
     "message": "Capturar página entera"
+  },
+  "contextSaveHtml": {
+    "message": "Grabar selección como HTML"
+  },
+  "contextSaveMd": {
+    "message": "Grabar selección como Markdown"
+  },
+  "resHelp": {
+    "message": "Ayuda"
+  },
+  "resPrivacy": {
+    "message": "Privacidad"
+  },
+  "resContact": {
+    "message": "Contacto"
+  },
+  "resSysLang": {
+    "message": "Idioma del sistema"
+  },
+  "resPageLang": {
+    "message": "Idioma de la página"
   }
 }

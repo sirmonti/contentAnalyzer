@@ -1,23 +1,407 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Procesando con IA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="extName">Content Analyzer</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background: #1e1e2f; color: #f8f8f2; max-width: 900px; margin: 0 auto; line-height: 1.6; }
-        h1 { color: #f1fa8c; border-bottom: 1px solid #444; padding-bottom: 10px;}
-        #status { font-size: 18px; margin-bottom: 20px; color: #8be9fd; }
-        .box { background: #282a36; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); white-space: pre-wrap; font-family: monospace; font-size: 14px;}
-        .loader { border: 4px solid #444; border-top: 4px solid #8be9fd; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 10px;}
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        /* ==========================================================================
+           COLOR VARIABLES AND BASE STYLES (Whites and Blues)
+           ========================================================================== */
+        :root {
+            --color-blue-dark: #003366;
+            --color-blue-primary: #0056b3;
+            --color-blue-secondary: #007bff;
+            --color-blue-light: #e6f0fa;
+            --color-blue-border: #cce0f5;
+            --color-white: #ffffff;
+            --color-text-main: #333333;
+            --color-text-muted: #666666;
+
+            --shadow-sm: 0 2px 4px rgba(0, 86, 179, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 86, 179, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--color-blue-light);
+            color: var(--color-text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           TOP BAR (TOPBAR)
+           ========================================================================== */
+        .topbar {
+            background-color: var(--color-blue-primary);
+            color: var(--color-white);
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-md);
+            z-index: 10;
+        }
+
+        .topbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topbar-logo {
+            height: auto;
+            max-height: 40px;
+            width: auto;
+            border-radius: 8px;
+            /* To somewhat match the rounded corners of the original logo */
+        }
+
+        .topbar h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        /* Top bar menu (Hidden on desktop by default) */
+        .top-nav {
+            display: none;
+            gap: 1.5rem;
+        }
+
+        .top-nav a {
+            color: var(--color-blue-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--color-white);
+        }
+
+        /* ==========================================================================
+           MAIN CONTAINER AND SIDEBAR (LAYOUT)
+           ========================================================================== */
+        .layout-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            /* Prevents scroll on the entire layout to apply it only to the main content */
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: var(--color-white);
+            border-right: 1px solid var(--color-blue-border);
+            display: flex;
+            flex-direction: column;
+            padding-top: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-nav a {
+            color: var(--color-text-main);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .side-nav a:hover {
+            background-color: var(--color-blue-light);
+            color: var(--color-blue-primary);
+            border-left-color: var(--color-blue-primary);
+        }
+
+        /* ==========================================================================
+           CONTENT AREA (HEADER AND INFORMATION)
+           ========================================================================== */
+        .main-content {
+            flex: 1;
+            padding: 2.5rem;
+            overflow-y: auto;
+        }
+
+        /* Data header */
+        .info-header {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-blue-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-grid {
+            display: grid;
+            /* The first column (URL) takes up all remaining space (1fr), 
+               the next two (Languages) take only the space of their content (auto) */
+            grid-template-columns: 1fr auto auto;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            /* We prevent the content (especially the long URL) from breaking the column */
+            min-width: 0;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: var(--color-blue-dark);
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        /* Body / Result box */
+        .content-body {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-blue-border);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-body-title {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--color-blue-border);
+            background-color: #fcfdfe;
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+        }
+
+        .content-body-title h2 {
+            font-size: 1.2rem;
+            color: var(--color-blue-primary);
+            margin: 0;
+        }
+
+        .result-box {
+            padding: 2rem;
+            font-family: monospace;
+            font-size: 0.95rem;
+            color: var(--color-text-main);
+            white-space: pre-wrap;
+            background-color: var(--color-white);
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            min-height: 250px;
+        }
+
+        .loader {
+            border: 4px solid #444;
+            border-top: 4px solid #8be9fd;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #status {
+            padding: 2rem;
+            color: var(--color-blue-primary);
+            font-weight: 500;
+        }
+
+        #saveBtn {
+            margin: 1.5rem auto;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--color-blue-primary);
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            align-self: center;
+            transition: background-color 0.2s;
+        }
+
+        #saveBtn:hover {
+            background-color: var(--color-blue-dark);
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN (MOBILE AND SMALL SCREENS)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+            }
+
+            /* Hide sidebar on mobile */
+            .sidebar {
+                display: none;
+            }
+
+            /* Restructure top bar to show menu */
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1.2rem 1.5rem;
+            }
+
+            /* Show top menu on mobile */
+            .top-nav {
+                display: flex;
+                width: 100%;
+                justify-content: flex-start;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .info-grid {
+                /* On mobile we place the columns one below the other again (1 column) */
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-header,
+            .content-body-title,
+            .result-box,
+            #status {
+                padding: 1.2rem;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <h1><span data-i18n="resHeader">Resultado - </span><span id="serviceName">...</span></h1>
-    <div id="status"><div class="loader"></div> <span data-i18n="statusProcessing">Procesando...</span></div>
-    <div class="box" id="resultBox" style="display:none"></div>
-    <button id="saveBtn" style="display:none; margin-top:20px; padding:10px 20px; background:#50fa7b; color:#282a36; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:16px;" data-i18n="resSaveBtn">Guardar en archivo</button>
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-brand">
+            <picture>
+                <!-- Large screens (Desktop): Loads high resolution logo -->
+                <source media="(min-width: 1024px)" srcset="Iconos/Icono128.png">
+                <!-- Medium screens (Tablets): Loads intermediate logo -->
+                <source media="(min-width: 768px)" srcset="Iconos/Icono48.png">
+                <!-- Small screens (Mobile landscape): Loads small logo -->
+                <source media="(min-width: 480px)" srcset="Iconos/Icono32.png">
+                <!-- Default (Very small mobiles): Loads the smallest icon -->
+                <img src="Iconos/Icono16.png" alt="Content Analyzer Logo" class="topbar-logo">
+            </picture>
+            <h1 data-i18n="extName">Content Analyzer</h1>
+        </div>
+
+        <!-- Menu shown only on mobile devices -->
+        <nav class="top-nav" aria-label="Top menu">
+            <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+            <a data-i18n="resPrivacy" target="_new"
+                href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
+            <a data-i18n="resContact" target="_new"
+                href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="layout-container">
+
+        <!-- SIDE NAV COLUMN -->
+        <!-- Menu shown only on large screens (desktop/landscape tablet) -->
+        <aside class="sidebar">
+            <nav class="side-nav" aria-label="Side menu">
+                <a data-i18n="resHelp" target="_new"
+                    href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+                <a data-i18n="resPrivacy" target="_new"
+                    href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
+                <a data-i18n="resContact" target="_new"
+                    href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
+            </nav>
+        </aside>
+
+        <!-- DATA AREA -->
+        <main class="main-content">
+
+            <!-- HEADER -->
+            <section class="info-header">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">URL</span>
+                        <span class="info-value" id="PAGEURL">https://ejemplo.com/pagina-analizada</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label" data-i18n="resSysLang">System Language</span>
+                        <!-- The value will be filled dynamically via JS -->
+                        <span class="info-value" id="SYSLANG">en</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label" data-i18n="resPageLang">Page Language</span>
+                        <span class="info-value" id="PAGELANG">es-ES</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BODY -->
+            <section class="content-body">
+                <div class="content-body-title">
+                    <h2><span data-i18n="resHeader">Result - </span><span id="serviceName">...</span></h2>
+                </div>
+                <div id="status" style="display:block">
+                    <div class="loader"></div>
+                    <span data-i18n="statusProcessing">Processing...</span>
+                </div>
+                <!-- Box with the analysis text -->
+                <div class="result-box" id="resultBox" style="display:none"></div>
+
+                <!-- Save button -->
+                <button id="saveBtn" data-i18n="resSaveBtn" style="display:none">Save to file</button>
+            </section>
+
+        </main>
+    </div>
     <script src="i18n.js"></script>
     <script src="result.js"></script>
 </body>
+
 </html>

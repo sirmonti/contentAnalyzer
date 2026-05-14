@@ -166,5 +166,11 @@
   },
   "capAllBtn": {
     "message": "التقاط الصفحة بأكملها"
+  },
+  "contextSaveHtml": {
+    "message": "حفظ التحديد كـ HTML"
+  },
+  "contextSaveMd": {
+    "message": "حفظ التحديد كـ Markdown"
   }
 }

@@ -169,5 +169,26 @@
   },
   "capAllBtn": {
     "message": "전체 페이지 갈무리"
+  },
+  "contextSaveHtml": {
+    "message": "선택 영역을 HTML로 저장"
+  },
+  "contextSaveMd": {
+    "message": "선택 영역을 Markdown으로 저장"
+  },
+  "resHelp": {
+    "message": "도움말"
+  },
+  "resPrivacy": {
+    "message": "개인정보 보호"
+  },
+  "resContact": {
+    "message": "연락처"
+  },
+  "resSysLang": {
+    "message": "시스템 언어"
+  },
+  "resPageLang": {
+    "message": "페이지 언어"
   }
 }

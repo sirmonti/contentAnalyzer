@@ -169,5 +169,26 @@
   },
   "capAllBtn": {
     "message": "ページ全体をキャプチャ"
+  },
+  "contextSaveHtml": {
+    "message": "選択範囲をHTMLとして保存"
+  },
+  "contextSaveMd": {
+    "message": "選択範囲をMarkdownとして保存"
+  },
+  "resHelp": {
+    "message": "ヘルプ"
+  },
+  "resPrivacy": {
+    "message": "プライバシー"
+  },
+  "resContact": {
+    "message": "お問い合わせ"
+  },
+  "resSysLang": {
+    "message": "システム言語"
+  },
+  "resPageLang": {
+    "message": "ページの言語"
   }
 }

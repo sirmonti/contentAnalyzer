@@ -61,10 +61,41 @@ messages = {
   "errNoTab": { "en": "No active tab", "es": "No hay pestaña activa", "fr": "Aucun onglet actif", "it": "Nessuna scheda attiva", "de": "Kein aktiver Tab", "pt": "Nenhuma aba ativa", "pl": "Brak aktywnej karty", "ru": "Нет активной вкладки", "ja": "アクティブなタブがありません", "ko": "활성 탭 없음", "zh": "没有活动标签页" },
   "errParse": { "en": "Capture error: $1", "es": "Error al parsear el elemento: $1", "fr": "Erreur d'analyse: $1", "it": "Errore di analisi: $1", "de": "Fehler beim Parsen: $1", "pt": "Erro ao analisar o elemento: $1", "pl": "Błąd parsowania: $1", "ru": "Ошибка парсинга: $1", "ja": "解析エラー: $1", "ko": "구문 분석 오류: $1", "zh": "解析错误：$1" },
   "tipInstruction": { "en": "🤖 Point to the section to extract and CLICK", "es": "🤖 Apunta a la sección a extraer y haz CLIC", "fr": "🤖 Pointez la section à extraire et CLIQUEZ", "it": "🤖 Punta alla sezione da estrarre e CLICCA", "de": "🤖 Zeigen Sie auf den zu extrahierenden Bereich und KLICKEN Sie", "pt": "🤖 Aponte para a seção a extrair e CLIQUE", "pl": "🤖 Wskaż sekcję do wyodrębnienia i KLIKNIJ", "ru": "🤖 Наведите на раздел для извлечения и НАЖМИТЕ", "ja": "🤖 抽出するセクションをポイントしてクリックします", "ko": "🤖 추출할 섹션을 가리키고 클릭하세요.", "zh": "🤖 指向要提取的部分并点击" },
-  "capAllBtn": { "en": "Capture entire page", "es": "Capturar página entera", "fr": "Capturer toute la page", "it": "Cattura l'intera pagina", "de": "Ganze Seite erfassen", "pt": "Capturar página inteira", "pl": "Zdobądź całą stronę", "ru": "Захватить всю страницу", "ja": "ページ全体をキャプチャ", "ko": "전체 페이지 갈무리", "zh": "截取整个页面" }
+  "capAllBtn": { "en": "Capture entire page", "es": "Capturar página entera", "fr": "Capturer toute la page", "it": "Cattura l'intera pagina", "de": "Ganze Seite erfassen", "pt": "Capturar página inteira", "pl": "Zdobądź całą stronę", "ru": "Захватить всю страницу", "ja": "ページ全体をキャプチャ", "ko": "전체 페이지 갈무리", "zh": "截取整个页面" },
+  "contextSaveHtml": { 
+    "en": "Save selection as HTML", 
+    "es": "Grabar selección como HTML", 
+    "fr": "Enregistrer la sélection en HTML", 
+    "it": "Salva selezione come HTML", 
+    "de": "Auswahl als HTML speichern", 
+    "pt": "Salvar seleção como HTML", 
+    "pl": "Zapisz zaznaczenie jako HTML", 
+    "ru": "Сохранить выделение как HTML", 
+    "ja": "選択範囲をHTMLとして保存", 
+    "ko": "선택 영역을 HTML로 저장", 
+    "zh": "将所选内容保存为 HTML" 
+  },
+  "contextSaveMd": { 
+    "en": "Save selection as Markdown", 
+    "es": "Grabar selección como Markdown", 
+    "fr": "Enregistrer la sélection en Markdown", 
+    "it": "Salva selezione come Markdown", 
+    "de": "Auswahl als Markdown speichern", 
+    "pt": "Salvar seleção como Markdown", 
+    "pl": "Zapisz zaznaczenie jako Markdown", 
+    "ru": "Сохранить выделение как Markdown", 
+    "ja": "選択範囲をMarkdownとして保存", 
+    "ko": "선택 영역을 Markdown으로 저장", 
+    "zh": "将所选内容保存为 Markdown" 
+  },
+  "resHelp": { "en": "Help", "es": "Ayuda", "fr": "Aide", "it": "Aiuto", "de": "Hilfe", "pt": "Ajuda", "pl": "Pomoc", "ru": "Помощь", "ja": "ヘルプ", "ko": "도움말", "zh": "帮助" },
+  "resPrivacy": { "en": "Privacy", "es": "Privacidad", "fr": "Confidentialité", "it": "Privacy", "de": "Datenschutz", "pt": "Privacidade", "pl": "Prywatność", "ru": "Конфиденциальность", "ja": "プライバシー", "ko": "개인정보 보호", "zh": "隐私" },
+  "resContact": { "en": "Contact", "es": "Contacto", "fr": "Contact", "it": "Contatto", "de": "Kontakt", "pt": "Contato", "pl": "Kontakt", "ru": "Контакты", "ja": "お問い合わせ", "ko": "연락처", "zh": "联系我们" },
+  "resSysLang": { "en": "System Language", "es": "Idioma del sistema", "fr": "Langue du sistema", "it": "Lingua di sistema", "de": "Systemsprache", "pt": "Idioma do sistema", "pl": "Język systemu", "ru": "Системный язык", "ja": "システム言語", "ko": "시스템 언어", "zh": "系统语言" },
+  "resPageLang": { "en": "Page Language", "es": "Idioma de la página", "fr": "Langue de la page", "it": "Lingua della pagina", "de": "Seitensprache", "pt": "Idioma da página", "pl": "Język strony", "ru": "Язык страницы", "ja": "ページの言語", "ko": "페이지 언어", "zh": "页面语言" }
 }
 
-for base_dir in ['content-analyzer-ext-chrome', 'content-analyzer-ext-firefox']:
+for base_dir in ['content-analyzer-ext-chrome', 'content-analyzer-ext-firefox', 'content-analyzer-ext-android']:
     locales_dir = os.path.join(base_dir, '_locales')
     
     # Clean up old invalid locales

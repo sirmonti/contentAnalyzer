@@ -169,5 +169,26 @@
   },
   "capAllBtn": {
     "message": "Захватить всю страницу"
+  },
+  "contextSaveHtml": {
+    "message": "Сохранить выделение как HTML"
+  },
+  "contextSaveMd": {
+    "message": "Сохранить выделение как Markdown"
+  },
+  "resHelp": {
+    "message": "Помощь"
+  },
+  "resPrivacy": {
+    "message": "Конфиденциальность"
+  },
+  "resContact": {
+    "message": "Контакты"
+  },
+  "resSysLang": {
+    "message": "Системный язык"
+  },
+  "resPageLang": {
+    "message": "Язык страницы"
   }
 }

@@ -166,5 +166,11 @@
   },
   "capAllBtn": {
     "message": "לכידת הדף כולו"
+  },
+  "contextSaveHtml": {
+    "message": "שמור בחירה כ-HTML"
+  },
+  "contextSaveMd": {
+    "message": "שמור בחירה כ-Markdown"
   }
 }

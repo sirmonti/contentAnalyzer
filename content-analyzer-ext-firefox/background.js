@@ -236,6 +236,28 @@ async function updateContextMenus() {
             contexts: ["selection"]
         });
     });
+
+    // Add separator and disk options
+    browser.menus.create({
+        id: "ca-sep-1",
+        parentId: "ca-parent",
+        type: "separator",
+        contexts: ["selection"]
+    });
+
+    browser.menus.create({
+        id: "ca-save-html",
+        parentId: "ca-parent",
+        title: "📄 " + (browser.i18n.getMessage("contextSaveHtml") || "Save as HTML"),
+        contexts: ["selection"]
+    });
+
+    browser.menus.create({
+        id: "ca-save-md",
+        parentId: "ca-parent",
+        title: "📝 " + (browser.i18n.getMessage("contextSaveMd") || "Save as Markdown"),
+        contexts: ["selection"]
+    });
 }
 
 // In Firefox background script module, we can just call it once to initialize.
@@ -248,6 +270,8 @@ browser.storage.local.onChanged.addListener((changes) => {
 });
 
 browser.menus.onClicked.addListener(async (info, tab) => {
+    if (!tab) return;
+
     if (info.menuItemId.startsWith("llm-service-")) {
         const index = parseInt(info.menuItemId.substring("llm-service-".length), 10);
         const data = await browser.storage.local.get("llm_services");
@@ -257,7 +281,7 @@ browser.menus.onClicked.addListener(async (info, tab) => {
         if (!serviceData) return;
 
         let domain = "";
-        try { if (tab && tab.url) domain = new URL(tab.url).hostname; } catch(e) {}
+        try { if (tab.url) domain = new URL(tab.url).hostname; } catch(e) {}
 
         const executionId = Date.now().toString();
         const markdown = info.selectionText || "";
@@ -265,9 +289,9 @@ browser.menus.onClicked.addListener(async (info, tab) => {
         browser.storage.local.set({
             [`exec_${executionId}`]: {
                 markdown:  markdown,
-                title:     tab ? tab.title : "",
+                title:     tab.title || "",
                 service:   serviceData,
-                url:       tab ? tab.url : "",
+                url:       tab.url || "",
                 domain:    domain,
                 lang:      "NONE",
                 syslang:   navigator.language
@@ -275,5 +299,66 @@ browser.menus.onClicked.addListener(async (info, tab) => {
         }).then(() => {
             browser.tabs.create({ url: `result.html?id=${executionId}` });
         });
+    }
+    else if (info.menuItemId === "ca-save-html" || info.menuItemId === "ca-save-md") {
+        const isMd = info.menuItemId === "ca-save-md";
+
+        try {
+            // Inject turndown if needed
+            if (isMd) {
+                await browser.scripting.executeScript({
+                    target: { tabId: tab.id },
+                    files: ["turndown.js"]
+                });
+            }
+
+            // Extract content
+            const results = await browser.scripting.executeScript({
+                target: { tabId: tab.id },
+                func: (wantMd) => {
+                    const selection = window.getSelection();
+                    if (selection.rangeCount > 0) {
+                        const range = selection.getRangeAt(0);
+                        const div = document.createElement('div');
+                        div.appendChild(range.cloneContents());
+                        const html = div.innerHTML;
+
+                        if (wantMd && typeof TurndownService !== 'undefined') {
+                            const t = new TurndownService({ headingStyle: 'atx' });
+                            return t.turndown(html);
+                        }
+                        return html;
+                    }
+                    return "";
+                },
+                args: [isMd]
+            });
+
+            const content = results[0].result;
+            if (!content) return;
+
+            // Trigger download
+            const extension = isMd ? "md" : "html";
+            const mimeType = isMd ? "text/markdown" : "text/html";
+            let cleanTitle = (tab.title || "selection").replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            const filename = `${cleanTitle}.${extension}`;
+
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+
+            browser.downloads.download({
+                url: url,
+                filename: filename,
+                saveAs: true
+            })
+            .then(() => setTimeout(() => URL.revokeObjectURL(url), 10000))
+            .catch(err => {
+                console.error("Download error:", err);
+                URL.revokeObjectURL(url);
+            });
+
+        } catch (err) {
+            console.error("Error processing selection:", err);
+        }
     }
 });
