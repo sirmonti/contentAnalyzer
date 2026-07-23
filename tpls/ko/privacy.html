@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">콘텐츠 분석기</p>
+            <h1 class="font-article-title text-article-title text-text-primary">개인정보 처리방침</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">최종 업데이트: 2026년 4월</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. 서론</h2>
+                <p>"contentAnalyzer" 크롬 확장 프로그램(이하 "확장 프로그램")은 사용자가 설정한 인공지능 서비스를 사용하여 현재 웹페이지의 콘텐츠를 처리하도록 설계되었습니다. 본 개인정보 처리방침은 귀하의 개인정보 보호에 대한 당사의 약속과 데이터가 어떻게 처리되는지를 설명합니다.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. 개발자에 의한 데이터 수집 없음</h2>
+                <p class="mb-sm">당사는 귀하의 개인정보를 무엇보다 소중하게 여깁니다. 이 확장 프로그램의 개발자는 사용자의 개인 데이터, 브라우징 기록 또는 처리된 콘텐츠를 개발자가 제어하는 어떤 서버로도 수집, 저장 또는 전송하지 않습니다.</p>
+                <p>모든 구성 설정(API 키 또는 사용자 정의 프롬프트 등)은 브라우저 내의 로컬 저장소(예: <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</code>)에 저장되며, 개발자가 이를 접근할 수 없습니다.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. 제3자 서비스로의 데이터 전송</h2>
+                <p class="mb-md">확장 프로그램이 핵심 기능을 제공하기 위해, 사용자가 분석을 선택한 웹페이지의 콘텐츠를 설정에서 구성한 제3자 AI 서비스 제공업체(이하 "AI 서비스")로 전송합니다.</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. 사용자 설정 서비스</h3>
+                        <p>확장 프로그램은 사용자가 제공한 특정 엔드포인트/API와만 통신합니다. 이러한 서비스는 사용자에 의해 선택되고 구성되므로, "contentAnalyzer" 개발자는 이러한 제3자 사이트가 전송받은 데이터를 처리하는 방식에 대해 어떠한 권한도 가지고 있지 않습니다.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. 제3자 개인정보 처리방침</h3>
+                        <p>개발자는 사용자가 선택하여 사용하는 AI 서비스의 개인정보 보호 관행, 데이터 보유 정책 또는 보안 조치에 대해 책임을 지지 않습니다. 특정 서비스를 사용하여 확장 프로그램을 이용하기 전에 해당 제공업체의 개인정보 처리방침과 서비스 약관을 검토할 것을 강력히 권장합니다.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. 권한</h2>
+                <p class="mb-md">확장 프로그램이 기능하기 위해서는 다음과 같은 특정 권한이 필요합니다:</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> 또는 <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>: 분석하고자 하는 페이지의 콘텐츠를 읽기 위해 필요합니다.</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>: 구성 및 API 설정을 로컬에 저장하기 위해 필요합니다.</li>
+                    <li><strong>호스트 권한:</strong> 사용자가 지정한 AI 서비스 API로 콘텐츠를 보내기 위해 필요합니다.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. 보안</h2>
+                <p>확장 프로그램은 표준 웹 프로토콜을 통해 데이터 전송을 지원하지만, 브라우저를 벗어난 후의 데이터 보안은 사용자가 설정한 AI 서비스에 전적으로 달려 있습니다. 당사는 보안(HTTPS) API 엔드포인트를 제공하는 서비스를 사용할 것을 권장합니다.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. 정책 변경 사항</h2>
+                <p>개발자는 언제든지 본 개인정보 처리방침을 업데이트할 권리를 보유합니다. 모든 변경 사항은 확장 프로그램의 새로운 버전에 반영되며, 이 페이지에 업데이트될 것입니다.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. 문의</h2>
+                <p>본 개인정보 처리방침과 관련하여 질문이 있는 경우, <a href="contact.html">문의 페이지</a>에 제공된 지원 채널을 통해 개발자에게 연락해 주시기 바랍니다.</p>
+            </section>
+        </div>
+    </article>
+</div>

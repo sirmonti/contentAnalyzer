@@ -190,5 +190,86 @@
   },
   "resPageLang": {
     "message": "Idioma de la página"
+  },
+  "optPromptsListTitle": {
+    "message": "Prompts Configurados"
+  },
+  "optAddPrompt": {
+    "message": "Añadir Nuevo Prompt"
+  },
+  "optPromptNameLabel": {
+    "message": "Nombre del Prompt"
+  },
+  "optPromptNamePlaceholder": {
+    "message": "Ej: Resumen de texto"
+  },
+  "optPromptTextLabel": {
+    "message": "Texto del Prompt"
+  },
+  "optPromptTextPlaceholder": {
+    "message": "Analiza este texto y..."
+  },
+  "optSavePromptBtn": {
+    "message": "Guardar Prompt"
+  },
+  "optEditPrompt": {
+    "message": "Editar Prompt"
+  },
+  "optSelectPromptLabel": {
+    "message": "Utilizar prompt de la lista"
+  },
+  "optSelectPromptDefault": {
+    "message": "-- Utilizar prompt específico --"
+  },
+  "thPrompt": {
+    "message": "Prompt"
+  },
+  "resCharCount": {
+    "message": "Longitud de consulta (caracteres)"
+  },
+  "optUseMarkdown": {
+    "message": "Convertir contenido a Markdown (desmarcar para procesar HTML directamente)"
+  },
+  "optLinkWeb": {
+    "message": "Vincular y limitar este servicio a uno o varios dominios"
+  },
+  "optLinkDomains": {
+    "message": "Dominios a vincular (separados por comas)"
+  },
+  "optSysPromptsListTitle": {
+    "message": "System Prompts Configurados"
+  },
+  "optAddSysPrompt": {
+    "message": "Añadir Nuevo System Prompt"
+  },
+  "optSysPromptNameLabel": {
+    "message": "Nombre identificativo del System Prompt"
+  },
+  "optSysPromptNamePlaceholder": {
+    "message": "Ej: Resumidor"
+  },
+  "optSysPromptTextLabel": {
+    "message": "System Prompt"
+  },
+  "optSysPromptTextPlaceholder": {
+    "message": "Ej: Eres un experto resumiendo textos..."
+  },
+  "optSaveSysPromptBtn": {
+    "message": "Guardar System Prompt"
+  },
+  "optSelectSysPromptLabel": {
+    "message": "System Prompt (Opcional)"
+  },
+  "optSelectSysPromptDefault": {
+    "message": "-- Sin System Prompt --"
+  },
+  "optColSysPromptName": {
+    "message": "Nombre del System Prompt"
+  },
+  "optColSysPromptText": {
+    "message": "Texto"
+  },
+  "optSysPromptTextLabelOptional": {
+    "message": "System Prompt (Opcional)"
   }
 }

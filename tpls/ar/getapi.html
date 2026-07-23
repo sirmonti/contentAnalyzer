@@ -1,0 +1,119 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article
+        class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">ملحق تحليل المحتوى</p>
+            <h1 class="font-article-title text-article-title text-text-primary">احصل على مفتاح API مجاني</h1>
+        </header>
+
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm">لاستخدام <strong translate="no">Content Analyzer</strong translate="no"> بشكل فعال، ستحتاج إلى تكوين مزود للذكاء الاصطناعي. في حين أن بعض المزودين يفرضون رسومًا مقابل استخدامهم، إلا أن هناك خيارات مجانية ممتازة متاحة.</p>
+            <p class="mb-sm">فيما يلي ستجد تعليمات حول كيفية الحصول على مفاتيح API مجانية أو إعداد الخدمات عبر المنصات الشائعة: Google Gemini و OpenRouter و Groq و Mistral AI و Ollama.</p>
+        </div>
+
+        <div class="space-y-xl">
+            <section class="relative" id="gemini">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Google Gemini</h2>
+                        <p class="font-body text-body text-text-primary mb-md">تقدم Google الوصول إلى نماذج Gemini المتقدمة من خلال Google AI Studio. إنهم يقدمون طبقة مجانية سخية للمطورين. لاحظ أن النماذج التي يمكن استخدامها مجانًا هي تلك التي تحتوي على كلمة "lite" في اسمها، مثل <code translate="no">gemini-3.1-flash-lite</code> أو <code translate="no">gemini-flash-lite-latest</code>.
+                        </p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>قم بزيارة موقع <a class="text-primary hover:underline" href="https://aistudio.google.com/"
+                                    target="_new">Google AI Studio</a>.</li>
+                            <li>سجّل الدخول باستخدام حساب Google الخاص بك.</لي>
+                            <li>في قائمة التنقل الموجودة على الجانب الأيسر، انقر فوق "<strong translate="no">Get API key</strong translate="no">.</li>
+                            <li>انقر فوق الزر "<strong translate="no">Create API key</strong translate="no">. يمكنك اختيار إنشائه في مشروع Google Cloud موجود أو السماح لـ AI Studio بإنشاء مشروع جديد لك.</لي>
+                            <li>انسخ المفتاح الذي تم إنشاؤه والصقه في صفحة خيارات Content Analyzer ضمن إعدادات مزود Gemini.</لي>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="openrouter">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">OpenRouter.ai</h2>
+                        <p class="font-body text-body text-text-primary mb-md">OpenRouter هي واجهة موحدة للعديد من نماذج الذكاء الاصطناعي. إنه يجمع النماذج من مختلف المزودين، ويتوفر العديد من النماذج عالية الجودة مجانًا.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>اذهب إلى الصفحة الرئيسية لـ <a class="text-primary hover:underline" href="https://openrouter.ai/"
+                                    target="_new">OpenRouter.ai</a>.</li>
+                            <li>سجّل أو سجّل الدخول باستخدام حساب موجود (Google أو GitHub وما إلى ذلك).</لي>
+                            <li>بعد تسجيل الدخول، انتقل إلى قسم "<strong translate="no">Keys</strong translate="no">" من القائمة الرئيسية أو إعدادات حسابك.</لي>
+                            <li>انقر فوق "<strong translate="no">Create Key</strong translate="no">. أعطه اسمًا مثل "Content Analyzer".</li>
+                            <li>انسخ مفتاح API الجديد الخاص بك. في Content Analyzer، يمكنك استخدام هذا المفتاح عن طريق تحديد خيار توافق OpenAI، وتعيين عنوان URL الأساسي على <code translate="no">https://openrouter.ai/api/v1</code>, وإدخال معرف النموذج الذي اخترته (على سبيل المثال، <code translate="no">google/gemini-2.5-flash:free</code>).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="relative" id="groq">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Groq</h2>
+                        <p class="font-body text-body text-text-primary mb-md">يوفر Groq استدلالًا سريعًا للغاية لنماذج الذكاء الاصطناعي مفتوحة المصدر. يقدمون حاليًا طبقة مجانية بأداء عالٍ للمطورين.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>قم بزيارة <a class="text-primary hover:underline" href="https://console.groq.com/"
+                                    target="_new">Groq Console</a>.</li>
+                            <li>سجّل أو سجّل الدخول باستخدام حساب موجود.</لي>
+                            <li>انتقل إلى قسم "<strong translate="no">API Keys</strong translate="no">" في الشريط الجانبي.</لي>
+                            <li>انقر فوق "<strong translate="no">Create API Key</strong translate="no"> وأعطه اسمًا وصفيًا.</li>
+                            <li>انسخ مفتاح API الذي تم إنشاؤه. في Content Analyzer، استخدم خيار توافق OpenAI، وقم بتعيين عنوان URL الأساسي على <code translate="no">https://api.groq.com/openai/v1</code>, وأدخل معرف النموذج الذي اخترته (على سبيل المثال، <code translate="no">llama3-8b-8192</code>).</لي>
+                        </ul>
+                    </div>
+                </div>
+                <section class="relative" id="mistral">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            4</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Mistral AI</h2>
+                            <p class="font-body text-body text-text-primary mb-md">توفر Mistral AI الوصول إلى النماذج التجارية والمفتوحة المتطورة من خلال La Plateforme، وتقدم طبقات مجانية للمطورين للتجربة.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>قم بزيارة <a class="text-primary hover:underline" href="https://console.mistral.ai/"
+                                        target="_new">Mistral AI Console</a>.</li>
+                                <li>سجّل أو سجّل الدخول إلى حسابك.</لي>
+                                <li>انتقل إلى قسم "<strong translate="no">API Keys</strong translate="no">" من قائمة التنقل في مساحة العمل.</li>
+                                <li>انقر فوق "<strong translate="no">Create new key</strong translate="no"> وانسخ مفتاح API الذي تم إنشاؤه.</li>
+                                <li>في Content Analyzer، حدد خيار توافق OpenAI، وقم بتعيين عنوان URL الأساسي على <code translate="no">https://api.mistral.ai/v1</code>, وأدخل معرف النموذج الذي اخترته (على سبيل المثال، <code translate="no">mistral-small-latest</code>).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="relative" id="ollama">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            5</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Ollama (ollama.com)</h2>
+                            <p class="font-body text-body text-text-primary mb-md">يوفر Ollama خدمة API عبر الإنترنت تسمح لك بالاتصال مباشرةً بالنماذج المستضافة من خلال نظامها الأساسي على الويب.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>قم بزيارة موقع <a class="text-primary hover:underline" href="https://ollama.com/"
+                                        target="_new">Ollama.com</a>.</li>
+                                <li>سجّل الدخول إلى حسابك أو سجّل إذا لم يكن لديك واحد بعد.</لي>
+                                <li>انقر فوق قائمة المستخدم الموجودة في الزاوية اليمنى العليا من الصفحة.</لي>
+                                <li>حدد خيار "<strong translate="no">Settings</strong translate="no">.</li>
+                                <li>حدد قسم "<strong translate="no">Keys</strong translate="no">.</li>
+                                <li>انقر فوق "<strong translate="no">Add API key</strong translate="no"> وقم بإنشاء مفتاح API الخاص بك.</لي>
+                                <li>في Content Analyzer، اختر نوع واجهة برمجة التطبيقات <strong translate="no">Ollama</strong translate="no"> وقم بتعيين عنوان URL الأساسي على <code translate="no">https://ollama.com/</code>, وأدخل معرف النموذج الذي اخترته (على سبيل المثال، <code translate="no">gemma4:31b</code>).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+        </div>
+    </article>
+</div>

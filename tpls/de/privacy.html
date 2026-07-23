@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Content Analyzer</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Datenschutzrichtlinie</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">Zuletzt aktualisiert: April 2026</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. Einleitung</h2>
+                <p>Die Chrome-Erweiterung „contentAnalyzer“ (die „Erweiterung“) ist darauf ausgelegt, den Inhalt der aktuellen Webseite mithilfe von KI-Diensten zu verarbeiten, die vom Nutzer konfiguriert werden. Diese Datenschutzrichtlinie erläutert unsere Verpflichtung zu Ihrem Datenschutz und wie mit Daten umgegangen wird.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. Keine Datenerhebung durch den Entwickler</h2>
+                <p class="mb-sm">Wir legen höchsten Wert auf Ihre Privatsphäre. Der Entwickler dieser Erweiterung erhebt, speichert oder übermittelt keine Ihrer personenbezogenen Daten, Ihres Browserverlaufs oder der verarbeiteten Inhalte an einen vom Entwickler kontrollierten Server.</p>
+                <p>Alle Konfigurationseinstellungen (wie z. B. API-Schlüssel oder benutzerdefinierte Prompts) werden lokal im Speicher Ihres Browsers gespeichert (z. B. <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</code>) und sind für den Entwickler niemals zugänglich.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. Datenübertragung an Drittanbieterdienste</h2>
+                <p class="mb-md">Um ihre Kernfunktionalität bereitzustellen, sendet die Erweiterung den Inhalt der von Ihnen zum Analysieren gewählten Webseite an den Drittanbieter-KI-Dienstleister (den „KI-Dienst“), den Sie in den Einstellungen konfiguriert haben.</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. Benutzerkonfigurierte Dienste</h3>
+                        <p>Die Erweiterung kommuniziert nur mit den vom Nutzer bereitgestellten Endpunkten/APIs. Da diese Dienste vom Nutzer ausgewählt und konfiguriert werden, hat der Entwickler von „contentAnalyzer“ keine Kontrolle darüber, wie diese Drittanbieter-Webseiten die an sie gesendeten Daten behandeln.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. Datenschutzrichtlinien von Drittanbietern</h3>
+                        <p>Der Entwickler kann keine Verantwortung für die Datenschutzpraktiken, Datenspeicherungsrichtlinien oder Sicherheitsmaßnahmen der KI-Dienste übernehmen, die Sie zu nutzen wählen. Bevor Sie die Erweiterung mit einem bestimmten Dienst verwenden, empfehlen wir Ihnen dringend, die Datenschutzrichtlinie und die Nutzungsbedingungen dieses Anbieters zu prüfen.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. Berechtigungen</h2>
+                <p class="mb-md">Die Erweiterung benötigt bestimmte Berechtigungen, um zu funktionieren:</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> oder <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>: Um den Inhalt der Seite zu lesen, die Sie analysieren möchten.</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>: Um Ihre Konfiguration und API-Einstellungen lokal zu speichern.</li>
+                    <li><strong>Host-Berechtigungen:</strong> Um den Inhalt an die von Ihnen angegebene KI-Dienst-API zu senden.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. Sicherheit</h2>
+                <p>Während die Erweiterung die Übertragung von Daten über Standard-Webprotokolle ermöglicht, hängt die Sicherheit der Daten, sobald sie Ihren Browser verlassen, vollständig vom KI-Dienst ab, den Sie konfiguriert haben. Wir empfehlen die Verwendung von Diensten, die sichere (HTTPS) API-Endpunkte bereitstellen.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. Änderungen dieser Richtlinie</h2>
+                <p>Der Entwickler behält sich das Recht vor, diese Datenschutzrichtlinie jederzeit zu aktualisieren. Alle Änderungen werden in einer neuen Version der Erweiterung reflektiert und auf dieser Seite aktualisiert.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. Kontakt</h2>
+                <p>Falls Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie den Entwickler bitte über die Support-Kanäle auf der <a href="contact.html">Kontaktseite</a>.</p>
+            </section>
+        </div>
+    </article>
+</div>

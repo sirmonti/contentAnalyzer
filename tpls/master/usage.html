@@ -1,0 +1,172 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Content Analyzer Extension</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Usage and Configuration Guide</h1>
+        </header>
+        
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm">The <strong>Content Analyzer</strong> is a browser extension designed for the automated extraction and evaluation of semantic metadata in complex web environments. This extension works on Firefox, Chrome and Chromium derived browsers, its core purpose is to process web content by passing it through various Artificial Intelligence (AI) services.</p>
+            <p class="mb-sm">Unlike typical web page summarizers, this extension allows you to create multiple custom AI services, each with a highly specific prompt that dictates exactly what the AI should do with the collected information. You can use it to extract code, translate specific terms, analyze sentiment, generate targeted reports, and much more.</p>
+        </div>
+        
+        <nav aria-label="Table of Contents" class="mb-xl bg-surface-header p-md border border-border-subtle">
+            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">Operating Index</h2>
+            <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
+                <li><a class="hover:text-primary-hover" href="#features">Key Features</a></li>
+                <li><a class="hover:text-primary-hover" href="#providers">Supported AI Providers</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">Prompt Dynamic Tags</a></li>
+                <li><a class="hover:text-primary-hover" href="#examples">Example Configurations</a></li>
+                <li><a class="hover:text-primary-hover" href="#installation">Browser Installation</a></li>
+            </ol>
+        </nav>
+        
+        <div class="space-y-xl">
+            <section class="relative" id="features">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Key Features</h2>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
+                            <li><strong>Custom Content Capture:</strong> You can easily select a specific part of a web page using an interactive "hover tool", or opt to capture the entire page content.</li>
+                            <li><strong>Multiple Custom AI Prompts &amp; System Prompts:</strong> Create different services tailored to your exact needs with custom user prompts and optional System Prompts (e.g., "Summarize article", "Extract JSON data", "Translate to Spanish", custom assistant personas, etc.).</li>
+                            <li><strong>Domain-Specific Servicing:</strong> You can link your custom services to specific web domains. This helps keep your extension clean by only showing relevant AI tools.</li>
+                            <li><strong>Widespread LLM Compatibility:</strong> Fully supports connections (including text streaming) with local servers via Ollama, as well as cloud API providers like OpenAI, Anthropic, and Google Gemini.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="relative" id="providers">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Supported AI Providers</h2>
+                        <p class="font-body text-body text-text-primary mb-md">This extension is built to be highly flexible, allowing you to connect to a variety of industry-leading Artificial Intelligence models and local services. Currently, it supports:</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
+                            <li><strong>Claude (Anthropic):</strong> Access the powerful Claude family of models through their official API.</li>
+                            <li><strong>Gemini (Google):</strong> Connect directly to Google's advanced Gemini models.</li>
+                            <li><strong>ChatGPT (OpenAI &amp; Compatibles):</strong> Fully compatible with OpenAI's API, as well as any other third-party service that offers an OpenAI-compatible endpoint.</li>
+                            <li><strong>Ollama:</strong> Run models locally and privately on your own machine without sending data to the cloud.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="relative" id="tags">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Prompt Dynamic Tags</h2>
+                        <p class="font-body text-body text-text-primary mb-md">To make your AI prompts more contextual and powerful, you can utilize the following dynamic tags in both user prompts and System Prompts. The extension will automatically substitute them before sending the prompt to the AI model:</p>
+                        <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
+                            <thead>
+                                <tr class="bg-surface-header border-b border-border-subtle">
+                                    <th class="p-sm font-body-bold border-r border-border-subtle w-[120px]">Tag</th>
+                                    <th class="p-sm font-body-bold">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DATE}</td>
+                                    <td class="p-sm">Replaced by the current date in your local format.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{HOUR}</td>
+                                    <td class="p-sm">Replaced by the current time in your local format.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
+                                    <td class="p-sm">The complete URL of the web page currently being processed.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DOMAIN}</td>
+                                    <td class="p-sm">The root domain of the web page being processed.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
+                                    <td class="p-sm">The language of the web page.</td>
+                                </tr>
+                                <tr class="bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
+                                    <td class="p-sm">The current system/browser language configuration.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="relative" id="examples">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Example Configurations</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Below are a few examples showcasing how you can structure your services:</p>
+                        
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Example 1: Multilingual Translation Assistant</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Service Name:</strong> Translate to local language<br/><strong>Linked domains:</strong> <em>(Empty - Available everywhere)</em></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                Act as a professional translator. I am browsing a site in the {LANG} language at {URL}, but my browser is set to {SYSLANG}. Please accurately translate the following content to {SYSLANG}, keeping the original markdown and text formatting intact.
+                            </div>
+                        </div>
+                        
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Example 2: Code Reviewer (Domain Specific)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Service Name:</strong> Python Code Review<br/><strong>Linked domains:</strong> github.com, gitlab.com, stackoverflow.com</p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                You are an expert developer. The code snippets provided below were found on {DOMAIN}. Analyze the code strictly for potential bugs, security vulnerabilities, and code smell. Do not explain what the code does, just list the issues and provide a corrected version.
+                            </div>
+                        </div>
+                        
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Example 3: Daily Briefing Extractor</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Service Name:</strong> Extract Key Entities<br/><strong>Linked domains:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                Today is {DATE} at {HOUR}. Scan the following news article and extract a neat JSON list containing the main "People", "Organizations", and "Locations" mentioned in the text.
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-header border border-border-subtle p-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Example 4: Custom Assistant Persona (System Prompt)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Service Name:</strong> Mario Assistant<br/><strong>System Prompt:</strong></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
+                                You are Mario, a clever and sharp assistant, your job is to fulfill the tasks assigned to you as efficiently as possible. In tasks that have temporal references, you must keep in mind that today is {DATE}
+                            </div>
+                            <p class="font-body text-body text-text-primary"><strong>User Prompt:</strong></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                Analyze the following text captured from {URL} and provide a summary of the main points.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="relative" id="installation">
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Browser Installation</h2>
+                        <p class="font-body text-body text-text-primary mb-md">The installation process is done via the official repository or by loading the unpacked package in developer mode.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
+                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Download from Chrome Web Store</a>.</li>
+                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Download from Firefox Add-ons</a>.</li>
+                            <li><em>Alternatively</em>, you can load the unpacked extension in developer mode via <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> or <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
+                        </ul>
+                        <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
+                            <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
+                            <div>
+                                <strong>Note:</strong> Ensure you have configured the global settings (API Keys or local Ollama instances) properly in the extension's Options page before running any captures.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </article>
+</div>

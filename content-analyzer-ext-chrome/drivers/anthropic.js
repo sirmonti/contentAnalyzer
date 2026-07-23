@@ -58,7 +58,27 @@ export async function fetchModels(config) {
     };
 
     const res = await fetch(fetchUrl, { headers });
-    if (!res.ok) throw new Error("HTTP " + res.status);
+    if (!res.ok) {
+        let errorMsg = `HTTP ${res.status}`;
+        try {
+            const errBody = await res.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
 
     const data = await res.json();
 
@@ -104,6 +124,9 @@ export async function* generate(config, prompt) {
         messages: [{ role: "user", content: prompt }], // Single-turn message format
         stream: true  // Enables Server-Sent Events mode
     };
+    if (config.systemPrompt) {
+        bodyParams.system = config.systemPrompt;
+    }
 
     const response = await fetch(fetchUrl, {
         method: "POST",
@@ -111,7 +134,27 @@ export async function* generate(config, prompt) {
         body: JSON.stringify(bodyParams)
     });
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    if (!response.ok) {
+        let errorMsg = `HTTP ${response.status}`;
+        try {
+            const errBody = await response.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
 
     // Reader for the response body as a byte stream
     const reader = response.body.getReader();

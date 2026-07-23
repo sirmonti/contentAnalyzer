@@ -104,6 +104,7 @@
         .side-nav {
             display: flex;
             flex-direction: column;
+            font-size: 1.3em;
         }
 
         .side-nav a {
@@ -362,15 +363,33 @@
         <nav class="top-nav" aria-label="Top menu">
             <a class="nav-btn active" data-target="page-list" data-i18n="optListTitle">Servicios Configurados</a>
             <a class="nav-btn" data-target="page-add" data-i18n="optAddService">Añadir Nuevo Servicio</a>
+            <a class="nav-btn" data-target="page-prompts-list" data-i18n="optPromptsListTitle">Prompts Configurados</a>
+            <a class="nav-btn" data-target="page-prompt-add" data-i18n="optAddPrompt">Añadir Nuevo Prompt</a>
+            <a class="nav-btn" data-target="page-sys-prompts-list" data-i18n="optSysPromptsListTitle">System Prompts Configurados</a>
+            <a class="nav-btn" data-target="page-sys-prompt-add" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</a>
+            <div style="display: flex; gap: 1.5rem; border-left: 1px solid rgba(255, 255, 255, 0.2); padding-left: 1.5rem; align-items: center; margin-left: 0.5rem;">
+                <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+                <a data-i18n="resPrivacy" target="_new" href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
+                <a data-i18n="resContact" target="_new" href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
+            </div>
         </nav>
     </header>
 
     <div class="layout-container">
         <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <aside class="sidebar" style="justify-content: space-between;">
             <nav class="side-nav" aria-label="Side menu">
                 <a class="nav-btn active" data-target="page-list" data-i18n="optListTitle">Servicios Configurados</a>
                 <a class="nav-btn" data-target="page-add" data-i18n="optAddService">Añadir Nuevo Servicio</a>
+                <a class="nav-btn" data-target="page-prompts-list" data-i18n="optPromptsListTitle">Prompts Configurados</a>
+                <a class="nav-btn" data-target="page-prompt-add" data-i18n="optAddPrompt">Añadir Nuevo Prompt</a>
+            <a class="nav-btn" data-target="page-sys-prompts-list" data-i18n="optSysPromptsListTitle">System Prompts Configurados</a>
+            <a class="nav-btn" data-target="page-sys-prompt-add" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</a>
+            </nav>
+            <nav class="side-nav" aria-label="Support links" style="border-top: 1px solid var(--color-blue-border); margin-top: auto; padding-bottom: 1rem;">
+                <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+                <a data-i18n="resPrivacy" target="_new" href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
+                <a data-i18n="resContact" target="_new" href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
             </nav>
         </aside>
 
@@ -414,6 +433,76 @@
                 </section>
             </div>
 
+            <!-- PAGE: PROMPTS LIST -->
+            <div id="page-prompts-list" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 data-i18n="optPromptsListTitle">Prompts Configurados</h2>
+                    </div>
+                    <div class="content-box" style="padding: 0;">
+                        <div style="overflow-x: auto;">
+                            <table id="promptsTable">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="thName">Nombre</th>
+                                        <th data-i18n="thPrompt">Prompt</th>
+                                        <th data-i18n="thActions">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- PAGE: PROMPT ADD -->
+            <div id="page-prompt-add" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 id="promptFormTitle" data-i18n="optAddPrompt">Añadir Nuevo Prompt</h2>
+                    </div>
+                    <div class="content-box" id="prompt-form-container-add">
+                        <!-- Prompt form moves here for adding -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- PAGE: SYS PROMPTS LIST -->
+            <div id="page-sys-prompts-list" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 data-i18n="optSysPromptsListTitle">System Prompts Configurados</h2>
+                    </div>
+                    <div class="content-box" style="padding: 0;">
+                        <div style="overflow-x: auto;">
+                            <table id="sysPromptsTable">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="optColSysPromptName">Nombre</th>
+                                        <th data-i18n="optColSysPromptText">Texto</th>
+                                        <th data-i18n="thActions">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- PAGE: SYS PROMPT ADD -->
+            <div id="page-sys-prompt-add" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 id="sysPromptFormTitle" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</h2>
+                    </div>
+                    <div class="content-box" id="sys-prompt-form-container-add">
+                        <!-- Sys Prompt form moves here for adding -->
+                    </div>
+                </section>
+            </div>
+
         </main>
     </div>
 
@@ -428,6 +517,68 @@
                 <!-- Form moves here for editing -->
             </div>
         </div>
+    </div>
+
+    <!-- MODAL (EDIT PROMPT) -->
+    <div id="edit-prompt-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="optEditPrompt">Editar Prompt</h2>
+                <button type="button" id="closePromptModalBtn" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="prompt-form-container-modal">
+                <!-- Prompt form moves here for editing -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL (EDIT SYS PROMPT) -->
+    <div id="edit-sys-prompt-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="optEditSysPrompt">Editar System Prompt</h2>
+                <button type="button" id="closeSysPromptModalBtn" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="sys-prompt-form-container-modal">
+                <!-- Sys Prompt form moves here for editing -->
+            </div>
+        </div>
+    </div>
+
+    <!-- THE ACTUAL PROMPT FORM (detached) -->
+    <div id="detached-prompt-form-wrapper" style="display:none;">
+        <form id="addPromptForm">
+            <div class="form-group">
+                <label data-i18n="optPromptNameLabel">Nombre del Prompt</label>
+                <input type="text" id="p_name" required placeholder="Ej: Resumen de texto" data-i18n="optPromptNamePlaceholder">
+            </div>
+            <div class="form-group">
+                <label data-i18n="optPromptTextLabel">Prompt</label>
+                <textarea id="p_prompt" required placeholder="Ej: Analiza este texto y..." data-i18n="optPromptTextPlaceholder" style="min-height: 150px;"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="promptSubmitBtn" class="btn-primary" data-i18n="optSavePromptBtn">Guardar Prompt</button>
+                <button type="button" id="cancelPromptEditBtn" class="btn-secondary" data-i18n="optCancelBtn" style="display:none;">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- THE ACTUAL SYS PROMPT FORM (detached) -->
+    <div id="detached-sys-prompt-form-wrapper" style="display:none;">
+        <form id="addSysPromptForm">
+            <div class="form-group">
+                <label data-i18n="optSysPromptNameLabel">Nombre del System Prompt</label>
+                <input type="text" id="p_sys_name" required placeholder="Ej: Resumidor" data-i18n="optSysPromptNamePlaceholder">
+            </div>
+            <div class="form-group">
+                <label data-i18n="optSysPromptTextLabel">System Prompt</label>
+                <textarea id="p_sys_prompt" required placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder" style="min-height: 150px;"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="sysPromptSubmitBtn" class="btn-primary" data-i18n="optSaveSysPromptBtn">Guardar System Prompt</button>
+                <button type="button" id="cancelSysPromptEditBtn" class="btn-secondary" data-i18n="optCancelBtn" style="display:none;">Cancelar</button>
+            </div>
+        </form>
     </div>
 
     <!-- THE ACTUAL FORM (detached) -->
@@ -468,16 +619,32 @@
                 <label data-i18n="optPromptLabel">Prompt</label>
                 <textarea id="m_prompt" required placeholder="Ej: Analiza este texto y dime tus conclusiones" data-i18n="optPromptPlaceholder"></textarea>
             </div>
+            <div class="form-group">
+                <label data-i18n="optSelectPromptLabel">Utilizar prompt de la lista</label>
+                <select id="m_prompt_id">
+                    <option value="" data-i18n="optSelectPromptDefault">-- Utilizar prompt específico --</option>
+                </select>
+            </div>            <div class="form-group">
+                <label data-i18n="optSysPromptTextLabelOptional">System Prompt (Opcional)</label>
+                <textarea id="m_system_prompt" placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label data-i18n="optSelectSysPromptLabel">System Prompt (Opcional)</label>
+                <select id="m_system_prompt_id">
+                    <option value="" data-i18n="optSelectSysPromptDefault">-- Sin System Prompt --</option>
+                </select>
+            </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="m_use_markdown" checked>
-                <label for="m_use_markdown">Convertir contenido a Markdown (desmarcar para procesar HTML directamente)</label>
+                <label for="m_use_markdown" data-i18n="optUseMarkdown">Convertir contenido a Markdown (desmarcar para procesar HTML directamente)</label>
             </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="m_link_web">
-                <label for="m_link_web">Vincular y limitar este servicio a uno o varios dominios</label>
+                <label for="m_link_web" data-i18n="optLinkWeb">Vincular y limitar este servicio a uno o varios dominios</label>
             </div>
             <div class="form-group" id="linked_url_group" style="display:none; margin-top: 1rem;">
-                <label>Dominios a vincular (separados por comas)</label>
+                <label data-i18n="optLinkDomains">Dominios a vincular (separados por comas)</label>
                 <input type="text" id="m_linked_web_url" placeholder="Ej: example.com, openai.com">
             </div>
             

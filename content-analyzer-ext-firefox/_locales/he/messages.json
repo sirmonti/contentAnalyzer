@@ -172,5 +172,53 @@
   },
   "contextSaveMd": {
     "message": "שמור בחירה כ-Markdown"
+  },
+  "resCharCount": {
+    "message": "Query Length (chars)"
+  },
+  "optUseMarkdown": {
+    "message": "Convert content to Markdown (uncheck to process HTML directly)"
+  },
+  "optLinkWeb": {
+    "message": "Link and limit this service to one or more domains"
+  },
+  "optLinkDomains": {
+    "message": "Domains to link (comma separated)"
+  },
+  "optSysPromptsListTitle": {
+    "message": "System Prompts"
+  },
+  "optAddSysPrompt": {
+    "message": "Add New System Prompt"
+  },
+  "optSysPromptNameLabel": {
+    "message": "System Prompt Name"
+  },
+  "optSysPromptNamePlaceholder": {
+    "message": "e.g. Summarizer"
+  },
+  "optSysPromptTextLabel": {
+    "message": "System Prompt"
+  },
+  "optSysPromptTextPlaceholder": {
+    "message": "e.g. You are an expert summarizer..."
+  },
+  "optSaveSysPromptBtn": {
+    "message": "Save System Prompt"
+  },
+  "optSelectSysPromptLabel": {
+    "message": "System Prompt (Optional)"
+  },
+  "optSelectSysPromptDefault": {
+    "message": "-- No System Prompt --"
+  },
+  "optColSysPromptName": {
+    "message": "System Prompt Name"
+  },
+  "optColSysPromptText": {
+    "message": "Text"
+  },
+  "optSysPromptTextLabelOptional": {
+    "message": "System Prompt (Optional)"
   }
 }

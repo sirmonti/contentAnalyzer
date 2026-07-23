@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Анализатор контента</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Политика конфиденциальности</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">Последнее обновление: апрель 2026 г.</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. Введение</h2>
+                <p>Расширение для Chrome «contentAnalyzer» («Расширение») предназначено для обработки содержимого текущей веб-страницы с использованием сервисов искусственного интеллекта, настроенных пользователем. Настоящая Политика конфиденциальности разъясняет наши обязательства по защите вашей конфиденциальности и то, как обрабатываются данные.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. Отсутствие сбора данных разработчиком</h2>
+                <p class="mb-sm">Мы превыше всего ценим вашу конфиденциальность. Разработчик данного Расширения не собирает, не хранит и не передает какие-либо ваши персональные данные, историю просмотров или обработанный контент на любой сервер под контролем разработчика.</p>
+                <p>Все настройки конфигурации (такие как API-ключи или пользовательские запросы) хранятся локально в памяти вашего браузера (например, <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</code>) и никогда не доступны разработчику.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. Передача данных сторонним сервисам</h2>
+                <p class="mb-md">Для обеспечения своей основной функциональности Расширение передает содержимое веб-страницы, которую вы выбрали для анализа, стороннему поставщику услуг ИИ («Сервис ИИ»), который был настроен вами в параметрах.</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. Настраиваемые пользователем сервисы</h3>
+                        <p>Расширение взаимодействует только с конкретными конечными точками (endpoints) или API, предоставленными пользователем. Поскольку эти сервисы выбираются и настраиваются пользователем, разработчик «contentAnalyzer» не контролирует то, как сторонние сайты обрабатывают данные, отправленные им.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. Политика конфиденциальности сторонних лиц</h3>
+                        <p>Разработчик не несет ответственности за методы обеспечения конфиденциальности, политику хранения данных или меры безопасности Сервисов ИИ, которые вы выбираете для использования. Перед использованием Расширения с конкретным сервисом мы настоятельно рекомендуем вам ознакомиться с Политикой конфиденциальности и Условиями обслуживания этого поставщика.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. Разрешения</h2>
+                <p class="mb-md">Для работы Расширения требуются следующие разрешения:</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> или <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>: для чтения содержимого страницы, которую вы хотите проанализировать.</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>: для сохранения вашей конфигурации и настроек API локально.</li>
+                    <li><strong>разрешения хоста:</strong> Для отправки контента в API Сервиса ИИ, который вы указали.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. Безопасность</h2>
+                <p>Хотя Расширение облегчает передачу данных через стандартные веб-протоколы, безопасность данных после их выхода из вашего браузера полностью зависит от Сервиса ИИ, который вы настроили. Мы рекомендуем использовать сервисы, предоставляющие защищенные (HTTPS) конечные точки API.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. Изменения в этой Политике</h2>
+                <p>Разработчик оставляет за собой право обновлять данную Политику конфиденциальности в любое время. Любые изменения будут отражены в новой версии Расширения и обновлены на этой странице.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. Контактная информация</h2>
+                <p>Если у вас возникнут вопросы относительно этой Политики конфиденциальности, пожалуйста, свяжитесь с разработчиком через каналы поддержки, указанные на <a href="contact.html">странице контактов</a>.</p>
+            </section>
+        </div>
+    </article>
+</div>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="light" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>콘텐츠 분석기</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Google reCAPTCHA v2 -->
+    <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e7e7f1",
+                        "tertiary-fixed": "#ffdbc8",
+                        "surface-container-low": "#f3f3fc",
+                        "surface-variant": "#e2e2eb",
+                        "on-tertiary-fixed": "#321300",
+                        "on-surface": "#191b22",
+                        "secondary-fixed": "#ecdcff",
+                        "on-error": "#ffffff",
+                        "primary": "#094cb2",
+                        "on-secondary-container": "#513186",
+                        "error-container": "#ffdad6",
+                        "text-secondary": "#54595D",
+                        "secondary": "#6d4da3",
+                        "secondary-container": "#c2a0fd",
+                        "surface-tint": "#2259bf",
+                        "on-secondary-fixed-variant": "#55348a",
+                        "text-primary": "#202122",
+                        "status-warning": "#EDAB00",
+                        "status-success": "#14866D",
+                        "on-tertiary-container": "#ffe8db",
+                        "inverse-on-surface": "#f0f0f9",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "status-error": "#D33333",
+                        "on-tertiary-fixed-variant": "#743500",
+                        "tertiary-fixed-dim": "#ffb68a",
+                        "on-primary-fixed-variant": "#00419d",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#3366cc",
+                        "surface-header": "#EAECF0",
+                        "tertiary": "#863e00",
+                        "on-background": "#191b22",
+                        "border-subtle": "#C8CCD1",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#434653",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#270058",
+                        "surface-container-highest": "#e2e2eb",
+                        "surface-container": "#ededf6",
+                        "secondary-fixed-dim": "#d5bbff",
+                        "inverse-surface": "#2e3037",
+                        "outline": "#737784",
+                        "neutral-text-secondary": "#72777D",
+                        "outline-variant": "#c3c6d5",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001946",
+                        "tertiary-container": "#ab5100",
+                        "error": "#ba1a1a",
+                        "surface-article": "#FFFFFF",
+                        "surface-dim": "#d9d9e2",
+                        "primary-hover": "#2A4D99",
+                        "on-primary-container": "#e7ebff",
+                        "background": "#faf8ff",
+                        "inverse-primary": "#b1c5ff",
+                        "background-canvas": "#F6F6F6",
+                        "primary-fixed": "#d9e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "base": "4px",
+                        "xxl": "48px",
+                        "header-height": "48px",
+                        "sm": "8px",
+                        "sidebar-width": "256px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "container-max": "960px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "reference": ["Source Serif 4"],
+                        "code": ["Source Code Pro"],
+                        "caption": ["Source Serif 4"],
+                        "h2-section": ["Libre Baskerville"],
+                        "h3-subsection": ["Libre Baskerville"],
+                        "body-bold": ["Source Serif 4"],
+                        "article-title": ["Libre Baskerville"],
+                        "h4-heading": ["Source Serif 4"],
+                        "body": ["Source Serif 4"],
+                        "label-ui": ["Source Serif 4"]
+                    },
+                    "fontSize": {
+                        "reference": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "code": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "caption": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "h2-section": ["22px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "h3-subsection": ["18px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "1.65", "fontWeight": "600" }],
+                        "article-title": ["28px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "h4-heading": ["16px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body": ["16px", { "lineHeight": "1.65", "fontWeight": "400" }],
+                        "label-ui": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F6F6F6;
+        }
+
+        /* Canvas base */
+        /* Estilo para que los enlaces en el texto sean reconocibles (movido aquí desde privacy) */
+        .text-content a {
+            color: #094cb2;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s ease, text-decoration-thickness 0.2s ease;
+        }
+
+        .text-content a:hover {
+            color: #2A4D99;
+            text-decoration-thickness: 2px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-text-primary antialiased flex flex-col">
+
+    <header
+        class="bg-surface-header dark:bg-inverse-surface border-b border-border-subtle dark:border-outline transition-colors duration-200 ease-in-out flex flex-col lg:flex-row justify-between items-start lg:items-center min-h-[48px] px-md w-full sticky top-0 z-50 py-2 lg:py-0">
+        <div class="flex items-center justify-between w-full lg:w-auto gap-md h-[32px] lg:h-[48px]">
+            <span
+                class="font-h2-section text-h2-section text-text-primary dark:text-inverse-on-surface uppercase tracking-tight">콘텐츠 
+                분석기</span>
+        <div class="lg:hidden flex items-center">
+                <select class="bg-surface-container dark:bg-surface-variant text-text-primary dark:text-inverse-on-surface border border-border-subtle dark:border-outline rounded px-2 py-1 text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" onchange="if(this.value) window.location.href=this.value">
+                    <option value="../en/usage.html">🇺🇸 영어</option>
+                    <option value="../ar/usage.html">🇸🇦 아랍어</option>
+                    <option value="../de/usage.html">🇩🇪 독일어</option>
+                    <option value="../es/usage.html">🇪🇸 스페인어</option>
+                    <option value="../fr/usage.html">🇫🇷 프랑스어</option>
+                    <option value="../he/usage.html">🇮🇱 히브리어</option>
+                    <option value="../it/usage.html">🇮🇹 이탈리아어</option>
+                    <option value="../ja/usage.html">🇯🇵 일본어</option>
+                    <option value="../ko/usage.html" selected>🇰🇷 한국어</option>
+                    <option value="../pl/usage.html">🇵🇱 폴란드어</option>
+                    <option value="../pt/usage.html">🇵🇹 포르투갈어</option>
+                    <option value="../ru/usage.html">🇷🇺 러시아어</option>
+                    <option value="../zh/usage.html">🇨🇳 중국어</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Top Navigation: Visible on small/medium screens, hidden on lg -->
+        <div class="flex items-center w-full mt-2 lg:mt-0 lg:hidden overflow-x-auto pb-1 lg:pb-0">
+            <nav class="flex gap-2 sm:gap-md whitespace-nowrap">
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="index.html">홈</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="usage.html">사용법</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="getapi.html">무료 API 키 받기</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="privacy.html">개인정보</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="contact.html">문의하기</a>
+            </nav>
+        </div>
+
+        <!-- Space for layout consistency on desktop -->
+        <div class="hidden lg:flex items-center gap-sm">
+                <select class="bg-surface-container dark:bg-surface-variant text-text-primary dark:text-inverse-on-surface border border-border-subtle dark:border-outline rounded px-2 py-1 text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" onchange="if(this.value) window.location.href=this.value">
+                    <option value="../en/usage.html">🇺🇸 영어</option>
+                    <option value="../ar/usage.html">🇸🇦 아랍어</option>
+                    <option value="../de/usage.html">🇩🇪 독일어</option>
+                    <option value="../es/usage.html">🇪🇸 스페인어</option>
+                    <option value="../fr/usage.html">🇫🇷 프랑스어</option>
+                    <option value="../he/usage.html">🇮🇱 히브리어</option>
+                    <option value="../it/usage.html">🇮🇹 이탈리아어</option>
+                    <option value="../ja/usage.html">🇯🇵 일본어</option>
+                    <option value="../ko/usage.html" selected>🇰🇷 한국어</option>
+                    <option value="../pl/usage.html">🇵🇱 폴란드어</option>
+                    <option value="../pt/usage.html">🇵🇹 포르투갈어</option>
+                    <option value="../ru/usage.html">🇷🇺 러시아어</option>
+                    <option value="../zh/usage.html">🇨🇳 중국어</option>
+                </select>
+        </div>
+    </header>
+
+    <div class="flex flex-1">
+        <nav
+            class="bg-background dark:bg-on-background border-r border-border-subtle dark:border-outline transition-all duration-150 hidden lg:flex flex-col w-sidebar-width fixed left-0 top-header-height bottom-0 z-40">
+            <div class="p-md border-b border-border-subtle">
+                <div class="flex items-center gap-sm mb-md">
+                    <div
+                        class="w-[32px] h-[32px] bg-surface-container rounded-full flex items-center justify-center border border-border-subtle overflow-hidden">
+                        <picture class="w-full h-full flex items-center justify-center p-[2px]">
+                            <source media="(min-width: 1200px)" srcset="../Iconos/Icono128.png" />
+                            <source media="(min-width: 992px)" srcset="../Iconos/Icono48.png" />
+                            <source media="(min-width: 768px)" srcset="../Iconos/Icono32.png" />
+                            <img alt="Content Analyzer Logo" class="max-w-full max-h-full object-contain"
+                                src="../Iconos/Icono16.png" />
+                        </picture>
+                    </div>
+                    <div>
+                        <div class="font-h3-subsection text-h3-subsection text-text-primary">네비게이션</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 py-md flex flex-col gap-xs px-sm overflow-y-auto">
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="index.html">
+                    <span class="material-symbols-outlined" data-icon="home">home</span> 홈
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="usage.html">
+                    <span class="material-symbols-outlined" data-icon="menu_book">menu_book</span> 사용법
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="getapi.html">
+                    <span class="material-symbols-outlined" data-icon="key">key</span> 무료 API 키 받기
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="privacy.html">
+                    <span class="material-symbols-outlined" data-icon="security">security</span> 개인정보
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="contact.html">
+                    <span class="material-symbols-outlined" data-icon="mail">mail</span> 문의하기
+                </a>
+            </div>
+        </nav>
+
+        <main class="flex-1 lg:ml-sidebar-width bg-background-canvas min-h-screen flex flex-col justify-between">
+
+            <div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">콘텐츠 분석기 확장 프로그램</p>
+            <h1 class="font-article-title text-article-title text-text-primary">사용 및 구성 가이드</h1>
+        </header>
+
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm"><strong>콘텐츠 분석기</strong>는 복잡한 웹 환경에서 의미 있는 메타데이터를 자동 추출 및 평가하도록 설계된 브라우저 확장 프로그램입니다. 이 확장 프로그램은 Firefox, Chrome 및 Chromium 기반 브라우저에서 작동하며, 핵심 목적은 다양한 인공 지능(AI) 서비스를 통해 웹 콘텐츠를 처리하는 것입니다.</p>
+            <p class="mb-sm">일반적인 웹 페이지 요약 도구와 달리, 이 확장 프로그램을 사용하면 수집된 정보에 대해 AI가 수행해야 할 작업을 정확하게 지정하는 매우 구체적인 프롬프트를 사용하여 여러 개의 사용자 정의 AI 서비스를 만들 수 있습니다. 이를 통해 코드를 추출하고, 특정 용어를 번역하고, 감성을 분석하고, 타겟 보고서를 생성하는 등 다양한 작업을 수행할 수 있습니다.</p>
+        </div>
+
+        <nav aria-label="목차" class="mb-xl bg-surface-header p-md border border-border-subtle">
+            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">운영 색인</h2>
+            <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
+                <li><a class="hover:text-primary-hover" href="#features">주요 기능</a></li>
+                <li><a class="hover:text-primary-hover" href="#providers">지원되는 AI 제공업체</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">동적 프롬프트 태그</a></li>
+                <li><a class="hover:text-primary-hover" href="#examples">예제 구성</a></li>
+                <li><a class="hover:text-primary-hover" href="#installation">브라우저 설치</a></li>
+            </ol>
+        </nav>
+
+        <div class="space-y-xl">
+            <section class="relative" id="features">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">주요 기능</h2>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
+                            <li><strong>사용자 정의 콘텐츠 캡처:</strong> 대화형 "마우스 오버 도구"를 사용하여 웹 페이지의 특정 부분을 쉽게 선택하거나 전체 페이지 콘텐츠를 캡처하도록 설정할 수 있습니다.</li>
+                            <li><strong>다중 사용자 지정 AI 프롬프트 및 시스템 프롬프트:</strong> 사용자 정의 프롬프트와 선택 사항인 시스템 프롬프트를 통해 정확히 필요한 대로 서비스를 구성하여 다양한 서비스를 만들 수 있습니다(예: "기사 요약", "JSON 데이터 추출", "스페인어로 번역", 사용자 정의 어시스턴트 페르소나 등).</li>
+                            <li><strong>도메인별 서비스:</strong> 사용자 정의 서비스를 특정 웹 도메인에 연결할 수 있습니다. 이렇게 하면 관련 AI 도구만 표시되므로 확장 프로그램이 깔끔하게 유지됩니다.</li>
+                            <li><strong>광범위한 LLM 호환성:</strong> Ollama를 통해 로컬 서버와 연결하고, OpenAI, Anthropic 및 Google Gemini와 같은 클라우드 API 제공업체와의 연결을 포함하여 (텍스트 스트리밍 포함) 완벽하게 지원합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="providers">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">지원되는 AI 제공업체</h2>
+                        <p class="font-body text-body text-text-primary mb-md">이 확장 프로그램은 다양한 업계 최고의 인공 지능 모델 및 로컬 서비스에 연결할 수 있도록 매우 유연하게 설계되었습니다. 현재 다음과 같은 서비스를 지원합니다.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
+                            <li><strong>Claude (Anthropic):</strong> 공식 API를 통해 강력한 Claude 제품군에 액세스할 수 있습니다.</li>
+                            <li><strong>Gemini (Google):</strong> Google의 고급 Gemini 모델에 직접 연결할 수 있습니다.</li>
+                            <li><strong>ChatGPT (OpenAI 및 호환):</strong> OpenAI의 API와 완벽하게 호환되며, OpenAI 호환 엔드포인트를 제공하는 다른 타사 서비스에서도 사용할 수 있습니다.</li>
+                            <li><strong>Ollama:</strong> 데이터를 클라우드로 보내지 않고도 로컬에서 개인적으로 모델을 실행할 수 있습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="tags">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">동적 프롬프트 태그</h2>
+                        <p class="font-body text-body text-text-primary mb-md">AI 프롬프트를 더욱 상황에 맞게 강력하게 만들기 위해 사용자 프롬프트와 시스템 프롬프트 모두에서 다음 동적 태그를 사용할 수 있습니다. 확장 프로그램은 AI 모델로 프롬프트를 보내기 전에 자동으로 해당 태그를 대체합니다.</p>
+                        <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
+                            <thead>
+                                <tr class="bg-surface-header border-b border-border-subtle">
+                                    <th class="p-sm font-body-bold border-r border-border-subtle w-[120px]">태그</th>
+                                    <th class="p-sm font-body-bold">설명</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DATE}</td>
+                                    <td class="p-sm">현재 로컬 형식의 날짜로 대체됩니다.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{HOUR}</td>
+                                    <td class="p-sm">현재 로컬 형식의 시간으로 대체됩니다.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
+                                    <td class="p-sm">현재 처리 중인 웹 페이지의 전체 URL입니다.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DOMAIN}</td>
+                                    <td class="p-sm">처리 중인 웹 페이지의 루트 도메인입니다.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
+                                    <td class="p-sm">웹 페이지의 언어입니다.</td>
+                                </tr>
+                                <tr class="bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
+                                    <td class="p-sm">현재 시스템/브라우저 언어 구성입니다.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="examples">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">예제 구성</h2>
+                        <p class="font-body text-body text-text-primary mb-md">아래는 서비스 구성을 보여주는 몇 가지 예입니다.</p>
+
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 1: 다국어 번역 어시스턴트</h4>
+                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> 로컬 언어로 번역 <br /><strong>연결된 도메인:</strong> (비어 있음 - 모든 곳에서 사용 가능)</p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                저는 전문 번역가입니다. 현재 {LANG} 언어로 된 사이트를 방문하고 있지만 브라우저 설정은 {SYSLANG}입니다. 다음 콘텐츠를 {SYSLANG}으로 정확하게 번역하되, 원래 마크다운 및 텍스트 형식을 유지하십시오.
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 2: 코드 검토자 (도메인별)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> Python 코드 검토 <br /><strong>연결된 도메인:</strong> github.com, gitlab.com, stackoverflow.com</p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                저는 전문가 개발자입니다. 아래 코드는 {DOMAIN}에서 발견되었습니다. 잠재적인 버그, 보안 취약점 및 코드 문제에 대해 엄격하게 분석하십시오. 코드가 무엇을 하는지 설명하지 말고, 문제를 나열하고 수정된 버전을 제공하십시오.
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 3: 일일 브리핑 추출기</h4>
+                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> 주요 엔터티 추출 <br /><strong>연결된 도메인:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                오늘은 {DATE}이고 시간은 {HOUR}입니다. 다음 뉴스 기사를 스캔하고 언급된 주요 "인물", "조직" 및 "위치"를 포함하는 깔끔한 JSON 목록을 추출하십시오.
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-header border border-border-subtle p-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 4: 사용자 정의 어시스턴트 페르소나 (시스템 프롬프트)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> 마리오 어시스턴트 <br /><strong>시스템 프롬프트:</strong></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
+                                당신은 똑똑하고 능숙한 어시스턴트인 마리오입니다. 당신의 임무는 주어진 작업을 최대한 효율적으로 수행하는 것입니다. 시간 참조가 있는 작업에서는 오늘이 {DATE}라는 점을 염두에 두어야 합니다.
+                            </div>
+                            <p class="font-body text-body text-text-primary"><strong>사용자 프롬프트:</strong></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                {URL}에서 캡처한 다음 텍스트를 분석하고 주요 내용을 요약하십시오.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="installation">
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">브라우저 설치</h2>
+                        <p class="font-body text-body text-text-primary mb-md">설치 프로세스는 공식 리포지토리를 통해 또는 개발자 모드에서 압축 해제된 패키지를 로드하여 수행됩니다.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
+                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Chrome 웹 스토어에서 다운로드</a></li>
+                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Firefox 추가 기능에서 다운로드</a></li>
+                            <li><em>또는</em>, <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> 또는 <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>을 통해 개발자 모드에서 압축 해제된 확장을 로드할 수 있습니다.</li>
+                        </ul>
+                        <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
+                            <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
+                            <div>
+                                <strong>참고:</strong> 확장 프로그램의 옵션 페이지에서 글로벌 설정을 제대로 구성했는지 확인한 후(API 키 또는 로컬 Ollama 인스턴스) 캡처를 실행하십시오.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </article>
+</div>
+
+            <footer
+                class="bg-surface-container-low dark:bg-inverse-surface border-t border-border-subtle dark:border-outline transition-opacity duration-200 w-full py-md px-lg flex flex-col md:flex-row justify-between items-center gap-sm mt-auto">
+                <div class="font-body-bold text-text-primary text-body-bold">
+                    © 2026 콘텐츠 분석기 - GPLv3 license - Francisco Monteagudo
+                </div>
+                <div class="flex gap-md">
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="index.html">홈</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="usage.html">사용법</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="getapi.html">무료 API 키 받기</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="privacy.html">개인정보</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="contact.html">문의하기</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>

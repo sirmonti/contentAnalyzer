@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Analizador de contenido</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Política de privacidad</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">Última actualización: abril de 2026</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. Introducción</h2>
+                <p>La extensión de Chrome "contentAnalyzer" (la "Extensión") está diseñada para procesar el contenido de la página web actual utilizando servicios de inteligencia artificial configurados por el usuario. Esta Política de privacidad explica nuestro compromiso con su privacidad y cómo se gestionan los datos.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. No recopilación de datos por parte del desarrollador</h2>
+                <p class="mb-sm">Valoramos su privacidad por encima de todo. El desarrollador de esta Extensión no recopila, almacena ni transmite ninguno de sus datos personales, historial de navegación o contenido procesado a ningún servidor controlado por el desarrollador.</p>
+                <p>Toda la configuración (como las claves API o las indicaciones personalizadas) se guarda localmente en el almacenamiento de su navegador (por ejemplo, <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</code>) y nunca es accesible para el desarrollador.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. Transmisión de datos a servicios de terceros</h2>
+                <p class="mb-md">Para proporcionar su funcionalidad principal, la Extensión envía el contenido de la página web que elige analizar al proveedor de servicios de IA (el "Servicio de IA") configurado en la configuración.</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. Servicios configurados por el usuario</h3>
+                        <p>La Extensión solo se comunica con los puntos finales/API específicos proporcionados por el usuario. Dado que estos servicios son seleccionados y configurados por el usuario, el desarrollador de "contentAnalyzer" no tiene control sobre cómo estos sitios de terceros gestionan los datos que se les envían.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. Políticas de privacidad de terceros</h3>
+                        <p>El desarrollador no puede ser responsable de las prácticas de privacidad, las políticas de retención de datos o las medidas de seguridad de los Servicios de IA que elija utilizar. Antes de usar la Extensión con un servicio específico, le recomendamos encarecidamente que revise la Política de privacidad y los Términos de servicio de dicho proveedor.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. Permisos</h2>
+                <p class="mb-md">La Extensión requiere permisos específicos para funcionar:</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> o <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>: Para leer el contenido de la página que desea analizar.</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>: Para guardar su configuración y ajustes de API localmente.</li>
+                    <li><strong>permisos de host:</strong> Para enviar el contenido a la API del Servicio de IA que ha especificado.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. Seguridad</h2>
+                <p>Si bien la Extensión facilita la transmisión de datos a través de protocolos web estándar, la seguridad de los datos una vez que salen de su navegador depende completamente del Servicio de IA que haya configurado. Recomendamos utilizar servicios que proporcionen puntos finales de API seguros (HTTPS).</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. Cambios en esta política</h2>
+                <p>El desarrollador se reserva el derecho de actualizar esta Política de privacidad en cualquier momento. Cualquier cambio se reflejará en una nueva versión de la Extensión y se actualizará en esta página.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. Contacto</h2>
+                <p>Si tiene alguna pregunta sobre esta Política de privacidad, comuníquese con el desarrollador a través de los canales de soporte proporcionados en la <a href="contact.html">página de contacto</a>.</p>
+            </section>
+        </div>
+    </article>
+</div>

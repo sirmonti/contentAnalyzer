@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html class="light" lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>内容分析器</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+        rel=" stylesheet" />
+
+    <!-- Google reCAPTCHA v2 -->
+    <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e7e7f1",
+                        "tertiary-fixed": "#ffdbc8",
+                        "surface-container-low": "#f3f3fc",
+                        "surface-variant": "#e2e2eb",
+                        "on-tertiary-fixed": "#321300",
+                        "on-surface": "#191b22",
+                        "secondary-fixed": "#ecdcff",
+                        "on-error": "#ffffff",
+                        "primary": "#094cb2",
+                        "on-secondary-container": "#513186",
+                        "error-container": "#ffdad6",
+                        "text-secondary": "#54595D",
+                        "secondary": "#6d4da3",
+                        "secondary-container": "#c2a0fd",
+                        "surface-tint": "#2259bf",
+                        "on-secondary-fixed-variant": "#55348a",
+                        "text-primary": "#202122",
+                        "status-warning": "#EDAB00",
+                        "status-success": "#14866D",
+                        "on-tertiary-container": "#ffe8db",
+                        "inverse-on-surface": "#f0f0f9",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "status-error": "#D33333",
+                        "on-tertiary-fixed-variant": "#743500",
+                        "tertiary-fixed-dim": "#ffb68a",
+                        "on-primary-fixed-variant": "#00419d",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#3366cc",
+                        "surface-header": "#EAECF0",
+                        "tertiary": "#863e00",
+                        "on-background": "#191b22",
+                        "border-subtle": "#C8CCD1",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#434653",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#270058",
+                        "surface-container-highest": "#e2e2eb",
+                        "surface-container": "#ededf6",
+                        "secondary-fixed-dim": "#d5bbff",
+                        "inverse-surface": "#2e3037",
+                        "outline": "#737784",
+                        "neutral-text-secondary": "#72777D",
+                        "outline-variant": "#c3c6d5",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001946",
+                        "tertiary-container": "#ab5100",
+                        "error": "#ba1a1a",
+                        "surface-article": "#FFFFFF",
+                        "surface-dim": "#d9d9e2",
+                        "primary-hover": "#2A4D99",
+                        "on-primary-container": "#e7ebff",
+                        "background": "#faf8ff",
+                        "inverse-primary": "#b1c5ff",
+                        "background-canvas": "#F6F6F6",
+                        "primary-fixed": "#d9e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "base": "4px",
+                        "xxl": "48px",
+                        "header-height": "48px",
+                        "sm": "8px",
+                        "sidebar-width": "256px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "container-max": "960px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "reference": ["Source Serif 4"],
+                        "code": ["Source Code Pro"],
+                        "caption": ["Source Serif 4"],
+                        "h2-section": ["Libre Baskerville"],
+                        "h3-subsection": ["Libre Baskerville"],
+                        "body-bold": ["Source Serif 4"],
+                        "article-title": ["Libre Baskerville"],
+                        "h4-heading": ["Source Serif 4"],
+                        "body": ["Source Serif 4"],
+                        "label-ui": ["Source Serif 4"]
+                    },
+                    "fontSize": {
+                        "reference": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "code": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "caption": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "h2-section": ["22px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "h3-subsection": ["18px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "1.65", "fontWeight": "600" }],
+                        "article-title": ["28px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "h4-heading": ["16px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body": ["16px", { "lineHeight": "1.65", "fontWeight": "400" }],
+                        "label-ui": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F6F6F6;
+        }
+
+        /* Canvas base */
+        /* Estilo para que los enlaces en el texto sean reconocibles (movido aquí desde privacy) */
+        .text-content a {
+            color: #094cb2;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s ease, text-decoration-thickness 0.2s ease;
+        }
+
+        .text-content a:hover {
+            color: #2A4D99;
+            text-decoration-thickness: 2px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-text-primary antialiased flex flex-col">
+
+    <header
+        class="bg-surface-header dark:bg-inverse-surface border-b border-border-subtle dark:border-outline transition-colors duration-200 ease-in-out flex flex-col lg:flex-row justify-between items-start lg:items-center min-h-[48px] px-md w-full sticky top-0 z-50 py-2 lg:py-0">
+        <div class="flex items-center justify-between w-full lg:w-auto gap-md h-[32px] lg:h-[48px]">
+            <span
+                class="font-h2-section text-h2-section text-text-primary dark:text-inverse-on-surface uppercase tracking-tight">内容分析器</span>
+        <div class="lg:hidden flex items-center">
+                <select class="bg-surface-container dark:bg-surface-variant text-text-primary dark:text-inverse-on-surface border border-border-subtle dark:border-outline rounded px-2 py-1 text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" onchange="if(this.value) window.location.href=this.value">
+                    <option value="../en/getapi.html">🇺🇸 英语</option>
+                    <option value="../ar/getapi.html">🇸🇦 阿拉伯语</option>
+                    <option value="../de/getapi.html">🇩🇪 德语</option>
+                    <option value="../es/getapi.html">🇪🇸 西班牙语</option>
+                    <option value="../fr/getapi.html">🇫🇷 法语</option>
+                    <option value="../he/getapi.html">🇮🇱 希伯来语</option>
+                    <option value="../it/getapi.html">🇮🇹 意大利语</option>
+                    <option value="../ja/getapi.html">🇯🇵 日语</option>
+                    <option value="../ko/getapi.html">🇰🇷 韩语</option>
+                    <option value="../pl/getapi.html">🇵🇱 波兰语</option>
+                    <option value="../pt/getapi.html">🇵🇹 葡萄牙语</option>
+                    <option value="../ru/getapi.html">🇷🇺 俄语</option>
+                    <option value="../zh/getapi.html" selected>🇨🇳 中文</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Top Navigation: Visible on small/medium screens, hidden on lg -->
+        <div class="flex items-center w-full mt-2 lg:mt-0 lg:hidden overflow-x-auto pb-1 lg:pb-0">
+            <nav class="flex gap-2 sm:gap-md whitespace-nowrap">
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="index.html">首页</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="usage.html">使用说明</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="getapi.html">获取免费 API 密钥</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="privacy.html">隐私政策</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="contact.html">联系我们</a>
+            </nav>
+        </div>
+
+        <!-- Space for layout consistency on desktop -->
+        <div class="hidden lg:flex items-center gap-sm">
+                <select class="bg-surface-container dark:bg-surface-variant text-text-primary dark:text-inverse-on-surface border border-border-subtle dark:border-outline rounded px-2 py-1 text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" onchange="if(this.value) window.location.href=this.value">
+                    <option value="../en/getapi.html">🇺🇸 英语</option>
+                    <option value="../ar/getapi.html">🇸🇦 阿拉伯语</option>
+                    <option value="../de/getapi.html">🇩🇪 德语</option>
+                    <option value="../es/getapi.html">🇪🇸 西班牙语</option>
+                    <option value="../fr/getapi.html">🇫🇷 法语</option>
+                    <option value="../he/getapi.html">🇮🇱 希伯来语</option>
+                    <option value="../it/getapi.html">🇮🇹 意大利语</option>
+                    <option value="../ja/getapi.html">🇯🇵 日语</option>
+                    <option value="../ko/getapi.html">🇰🇷 韩语</option>
+                    <option value="../pl/getapi.html">🇵🇱 波兰语</option>
+                    <option value="../pt/getapi.html">🇵🇹 葡萄牙语</option>
+                    <option value="../ru/getapi.html">🇷🇺 俄语</option>
+                    <option value="../zh/getapi.html" selected>🇨🇳 中文</option>
+                </select>
+        </div>
+    </header>
+
+    <div class="flex flex-1">
+        <nav
+            class="bg-background dark:bg-on-background border-r border-border-subtle dark:border-outline transition-all duration-150 hidden lg:flex flex-col w-sidebar-width fixed left-0 top-header-height bottom-0 z-40">
+            <div class="p-md border-b border-border-subtle">
+                <div class="flex items-center gap-sm mb-md">
+                    <div
+                        class="w-[32px] h-[32px] bg-surface-container rounded-full flex items-center justify-center border border-border-subtle overflow-hidden">
+                        <picture class="w-full h-full flex items-center justify-center p-[2px]">
+                            <source media="(min-width: 1200px)" srcset="../Iconos/Icono128.png" />
+                            <source media="(min-width: 992px)" srcset="../Iconos/Icono48.png" />
+                            <source media="(min-width: 768px)" srcset="../Iconos/Icono32.png" />
+                            <img alt="内容分析器 Logo" class="max-w-full max-h-full object-contain"
+                                src="../Iconos/Icono16.png" />
+                        </picture>
+                    </div>
+                    <div>
+                        <div class="font-h3-subsection text-h3-subsection text-text-primary">导航</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 py-md flex flex-col gap-xs px-sm overflow-y-auto">
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="index.html">
+                    <span class="material-symbols-outlined" data-icon="home">home</span> 首页
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="usage.html">
+                    <span class="material-symbols-outlined" data-icon="menu_book">menu_book</span> 使用说明
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="getapi.html">
+                    <span class="material-symbols-outlined" data-icon="key">key</span> 获取免费 API 密钥
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="privacy.html">
+                    <span class="material-symbols-outlined" data-icon="security">security</span> 隐私政策
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="contact.html">
+                    <span class="material-symbols-outlined" data-icon="mail">mail</span> 联系我们
+                </a>
+            </div>
+        </nav>
+
+        <main class="flex-1 lg:ml-sidebar-width bg-background-canvas min-h-screen flex flex-col justify-between">
+
+            <div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article
+        class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">内容分析器扩展</p>
+            <h1 class="font-article-title text-article-title text-text-primary">获取免费 API 密钥</h1>
+        </header>
+
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm">为了有效使用<strong >内容分析器</strong>，您需要配置一个 AI 提供商。虽然一些提供商对其服务收取费用，但也有出色的免费选项可供选择。</p>
+            <p class="mb-sm">以下是有关如何在流行的平台上获取免费 API 密钥或设置服务的说明：Google Gemini、OpenRouter、Groq、Mistral AI 和 Ollama。</p>
+        </div>
+
+        <div class="space-y-xl">
+            <section class="relative" id="gemini">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Google Gemini</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Google 通过 Google AI Studio 提供对其先进的 Gemini 模型的访问权限。他们为开发者提供慷慨的免费套餐。请注意，可以免费使用的模型是名称中包含“lite”一词的模型，例如 <code >gemini-3.1-flash-lite</code > 或 <code >gemini-flash-lite-latest</code >。</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>访问 <a class="text-primary hover:underline" href="https://aistudio.google.com/"
+                                    target="_new">Google AI Studio</a > 网站。</li>
+                            <li>使用您的 Google 帐户登录。</li>
+                            <li>在左侧导航菜单中，单击 <strong >“获取 API 密钥”</strong >。</li>
+                            <li>单击 <strong >“创建 API 密钥”</strong > 按钮。您可以选择将其创建到现有的 Google Cloud 项目中，或者让 AI Studio 为您创建一个新的项目。</li>
+                            <li>复制生成的密钥，并将其粘贴到内容分析器的选项页面中的 Gemini 提供程序设置下。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="openrouter">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">OpenRouter.ai</h2>
+                        <p class="font-body text-body text-text-primary mb-md">OpenRouter 是多个 AI 模型的统一接口。它聚合了来自各种提供商的模型，并且有几个高质量的模型完全可以免费使用。</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>访问 <a class="text-primary hover:underline" href="https://openrouter.ai/"
+                                    target="_new">OpenRouter.ai</a > 主页。</li>
+                            <li>使用现有的帐户（Google、GitHub 等）注册或登录。</li>
+                            <li>登录后，从主菜单或您的帐户设置中导航到 <strong >“密钥”</strong > 部分。</li>
+                            <li>单击 <strong >“创建密钥”</strong >。为其命名，例如“内容分析器”。</li>
+                            <li>复制新的 API 密钥。在内容分析器中，您可以通过选择 OpenAI 兼容选项、将基本 URL 设置为 <code >https://openrouter.ai/api/v1</code > 以及输入您所选模型的 ID（例如 <code >google/gemini-2.5-flash:free</code >）来使用此密钥。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="relative" id="groq">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Groq</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Groq 为开源 AI 模型提供极其快速的推理。他们目前为开发者提供具有高性能的免费套餐。</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>访问 <a class="text-primary hover:underline" href="https://console.groq.com/"
+                                    target="_new">Groq 控制台</a >。</li>
+                            <li>使用现有的帐户注册或登录。</li>
+                            <li>导航到侧边栏中的 <strong >“API 密钥”</strong > 部分。</li>
+                            <li>单击 <strong >“创建 API 密钥”</strong >，并为其指定一个描述性名称。</li>
+                            <li>复制生成的 API 密钥。在内容分析器中，使用 OpenAI 兼容选项，将基本 URL 设置为 <code >https://api.groq.com/openai/v1</code >，并输入您所选模型的 ID（例如 <code >llama3-8b-8192</code >）。</li>
+                        </ul>
+                    </div>
+                </div>
+                <section class="relative" id="mistral">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            4</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Mistral AI</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Mistral AI 通过 La Plateforme 提供对最先进的开放和商业模型的访问权限，并为开发者提供免费套餐以进行实验。</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>访问 <a class="text-primary hover:underline" href="https://console.mistral.ai/"
+                                        target="_new">Mistral AI 控制台</a >。</li>
+                                <li>注册或登录您的帐户。</li>
+                                <li>从工作空间导航中，导航到 <strong >“API 密钥”</strong > 部分。</li>
+                                <li>单击 <strong >“创建新密钥”</strong > 并复制您生成的 API 密钥。</li>
+                                <li>在内容分析器中，选择 OpenAI 兼容选项，将基本 URL 设置为 <code >https://api.mistral.ai/v1</code >，并输入您所选的模型 ID（例如 <code >mistral-small-latest</code >）。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="relative" id="ollama">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            5</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Ollama (ollama.com)</h2&gtgt;
+                            <p class="font-body text-body text-text-primary mb-md">Ollama 提供在线 API 服务，允许您直接连接到托管模型并通过其 Web 平台进行访问。</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>访问 <a class="text-primary hover:underline" href="https://ollama.com/"
+                                        target="_new">Ollama.com</a > 网站。</li>
+                                <li>登录到您的帐户或注册（如果您还没有）。</li>
+                                <li>单击位于页面右上角的您的用户菜单。</li>
+                                <li>选择 <strong >“设置”</strong > 选项。</li>
+                                <li>选择 <strong >“密钥”</strong > 部分。</li>
+                                <li>单击 <strong >“添加 API 密钥”</strong > 并生成您的 API 密钥。</li>
+                                <li>在内容分析器中，选择 <strong >Ollama</strong > API 类型，并将基本 URL 设置为 <code >https://ollama.com/</code >，并输入您所选的模型 ID（例如 <code >gemma4:31b</code >）。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+        </div>
+    </article>
+</div>
+
+            <footer
+                class="bg-surface-container-low dark:bg-inverse-surface border-t border-border-subtle dark:border-outline transition-opacity duration-200 w-full py-md px-lg flex flex-col md:flex-row justify-between items-center gap-sm mt-auto">
+                <div class="font-body-bold text-text-primary text-body-bold">
+                    © 2026 内容分析器 - GPLv3 许可证 - Francisco Monteagudo
+                </div>
+                <div class="flex gap-md">
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="index.html">首页</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="usage.html">使用说明</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="getapi.html">获取免费 API 密钥</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="privacy.html">隐私政策</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="contact.html">联系我们</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>

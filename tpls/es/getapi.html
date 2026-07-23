@@ -1,0 +1,118 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article
+        class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Extensión del analizador de contenido</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Obtén una clave API gratuita</h1>
+        </header>
+
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm">Para utilizar el <strong>analizador de contenido</strong> de forma eficaz, deberá configurar un proveedor de IA. Si bien algunos proveedores cobran por su uso, existen excelentes opciones gratuitas disponibles.</p>
+            <p class="mb-sm">A continuación, encontrará instrucciones sobre cómo obtener claves API gratuitas o configurar servicios en plataformas populares: Google Gemini, OpenRouter, Groq, Mistral AI y Ollama.</p>
+        </div>
+
+        <div class="space-y-xl">
+            <section class="relative" id="gemini">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Google Gemini</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Google ofrece acceso a sus avanzados modelos Gemini a través de Google AI Studio. Proporcionan un generoso nivel gratuito para desarrolladores. Tenga en cuenta que los modelos que se pueden utilizar de forma gratuita son aquellos que contienen la palabra "lite" en su nombre, como <code>gemini-3.1-flash-lite</code> o <code>gemini-flash-lite-latest</code>.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>Visite el sitio web de <a class="text-primary hover:underline" href="https://aistudio.google.com/"
+                                    target="_new">Google AI Studio</a>.</li>
+                            <li>Inicie sesión con su cuenta de Google.</li>
+                            <li>En el menú de navegación de la izquierda, haga clic en "<strong lang="en">Get API key</strong>".</li>
+                            <li>Haga clic en el botón "<strong lang="en">Create API key</strong>". Puede optar por crearlo en un proyecto de Google Cloud existente o dejar que AI Studio cree uno nuevo.</li>
+                            <li>Copie la clave generada y péguela en la página de opciones del Analizador de contenido, en la configuración del proveedor Gemini.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="openrouter">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">OpenRouter.ai</h2>
+                        <p class="font-body text-body text-text-primary mb-md">OpenRouter es una interfaz unificada para múltiples modelos de IA. Agrega modelos de varios proveedores, y hay disponibles varios modelos de alta calidad completamente gratuitos.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>Vaya a la página principal de <a class="text-primary hover:underline" href="https://openrouter.ai/"
+                                    target="_new">OpenRouter.ai</a>.</li>
+                            <li>Regístrese o inicie sesión con una cuenta existente (Google, GitHub, etc.).</li>
+                            <li>Una vez que haya iniciado sesión, navegue hasta la sección "<strong lang="en">Keys</strong>" desde el menú principal o su configuración de cuenta.</li>
+                            <li>Haga clic en "<strong lang="en">Create Key</strong>". Asigne un nombre como "Analizador de contenido".</li>
+                            <li>Copie su nueva clave API. En Content Analyzer, puede utilizar esta clave seleccionando la opción de compatibilidad con OpenAI, estableciendo la URL base en <code>https://openrouter.ai/api/v1</code> e ingresando el ID del modelo elegido (por ejemplo, <code>google/gemini-2.5-flash:free</code>).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="relative" id="groq">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Groq</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Groq proporciona una inferencia extremadamente rápida para modelos de IA de código abierto. Actualmente, ofrecen un nivel gratuito con alto rendimiento para desarrolladores.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>Visite la <a class="text-primary hover:underline" href="https://console.groq.com/"
+                                    target="_new">Consola de Groq</a>.</li>
+                            <li>Regístrese o inicie sesión con una cuenta existente.</li>
+                            <li>Navegue hasta la sección "<strong lang="en">API Keys</strong>" en la barra lateral.</li>
+                            <li>Haga clic en "<strong lang="en">Create API Key</strong>" y asígnele un nombre descriptivo.</li>
+                            <li>Copie la clave API generada. En Content Analyzer, utilice la opción de compatibilidad con OpenAI, establezca la URL base en <code>https://api.groq.com/openai/v1</code> e ingrese el ID del modelo elegido (por ejemplo, <code>llama3-8b-8192</code>).</li>
+                        </ul>
+                    </div>
+                </div>
+                <section class="relative" id="mistral">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            4</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Mistral AI</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Mistral AI proporciona acceso a modelos abiertos y comerciales de última generación a través de La Plateforme, ofreciendo niveles gratuitos para que los desarrolladores experimenten.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>Visite la <a class="text-primary hover:underline" href="https://console.mistral.ai/"
+                                        target="_new">Consola de Mistral AI</a>.</li>
+                                <li>Regístrese o inicie sesión en su cuenta.</li>
+                                <li>Navegue hasta la sección "<strong lang="en">API Keys</strong>" desde la navegación del espacio de trabajo.</li>
+                                <li>Haga clic en "<strong lang="en">Create new key</strong>" y copie su clave API generada.</li>
+                                <li>En Content Analyzer, seleccione la opción de compatibilidad con OpenAI, establezca la URL base en <code>https://api.mistral.ai/v1</code> e ingrese el ID del modelo elegido (por ejemplo, <code>mistral-small-latest</code>).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="relative" id="ollama">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            5</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Ollama (ollama.com)</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Ollama proporciona un servicio de API en línea que le permite conectarse directamente a los modelos alojados a través de su plataforma web.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>Visite el sitio web <a class="text-primary hover:underline" href="https://ollama.com/"
+                                        target="_new">Ollama.com</a>.</li>
+                                <li>Inicie sesión en su cuenta o regístrese si aún no tiene una.</li>
+                                <li>Haga clic en el menú de usuario ubicado en la esquina superior derecha de la página.</li>
+                                <li>Seleccione la opción "<strong lang="en">Settings</strong>".</li>
+                                <li>Seleccione la sección "<strong lang="en">Keys</strong>".</li>
+                                <li>Haga clic en "<strong lang="en">Add API key</strong>" y genere su clave API.</li>
+                                <li>En Content Analyzer, elija el tipo de API "<strong lang="en">Ollama</string>", establezca la URL base en <code>https://ollama.com/</code> e ingrese el ID del modelo elegido (por ejemplo, <code>gemma4:31b</code>).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+        </div>
+    </article>
+</div>

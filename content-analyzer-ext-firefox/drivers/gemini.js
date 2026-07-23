@@ -60,7 +60,27 @@ export async function fetchModels(config) {
     // API key is passed as a query parameter, not an authentication header
     const fetchUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${config.apikey}`;
     const res = await fetch(fetchUrl);
-    if (!res.ok) throw new Error("HTTP " + res.status);
+    if (!res.ok) {
+        let errorMsg = `HTTP ${res.status}`;
+        try {
+            const errBody = await res.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
     const data = await res.json();
 
     // Response looks like: { "models": [ { "name": "models/gemini-1.5-pro", ... }, ... ] }
@@ -101,6 +121,11 @@ export async function* generate(config, prompt) {
             }
         ]
     };
+    if (config.systemPrompt) {
+        bodyParams.system_instruction = {
+            parts: [{ text: config.systemPrompt }]
+        };
+    }
 
     const response = await fetch(fetchUrl, {
         method: "POST",
@@ -108,7 +133,27 @@ export async function* generate(config, prompt) {
         body: JSON.stringify(bodyParams)
     });
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    if (!response.ok) {
+        let errorMsg = `HTTP ${response.status}`;
+        try {
+            const errBody = await response.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder("utf-8");

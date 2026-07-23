@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">מנתח תוכן</p>
+            <h1 class="font-article-title text-article-title text-text-primary">מדיניות פרטיות</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">עודכן לאחרונה: אפריל 2026</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. מבוא</h2>
+                <p>תוסף הדפדפן "contentAnalyzer" (להלן: "התוסף") נועד לעבד את תוכן דף האינטרנט הנוכחי באמצעות שירותי בינה מלאכותית המוגדרים על ידי המשתמש. מדיניות פרטיות זו מסבירה את המחויבות שלנו לפרטיותך וכיצד הנתונים מעובדים.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. אי-איסוף נתונים על ידי המפתח</h2>
+                <p class="mb-sm">אנו מעריכים את פרטיותך מעל כל דבר. המפתח של תוסף זה אינו אוסף, שומר או מעביר כל נתון אישי שלך, היסטוריית גלישה או תוכן שעובד לכל שרת הנשלט על ידי המפתח.</p>
+                <p>כל הגדרות התצורה (כגון מפתחות API או הנחיות מותאמות אישית) מאוחסנות באופן מקומי באחסון הדפדדגן שלך (למשל, <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</code>) ואינן נגישות כלל למפתח.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. העברת נתונים לשירותי צד שלישי</h2>
+                <p class="mb-md">כדי לספק את הפונקציונליות המרכזית שלו, התוסף שולח את תוכן דף האינטרנט שבחרת לנתח אל ספק שירותי הבינה המלאכותית של צד שלישי (להלן: "שירות ה-AI") שהגדרת בהגדרות.</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. שירותים המוגדרים על ידי המשתמש</h3>
+                        <p>התוסף מתקשר רק עם נקודות הקצה (endpoints) / ממשקי ה-API הספציפיים שסופרו על ידי המשתמש. מכיוון ששירותים אלה נבחרים ומוגדרים על ידי המשתמש, למפתח של "contentAnalyzer" אין שליטה על האופן שבו אתרי צד שלישי אלו מטפלים בנתונים הנשלחים אליהם.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. מדיניות פרטיות של צד שלישי</h3>
+                        <p>המפתח אינו יכול להיות אחראי על שיטות הפרטיות, מדיניות שימור הנתונים או אמצעי האבטחה של שירותי ה-AI שבחרת להשתמש בהם. לפני השימוש בתוסף עם שירות ספציפי, אנו ממליצים בחום שתעיין במדיניות הפרטיות ובתנאי השירות של אותו ספק.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. הרשאות</h2>
+                <p class="mb-md">התוסף דורש הרשאות ספציפיות כדי לתפקד:</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> או <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>: לקריאת תוכן הדף שברצונך לנתח.</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>: לשמירת הגדרות התצורה וה-API שלך באופן מקומי.</li>
+                    <li><strong>הרשאות מארח (host permissions):</strong> לשליחת התוכן אל ממשק ה-API של שורת ה-AI שציינת.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. אבטחה</h2>
+                <p>בעוד שהתוסף מאפשר את העברת הנתונים באמצעות פרוטוכולי רשת סטנדרטיים, אבטחון הנתונים ברגע שיוצאו מהדפדדגן שלך תלוי אך ורק בשירות ה-AI שהגדרת. אנו ממליצים להשתמש בשירותים המעניקים נקודות קצה (endpoints) מאובטחות (HTTPS).</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. שינויים במדיניות זו</h2>
+                <p>המפתח שומר לעצמו את הזכות לעדכן מדיניות פרטיות זו בכל עת. כל שינוי ישתקף בגרסה חדשה של התוסף ויועדכן בדף זה.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. צור קשר</h2>
+                <p>אם יש לך שאלות כלשהן בנוגע למדיניות פרטיות זו, אנא צור קשר עם המפתח דרך ערוצי התמיכה המופיעים בדף <a href="contact.html">צור קשר</a>.</p>
+            </section>
+        </div>
+    </article>
+</div>

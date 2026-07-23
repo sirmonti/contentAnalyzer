@@ -47,6 +47,42 @@ import * as openai    from './drivers/openai.js';
 import * as anthropic from './drivers/anthropic.js';
 import * as gemini    from './drivers/gemini.js';
 
+
+const DEBUG_MODE = false;
+
+const originalFetch = globalThis.fetch;
+globalThis.fetch = async function(...args) {
+    let requestUrl = args[0];
+    let requestOptions = args[1] || {};
+    try {
+        const response = await originalFetch(...args);
+        if (DEBUG_MODE && !response.ok) {
+            const errBody = await response.clone().text().catch(()=>"");
+            const debugInfo = {
+                _debug: true,
+                request: { url: requestUrl, options: requestOptions },
+                response: errBody,
+                status: response.status
+            };
+            throw new Error(JSON.stringify(debugInfo));
+        }
+        return response;
+    } catch (e) {
+        if (DEBUG_MODE) {
+            if (e.message && e.message.includes('{"_debug":true')) {
+                throw e;
+            }
+            const debugInfo = {
+                _debug: true,
+                request: { url: requestUrl, options: requestOptions },
+                response: "Fetch failed: " + e.message
+            };
+            throw new Error(JSON.stringify(debugInfo));
+        }
+        throw e;
+    }
+};
+
 /**
  * Driver dispatch table indexed by provider type.
  * Allows driver selection with `DRIVERS[serviceType]` without switch/case.
@@ -201,7 +237,7 @@ chrome.runtime.onConnect.addListener((port) => {
                     // Get the async generator from the driver.
                     // Each `yield` in the driver produces a text chunk.
                     const generator = driver.generate(
-                        { url: msg.url, apikey: msg.apikey, model: msg.model },
+                        { url: msg.url, apikey: msg.apikey, model: msg.model, systemPrompt: msg.systemPrompt },
                         msg.prompt
                     );
 
@@ -233,7 +269,19 @@ async function updateContextMenus() {
     await chrome.contextMenus.removeAll();
 
     const data = await chrome.storage.local.get("llm_services");
-    const servicesList = data.llm_services || [];
+    let servicesList = data.llm_services || [];
+
+    // Migration check: ensure promptId exists
+    let changed = false;
+    servicesList.forEach(srv => {
+        if (!srv.hasOwnProperty("promptId")) {
+            srv.promptId = "";
+            changed = true;
+        }
+    });
+    if (changed) {
+        await chrome.storage.local.set({ llm_services: servicesList });
+    }
 
     if (servicesList.length === 0) return;
 

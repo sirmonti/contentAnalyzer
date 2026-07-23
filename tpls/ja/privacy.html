@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Content Analyzer</p>
+            <h1 class="font-article-title text-article-title text-text-primary">プライバシーポリシー</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">最終更新日: 2026年4月</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. はじめに</h2>
+                <p>「contentAnalyzer」Chrome拡張機能（以下「本拡張機能」）は、ユーザーによって設定された人工知能サービスを使用して、現在表示されているウェブページのコンテンツを処理するために設計されています。このプライバシーポリシーでは、当社のプライバシーに対する取り組みおよびデータの取り扱いについて説明します。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. デベロッパーによるデータの収集なし</h2>
+                <p class="mb-sm">私たちは、お客様のプライバシーを何よりも尊重します。本拡張機能のデベロッパーは、お客様の個人データ、閲覧履歴、または処理されたコンテンツのいずれも収集、保存、またはデベロッパーが管理するサーバーに送信しません。</p>
+                <p>すべての設定（APIキーやカスタムプロンプトなど）は、ブラウザ内のストレージ（例：<code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</code>）内にローカルに保存され、デベロッパーがアクセスすることは決してありません。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. サードパーティサービスへのデータ送信</h2>
+                <p class="mb-md">主要な機能を提供するために、本拡張機能は、お客様が解析を選択したウェブページのコンテンツを、設定において指定されたサードパーティのAIサービスプロバイダー（以下「AIサービス」）に送信します。</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. ユーザー設定のサービス</h3>
+                        <p>本拡張機能は、ユーザーによって提供された特定のエンドポイントまたはAPIとのみ通信します。これらのサービスはユーザーによって選択および構成されるため、「contentAnalyzer」のデベロッパーは、これらのサードパーティサイトが送信されたデータをどのように取り扱うかについて管理する権限を持ちません。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. サードパーティのプライバシーポリシー</h3>
+                        <p>デベロッパーは、お客様が選択して使用するAIサービスのプライバシー慣行、データ保持ポリシー、またはセキュリティ対策について責任を負いかねます。特定のサービスを使用して本拡張機能を利用する前に、そのプロバイダーのプライバシーポリシーおよび利用規約を確認することを強くお勧めします。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. 権限</h2>
+                <p class="mb-md">本拡張機能の動作には、以下の特定の権限が必要です：</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> または <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>：解析を希望するページのコンテンツを読み取るため。</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>：設定およびAPI設定をローカルに保存するため。</li>
+                    <li><strong>ホスト権限:</strong> 内容を、あなたが指定したAIサービスのAPIに送信するため。</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. セキュリティ</h2>
+                <p>本拡張機能は標準的なウェブプロトコルを介したデータの送信を仲介しますが、ブラウザから出た後のデータのセキュリティは、すべてお客様が設定したAIサービスに依存します。安全な（HTTPS）APIエンドポイントを提供するサービスを使用することをお勧めします。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. 本ポリシーの変更</h2>
+                <p>デベロッパーはこのプライバシーポリシーをいつでも更新する権利を保持します。変更があった場合は、拡張機能の新しいバージョンに反映され、このページ上で更新されます。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. お問い合わせ</h2>
+                <p>本プライバシーポリシーに関するご質問がある場合は、<a href="contact.html">お問い合わせページ</a>に提供されているサポート窓口を通じてデベロッパーまでご連絡ください。</p>
+            </section>
+        </div>
+    </article>
+</div>

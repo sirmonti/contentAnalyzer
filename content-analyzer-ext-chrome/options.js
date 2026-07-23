@@ -1,3 +1,21 @@
+const DEBUG_MODE = false;
+
+function showDebugPopup(debugInfo) {
+    const popup = document.createElement("div");
+    popup.style.cssText = "position:fixed;top:10%;left:10%;width:80%;height:80%;background:white;color:black;border:2px solid red;z-index:9999;padding:20px;overflow:auto;box-shadow:0 0 10px rgba(0,0,0,0.5);";
+    const closeBtn = document.createElement("button");
+    closeBtn.textContent = "Close";
+    closeBtn.onclick = () => popup.remove();
+    const pre = document.createElement("pre");
+    pre.textContent = JSON.stringify(debugInfo, null, 2);
+    pre.style.whiteSpace = "pre-wrap";
+    pre.style.wordBreak = "break-all";
+    popup.appendChild(closeBtn);
+    popup.appendChild(document.createElement("br"));
+    popup.appendChild(pre);
+    document.body.appendChild(popup);
+}
+
 /**
  * @file options.js
  * @description Logic for the extension's configuration page (options.html).
@@ -45,6 +63,11 @@ const api = window.browser || window.chrome;
 /** @type {Array<Object>} List of LLM services loaded from storage */
 let servicesList = [];
 
+/** @type {Array<Object>} List of shared prompts loaded from storage */
+let promptsList = [];
+let systemPromptsList = [];
+window.editingSysPromptIndex = null;
+
 /**
  * Index (in `servicesList`) of the service currently being edited.
  * It is `null` when the form is in "New service" mode.
@@ -52,6 +75,13 @@ let servicesList = [];
  * @type {number|null}
  */
 window.editingIndex = null;
+
+/**
+ * Index (in `promptsList`) of the prompt currently being edited.
+ * It is `null` when the form is in "New prompt" mode.
+ * @type {number|null}
+ */
+window.editingPromptIndex = null;
 
 // Start data loading when the DOM is ready for manipulation
 document.addEventListener("DOMContentLoaded", () => {
@@ -87,11 +117,24 @@ function initNavigation() {
             if (targetId === 'page-add') {
                 cancelEditForm(); 
             }
+            
+            if (targetId === 'page-sys-prompt-add') {
+                window.editingSysPromptIndex = null;
+                document.getElementById("addSysPromptForm").reset();
+                const form = document.getElementById("addSysPromptForm");
+                document.getElementById("sys-prompt-form-container-add").appendChild(form);
+                document.getElementById("sysPromptSubmitBtn").textContent = api.i18n.getMessage("optSaveSysPromptBtn") || "Guardar System Prompt";
+                document.getElementById("cancelSysPromptEditBtn").style.display = "none";
+            }
+            if (targetId === 'page-prompt-add') {
+                cancelPromptEditForm();
+            }
         });
     });
 
     // Close modal logic
     document.getElementById('closeModalBtn').addEventListener('click', cancelEditForm);
+    document.getElementById('closePromptModalBtn').addEventListener('click', cancelPromptEditForm);
 }
 
 // ============================================================
@@ -103,10 +146,30 @@ function initNavigation() {
  * Also initializes the form in "New service" (empty) state.
  */
 async function loadServices() {
-    const data = await api.storage.local.get("llm_services");
+    const data = await api.storage.local.get(["llm_services", "prompts", "systemPrompts"]);
     servicesList = data.llm_services || [];
+    promptsList = data.prompts || [];
+    systemPromptsList = data.systemPrompts || [];
+
+    // Migration check: ensure every service has a promptId field (defaults to "")
+    let migrationNeeded = false;
+    servicesList.forEach(srv => {
+        if (!srv.hasOwnProperty("promptId")) {
+            srv.promptId = "";
+            migrationNeeded = true;
+        }
+    });
+    if (migrationNeeded) {
+        await api.storage.local.set({ llm_services: servicesList });
+    }
+
     renderTable();
+    renderPromptsTable();
+    populatePromptsDropdown();
+    renderSysPromptsTable();
+    populateSysPromptsDropdown();
     cancelEditForm(); // Sets the form to a clean initial state
+    cancelPromptEditForm();
 }
 
 // ============================================================
@@ -148,7 +211,7 @@ apiKeyInput.addEventListener("input", triggerFetch);
 // The reload button forces the query immediately, without debounce,
 // for cases where the user knows the server is already ready.
 document.getElementById("btnReloadModels").addEventListener("click", () => {
-    fetchModelsCombo(urlInput.value.trim(), typeInput.value, apiKeyInput.value.trim());
+    fetchModelsCombo(urlInput.value.trim(), typeInput.value, apiKeyInput.value.trim(), true);
 });
 
 /**
@@ -169,7 +232,7 @@ document.getElementById("btnReloadModels").addEventListener("click", () => {
  * @param {string} type   - Provider type: "ollama"|"openai"|"anthropic"|"gemini".
  * @param {string} apikey - API Key (can be empty for Ollama without authentication).
  */
-function fetchModelsCombo(url, type, apikey) {
+function fetchModelsCombo(url, type, apikey, isManual = false) {
     // Validation: Ollama and OpenAI need a valid URL starting with "http" or "https"
     if ((type === "ollama" || type === "openai") && (!url || !url.startsWith("http"))) {
         return; // Do nothing if the URL is incomplete
@@ -216,6 +279,14 @@ function fetchModelsCombo(url, type, apikey) {
             } else {
                 // API returned an error (wrong credentials, server unavailable, etc.)
                 modelSelect.innerHTML = `<option value="">${api.i18n.getMessage("errConn") || "Connection error"}</option>`;
+                if (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE && res && res.error && isManual) {
+                    try {
+                        const errData = JSON.parse(res.error);
+                        if (errData._debug) {
+                            showDebugPopup(errData);
+                        }
+                    } catch (e) {}
+                }
             }
         })
         .catch(err => {
@@ -327,6 +398,9 @@ document.getElementById("addServiceForm").addEventListener("submit", async (e) =
         model:       modelValue,                                    // Selected model
         apikey:      document.getElementById("m_apikey").value,    // API Key
         prompt:      document.getElementById("m_prompt").value,    // System/instruction prompt
+        promptId:    document.getElementById("m_prompt_id").value || "",
+        systemPrompt:document.getElementById("m_system_prompt") ? document.getElementById("m_system_prompt").value : "",
+        systemPromptId:document.getElementById("m_system_prompt_id") ? document.getElementById("m_system_prompt_id").value || "" : "", // Linked prompt ID
         useMarkdown: document.getElementById("m_use_markdown").checked, // Convert to Markdown?
         linkWeb:     document.getElementById("m_link_web").checked,     // Link to domains?
         linkedWebUrl: document.getElementById("m_linked_web_url").value.trim() // Linked domains
@@ -376,6 +450,16 @@ function cancelEditForm() {
 
     // Reset model selector to empty state
     document.getElementById("m_model").innerHTML = `<option value="">${api.i18n.getMessage("optModelEmpty") || "-- Introduce configuración válida --"}</option>`;
+
+    // Default values for prompts fields
+    document.getElementById("m_prompt_id").value = "";
+    document.getElementById("m_prompt").readOnly = false;
+    document.getElementById("m_prompt").required = true;
+    if(document.getElementById("m_system_prompt_id")) document.getElementById("m_system_prompt_id").value = "";
+    if(document.getElementById("m_system_prompt")) {
+        document.getElementById("m_system_prompt").value = "";
+        document.getElementById("m_system_prompt").readOnly = false;
+    }
 
     // Default checkbox values
     document.getElementById("m_use_markdown").checked = true;  // Markdown enabled by default
@@ -430,7 +514,7 @@ function renderTable() {
     // Preload the form with data from the selected service.
     // We use `data-index` as a data attribute instead of a closure to avoid
     // all buttons capturing the same `index` value from a loop.
-    document.querySelectorAll(".edit-btn").forEach(btn => {
+    document.querySelectorAll("#servicesTable .edit-btn").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const idx = parseInt(e.target.getAttribute("data-index"));
             window.editingIndex = idx;
@@ -448,7 +532,33 @@ function renderTable() {
             document.getElementById("m_type").value      = srv.type;
             document.getElementById("m_url").value       = srv.url || "";
             document.getElementById("m_apikey").value    = srv.apikey || "";
-            document.getElementById("m_prompt").value    = srv.prompt;
+
+            const promptId = srv.promptId || "";
+            document.getElementById("m_prompt_id").value = promptId;
+            const promptTextarea = document.getElementById("m_prompt");
+            if (promptId) {
+                const matched = promptsList.find(p => p.id === promptId);
+                promptTextarea.value = matched ? matched.prompt : "";
+                promptTextarea.readOnly = true;
+                promptTextarea.required = false;
+            } else {
+                promptTextarea.value = srv.prompt || "";
+                promptTextarea.readOnly = false;
+                promptTextarea.required = true;
+            }
+
+            const sysPromptId = srv.systemPromptId || "";
+            document.getElementById("m_system_prompt_id").value = sysPromptId;
+            const sysPromptTextarea = document.getElementById("m_system_prompt");
+            if (sysPromptId) {
+                const matched = systemPromptsList.find(p => p.id === sysPromptId);
+                sysPromptTextarea.value = matched ? matched.prompt : "";
+                sysPromptTextarea.readOnly = true;
+            } else {
+                sysPromptTextarea.value = srv.systemPrompt || "";
+                sysPromptTextarea.readOnly = false;
+            }
+
 
             // hasOwnProperty avoids an old service without the `useMarkdown` field
             // from appearing with an unchecked checkbox (preserving default `true`)
@@ -491,7 +601,7 @@ function renderTable() {
     // ---- DELETE LISTENERS ----
     // Delete service at indicated index and persist updated list.
     // No confirmation requested by design (button is clearly labeled).
-    document.querySelectorAll(".delete-btn").forEach(btn => {
+    document.querySelectorAll("#servicesTable .delete-btn").forEach(btn => {
         btn.addEventListener("click", async (e) => {
             const idx = parseInt(e.target.getAttribute("data-index"));
             servicesList.splice(idx, 1); // Remove element from in-memory array
@@ -500,3 +610,308 @@ function renderTable() {
         });
     });
 }
+
+// ============================================================
+// PROMPTS DROPDOWN AND SELECT EVENT LISTENERS
+// ============================================================
+
+function populatePromptsDropdown() {
+    const select = document.getElementById("m_prompt_id");
+    if (!select) return;
+
+    select.innerHTML = `<option value="" data-i18n="optSelectPromptDefault">${api.i18n.getMessage("optSelectPromptDefault") || "-- Utilizar prompt específico --"}</option>`;
+
+    promptsList.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = p.name;
+        select.appendChild(opt);
+    });
+}
+
+document.getElementById("m_prompt_id").addEventListener("change", (e) => {
+    const promptId = e.target.value;
+    const promptTextarea = document.getElementById("m_prompt");
+    if (promptId) {
+        const matched = promptsList.find(p => p.id === promptId);
+        if (matched) {
+            promptTextarea.value = matched.prompt;
+            promptTextarea.readOnly = true;
+            promptTextarea.required = false;
+        }
+    } else {
+        promptTextarea.value = "";
+        promptTextarea.readOnly = false;
+        promptTextarea.required = true;
+    }
+});
+
+// ============================================================
+// PROMPTS TABLE RENDERING
+// ============================================================
+
+function renderPromptsTable() {
+    const tbody = document.querySelector("#promptsTable tbody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    promptsList.forEach((p, index) => {
+        const previewText = p.prompt.length > 60 ? p.prompt.substring(0, 57) + "..." : p.prompt;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${p.name}</td>
+            <td style="color:var(--color-text-muted); font-size:0.9rem;">${previewText}</td>
+            <td>
+                <button class="action-btn edit-btn edit-prompt-btn" data-index="${index}">${api.i18n.getMessage("btnEdit") || "Editar"}</button>
+                <button class="action-btn delete-btn delete-prompt-btn" data-index="${index}">${api.i18n.getMessage("btnDelete") || "Eliminar"}</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    document.querySelectorAll(".edit-prompt-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const idx = parseInt(e.target.getAttribute("data-index"));
+            window.editingPromptIndex = idx;
+            const p = promptsList[idx];
+
+            const form = document.getElementById("addPromptForm");
+            document.getElementById("prompt-form-container-modal").appendChild(form);
+            document.getElementById("edit-prompt-modal").classList.add("active");
+
+            document.getElementById("p_name").value = p.name;
+            document.getElementById("p_prompt").value = p.prompt;
+
+            document.getElementById("promptSubmitBtn").textContent = api.i18n.getMessage("optSaveChanges") || "Guardar Cambios";
+            document.getElementById("cancelPromptEditBtn").style.display = "inline-block";
+        });
+    });
+
+    document.querySelectorAll(".delete-prompt-btn").forEach(btn => {
+        btn.addEventListener("click", async (e) => {
+            const idx = parseInt(e.target.getAttribute("data-index"));
+            const deletedPrompt = promptsList[idx];
+
+            promptsList.splice(idx, 1);
+            await api.storage.local.set({ prompts: promptsList });
+
+            // If a service was using the deleted prompt, fallback to local prompt
+            let servicesUpdated = false;
+            servicesList.forEach(srv => {
+                if (srv.promptId === deletedPrompt.id) {
+                    srv.promptId = "";
+                    srv.prompt = deletedPrompt.prompt; // Copy prompt text to service so it is not lost!
+                    servicesUpdated = true;
+                }
+            });
+            if (servicesUpdated) {
+                await api.storage.local.set({ llm_services: servicesList });
+                renderTable();
+            }
+
+            renderPromptsTable();
+            populatePromptsDropdown();
+        });
+    });
+}
+
+// ============================================================
+// PROMPT FORM STATE AND SUBMISSION
+// ============================================================
+
+function cancelPromptEditForm() {
+    window.editingPromptIndex = null;
+
+    document.getElementById("addPromptForm").reset();
+
+    document.getElementById("edit-prompt-modal").classList.remove('active');
+    const form = document.getElementById("addPromptForm");
+    document.getElementById("prompt-form-container-add").appendChild(form);
+
+    document.getElementById("promptSubmitBtn").textContent = api.i18n.getMessage("optSavePromptBtn") || "Guardar Prompt";
+    document.getElementById("cancelPromptEditBtn").style.display = "none";
+}
+
+document.getElementById("cancelPromptEditBtn").addEventListener("click", cancelPromptEditForm);
+document.getElementById("closePromptModalBtn").addEventListener("click", cancelPromptEditForm);
+
+document.getElementById("addPromptForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("p_name").value.trim();
+    const promptText = document.getElementById("p_prompt").value.trim();
+
+    if (window.editingPromptIndex !== null) {
+        const p = promptsList[window.editingPromptIndex];
+        p.name = name;
+        p.prompt = promptText;
+    } else {
+        const newPrompt = {
+            id: "prompt_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9),
+            name: name,
+            prompt: promptText
+        };
+        promptsList.push(newPrompt);
+    }
+
+    await api.storage.local.set({ prompts: promptsList });
+
+    cancelPromptEditForm();
+    renderPromptsTable();
+    populatePromptsDropdown();
+    renderSysPromptsTable();
+    populateSysPromptsDropdown();
+    navigateTo('page-prompts-list');
+});
+
+
+// ============================================================
+// SYSTEM PROMPTS DROPDOWN AND SELECT EVENT LISTENERS
+// ============================================================
+
+function populateSysPromptsDropdown() {
+    const select = document.getElementById("m_system_prompt_id");
+    if (!select) return;
+
+    select.innerHTML = `<option value="" data-i18n="optSelectSysPromptDefault">${api.i18n.getMessage("optSelectSysPromptDefault") || "-- Sin System Prompt --"}</option>`;
+
+    systemPromptsList.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p.id;
+        opt.textContent = p.name;
+        select.appendChild(opt);
+    });
+}
+
+document.getElementById("m_system_prompt_id").addEventListener("change", (e) => {
+    const promptId = e.target.value;
+    const promptTextarea = document.getElementById("m_system_prompt");
+    if (promptId) {
+        const matched = systemPromptsList.find(p => p.id === promptId);
+        if (matched) {
+            promptTextarea.value = matched.prompt;
+            promptTextarea.readOnly = true;
+            // system prompt is optional, so we don't set required=true
+        }
+    } else {
+        promptTextarea.value = "";
+        promptTextarea.readOnly = false;
+    }
+});
+
+// ============================================================
+// SYSTEM PROMPTS TABLE RENDERING
+// ============================================================
+
+function renderSysPromptsTable() {
+    const tbody = document.querySelector("#sysPromptsTable tbody");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    systemPromptsList.forEach((p, index) => {
+        const previewText = p.prompt.length > 60 ? p.prompt.substring(0, 57) + "..." : p.prompt;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${p.name}</td>
+            <td style="color:var(--color-text-muted); font-size:0.9rem;">${previewText}</td>
+            <td>
+                <button class="action-btn edit-btn edit-sys-prompt-btn" data-index="${index}">${api.i18n.getMessage("btnEdit") || "Editar"}</button>
+                <button class="action-btn delete-btn delete-sys-prompt-btn" data-index="${index}">${api.i18n.getMessage("btnDelete") || "Eliminar"}</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    document.querySelectorAll(".edit-sys-prompt-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const idx = parseInt(e.target.getAttribute("data-index"));
+            window.editingSysPromptIndex = idx;
+            const p = systemPromptsList[idx];
+
+            const form = document.getElementById("addSysPromptForm");
+            document.getElementById("sys-prompt-form-container-modal").appendChild(form);
+            document.getElementById("edit-sys-prompt-modal").classList.add("active");
+
+            document.getElementById("p_sys_name").value = p.name;
+            document.getElementById("p_sys_prompt").value = p.prompt;
+
+            document.getElementById("sysPromptSubmitBtn").textContent = api.i18n.getMessage("optSaveChanges") || "Guardar Cambios";
+            document.getElementById("cancelSysPromptEditBtn").style.display = "inline-block";
+        });
+    });
+
+    document.querySelectorAll(".delete-sys-prompt-btn").forEach(btn => {
+        btn.addEventListener("click", async (e) => {
+            const idx = parseInt(e.target.getAttribute("data-index"));
+            const deletedPrompt = systemPromptsList[idx];
+
+            systemPromptsList.splice(idx, 1);
+            await api.storage.local.set({ systemPrompts: systemPromptsList });
+
+            let servicesUpdated = false;
+            servicesList.forEach(srv => {
+                if (srv.systemPromptId === deletedPrompt.id) {
+                    srv.systemPromptId = "";
+                    srv.systemPrompt = deletedPrompt.prompt;
+                    servicesUpdated = true;
+                }
+            });
+            if (servicesUpdated) {
+                await api.storage.local.set({ llm_services: servicesList });
+                renderTable();
+            }
+
+            renderSysPromptsTable();
+            populateSysPromptsDropdown();
+        });
+    });
+}
+
+// ============================================================
+// SYSTEM PROMPT FORM STATE AND SUBMISSION
+// ============================================================
+
+function cancelSysPromptEditForm() {
+    window.editingSysPromptIndex = null;
+
+    document.getElementById("addSysPromptForm").reset();
+
+    document.getElementById("edit-sys-prompt-modal").classList.remove('active');
+    const form = document.getElementById("addSysPromptForm");
+    document.getElementById("sys-prompt-form-container-add").appendChild(form);
+
+    document.getElementById("sysPromptSubmitBtn").textContent = api.i18n.getMessage("optSaveSysPromptBtn") || "Guardar System Prompt";
+    document.getElementById("cancelSysPromptEditBtn").style.display = "none";
+}
+
+document.getElementById("cancelSysPromptEditBtn").addEventListener("click", cancelSysPromptEditForm);
+document.getElementById("closeSysPromptModalBtn").addEventListener("click", cancelSysPromptEditForm);
+
+document.getElementById("addSysPromptForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("p_sys_name").value.trim();
+    const promptText = document.getElementById("p_sys_prompt").value.trim();
+
+    if (window.editingSysPromptIndex !== null) {
+        const p = systemPromptsList[window.editingSysPromptIndex];
+        p.name = name;
+        p.prompt = promptText;
+    } else {
+        const newPrompt = {
+            id: "sysprompt_" + Date.now() + "_" + Math.random().toString(36).substring(2, 9),
+            name: name,
+            prompt: promptText
+        };
+        systemPromptsList.push(newPrompt);
+    }
+
+    await api.storage.local.set({ systemPrompts: systemPromptsList });
+
+    cancelSysPromptEditForm();
+    renderSysPromptsTable();
+    populateSysPromptsDropdown();
+    navigateTo('page-sys-prompts-list');
+});

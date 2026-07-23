@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Analyseur de contenu</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Google reCAPTCHA v2 -->
+    <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e7e7f1",
+                        "tertiary-fixed": "#ffdbc8",
+                        "surface-container-low": "#f3f3fc",
+                        "surface-variant": "#e2e2eb",
+                        "on-tertiary-fixed": "#321300",
+                        "on-surface": "#191b22",
+                        "secondary-fixed": "#ecdcff",
+                        "on-error": "#ffffff",
+                        "primary": "#094cb2",
+                        "on-secondary-container": "#513186",
+                        "error-container": "#ffdad6",
+                        "text-secondary": "#54595D",
+                        "secondary": "#6d4da3",
+                        "secondary-container": "#c2a0fd",
+                        "surface-tint": "#2259bf",
+                        "on-secondary-fixed-variant": "#55348a",
+                        "text-primary": "#202122",
+                        "status-warning": "#EDAB00",
+                        "status-success": "#14866D",
+                        "on-tertiary-container": "#ffe8db",
+                        "inverse-on-surface": "#f0f0f9",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "status-error": "#D33333",
+                        "on-tertiary-fixed-variant": "#743500",
+                        "tertiary-fixed-dim": "#ffb68a",
+                        "on-primary-fixed-variant": "#00419d",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#3366cc",
+                        "surface-header": "#EAECF0",
+                        "tertiary": "#863e00",
+                        "on-background": "#191b22",
+                        "border-subtle": "#C8CCD1",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#434653",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed": "#270058",
+                        "surface-container-highest": "#e2e2eb",
+                        "surface-container": "#ededf6",
+                        "secondary-fixed-dim": "#d5bbff",
+                        "inverse-surface": "#2e3037",
+                        "outline": "#737784",
+                        "neutral-text-secondary": "#72777D",
+                        "outline-variant": "#c3c6d5",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001946",
+                        "tertiary-container": "#ab5100",
+                        "error": "#ba1a1a",
+                        "surface-article": "#FFFFFF",
+                        "surface-dim": "#d9d9e2",
+                        "primary-hover": "#2A4D99",
+                        "on-primary-container": "#e7ebff",
+                        "background": "#faf8ff",
+                        "inverse-primary": "#b1c5ff",
+                        "background-canvas": "#F6F6F6",
+                        "primary-fixed": "#d9e2ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "base": "4px",
+                        "xxl": "48px",
+                        "header-height": "48px",
+                        "sm": "8px",
+                        "sidebar-width": "256px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "container-max": "960px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "reference": ["Source Serif 4"],
+                        "code": ["Source Code Pro"],
+                        "caption": ["Source Serif 4"],
+                        "h2-section": ["Libre Baskerville"],
+                        "h3-subsection": ["Libre Baskerville"],
+                        "body-bold": ["Source Serif 4"],
+                        "article-title": ["Libre Baskerville"],
+                        "h4-heading": ["Source Serif 4"],
+                        "body": ["Source Serif 4"],
+                        "label-ui": ["Source Serif 4"]
+                    },
+                    "fontSize": {
+                        "reference": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "code": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "caption": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "h2-section": ["22px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "h3-subsection": ["18px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-bold": ["16px", { "lineHeight": "1.65", "fontWeight": "600" }],
+                        "article-title": ["28px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "h4-heading": ["16px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body": ["16px", { "lineHeight": "1.65", "fontWeight": "400" }],
+                        "label-ui": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F6F6F6;
+        }
+
+        /* Canvas base */
+        /* Estilo para que los enlaces en el texto sean reconocibles (movido aquí desde privacy) */
+        .text-content a {
+            color: #094cb2;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s ease, text-decoration-thickness 0.2s ease;
+        }
+
+        .text-content a:hover {
+            color: #2A4D99;
+            text-decoration-thickness: 2px;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen text-text-primary antialiased flex flex-col">
+
+    <header
+        class="bg-surface-header dark:bg-inverse-surface border-b border-border-subtle dark:border-outline transition-colors duration-200 ease-in-out flex flex-col lg:flex-row justify-between items-start lg:items-center min-h-[48px] px-md w-full sticky top-0 z-50 py-2 lg:py-0">
+        <div class="flex items-center justify-between w-full lg:w-auto gap-md h-[32px] lg:h-[48px]">
+            <span
+                class="font-h2-section text-h2-section text-text-primary dark:text-inverse-on-surface uppercase tracking-tight">Analyseur de contenu
+                </span>
+        <div class="lg:hidden flex items-center">
+                <select class="bg-surface-container dark:bg-surface-variant text-text-primary dark:text-inverse-on-surface border border-border-subtle dark:border-outline rounded px-2 py-1 text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" onchange="if(this.value) window.location.href=this.value">
+                    <option value="../en/usage.html">🇺🇸 Anglais</option>
+                    <option value="../ar/usage.html">🇸🇦 Arabe</option>
+                    <option value="../de/usage.html">🇩🇪 Allemand</option>
+                    <option value="../es/usage.html">🇪🇸 Espagnol</option>
+                    <option value="../fr/usage.html" selected>🇫🇷 Français</option>
+                    <option value="../he/usage.html">🇮🇱 Hébreu</option>
+                    <option value="../it/usage.html">🇮🇹 Italien</option>
+                    <option value="../ja/usage.html">🇯🇵 Japonais</option>
+                    <option value="../ko/usage.html">🇰🇷 Coréen</option>
+                    <option value="../pl/usage.html">🇵🇱 Polonais</option>
+                    <option value="../pt/usage.html">🇵🇹 Portugais</option>
+                    <option value="../ru/usage.html">🇷🇺 Russe</option>
+                    <option value="../zh/usage.html">🇨🇳 Chinois</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Top Navigation: Visible on small/medium screens, hidden on lg -->
+        <div class="flex items-center w-full mt-2 lg:mt-0 lg:hidden overflow-x-auto pb-1 lg:pb-0">
+            <nav class="flex gap-2 sm:gap-md whitespace-nowrap">
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="index.html">Accueil</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="usage.html">Utilisation</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="getapi.html">Obtenir une clé API gratuite</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="privacy.html">Confidentialité</a>
+                <a class="text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container dark:hover:bg-surface-variant px-sm py-xs rounded"
+                    href="contact.html">Contact</a>
+            </nav>
+        </div>
+
+        <!-- Space for layout consistency on desktop -->
+        <div class="hidden lg:flex items-center gap-sm">
+                <select class="bg-surface-container dark:bg-surface-variant text-text-primary dark:text-inverse-on-surface border border-border-subtle dark:border-outline rounded px-2 py-1 text-sm font-body focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer" onchange="if(this.value) window.location.href=this.value">
+                    <option value="../en/usage.html">🇺🇸 Anglais</option>
+                    <option value="../ar/usage.html">🇸🇦 Arabe</option>
+                    <option value="../de/usage.html">🇩🇪 Allemand</option>
+                    <option value="../es/usage.html">🇪🇸 Espagnol</option>
+                    <option value="../fr/usage.html" selected>🇫🇷 Français</option>
+                    <option value="../he/usage.html">🇮🇱 Hébreu</option>
+                    <option value="../it/usage.html">🇮🇹 Italien</option>
+                    <option value="../ja/usage.html">🇯🇵 Japonais</option>
+                    <option value="../ko/usage.html">🇰🇷 Coréen</option>
+                    <option value="../pl/usage.html">🇵🇱 Polonais</option>
+                    <option value="../pt/usage.html">🇵🇹 Portugais</option>
+                    <option value="../ru/usage.html">🇷🇺 Russe</option>
+                    <option value="../zh/usage.html">🇨🇳 Chinois</option>
+                </select>
+        </div>
+    </header>
+
+    <div class="flex flex-1">
+        <nav
+            class="bg-background dark:bg-on-background border-r border-border-subtle dark:border-outline transition-all duration-150 hidden lg:flex flex-col w-sidebar-width fixed left-0 top-header-height bottom-0 z-40">
+            <div class="p-md border-b border-border-subtle">
+                <div class="flex items-center gap-sm mb-md">
+                    <div
+                        class="w-[32px] h-[32px] bg-surface-container rounded-full flex items-center justify-center border border-border-subtle overflow-hidden">
+                        <picture class="w-full h-full flex items-center justify-center p-[2px]">
+                            <source media="(min-width: 1200px)" srcset="../Iconos/Icono128.png" />
+                            <source media="(min-width: 992px)" srcset="../Iconos/Icono48.png" />
+                            <source media="(min-width: 768px)" srcset="../Iconos/Icono32.png" />
+                            <img alt="Logo Analyseur de contenu" class="max-w-full max-h-full object-contain"
+                                src="../Iconos/Icono16.png" />
+                        </picture>
+                    </div>
+                    <div>
+                        <div class="font-h3-subsection text-h3-subsection text-text-primary">Navigation</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 py-md flex flex-col gap-xs px-sm overflow-y-auto">
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="index.html">
+                    <span class="material-symbols-outlined" data-icon="home">home</span> Accueil
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="usage.html">
+                    <span class="material-symbols-outlined" data-icon="menu_book">menu_book</span> Utilisation
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="getapi.html">
+                    <span class="material-symbols-outlined" data-icon="key">key</span> Obtenir une clé API gratuite
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="privacy.html">
+                    <span class="material-symbols-outlined" data-icon="security">security</span> Confidentialité
+                </a>
+                <a class="flex items-center gap-sm px-sm py-xs text-text-secondary dark:text-neutral-text-secondary font-body hover:bg-surface-container-low dark:hover:bg-surface-dim rounded-none"
+                    href="contact.html">
+                    <span class="material-symbols-outlined" data-icon="mail">mail</span> Contact
+                </a>
+            </div>
+        </nav>
+
+        <main class="flex-1 lg:ml-sidebar-width bg-background-canvas min-h-screen flex flex-col justify-between">
+
+            <div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Extension d'analyse de contenu</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Guide d'utilisation et de configuration</h1>
+        </header>
+
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm">L'<strong class="font-bold">Analyseur de contenu</strong> est une extension de navigateur conçue pour l'extraction et l'évaluation automatisées de métadonnées sémantiques dans des environnements web complexes. Cette extension fonctionne sur Firefox, Chrome et les navigateurs dérivés de Chromium. Son objectif principal est de traiter le contenu web en le transmettant à divers services d'intelligence artificielle (IA).</p>
+            <p class="mb-sm">Contrairement aux outils classiques de résumé de pages web, cette extension vous permet de créer plusieurs services IA personnalisés, chacun avec une invite très spécifique qui indique exactement ce que l'IA doit faire avec les informations collectées. Vous pouvez l'utiliser pour extraire du code, traduire des termes spécifiques, analyser le sentiment, générer des rapports ciblés, et bien plus encore.</p>
+        </div>
+
+        <nav aria-label="Table of Contents" class="mb-xl bg-surface-header p-md border border-border-subtle">
+            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">Sommaire</h2>
+            <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
+                <li><a class="hover:text-primary-hover" href="#features">Fonctionnalités principales</a></li>
+                <li><a class="hover:text-primary-hover" href="#providers">Fournisseurs d'IA pris en charge</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">Balises dynamiques pour les invites</a></li>
+                <li><a class="hover:text-primary-hover" href="#examples">Exemples de configurations</a></li>
+                <li><a class="hover:text-primary-hover" href="#installation">Installation sur le navigateur</a></li>
+            </ol>
+        </nav>
+
+        <div class="space-y-xl">
+            <section class="relative" id="features">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Fonctionnalités principales</h2>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
+                            <li><strong class="font-bold">Capture de contenu personnalisée :</strong> Vous pouvez facilement sélectionner une partie spécifique d'une page web à l'aide d'un « outil de survol » interactif, ou choisir de capturer tout le contenu de la page.</li>
+                            <li><strong class="font-bold">Multiples invites et invites système IA personnalisées :</strong> Créez différents services adaptés à vos besoins exacts avec des invites utilisateur personnalisées et des invites système optionnelles (par exemple, « Résumer l'article », « Extraire les données JSON », « Traduire en espagnol », des personnalités d'assistant personnalisées, etc.).</li>
+                            <li><strong class="font-bold">Services spécifiques à un domaine :</strong> Vous pouvez associer vos services personnalisés à des domaines web spécifiques. Cela permet de maintenir une extension propre en n'affichant que les outils IA pertinents.</li>
+                            <li><strong class="font-bold">Compatibilité étendue avec les LLM :</strong> Prend entièrement en charge les connexions (y compris le streaming de texte) avec des serveurs locaux via Ollama, ainsi que les fournisseurs d'API cloud tels qu'OpenAI, Anthropic et Google Gemini.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="providers">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Fournisseurs d'IA pris en charge</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Cette extension est conçue pour être très flexible, ce qui vous permet de vous connecter à une variété de modèles d'intelligence artificielle et de services locaux leaders du marché. Actuellement, elle prend en charge :</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
+                            <li><strong class="font-bold">Claude (Anthropic) :</strong> Accédez à la puissante famille de modèles Claude via leur API officielle.</li>
+                            <li><strong class="font-bold">Gemini (Google) :</strong> Connectez-vous directement aux modèles avancés Gemini de Google.</li>
+                            <li><strong class="font-bold">ChatGPT (OpenAI et compatibles) :</strong> Entièrement compatible avec l'API d'OpenAI, ainsi qu'avec tout autre service tiers qui propose une extrémité compatible OpenAI.</li>
+                            <li><strong class="font-bold">Ollama :</strong> Exécutez des modèles localement et en privé sur votre propre machine sans envoyer de données vers le cloud.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="tags">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Balises dynamiques pour les invites</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Afin de rendre vos invites IA plus contextuelles et plus puissantes, vous pouvez utiliser les balises dynamiques suivantes dans les invites utilisateur et les invites système. L'extension les remplacera automatiquement avant d'envoyer l'invite au modèle IA :</p>
+                        <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
+                            <thead class="bg-surface-header border-b border-border-subtle">
+                                <tr class="bg-surface-header border-b border-border-subtle">
+                                    <th class="p-sm font-body-bold border-r border-border-subtle w-[120px]">Balise</th>
+                                    <th class="p-sm font-body-bold">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-surface-lowest">
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DATE}</td>
+                                    <td class="p-sm">Remplacée par la date actuelle dans votre format local.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{HOUR}</td>
+                                    <td class="p-sm">Remplacée par l'heure actuelle dans votre format local.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
+                                    <td class="p-sm">L'URL complète de la page web en cours de traitement.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DOMAIN}</td>
+                                    <td class="p-sm">Le domaine racine de la page web en cours de traitement.</td>
+                                </tr>
+                                <tr class="border-b border-border-subtle bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
+                                    <td class="p-sm">La langue de la page web.</td>
+                                </tr>
+                                <tr class="bg-background-canvas">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
+                                    <td class="p-sm">La configuration actuelle de la langue du système/navigateur.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="examples">
+                <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Exemples de configurations</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Voici quelques exemples illustrant la manière dont vous pouvez structurer vos services :</p>
+
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemple 1 : Assistant de traduction multilingue</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">Nom du service :</strong> Traduire dans la langue locale<br/><strong class="font-bold">Domaines associés :</strong> <em class="font-italic">(Vide - Disponible partout)</em></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                Agissez en tant que traducteur professionnel. Je navigue sur un site dans la langue {LANG} à l'adresse {URL}, mais mon navigateur est configuré en {SYSLANG}. Veuillez traduire avec précision le contenu suivant en {SYSLANG}, en conservant la mise en forme et le formatage du texte d'origine.
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemple 2 : Révision de code (spécifique à un domaine)</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">Nom du service :</strong> Vérification de code Python<br/><strong class="font-bold">Domaines associés :</strong >github.com, gitlab.com, stackoverflow.com</p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                Vous êtes un développeur expert. Les extraits de code fournis ci-dessous ont été trouvés sur {DOMAIN}. Analysez le code en recherchant strictement les bogues potentiels, les vulnérabilités de sécurité et les problèmes de qualité du code. N'expliquez pas ce que fait le code, mais énumérez simplement les problèmes et fournissez une version corrigée.
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-header border border-border-subtle p-md mb-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemple 3 : Extraction d'informations pour un résumé quotidien</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">Nom du service :</strong> Extraire les entités clés<br/><strong class="font-bold">Domaines associés :</strong >news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                Aujourd'hui, nous sommes le {DATE} à {HOUR}. Analysez l'article de presse suivant et extrayez une liste JSON propre contenant les principaux « personnes », « organisations » et « lieux » mentionnés dans le texte.
+                            </div>
+                        </div>
+
+                        <div class="bg-surface-header border border-border-subtle p-md">
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemple 4 : Personnalité d'assistant personnalisée (invite système)</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">Nom du service :</strong >Assistant Mario<br/><strong class="font-bold">Invite système :</strong ></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
+                                Vous êtes Mario, un assistant intelligent et compétent. Votre tâche est d'accomplir les tâches qui vous sont assignées de la manière la plus efficace possible. Pour les tâches qui contiennent des références temporelles, n'oubliez pas qu'aujourd'hui nous sommes le {DATE}.
+                            </div>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">Invite utilisateur :</strong ></p>
+                            <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
+                                Analysez le texte suivant capturé à partir de {URL} et fournissez un résumé des points principaux.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="installation">
+                <div class="flex items-start gap-md relative z-10">
+                    <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Installation sur le navigateur</h2>
+                        <p class="font-body text-body text-text-primary mb-md">L'installation se fait via le dépôt officiel ou en chargeant le package décompressé en mode développeur.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
+                            <li><strong class="font-bold">Google Chrome :</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Télécharger depuis le Chrome Web Store</a>.</li>
+                            <li><strong class="font-bold">Mozilla Firefox :</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Télécharger depuis les modules complémentaires de Firefox</a>.</li>
+                            <li><em class="font-italic">Alternativement</em>, vous pouvez charger l'extension décompressée en mode développeur via <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> ou <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
+                        </ul>
+                        <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
+                            <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
+                            <div>
+                                <strong class="font-bold">Remarque :</strong > Assurez-vous d'avoir correctement configuré les paramètres globaux (clés API ou instances Ollama locales) dans la page Options de l'extension avant d'exécuter des captures.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </article>
+</div>
+
+            <footer
+                class="bg-surface-container-low dark:bg-inverse-surface border-t border-border-subtle dark:border-outline transition-opacity duration-200 w-full py-md px-lg flex flex-col md:flex-row justify-between items-center gap-sm mt-auto">
+                <div class="font-body-bold text-text-primary text-body-bold">
+                    © 2026 Analyseur de contenu - licence GPLv3 - Francisco Monteagudo
+                </div>
+                <div class="flex gap-md">
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="index.html">Accueil</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="usage.html">Utilisation</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="getapi.html">Obtenir une clé API gratuite</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="privacy.html">Confidentialité</a>
+                    <a class="text-text-secondary dark:text-neutral-text-secondary font-reference text-reference hover:text-primary dark:hover:text-inverse-primary"
+                        href="contact.html">Contact</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>

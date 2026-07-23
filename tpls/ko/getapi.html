@@ -1,0 +1,111 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article
+        class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">콘텐츠 분석기
+                확장 프로그램</p>
+            <h1 class="font-article-title text-article-title text-text-primary">무료 API 키를 받으세요</h1>
+        </header>
+
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm"><strong style="font-weight:bold;">콘텐츠 분석기</strong>를 효과적으로 사용하려면 AI 공급자를 구성해야 합니다. 일부 공급자는 사용량에 따라 요금을 부과하지만, 훌륭한 무료 옵션도 있습니다.</p>
+            <p class="mb-sm">아래에는 Google Gemini, OpenRouter, Groq, Mistral AI 및 Ollama와 같은 인기 있는 플랫폼에서 무료 API 키를 얻거나 서비스를 설정하는 방법에 대한 지침이 나와 있습니다.</p>
+        </div>
+
+        <div class="space-y-xl">
+            <section class="relative" id="gemini">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Google Gemini</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Google은 Google AI Studio를 통해 고급 Gemini 모델에 대한 액세스를 제공합니다. 개발자를 위한 충분한 무료 요금제를 제공합니다. 무료로 사용할 수 있는 모델은 이름에 "lite"라는 단어가 포함된 모델(예: <code style="font-family: monospace;">gemini-3.1-flash-lite</code> 또는 <code style="font-family: monospace;">gemini-flash-lite-latest</code>)입니다.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li><a class="text-primary hover:underline" href="https://aistudio.google.com/" target="_new">Google AI Studio</a> 웹사이트를 방문하세요.</li>
+                            <li>Google 계정으로 로그인합니다.</li>
+                            <li>왼쪽 탐색 메뉴에서 "<strong style="font-weight:bold;">API 키 받기</strong>"를 클릭합니다.</li>
+                            <li>"<strong style="font-weight:bold;">API 키 만들기</strong>" 버튼을 클릭합니다. 기존 Google Cloud 프로젝트에서 만들거나 AI Studio에서 새 프로젝트를 만들도록 선택할 수 있습니다.</li>
+                            <li>생성된 키를 복사하여 Gemini 공급자 설정의 콘텐츠 분석기 옵션 페이지에 붙여넣습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="openrouter">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">OpenRouter.ai</h2>
+                        <p class="font-body text-body text-text-primary mb-md">OpenRouter는 여러 AI 모델을 위한 통합 인터페이스입니다. 다양한 공급자의 모델을 모아 제공하며, 그중 일부 고품질 모델은 완전히 무료로 사용할 수 있습니다.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li><a class="text-primary hover:underline" href="https://openrouter.ai/" target="_new">OpenRouter.ai</a> 홈페이지로 이동합니다.</li>
+                            <li>기존 계정(Google, GitHub 등)을 사용하여 가입하거나 로그인합니다.</li>
+                            <li>로그인 후 주 메뉴 또는 계정 설정에서 "<strong style="font-weight:bold;">키</strong>" 섹션으로 이동합니다.</li>
+                            <li>"<strong style="font-weight:bold;">키 만들기</strong>"를 클릭합니다. "콘텐츠 분석기"와 같은 이름을 지정합니다.</li>
+                            <li>새 API 키를 복사합니다. 콘텐츠 분석기에서 OpenAI 호환 옵션을 선택하고, 기본 URL을 <code style="font-family: monospace;">https://openrouter.ai/api/v1</code>으로 설정하고, 선택한 모델의 ID(예: <code style="font-family: monospace;">google/gemini-2.5-flash:free</code>)를 입력하여 사용할 수 있습니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="relative" id="groq">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Groq</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Groq은 오픈 소스 AI 모델에 대한 매우 빠른 추론을 제공합니다. 현재 개발자를 위한 높은 성능의 무료 요금제를 제공합니다.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li><a class="text-primary hover:underline" href="https://console.groq.com/" target="_new">Groq 콘솔</a>을 방문합니다.</li>
+                            <li>가입하거나 기존 계정으로 로그인합니다.</li>
+                            <li>사이드바에서 "<strong style="font-weight:bold;">API 키</strong>" 섹션으로 이동합니다.</li>
+                            <li>"<strong style="font-weight:bold;">API 키 만들기</strong>"를 클릭하고 설명이 포함된 이름을 지정합니다.</li>
+                            <li>생성된 API 키를 복사합니다. 콘텐츠 분석기에서 OpenAI 호환 옵션을 사용하고, 기본 URL을 <code style="font-family: monospace;">https://api.groq.com/openai/v1</code>으로 설정하고, 선택한 모델의 ID(예: <code style="font-family: monospace;">llama3-8b-8192</code>)를 입력합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+                <section class="relative" id="mistral">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            4</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Mistral AI</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Mistral AI는 La Plateforme를 통해 최첨단 오픈 및 상용 모델에 대한 액세스를 제공하며, 개발자가 실험할 수 있도록 무료 요금제를 제공합니다.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li><a class="text-primary hover:underline" href="https://console.mistral.ai/" target="_new">Mistral AI 콘솔</a>을 방문합니다.</li>
+                                <li>계정에 가입하거나 로그인합니다.</li>
+                                <li>작업 공간 탐색에서 "<strong style="font-weight:bold;">API 키</strong>" 섹션으로 이동합니다.</li>
+                                <li>"<strong style="font-weight:bold;">새 키 만들기</strong>"를 클릭하고 생성된 API 키를 복사합니다.</li>
+                                <li>콘텐츠 분석기에서 OpenAI 호환 옵션을 선택하고, 기본 URL을 <code style="font-family: monospace;">https://api.mistral.ai/v1</code>로 설정하고, 선택한 모델 ID(예: <code style="font-family: monospace;">mistral-small-latest</code>)를 입력합니다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="relative" id="ollama">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            5</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Ollama (ollama.com)</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Ollama는 온라인 API 서비스를 제공하여 웹 플랫폼을 통해 호스팅된 모델에 직접 연결할 수 있습니다.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li><a class="text-primary hover:underline" href="https://ollama.com/" target="_new">Ollama.com</a> 웹사이트를 방문합니다.</li>
+                                <li>계정에 로그인하거나 아직 계정이 없다면 가입합니다.</li>
+                                <li>페이지의 오른쪽 상단에 있는 사용자 메뉴를 클릭합니다.</li>
+                                <li>"<strong style="font-weight:bold;">설정</strong>" 옵션을 선택합니다.</li>
+                                <li>"<strong style="font-weight:bold;">키</strong>" 섹션을 선택합니다.</li>
+                                <li>"<strong style="font-weight:bold;">API 키 추가</strong>"를 클릭하여 API 키를 생성합니다.</li>
+                                <li>콘텐츠 분석기에서 <strong style="font-weight:bold;">Ollama</strong> API 유형을 선택하고 기본 URL을 <code style="font-family: monospace;">https://ollama.com/</code>으로 설정하고, 선택한 모델 ID(예: <code style="font-family: monospace;">gemma4:31b</code>)를 입력합니다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+        </div>
+    </article>
+</div>

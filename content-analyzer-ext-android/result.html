@@ -37,7 +37,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.2;
         }
 
         /* ==========================================================================
@@ -116,6 +116,7 @@
         .side-nav {
             display: flex;
             flex-direction: column;
+            font-size: 1.8em;
         }
 
         .side-nav a {
@@ -155,8 +156,8 @@
         .info-grid {
             display: grid;
             /* The first column (URL) takes up all remaining space (1fr), 
-               the next two (Languages) take only the space of their content (auto) */
-            grid-template-columns: 1fr auto auto;
+               the others take only the space of their content (auto) */
+            grid-template-columns: 1fr auto auto auto;
             gap: 2rem;
         }
 
@@ -267,56 +268,173 @@
         /* ==========================================================================
            RESPONSIVE DESIGN (MOBILE AND SMALL SCREENS)
            ========================================================================== */
+        .menu-toggle-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            line-height: 1;
+        }
+        .menu-toggle-btn:focus {
+            outline: none;
+        }
+
+        .menu-backdrop {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            display: none;
+        }
+        .menu-backdrop.active {
+            display: block;
+        }
+
+        .sidebar-header {
+            display: none;
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN (MOBILE AND SMALL SCREENS)
+           ========================================================================== */
         @media (max-width: 768px) {
             .layout-container {
                 flex-direction: column;
             }
 
-            /* Hide sidebar on mobile */
-            .sidebar {
-                display: none;
+            .menu-toggle-btn {
+                display: block;
             }
 
-            /* Restructure top bar to show menu */
+            /* Restructure top bar to be compact */
             .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 1.2rem 1.5rem;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem 1.2rem;
             }
 
-            /* Show top menu on mobile */
+            .topbar h1 {
+                font-size: 1.35rem;
+            }
+
+            /* Hide header links on mobile to save vertical space */
             .top-nav {
+                display: none !important;
+            }
+
+            /* Collapsible slide-in sidebar on mobile */
+            .sidebar {
+                display: flex !important;
+                position: fixed;
+                top: 0;
+                left: -280px; /* Hidden offscreen */
+                width: 280px;
+                height: 100vh;
+                background-color: var(--color-white);
+                z-index: 1000;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+                transition: left 0.3s ease;
+                flex-direction: column;
+                padding-top: 0;
+            }
+            .sidebar.open {
+                left: 0; /* Slide in */
+            }
+
+            .sidebar-header {
                 display: flex;
-                width: 100%;
-                justify-content: flex-start;
-                gap: 1.5rem;
-                flex-wrap: wrap;
-                padding-top: 1rem;
-                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.2rem 1.5rem;
+                border-bottom: 1px solid var(--color-blue-border);
+                background-color: var(--color-blue-light);
+            }
+            .sidebar-title {
+                font-weight: bold;
+                color: var(--color-blue-dark);
+                font-size: 1.25rem;
+            }
+            .sidebar-close {
+                background: none;
+                border: none;
+                font-size: 2rem;
+                cursor: pointer;
+                color: var(--color-text-muted);
+                line-height: 1;
+            }
+
+            .side-nav a {
+                padding: 1.2rem 2rem; /* Larger touch area */
+                font-size: 1.15rem; /* Larger text */
             }
 
             .main-content {
-                padding: 1.5rem;
+                padding: 0.75rem;
+            }
+
+            .info-header {
+                padding: 1rem;
+                margin-bottom: 1rem;
             }
 
             .info-grid {
-                /* On mobile we place the columns one below the other again (1 column) */
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.85rem;
             }
 
-            .info-header,
-            .content-body-title,
-            .result-box,
+            /* URL takes full width */
+            .info-item:first-child {
+                grid-column: span 2;
+            }
+
+            .info-label {
+                font-size: 0.95rem;
+            }
+
+            .info-value {
+                font-size: 1.15rem;
+            }
+
+            .content-body-title {
+                padding: 1.2rem 1rem;
+            }
+
+            .content-body-title h2 {
+                font-size: 1.35rem;
+            }
+
+            .result-box {
+                padding: 1.2rem 1rem;
+                font-size: 1.2rem; /* Larger font size for readability */
+                line-height: 1.7;
+            }
+
             #status {
-                padding: 1.2rem;
+                padding: 2rem 1rem;
+                font-size: 1.15rem;
+            }
+
+            #saveBtn {
+                width: calc(100% - 2rem);
+                box-sizing: border-box;
+                margin: 1.5rem auto;
+                padding: 1rem 1.5rem;
+                font-size: 1.15rem;
+                display: block;
+                text-align: center;
             }
         }
     </style>
 </head>
 
 <body>
+    <div id="menu-backdrop" class="menu-backdrop"></div>
 
     <!-- TOP BAR -->
     <header class="topbar">
@@ -333,13 +451,14 @@
             </picture>
             <h1 data-i18n="extName">Content Analyzer</h1>
         </div>
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Toggle menu">☰</button>
 
         <!-- Menu shown only on mobile devices -->
         <nav class="top-nav" aria-label="Top menu">
-            <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
-            <a data-i18n="resPrivacy" target="_new"
+            <a data-i18n="resHelp" target="_blank" rel="noopener noreferrer" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+            <a data-i18n="resPrivacy" target="_blank" rel="noopener noreferrer"
                 href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
-            <a data-i18n="resContact" target="_new"
+            <a data-i18n="resContact" target="_blank" rel="noopener noreferrer"
                 href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
         </nav>
     </header>
@@ -350,12 +469,16 @@
         <!-- SIDE NAV COLUMN -->
         <!-- Menu shown only on large screens (desktop/landscape tablet) -->
         <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-title" data-i18n="popupTitle">Menu</span>
+                <button id="sidebar-close-btn" class="sidebar-close">&times;</button>
+            </div>
             <nav class="side-nav" aria-label="Side menu">
-                <a data-i18n="resHelp" target="_new"
+                <a data-i18n="resHelp" target="_blank" rel="noopener noreferrer"
                     href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
-                <a data-i18n="resPrivacy" target="_new"
+                <a data-i18n="resPrivacy" target="_blank" rel="noopener noreferrer"
                     href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
-                <a data-i18n="resContact" target="_new"
+                <a data-i18n="resContact" target="_blank" rel="noopener noreferrer"
                     href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
             </nav>
         </aside>
@@ -368,7 +491,7 @@
                 <div class="info-grid">
                     <div class="info-item">
                         <span class="info-label">URL</span>
-                        <span class="info-value" id="PAGEURL">https://ejemplo.com/pagina-analizada</span>
+                        <a class="info-value" id="PAGEURL" target="_blank" rel="noopener noreferrer">https://ejemplo.com/pagina-analizada</a>
                     </div>
                     <div class="info-item">
                         <span class="info-label" data-i18n="resSysLang">System Language</span>
@@ -378,6 +501,10 @@
                     <div class="info-item">
                         <span class="info-label" data-i18n="resPageLang">Page Language</span>
                         <span class="info-value" id="PAGELANG">es-ES</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label" data-i18n="resCharCount">Query Length</span>
+                        <span class="info-value" id="CHARCOUNT">0</span>
                     </div>
                 </div>
             </section>
@@ -401,7 +528,30 @@
         </main>
     </div>
     <script src="i18n.js"></script>
+    <script src="marked.min.js"></script>
     <script src="result.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById("menu-toggle");
+            const sidebarClose = document.getElementById("sidebar-close-btn");
+            const sidebar = document.querySelector(".sidebar");
+            const backdrop = document.getElementById("menu-backdrop");
+
+            function toggleMenu() {
+                sidebar.classList.toggle("open");
+                backdrop.classList.toggle("active");
+            }
+
+            function closeMenu() {
+                sidebar.classList.remove("open");
+                backdrop.classList.remove("active");
+            }
+
+            if (menuToggle) menuToggle.addEventListener("click", toggleMenu);
+            if (sidebarClose) sidebarClose.addEventListener("click", closeMenu);
+            if (backdrop) backdrop.addEventListener("click", closeMenu);
+        });
+    </script>
 </body>
 
 </html>

@@ -54,7 +54,27 @@ export async function fetchModels(config) {
 
     // Headers are empty by default; Ollama doesn't require authentication in local setup
     const res = await fetch(fetchUrl);
-    if (!res.ok) throw new Error("HTTP " + res.status);
+    if (!res.ok) {
+        let errorMsg = `HTTP ${res.status}`;
+        try {
+            const errBody = await res.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
 
     const data = await res.json();
 
@@ -92,6 +112,9 @@ export async function* generate(config, prompt) {
     // POST request body parameters.
     // `stream: true` enables incremental response mode (NDJSON).
     const bodyParams = { model: config.model, prompt: prompt, stream: true };
+    if (config.systemPrompt) {
+        bodyParams.system = config.systemPrompt;
+    }
 
     const response = await fetch(fetchUrl, {
         method: "POST",
@@ -99,7 +122,27 @@ export async function* generate(config, prompt) {
         body: JSON.stringify(bodyParams)
     });
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    if (!response.ok) {
+        let errorMsg = `HTTP ${response.status}`;
+        try {
+            const errBody = await response.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
 
     // To read the body incrementally, we use a ReadableStreamDefaultReader.
     // `response.body` is a ReadableStream that emits Uint8Array of bytes.

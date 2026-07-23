@@ -1,3 +1,5 @@
+const DEBUG_MODE = false;
+
 /**
  * @file result.js (Chrome version)
  * @description Result page for the Chrome extension.
@@ -81,7 +83,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Show LLM service name in UI so user knows what's processing
     document.getElementById("serviceName").textContent = service.name;
-    document.getElementById("PAGEURL").textContent = url || "";
+    const pageUrlElement = document.getElementById("PAGEURL");
+    pageUrlElement.textContent = url || "";
+    if (url) pageUrlElement.href = url;
     document.getElementById("SYSLANG").textContent = syslang || navigator.language;
     document.getElementById("PAGELANG").textContent = lang || "NONE";
 
@@ -90,6 +94,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Replace each template variable with its real value using global regex (`/g`)
         // to substitute ALL occurrences in case the variable appears multiple times.
         let pText = service.prompt || "";
+        if (service.promptId) {
+            const promptsData = await api.storage.local.get("prompts");
+            const promptsList = promptsData.prompts || [];
+            const matchedPrompt = promptsList.find(p => p.id === service.promptId);
+            if (matchedPrompt) {
+                pText = matchedPrompt.prompt;
+            }
+        }
+
+        let sysPromptText = service.systemPrompt || "";
+        if (service.systemPromptId) {
+            const sysPromptsData = await api.storage.local.get("systemPrompts");
+            const sysPromptsList = sysPromptsData.systemPrompts || [];
+            const matchedSysPrompt = sysPromptsList.find(p => p.id === service.systemPromptId);
+            if (matchedSysPrompt) {
+                sysPromptText = matchedSysPrompt.prompt;
+            }
+        }
         pText = pText.replace(/\{DATE\}/g,    new Date().toLocaleDateString());   // Current local date
         pText = pText.replace(/\{HOUR\}/g,    new Date().toLocaleTimeString());   // Current local time
         pText = pText.replace(/\{URL\}/g,     url || "");                         // Page URL
@@ -97,69 +119,32 @@ document.addEventListener("DOMContentLoaded", async () => {
         pText = pText.replace(/\{LANG\}/g,    lang || "NONE");                    // Document language
         pText = pText.replace(/\{SYSLANG\}/g, syslang || navigator.language);     // System language
 
+        sysPromptText = sysPromptText.replace(/\{DATE\}/g,    new Date().toLocaleDateString());
+        sysPromptText = sysPromptText.replace(/\{HOUR\}/g,    new Date().toLocaleTimeString());
+        sysPromptText = sysPromptText.replace(/\{URL\}/g,     url || "");
+        sysPromptText = sysPromptText.replace(/\{DOMAIN\}/g,  domain || "");
+        sysPromptText = sysPromptText.replace(/\{LANG\}/g,    lang || "NONE");
+        sysPromptText = sysPromptText.replace(/\{SYSLANG\}/g, syslang || navigator.language);
+
         // Final prompt: user instructions followed by page content.
         // Double line break visually separates instructions from content (Markdown style).
         const promptParams = pText + "\n\n" + markdown;
+
+        document.getElementById("CHARCOUNT").textContent = promptParams.length.toLocaleString();
 
         const statusDiv = document.getElementById("status");
         const resultBox = document.getElementById("resultBox");
         const saveBtn   = document.getElementById("saveBtn");
 
-        // ---- LIGHTWEIGHT MARKDOWN RENDERER ----
+        // ---- MARKDOWN RENDERER ----
         /**
-         * Converts basic Markdown syntax to HTML with inline styles.
-         *
-         * We don't use an external library to keep the extension lightweight.
-         * We cover the most common cases LLMs generate:
-         *   - Code blocks (with and without language specification)
-         *   - Inline code
-         *   - H1, H2, H3 headers
-         *   - Bold (**text**) and italic (*text*)
-         *
-         * IMPORTANT: First escape HTML to prevent XSS. Characters &, <, >
-         * from LLM text are converted to HTML entities before applying
-         * Markdown transformations, preventing the browser from interpreting arbitrary HTML.
+         * Converts Markdown syntax to HTML using marked.js.
          *
          * @param {string} text - text in Markdown format.
-         * @returns {string} HTML with inline styles.
+         * @returns {string} HTML.
          */
         function parseMarkdown(text) {
-            // 1. Escape special HTML characters (XSS prevention)
-            let html = text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;");
-
-            // 2. Code blocks with language indicator: ```python\ncode\n```
-            html = html.replace(
-                /```(\w*)\n([\s\S]*?)```/g,
-                '<pre style="background:var(--color-blue-light); border:1px solid var(--color-blue-border); padding:10px; border-radius:var(--border-radius); overflow-x:auto; color:var(--color-text-main);"><code>$2</code></pre>'
-            );
-
-            // 3. Code blocks without language indicator: ```\ncode\n```
-            html = html.replace(
-                /```([\s\S]*?)```/g,
-                '<pre style="background:var(--color-blue-light); border:1px solid var(--color-blue-border); padding:10px; border-radius:var(--border-radius); overflow-x:auto; color:var(--color-text-main);"><code>$1</code></pre>'
-            );
-
-            // 4. Inline code: `code`
-            html = html.replace(
-                /`([^`]+)`/g,
-                '<code style="background:#f1f3f5; color:#d63384; padding:2px 5px; border-radius:3px;">$1</code>'
-            );
-
-            // 5–7. H3, H2 and H1 headers (descending order to not process ### as ##)
-            html = html.replace(/^### (.*$)/gim, '<h3 style="margin-top:10px; padding-bottom:5px; border-bottom:1px dotted #444;">$1</h3>');
-            html = html.replace(/^## (.*$)/gim,  '<h2 style="margin-top:10px; padding-bottom:5px; border-bottom:1px solid #444;">$1</h2>');
-            html = html.replace(/^# (.*$)/gim,   '<h1 style="margin-top:10px; padding-bottom:5px; border-bottom:2px solid #444;">$1</h1>');
-
-            // 8. Bold: **text**
-            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-
-            // 9. Italic: *text*
-            html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-
-            return html;
+            return marked.parse(text);
         }
 
         // ---- GENERATION SYSTEM WITH RETRIES ----
@@ -222,8 +207,9 @@ document.addEventListener("DOMContentLoaded", async () => {
              * It is idempotent: only acts the first time (thanks to `isDone` flag).
              *
              * @param {boolean} [recoverable=true] - If false, don't retry (e.g.: HTTP 4xx error).
+             * @param {string} [errorMsg=null] - Optional error message to display if not recoverable.
              */
-            function triggerRetry(recoverable = true) {
+            function triggerRetry(recoverable = true, errorMsg = null) {
                 if (isDone) return; // Avoid duplicate retries
                 isDone = true;
                 if (attemptTimeout) clearTimeout(attemptTimeout);
@@ -234,7 +220,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                     startGeneration(); // New attempt with a new port
                 } else {
                     // No more retries: either by exceeding MAX_RETRIES or non-recoverable error
-                    statusDiv.innerHTML = `<span style="color:#ff5555">${api.i18n.getMessage("resConnError") || "Error: Connection closed unexpectedly."}</span>`;
+                    let finalMsg = api.i18n.getMessage("resConnError") || "Error: Connection closed unexpectedly.";
+                    if (errorMsg) {
+                        // Escape HTML
+                        const escapeDiv = document.createElement("div");
+                        escapeDiv.textContent = errorMsg;
+                        finalMsg = escapeDiv.innerHTML;
+                    }
+                    statusDiv.innerHTML = `<span style="color:#ff5555">${finalMsg}</span>`;
                     statusDiv.style.display = "block";
                     statusDiv.className = ""; // Remove loading animation classes
                 }
@@ -257,7 +250,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 url:         service.url,               // LLM server base URL
                 model:       service.model,             // Model name to use
                 apikey:      service.apikey,            // Credentials (can be empty)
-                prompt:      promptParams               // Full prompt: instructions + content
+                prompt:      promptParams,              // Full prompt: instructions + content
+                systemPrompt: sysPromptText
             });
 
             // Start waiting timeout (2 min for first chunk in Chrome)
@@ -276,16 +270,32 @@ document.addEventListener("DOMContentLoaded", async () => {
                     if (msg.chunk) {
                         resultText += msg.chunk;                      // Accumulate text
                         resultBox.innerHTML = parseMarkdown(resultText); // Re-render everything
+                        
+                        // Force all links generated from Markdown to open in a new tab
+                        resultBox.querySelectorAll('a').forEach(a => {
+                            a.setAttribute('target', '_blank');
+                            a.setAttribute('rel', 'noopener noreferrer');
+                        });
+
                         window.scrollTo(0, document.body.scrollHeight);  // Auto scroll to bottom
                     }
 
                 } else if (msg.type === "error") {
                     // LLM ERROR: exception in background or server responded with error.
+                    if (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE && msg.error && msg.error.includes('{"_debug":true')) {
+                        try {
+                            const errData = JSON.parse(msg.error);
+                            statusDiv.innerHTML = `<span style="color:#ff5555">AI Service Error (Debug Mode)</span><br><pre style="text-align:left;font-size:12px;background:#222;color:#fff;padding:10px;overflow:auto;max-height:400px;">${JSON.stringify(errData, null, 2)}</pre>`;
+                            statusDiv.style.display = "block";
+                            statusDiv.className = "";
+                            return; // Stop retries in debug mode
+                        } catch(e) {}
+                    }
                     // HTTP 4xx errors (authentication, model not found, etc.) are not
                     // recoverable with retries; we only retry for network or 5xx errors.
                     console.error("AI Error:", msg.error);
                     const isRecoverable = !msg.error || !/HTTP 4\d\d/.test(msg.error);
-                    triggerRetry(isRecoverable); // Retry only if error is recoverable
+                    triggerRetry(isRecoverable, msg.error); // Retry only if error is recoverable
 
                 } else if (msg.type === "done") {
                     // GENERATION COMPLETED: stream finished correctly

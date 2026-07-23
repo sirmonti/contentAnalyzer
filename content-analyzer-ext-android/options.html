@@ -104,6 +104,7 @@
         .side-nav {
             display: flex;
             flex-direction: column;
+            font-size: 1.3em;
         }
 
         .side-nav a {
@@ -336,16 +337,160 @@
             display: block;
         }
 
+        .menu-backdrop {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            display: none;
+        }
+        .menu-backdrop.active {
+            display: block;
+        }
+
+        .sidebar-header {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .layout-container { flex-direction: column; }
-            .sidebar { display: none; }
-            .topbar { flex-direction: column; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; }
-            .top-nav { display: flex; width: 100%; justify-content: flex-start; gap: 1.5rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.2); }
-            .main-content { padding: 1.5rem; }
+            .topbar { flex-direction: row !important; align-items: center !important; justify-content: space-between !important; padding: 1rem 1.2rem !important; }
+            .topbar-brand { flex-grow: 1; }
+            .topbar h1 { font-size: 1.35rem; }
+            
+            /* Hide top menu entirely on mobile */
+            .top-nav { display: none !important; }
+
+            /* Collapsible slide-in sidebar on mobile */
+            .sidebar {
+                display: flex !important;
+                position: fixed;
+                top: 0;
+                left: -280px; /* Hidden offscreen */
+                width: 280px;
+                height: 100vh;
+                background-color: var(--color-white);
+                z-index: 1000;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+                transition: left 0.3s ease;
+                flex-direction: column;
+                padding-top: 0;
+            }
+            .sidebar.open {
+                left: 0; /* Slide in */
+            }
+
+            .sidebar-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.2rem 1.5rem;
+                border-bottom: 1px solid var(--color-blue-border);
+                background-color: var(--color-blue-light);
+            }
+            .sidebar-title {
+                font-weight: bold;
+                color: var(--color-blue-dark);
+                font-size: 1.25rem;
+            }
+            .sidebar-close {
+                background: none;
+                border: none;
+                font-size: 2rem;
+                cursor: pointer;
+                color: var(--color-text-muted);
+                line-height: 1;
+            }
+
+            .side-nav a {
+                padding: 1.2rem 2rem; /* Larger touch area */
+                font-size: 1.15rem; /* Larger text */
+            }
+
+            .main-content { padding: 0.75rem; }
+            .content-box { padding: 1.2rem 0.75rem; }
+            .content-body-title { padding: 1.2rem 1rem; }
+            .content-body-title h2 { font-size: 1.35rem; }
+            
+            /* Forms with larger text for mobile readability */
+            .form-group label {
+                font-size: 1.15rem;
+                margin-bottom: 0.75rem;
+            }
+            .form-group input[type="text"],
+            .form-group input[type="url"],
+            .form-group select,
+            .form-group textarea {
+                font-size: 1.15rem;
+                padding: 0.95rem;
+            }
+            .form-group small {
+                font-size: 0.95rem;
+                margin-top: 0.5rem;
+            }
+            .checkbox-group label {
+                font-size: 1.1rem;
+            }
+            
+            .btn-primary, .btn-secondary {
+                font-size: 1.15rem;
+                padding: 1rem 1.5rem;
+            }
+            .form-actions { flex-direction: column; width: 100%; gap: 0.75rem; margin-top: 1.5rem; }
+            .form-actions button { width: 100%; }
+            
+            /* Responsive table cards with larger font sizes */
+            table, thead, tbody, th, td, tr { display: block; width: 100%; }
+            thead tr { position: absolute; top: -9999px; left: -9999px; }
+            tr { border: 1px solid var(--color-blue-border); margin-bottom: 1.5rem; border-radius: var(--border-radius); background-color: #fcfdfe; box-shadow: var(--shadow-sm); overflow: hidden; }
+            
+            /* Clean Card Header for first-child (Name) */
+            td:first-child {
+                font-size: 1.3rem;
+                font-weight: bold;
+                color: var(--color-blue-dark);
+                text-align: left;
+                padding: 1rem;
+                background-color: var(--color-blue-light);
+                border-bottom: 1px solid var(--color-blue-border);
+                min-height: auto;
+            }
+            td:first-child:before { display: none; }
+            
+            td { border: none; border-bottom: 1px solid var(--color-blue-border); position: relative; padding: 0.9rem 1rem; padding-left: 45%; text-align: right; min-height: 2.75rem; word-break: break-all; font-size: 1.1rem; }
+            td:before { position: absolute; top: 0.9rem; left: 1rem; width: 40%; padding-right: 10px; white-space: nowrap; text-align: left; font-weight: 600; color: var(--color-text-muted); content: attr(data-label); overflow: hidden; text-overflow: ellipsis; font-size: 1.1rem; }
+            
+            /* Prominent action buttons on mobile */
+            td:last-child { border-bottom: none; text-align: center; padding: 1rem; }
+            td:last-child:before { display: none; }
+            .action-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1.1rem;
+                background-color: var(--color-blue-light);
+                border-radius: 4px;
+                display: inline-block;
+                margin-right: 15px;
+                text-decoration: none !important;
+            }
+            .edit-btn:hover { background-color: #d0e4f7; }
+            .delete-btn { background-color: #fde8e8; }
+            .delete-btn:hover { background-color: #fbd5d5; }
+            
+            /* Full-screen Modal with scrollable body */
+            .modal-content { max-height: 100vh; height: 100vh; border-radius: 0; }
+            .modal-body { padding: 1.2rem 1rem; flex: 1; }
+            .modal-header { padding: 1.2rem 1rem; }
+            .modal-header h2 { font-size: 1.35rem; }
+            .modal-close { font-size: 2.2rem; }
+            
+            /* Checkbox group spacing */
+            .checkbox-group { align-items: flex-start; }
+            .checkbox-group input { margin-top: 0.25rem; width: 20px; height: 20px; }
         }
     </style>
 </head>
 <body>
+    <div id="menu-backdrop" class="menu-backdrop"></div>
 
     <!-- TOP BAR -->
     <header class="topbar">
@@ -358,19 +503,42 @@
             </picture>
             <h1 data-i18n="optTitle">Configuración de IA</h1>
         </div>
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Toggle menu">☰</button>
 
         <nav class="top-nav" aria-label="Top menu">
             <a class="nav-btn active" data-target="page-list" data-i18n="optListTitle">Servicios Configurados</a>
             <a class="nav-btn" data-target="page-add" data-i18n="optAddService">Añadir Nuevo Servicio</a>
+            <a class="nav-btn" data-target="page-prompts-list" data-i18n="optPromptsListTitle">Prompts Configurados</a>
+            <a class="nav-btn" data-target="page-prompt-add" data-i18n="optAddPrompt">Añadir Nuevo Prompt</a>
+            <a class="nav-btn" data-target="page-sys-prompts-list" data-i18n="optSysPromptsListTitle">System Prompts Configurados</a>
+            <a class="nav-btn" data-target="page-sys-prompt-add" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</a>
+            <div style="display: flex; gap: 1.5rem; border-left: 1px solid rgba(255, 255, 255, 0.2); padding-left: 1.5rem; align-items: center; margin-left: 0.5rem;">
+                <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+                <a data-i18n="resPrivacy" target="_new" href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
+                <a data-i18n="resContact" target="_new" href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
+            </div>
         </nav>
     </header>
 
     <div class="layout-container">
         <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <aside class="sidebar" style="justify-content: space-between;">
+            <div class="sidebar-header">
+                <span class="sidebar-title" data-i18n="popupTitle">Menu</span>
+                <button id="sidebar-close-btn" class="sidebar-close">&times;</button>
+            </div>
             <nav class="side-nav" aria-label="Side menu">
                 <a class="nav-btn active" data-target="page-list" data-i18n="optListTitle">Servicios Configurados</a>
                 <a class="nav-btn" data-target="page-add" data-i18n="optAddService">Añadir Nuevo Servicio</a>
+                <a class="nav-btn" data-target="page-prompts-list" data-i18n="optPromptsListTitle">Prompts Configurados</a>
+                <a class="nav-btn" data-target="page-prompt-add" data-i18n="optAddPrompt">Añadir Nuevo Prompt</a>
+            <a class="nav-btn" data-target="page-sys-prompts-list" data-i18n="optSysPromptsListTitle">System Prompts Configurados</a>
+            <a class="nav-btn" data-target="page-sys-prompt-add" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</a>
+            </nav>
+            <nav class="side-nav" aria-label="Support links" style="border-top: 1px solid var(--color-blue-border); margin-top: auto; padding-bottom: 1rem;">
+                <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+                <a data-i18n="resPrivacy" target="_new" href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
+                <a data-i18n="resContact" target="_new" href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
             </nav>
         </aside>
 
@@ -414,6 +582,76 @@
                 </section>
             </div>
 
+            <!-- PAGE: PROMPTS LIST -->
+            <div id="page-prompts-list" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 data-i18n="optPromptsListTitle">Prompts Configurados</h2>
+                    </div>
+                    <div class="content-box" style="padding: 0;">
+                        <div style="overflow-x: auto;">
+                            <table id="promptsTable">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="thName">Nombre</th>
+                                        <th data-i18n="thPrompt">Prompt</th>
+                                        <th data-i18n="thActions">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- PAGE: PROMPT ADD -->
+            <div id="page-prompt-add" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 id="promptFormTitle" data-i18n="optAddPrompt">Añadir Nuevo Prompt</h2>
+                    </div>
+                    <div class="content-box" id="prompt-form-container-add">
+                        <!-- Prompt form moves here for adding -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- PAGE: SYS PROMPTS LIST -->
+            <div id="page-sys-prompts-list" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 data-i18n="optSysPromptsListTitle">System Prompts Configurados</h2>
+                    </div>
+                    <div class="content-box" style="padding: 0;">
+                        <div style="overflow-x: auto;">
+                            <table id="sysPromptsTable">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="optColSysPromptName">Nombre</th>
+                                        <th data-i18n="optColSysPromptText">Texto</th>
+                                        <th data-i18n="thActions">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- PAGE: SYS PROMPT ADD -->
+            <div id="page-sys-prompt-add" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 id="sysPromptFormTitle" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</h2>
+                    </div>
+                    <div class="content-box" id="sys-prompt-form-container-add">
+                        <!-- Sys Prompt form moves here for adding -->
+                    </div>
+                </section>
+            </div>
+
         </main>
     </div>
 
@@ -428,6 +666,68 @@
                 <!-- Form moves here for editing -->
             </div>
         </div>
+    </div>
+
+    <!-- MODAL (EDIT PROMPT) -->
+    <div id="edit-prompt-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="optEditPrompt">Editar Prompt</h2>
+                <button type="button" id="closePromptModalBtn" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="prompt-form-container-modal">
+                <!-- Prompt form moves here for editing -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL (EDIT SYS PROMPT) -->
+    <div id="edit-sys-prompt-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="optEditSysPrompt">Editar System Prompt</h2>
+                <button type="button" id="closeSysPromptModalBtn" class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="sys-prompt-form-container-modal">
+                <!-- Sys Prompt form moves here for editing -->
+            </div>
+        </div>
+    </div>
+
+    <!-- THE ACTUAL PROMPT FORM (detached) -->
+    <div id="detached-prompt-form-wrapper" style="display:none;">
+        <form id="addPromptForm">
+            <div class="form-group">
+                <label data-i18n="optPromptNameLabel">Nombre del Prompt</label>
+                <input type="text" id="p_name" required placeholder="Ej: Resumen de texto" data-i18n="optPromptNamePlaceholder">
+            </div>
+            <div class="form-group">
+                <label data-i18n="optPromptTextLabel">Prompt</label>
+                <textarea id="p_prompt" required placeholder="Ej: Analiza este texto y..." data-i18n="optPromptTextPlaceholder" style="min-height: 150px;"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="promptSubmitBtn" class="btn-primary" data-i18n="optSavePromptBtn">Guardar Prompt</button>
+                <button type="button" id="cancelPromptEditBtn" class="btn-secondary" data-i18n="optCancelBtn" style="display:none;">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- THE ACTUAL SYS PROMPT FORM (detached) -->
+    <div id="detached-sys-prompt-form-wrapper" style="display:none;">
+        <form id="addSysPromptForm">
+            <div class="form-group">
+                <label data-i18n="optSysPromptNameLabel">Nombre del System Prompt</label>
+                <input type="text" id="p_sys_name" required placeholder="Ej: Resumidor" data-i18n="optSysPromptNamePlaceholder">
+            </div>
+            <div class="form-group">
+                <label data-i18n="optSysPromptTextLabel">System Prompt</label>
+                <textarea id="p_sys_prompt" required placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder" style="min-height: 150px;"></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="sysPromptSubmitBtn" class="btn-primary" data-i18n="optSaveSysPromptBtn">Guardar System Prompt</button>
+                <button type="button" id="cancelSysPromptEditBtn" class="btn-secondary" data-i18n="optCancelBtn" style="display:none;">Cancelar</button>
+            </div>
+        </form>
     </div>
 
     <!-- THE ACTUAL FORM (detached) -->
@@ -468,16 +768,32 @@
                 <label data-i18n="optPromptLabel">Prompt</label>
                 <textarea id="m_prompt" required placeholder="Ej: Analiza este texto y dime tus conclusiones" data-i18n="optPromptPlaceholder"></textarea>
             </div>
+            <div class="form-group">
+                <label data-i18n="optSelectPromptLabel">Utilizar prompt de la lista</label>
+                <select id="m_prompt_id">
+                    <option value="" data-i18n="optSelectPromptDefault">-- Utilizar prompt específico --</option>
+                </select>
+            </div>            <div class="form-group">
+                <label data-i18n="optSysPromptTextLabelOptional">System Prompt (Opcional)</label>
+                <textarea id="m_system_prompt" placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label data-i18n="optSelectSysPromptLabel">System Prompt (Opcional)</label>
+                <select id="m_system_prompt_id">
+                    <option value="" data-i18n="optSelectSysPromptDefault">-- Sin System Prompt --</option>
+                </select>
+            </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="m_use_markdown" checked>
-                <label for="m_use_markdown">Convertir contenido a Markdown (desmarcar para procesar HTML directamente)</label>
+                <label for="m_use_markdown" data-i18n="optUseMarkdown">Convertir contenido a Markdown (desmarcar para procesar HTML directamente)</label>
             </div>
             <div class="form-group checkbox-group">
                 <input type="checkbox" id="m_link_web">
-                <label for="m_link_web">Vincular y limitar este servicio a uno o varios dominios</label>
+                <label for="m_link_web" data-i18n="optLinkWeb">Vincular y limitar este servicio a uno o varios dominios</label>
             </div>
             <div class="form-group" id="linked_url_group" style="display:none; margin-top: 1rem;">
-                <label>Dominios a vincular (separados por comas)</label>
+                <label data-i18n="optLinkDomains">Dominios a vincular (separados por comas)</label>
                 <input type="text" id="m_linked_web_url" placeholder="Ej: example.com, openai.com">
             </div>
             

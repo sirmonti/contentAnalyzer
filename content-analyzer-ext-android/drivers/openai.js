@@ -55,7 +55,10 @@ export async function fetchModels(config) {
     // Normalize base URL: remove trailing slash and add endpoint path
     let fetchUrl = config.url || "";
     if (fetchUrl.endsWith('/')) fetchUrl = fetchUrl.slice(0, -1);
-    fetchUrl += "/v1/models"; // Standard OpenAI model listing endpoint
+    if (!fetchUrl.match(/\/v\d+$/)) {
+        fetchUrl += "/v1";
+    }
+    fetchUrl += "/models"; // Standard OpenAI model listing endpoint
 
     const headers = {};
     // Only add Authorization header if an API key is configured.
@@ -63,7 +66,27 @@ export async function fetchModels(config) {
     if (config.apikey) headers["Authorization"] = "Bearer " + config.apikey;
 
     const res = await fetch(fetchUrl, { headers });
-    if (!res.ok) throw new Error("HTTP " + res.status);
+    if (!res.ok) {
+        let errorMsg = `HTTP ${res.status}`;
+        try {
+            const errBody = await res.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
     const data = await res.json();
 
     // The response follows the standard OpenAI format:
@@ -93,17 +116,24 @@ export async function fetchModels(config) {
 export async function* generate(config, prompt) {
     let baseUrl = config.url || "";
     if (baseUrl.endsWith("/")) baseUrl = baseUrl.slice(0, -1);
-    const fetchUrl = baseUrl + "/v1/chat/completions"; // Standard chat endpoint
+    if (!baseUrl.match(/\/v\d+$/)) {
+        baseUrl += "/v1";
+    }
+    const fetchUrl = baseUrl + "/chat/completions"; // Standard chat endpoint
 
     const headers = { "Content-Type": "application/json" };
     if (config.apikey) headers["Authorization"] = "Bearer " + config.apikey;
 
     // OpenAI Chat Completions request body format.
-    // We use a single "user" role message (one-turn conversation).
-    // `stream: true` enables SSE mode.
+    const messages = [];
+    if (config.systemPrompt) {
+        messages.push({ role: "system", content: config.systemPrompt });
+    }
+    messages.push({ role: "user", content: prompt });
+
     const bodyParams = {
         model: config.model,
-        messages: [{ role: "user", content: prompt }],
+        messages: messages,
         stream: true
     };
 
@@ -113,7 +143,27 @@ export async function* generate(config, prompt) {
         body: JSON.stringify(bodyParams)
     });
 
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    if (!response.ok) {
+        let errorMsg = `HTTP ${response.status}`;
+        try {
+            const errBody = await response.text();
+            const errJson = JSON.parse(errBody);
+            if (errJson.error) {
+                if (typeof errJson.error === 'string') {
+                    errorMsg += `: ${errJson.error}`;
+                } else if (errJson.error.message) {
+                    errorMsg += `: ${errJson.error.message}`;
+                } else {
+                    errorMsg += `: ${errBody}`;
+                }
+            } else {
+                errorMsg += `: ${errBody}`;
+            }
+        } catch (e) {
+            // ignore JSON parse error
+        }
+        throw new Error(errorMsg);
+    }
 
     const reader = response.body.getReader();
     const decoder = new TextDecoder("utf-8");

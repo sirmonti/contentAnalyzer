@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">مُحلل المحتوى</p>
+            <h1 class="font-article-title text-article-title text-text-primary">سياسة الخصوصية</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">آخر تحديث: أبريل 2026</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. مقدمة</h2>
+                <p>تم تصميم إضافة متصفح كروم "contentAnalyzer" (المشار إليها فيما يلي بـ "الإضافة") لمعالجة محتوى صفحة الويب الحالية باستخدام خدمات الذكاء الاصطناعي التي يقوم المستخدم بتكوينها. توضح سياسة الخصوصية هذه التزامنا تجاه خصوصيتك وكيفية التعامل مع البيانات.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. عدم جمع البيانات من قبل المطور</h2>
+                <p class="mb-sm">نحن نولي خصوصيتك أهمية قصوى. لا يقوم مطور هذه الإضافة بجمع أي من بياناتك الشخصية، أو سجل التصفح، أو المحتوى الذي تمت معالجته، أو إرسالها إلى أي خادم يسيطر عليه المطور.</p>
+                <p>يتم تخزين جميع إعدادات التكوين (مثل مفاتيح واجهة برمجة التطبيقات "API keys" أو الأوامر المخصصة) محليًا داخل وحدة تخزين متصفحك (على سبيل المثال، <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</em>) ولا يمكن للمطور الوصول إليها أبدًا.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. إرسال البيانات إلى خدمات الأطراف الثالثة</h2>
+                <p class="mb-md">لتوفير وظائفها الأساسية، تقوم الإضافة بإرسال محتوى صفحة الويب التي تختار تحليلها إلى مزود خدمة الذكاء الاصطناعي التابع لجهة خارجية ("خدمة الذكاء الاصطناعي") الذي قمت بتكوينه في الإعدادات.</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. الخدمات التي يحددها المستخدم</h3>
+                        <p>تتواصل الإضافة فقط مع نقاط النهاية/واجهات برمجة التطبيقات (APIs) المحددة التي يوفرها المستخدم. نظرًا لأن هذه الخدمات يتم اختيارها وتكوينها من قبل المستخدم، فإن مطور "contentAnalyzer" ليس لديه أي سيطرة على كيفية تعامل مواقع الأطراف الثالثة هذه مع البيانات المرسلة إليها.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. سياسات خصوصية الأطراف الثالثة</h3>
+                        <p>لا يمكن تحميل المطور المسؤولية عن ممارسات الخصوصية، أو سياسات الاحتفاظ بالبيانات، أو تدابير الأمان الخاصة بخدمات الذكاء الاصطناعي التي تختار استخدامها. قبل استخدام الإضافة مع خدمة معينة، نوصي بشدة بمراجعة سياسة الخصوصية وشروط الخدمة الخاصة بذلك المزود.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. الأذونات</h2>
+                <p class="mb-md">تتطلب الإضافة أذونات محددة لتعمل:</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> أو <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>: لقراءة محتوى الصفحة التي ترغب في تحليلها.</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>: لحفظ إعداداتك وتكوينات واجهة برمجة التطبيقات (API) محليًا.</li>
+                    <li><strong>أذونات المضيف:</strong> لإرسال المحتوى إلى واجهة برمجة تطبيقات خدمة الذكاء الاصطناعي التي حددتها.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. الأمان</h2>
+                <p>بينما تسهل الإضافة إرسال البيانات عبر بروتوكولات الويب القياسية، فإن أمن البيانات بمجرد خروجها من متصفحك يعتمد بالكامل على خدمة الذكاء الاصطناعي التي قمت بتكوينها. نوصي باستخدام الخدمات التي توفر نقاط نهاية واجهة برمجة تطبيقات آمنة (HTTPS).</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. التغييرات في هذه السياسة</h2>
+                <p>يحتفظ المطور بالحق في تحديث سياسة الخصوصية هذه في أي وقت. سيتم عكس أي تغييرات في إصدار جديد من الإضافة وسيتم تحديثها على هذه الصفحة.</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. اتصل بنا</h2>
+                <p>إذا كان لديك أي أسئلة بخصوص سياسة الخصوصية هذه، يرجى التواصل مع المطور عبر قنوات الدعم المتوفرة في <a href="contact.html">صفحة الاتصال</a>.</p>
+            </section>
+        </div>
+    </article>
+</div>

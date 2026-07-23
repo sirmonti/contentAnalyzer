@@ -37,7 +37,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.2;
         }
 
         /* ==========================================================================
@@ -116,6 +116,7 @@
         .side-nav {
             display: flex;
             flex-direction: column;
+            font-size: 1.8em;
         }
 
         .side-nav a {
@@ -155,8 +156,8 @@
         .info-grid {
             display: grid;
             /* The first column (URL) takes up all remaining space (1fr), 
-               the next two (Languages) take only the space of their content (auto) */
-            grid-template-columns: 1fr auto auto;
+               the others take only the space of their content (auto) */
+            grid-template-columns: 1fr auto auto auto;
             gap: 2rem;
         }
 
@@ -336,10 +337,10 @@
 
         <!-- Menu shown only on mobile devices -->
         <nav class="top-nav" aria-label="Top menu">
-            <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
-            <a data-i18n="resPrivacy" target="_new"
+            <a data-i18n="resHelp" target="_blank" rel="noopener noreferrer" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
+            <a data-i18n="resPrivacy" target="_blank" rel="noopener noreferrer"
                 href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
-            <a data-i18n="resContact" target="_new"
+            <a data-i18n="resContact" target="_blank" rel="noopener noreferrer"
                 href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
         </nav>
     </header>
@@ -351,11 +352,11 @@
         <!-- Menu shown only on large screens (desktop/landscape tablet) -->
         <aside class="sidebar">
             <nav class="side-nav" aria-label="Side menu">
-                <a data-i18n="resHelp" target="_new"
+                <a data-i18n="resHelp" target="_blank" rel="noopener noreferrer"
                     href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
-                <a data-i18n="resPrivacy" target="_new"
+                <a data-i18n="resPrivacy" target="_blank" rel="noopener noreferrer"
                     href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
-                <a data-i18n="resContact" target="_new"
+                <a data-i18n="resContact" target="_blank" rel="noopener noreferrer"
                     href="https://sirmonti.github.io/contentAnalyzer/contact.html">Contact</a>
             </nav>
         </aside>
@@ -368,7 +369,7 @@
                 <div class="info-grid">
                     <div class="info-item">
                         <span class="info-label">URL</span>
-                        <span class="info-value" id="PAGEURL">https://ejemplo.com/pagina-analizada</span>
+                        <a class="info-value" id="PAGEURL" target="_blank" rel="noopener noreferrer">https://ejemplo.com/pagina-analizada</a>
                     </div>
                     <div class="info-item">
                         <span class="info-label" data-i18n="resSysLang">System Language</span>
@@ -378,6 +379,10 @@
                     <div class="info-item">
                         <span class="info-label" data-i18n="resPageLang">Page Language</span>
                         <span class="info-value" id="PAGELANG">es-ES</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label" data-i18n="resCharCount">Query Length</span>
+                        <span class="info-value" id="CHARCOUNT">0</span>
                     </div>
                 </div>
             </section>
@@ -401,6 +406,7 @@
         </main>
     </div>
     <script src="i18n.js"></script>
+    <script src="marked.min.js"></script>
     <script src="result.js"></script>
 </body>
 

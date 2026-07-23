@@ -190,5 +190,86 @@
   },
   "resPageLang": {
     "message": "Lingua della pagina"
+  },
+  "optPromptsListTitle": {
+    "message": "Configured Prompts"
+  },
+  "optAddPrompt": {
+    "message": "Add New Prompt"
+  },
+  "optPromptNameLabel": {
+    "message": "Prompt Name"
+  },
+  "optPromptNamePlaceholder": {
+    "message": "Ex: Text Summary"
+  },
+  "optPromptTextLabel": {
+    "message": "Prompt Text"
+  },
+  "optPromptTextPlaceholder": {
+    "message": "Analyze this text and..."
+  },
+  "optSavePromptBtn": {
+    "message": "Save Prompt"
+  },
+  "optEditPrompt": {
+    "message": "Edit Prompt"
+  },
+  "optSelectPromptLabel": {
+    "message": "Use prompt from the list"
+  },
+  "optSelectPromptDefault": {
+    "message": "-- Use custom prompt --"
+  },
+  "thPrompt": {
+    "message": "Prompt"
+  },
+  "resCharCount": {
+    "message": "Query Length (chars)"
+  },
+  "optUseMarkdown": {
+    "message": "Convert content to Markdown (uncheck to process HTML directly)"
+  },
+  "optLinkWeb": {
+    "message": "Link and limit this service to one or more domains"
+  },
+  "optLinkDomains": {
+    "message": "Domains to link (comma separated)"
+  },
+  "optSysPromptsListTitle": {
+    "message": "System Prompts"
+  },
+  "optAddSysPrompt": {
+    "message": "Add New System Prompt"
+  },
+  "optSysPromptNameLabel": {
+    "message": "System Prompt Name"
+  },
+  "optSysPromptNamePlaceholder": {
+    "message": "e.g. Summarizer"
+  },
+  "optSysPromptTextLabel": {
+    "message": "System Prompt"
+  },
+  "optSysPromptTextPlaceholder": {
+    "message": "e.g. You are an expert summarizer..."
+  },
+  "optSaveSysPromptBtn": {
+    "message": "Save System Prompt"
+  },
+  "optSelectSysPromptLabel": {
+    "message": "System Prompt (Optional)"
+  },
+  "optSelectSysPromptDefault": {
+    "message": "-- No System Prompt --"
+  },
+  "optColSysPromptName": {
+    "message": "System Prompt Name"
+  },
+  "optColSysPromptText": {
+    "message": "Text"
+  },
+  "optSysPromptTextLabelOptional": {
+    "message": "System Prompt (Optional)"
   }
 }

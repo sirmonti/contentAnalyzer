@@ -1,0 +1,63 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">内容分析器</p>
+            <h1 class="font-article-title text-article-title text-text-primary">隐私政策</h1>
+            <p class="font-caption text-caption text-text-secondary mt-sm">最后更新：2026年4月</p>
+        </header>
+        
+        <div class="text-content font-body text-body text-text-primary space-y-lg leading-relaxed">
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">1. 简介</h2>
+                <p>“contentAnalyzer” Chrome 扩展程序（以下简称“本扩展”）旨在利用用户配置的人工智能服务来处理当前网页的内容。本隐私政策说明了我们对您隐私的承诺以及数据处理方式。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">2. 开发者不收集数据</h2>
+                <p class="mb-sm">我们极其重视您的隐私。本扩展的开发者不会将您的任何个人数据、浏览记录或处理的内容传输到由开发者控制的任何服务器。</p>
+                <p>所有配置设置（例如 API 密钥或自定义提示词）都存储在您浏览器本地的存储中（例如 <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome.storage.local</code>），且开发者无法访问这些信息。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">3. 向第三方服务传输数据</h2>
+                <p class="mb-md">为了提供核心功能，扩展程序会将您选择分析的网页内容发送到您在设置中配置的第三方 AI 服务提供商（以下简称“AI 服务”）。</p>
+                
+                <div class="ml-md lg:ml-lg border-l-2 border-border-subtle pl-md space-y-md">
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.1. 用户配置的服务</h3>
+                        <p>该扩展仅与用户提供的特定端点/API 进行通信。由于这些服务是由用户选择并配置的，因此“contentAnalyzer”的开发者无法控制这些第三方网站如何处理发送给它们的数据。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-xs">3.2. 第三方隐私政策</h3>
+                        <p>开发者不承担您所选择使用的 AI 服务的隐私做法、数据保留政策或安全措施的责任。在使用特定服务的扩展程序之前，我们强烈建议您查看该提供商的隐私政策和服务条款。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">4. 权限</h2>
+                <p class="mb-md">扩展程序需要以下特定权限才能正常运行：</p>
+                <ul class="list-disc ml-xl space-y-sm">
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">activeTab</code> 或 <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">&lt;all_urls&gt;</code>：用于读取您希望分析的页面内容。</li>
+                    <li><code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">storage</code>：用于在本地保存您的配置和 API 设置。</li>
+                    <li><strong>主机权限（host permissions）：</strong> 用于将内容发送到您指定的 AI 服务 API。</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">5. 安全性</h2>
+                <p>虽然扩展程序通过标准的网络协议促进数据传输，但一旦数据离开您的浏览器，其安全性完全取决于您配置的 AI 服务。我们建议使用提供安全（HTTPS）API 端点的服务。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">6. 本政策的变更</h2>
+                <p>开发者保留随时更新本隐私政策的权利。任何更改都将反映在扩展程序的更新版本中，并在本页面上更新。</p>
+            </section>
+            
+            <section>
+                <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">7. 联系我们</h2>
+                <p>如果您对本隐私政策有任何疑问，请通过 <a href="contact.html">联系页面</a>中提供的渠道联系开发人员。</p>
+            </section>
+        </div>
+    </article>
+</div>

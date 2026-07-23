@@ -86,4 +86,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+
+    // ---- LOCALIZED HELP LINKS ----
+    // Insert the 2-letter language code into the sirmonti.github.io URLs
+    const langCode = uiLang.split('-')[0].toLowerCase();
+    document.querySelectorAll("a[href^='https://sirmonti.github.io/contentAnalyzer/']").forEach(link => {
+        // Prevent adding it multiple times
+        if (!link.href.includes('/' + langCode + '/')) {
+            const url = new URL(link.href);
+            const parts = url.pathname.split('/');
+            const filename = parts.pop();
+            parts.push(langCode);
+            parts.push(filename);
+            url.pathname = parts.join('/');
+            link.href = url.toString();
+        }
+    });
 });

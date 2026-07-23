@@ -1,0 +1,144 @@
+<div class="max-w-container-max mx-auto p-md md:p-xl w-full">
+    <article
+        class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
+        <header class="mb-xl pb-md border-b border-border-subtle">
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Content Analyzer
+                Extension</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Get a Free API Key</h1>
+        </header>
+
+        <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
+            <p class="mb-sm">To use the <strong>Content Analyzer</strong> effectively, you will need to configure an AI
+                provider. While some providers charge for their usage, there are excellent free options available.</p>
+            <p class="mb-sm">Below you will find instructions on how to obtain free API keys or set up services across
+                popular platforms: Google Gemini, OpenRouter, Groq, Mistral AI, and Ollama.</p>
+        </div>
+
+        <div class="space-y-xl">
+            <section class="relative" id="gemini">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        1</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Google Gemini</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Google offers access to its advanced
+                            Gemini models through Google AI Studio. They provide a generous free tier for developers.
+                            Note that the models that can be used for free are those containing the word "lite" in their
+                            name, such as <code>gemini-3.1-flash-lite</code> or <code>gemini-flash-lite-latest</code>.
+                        </p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>Visit the <a class="text-primary hover:underline" href="https://aistudio.google.com/"
+                                    target="_new">Google AI Studio</a> website.</li>
+                            <li>Sign in with your Google account.</li>
+                            <li>On the left-hand navigation menu, click on <strong>"Get API key"</strong>.</li>
+                            <li>Click on the <strong>"Create API key"</strong> button. You can choose to create it in an
+                                existing Google Cloud project or let AI Studio create a new one for you.</li>
+                            <li>Copy the generated key and paste it into the Content Analyzer's Options page under the
+                                Gemini provider settings.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="relative" id="openrouter">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        2</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">OpenRouter.ai</h2>
+                        <p class="font-body text-body text-text-primary mb-md">OpenRouter is a unified interface for
+                            multiple AI models. It aggregates models from various providers, and several high-quality
+                            models are available completely for free.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>Go to the <a class="text-primary hover:underline" href="https://openrouter.ai/"
+                                    target="_new">OpenRouter.ai</a> homepage.</li>
+                            <li>Sign up or log in using an existing account (Google, GitHub, etc.).</li>
+                            <li>Once logged in, navigate to the <strong>"Keys"</strong> section from the main menu or
+                                your account settings.</li>
+                            <li>Click on <strong>"Create Key"</strong>. Give it a name like "Content Analyzer".</li>
+                            <li>Copy your new API key. In Content Analyzer, you can use this key by selecting the OpenAI
+                                compatibility option, setting the Base URL to <code>https://openrouter.ai/api/v1</code>,
+                                and entering your chosen model's ID (e.g., <code>google/gemini-2.5-flash:free</code>).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="relative" id="groq">
+                <div class="flex items-start gap-md relative z-10">
+                    <div
+                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                        3</div>
+                    <div class="w-full">
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Groq</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Groq provides extremely fast inference
+                            for open-source AI models. They currently offer a free tier with high performance for
+                            developers.</p>
+                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                            <li>Visit the <a class="text-primary hover:underline" href="https://console.groq.com/"
+                                    target="_new">Groq Console</a>.</li>
+                            <li>Sign up or log in using an existing account.</li>
+                            <li>Navigate to the <strong>"API Keys"</strong> section in the sidebar.</li>
+                            <li>Click on <strong>"Create API Key"</strong> and give it a descriptive name.</li>
+                            <li>Copy the generated API key. In Content Analyzer, use the OpenAI compatibility option,
+                                set the Base URL to <code>https://api.groq.com/openai/v1</code>, and enter your chosen
+                                model's ID (e.g., <code>llama3-8b-8192</code>).</li>
+                        </ul>
+                    </div>
+                </div>
+                <section class="relative" id="mistral">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            4</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Mistral AI</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Mistral AI provides access to
+                                state-of-the-art open and commercial models through La Plateforme, offering free tiers
+                                for developers to experiment.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>Visit the <a class="text-primary hover:underline" href="https://console.mistral.ai/"
+                                        target="_new">Mistral AI Console</a>.</li>
+                                <li>Sign up or log in to your account.</li>
+                                <li>Navigate to the <strong>"API Keys"</strong> section from the workspace navigation.
+                                </li>
+                                <li>Click on <strong>"Create new key"</strong> and copy your generated API key.</li>
+                                <li>In Content Analyzer, select the OpenAI compatibility option, set the Base URL to
+                                    <code>https://api.mistral.ai/v1</code>, and enter your chosen model ID (e.g.,
+                                    <code>mistral-small-latest</code>).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="relative" id="ollama">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            5</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Ollama (ollama.com)</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Ollama provides an online API service
+                                allowing you to connect directly to hosted models via their web platform.</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li>Visit the <a class="text-primary hover:underline" href="https://ollama.com/"
+                                        target="_new">Ollama.com</a> website.</li>
+                                <li>Log in to your account or sign up if you do not have one yet.</li>
+                                <li>Click on your user menu located at the top right corner of the page.</li>
+                                <li>Select the <strong>"Settings"</strong> option.</li>
+                                <li>Select the <strong>"Keys"</strong> section.</li>
+                                <li>Click on <strong>"Add API key"</strong> and generate your API key.</li>
+                                <li>In Content Analyzer, choose the <strong>Ollama</strong> API type and set the Base
+                                    URL to <code>https://ollama.com/</code>, and enter your chosen model ID (e.g.,
+                                    <code>gemma4:31b</code>).
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+        </div>
+    </article>
+</div>
