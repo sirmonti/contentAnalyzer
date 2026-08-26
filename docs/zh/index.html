@@ -260,39 +260,42 @@
         <main class="flex-1 lg:ml-sidebar-width bg-background-canvas min-h-screen flex flex-col justify-between">
 
             <div class="max-w-container-max mx-auto p-md md:p-xl w-full">
-    <!-- Hero Section (Brutalist style) -->
+    <!-- 简介部分（粗犷主义风格） -->
     <article class="bg-surface-article border border-border-subtle p-xl mb-xl">
         <div class="flex flex-col md:flex-row gap-xl items-start">
             <div class="flex-1">
                 <h1 class="font-article-title text-article-title text-text-primary mb-md leading-tight">
-                    内容分析器 - 浏览器扩展
+                    内容分析器 - 网页浏览器扩展
                 </h1>
                 <p class="font-body text-body text-text-secondary mb-lg max-w-[600px]">
-                    一款专为严谨学术研究设计的插件。将您的浏览器转变为一个结构化的分析环境，让您能够实时对任何网页文本进行拆解、分类并提取元数据。
+                    一款专为严谨的学术研究而设计的扩展程序。将您的浏览器转变为一个结构化的分析环境，让您可以实时地分解、分类和提取任何网页文本的元数据。
                 </p>
             </div>
             <div class="w-full md:w-[400px] border border-border-subtle bg-surface-header p-xs hidden md:block">
-                <div class="w-full h-[250px] bg-surface-container border border-border-subtle flex items-center justify-center relative overflow-hidden" data-alt="A clean, minimalist screenshot of a web browser extension interface overlaid on a dense text article. The UI features sharp corners, a stark white background with thin grey borders, and high-contrast typography in Libre Baskerville. The overall aesthetic is strictly academic, flat, and brutalist, displaying extracted metadata points like 'Word Count' and 'Keywords' in a structured grid format without any shadows or gradients." style="background-image: url('../contentAnalyzer.png'); background-size: cover; background-position: center;">
+                <div class="w-full h-[250px] bg-surface-container border border-border-subtle flex items-center justify-center relative overflow-hidden" data-alt="一张简洁、极简主义风格的网页浏览器扩展程序界面截图，叠加在一篇内容密集的文本文章上。界面采用尖锐的边角、纯白色背景和细灰色的边框，以及高对比度的 Libre Baskerville 字体。整体美学风格严格遵循学术、扁平和粗犷主义，以结构化的网格格式显示提取的元数据点，如“字数统计”和“关键词”，没有任何阴影或渐变。" style="background-image: url('../contentAnalyzer.png'); background-size: cover; background-position: center;">
                 </div>
             </div>
         </div>
-        <!-- Bottom button bar (Full width) -->
+        <!-- 底部按钮栏（全宽） -->
         <div class="w-full mt-xl pt-lg border-t border-border-subtle flex flex-wrap justify-center items-center gap-md">
             <a class="bg-primary-container text-on-primary font-body-bold h-[32px] px-md rounded-none border border-transparent hover:bg-primary-hover flex items-center gap-xs" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" rel="noopener noreferrer" target="_blank">
-                <span class="material-symbols-outlined text-[18px]">download</span> 为 Chrome 安装
+                <span class="material-symbols-outlined text-[18px]">download</span> 安装 Chrome 版
             </a>
             <a class="bg-primary-container text-on-primary font-body-bold h-[32px] px-md rounded-none border border-transparent hover:bg-primary-hover flex items-center gap-xs" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" rel="noopener noreferrer" target="_blank">
-                <span class="material-symbols-outlined text-[18px]">download</span> 为 Firefox 安装
+                <span class="material-symbols-outlined text-[18px]">download</span> 安装 Firefox 版
+            </a>
+            <a class="bg-primary-container text-on-primary font-body-bold h-[32px] px-md rounded-none border border-transparent hover:bg-primary-hover flex items-center gap-xs" href="https://github.com/sirmonti/contentAnalyzer" rel="noopener noreferrer" target="_blank">
+                <span class="material-symbols-outlined text-[18px]">code</span> 在 GitHub 上查看
             </a>
         </div>
     </article>
-    
+
     <section class="mt-xxl">
         <h2 class="font-h2-section text-h2-section text-text-primary mb-lg pb-sm border-b border-border-subtle">
             主要功能
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-            <!-- Feature Card 1 -->
+            <!-- 功能卡 1 -->
             <div class="bg-surface-article border border-border-subtle pt-0 flex flex-col">
                 <div class="bg-surface-header border-b border-border-subtle p-sm flex items-center gap-xs">
                     <span class="material-symbols-outlined text-text-primary">bolt</span>
@@ -300,11 +303,11 @@
                 </div>
                 <div class="p-md flex-1">
                     <p class="font-body text-body text-text-secondary">
-                        瞬时处理庞大文档。该工具可在不重新加载页面的情况下，自动扫描可见的 DOM 结构并应用解析算法，让您能够专注于阅读内容。
+                        即时处理大型文档。该工具扫描可见的 DOM 并应用解析算法，无需重新加载页面，让您可以专注于阅读。
                     </p>
                 </div>
             </div>
-            <!-- Feature Card 2 -->
+            <!-- 功能卡 2 -->
             <div class="bg-surface-article border border-border-subtle pt-0 flex flex-col">
                 <div class="bg-surface-header border-b border-border-subtle p-sm flex items-center gap-xs">
                     <span class="material-symbols-outlined text-text-primary">database</span>
@@ -314,11 +317,11 @@
                     <ul class="space-y-sm">
                         <li class="flex gap-sm items-start">
                             <span class="block w-[4px] h-[4px] rounded-full bg-text-secondary mt-[10px]"></span>
-                            <span class="font-body text-body text-text-secondary">提取参考文献引用。</span>
+                            <span class="font-body text-body text-text-secondary">提取书目引用。</span>
                         </li>
                         <li class="flex gap-sm items-start">
                             <span class="block w-[4px] h-[4px] rounded-full bg-text-secondary mt-[10px]"></span>
-                            <span class="font-body text-body text-text-secondary">识别核心实体。</span>
+                            <span class="font-body text-body text-text-secondary">识别关键实体。</span>
                         </li>
                         <li class="flex gap-sm items-start">
                             <span class="block w-[4px] h-[4px] rounded-full bg-text-secondary mt-[10px]"></span>
@@ -330,34 +333,34 @@
             <div class="bg-surface-article border border-border-subtle pt-0 flex flex-col">
                 <div class="bg-surface-header border-b border-border-subtle p-sm flex items-center gap-xs">
                     <span class="material-symbols-outlined text-text-primary">design_services</span>
-                    <h3 class="font-h3-subsection text-h3-subsection text-text-primary">学术级界面</h3>
+                    <h3 class="font-h3-subsection text-h3-subsection text-text-primary">学术界面</h3>
                 </div>
                 <div class="p-md flex-1">
                     <p class="font-body text-body text-text-secondary">
-                        专为专注力及视觉耐受度而设计。采用中性色调、高度可读的排版，并完全剔除任何干扰性的动画或多余元素。
+                        专为集中注意力和视觉耐力而设计。采用中性色彩方案、高度易读的字体，以及完全没有任何分散注意力的动画或多余元素。
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="mt-xxl border border-border-subtle bg-surface-article pt-0 flex flex-col md:flex-row">
         <div class="bg-surface-header border-b md:border-b-0 md:border-r border-border-subtle p-lg md:w-[300px] flex flex-col justify-center">
-            <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">兼容性与要求</h3>
+            <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">兼容性和要求</h3>
             <p class="font-caption text-caption text-text-secondary">当前版本：v4.0</p>
         </div>
         <div class="p-lg flex-1">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-y-sm gap-x-xl">
                 <div class="flex justify-between border-b border-border-subtle pb-xs border-dotted">
                     <span class="font-body-bold text-body-bold text-text-primary">浏览器</span>
-                    <span class="font-code text-code text-text-secondary">Chrome &amp; Firefox 90+</span>
+                    <span class="font-code text-code text-text-secondary">Chrome 和 Firefox 90+</span>
                 </div>
                 <div class="flex justify-between border-b border-border-subtle pb-xs border-dotted">
                     <span class="font-body-bold text-body-bold text-text-primary">许可证</span>
                     <span class="font-code text-code text-text-secondary">GPLv3</span>
                 </div>
                 <div class="flex justify-between border-b border-border-subtle pb-xs border-dotted">
-                    <span class="font-body-bold text-body-bold text-text-primary">隐私保护</span>
+                    <span class="font-body-bold text-body-bold text-text-primary">隐私</span>
                     <span class="font-code text-code text-text-secondary">本地处理</span>
                 </div>
                 <div class="flex justify-between border-b border-border-subtle pb-xs border-dotted">

@@ -261,24 +261,25 @@
         <main class="flex-1 lg:ml-sidebar-width bg-background-canvas min-h-screen flex flex-col justify-between">
 
             <div class="max-w-container-max mx-auto p-md md:p-xl w-full">
-    <!-- Hero Section (Brutalist style) -->
+    <!-- Hero Section (Бруталистский стиль) -->
     <article class="bg-surface-article border border-border-subtle p-xl mb-xl">
         <div class="flex flex-col md:flex-row gap-xl items-start">
             <div class="flex-1">
                 <h1 class="font-article-title text-article-title text-text-primary mb-md leading-tight">
-                    Анализатор контента — расширение для браузера
+                    Content Analyzer — расширение для веб-браузера
                 </h1>
                 <p class="font-body text-body text-text-secondary mb-lg max-w-[600px]">
-                    Расширение, созданное для интеллектуальной работы. Превратите свой браузер в структурированную
-                    среду анализа, позволяющую разбирать, категоризировать и извлекать метаданные из любого веб-текста в реальном времени.
+                    Расширение, разработанное для интеллектуального анализа. Превратите свой браузер в
+                    структурированную среду анализа, позволяющую разбивать текст, классифицировать его и
+                    извлекать метаданные из любого веб-текста в режиме реального времени.
                 </p>
             </div>
             <div class="w-full md:w-[400px] border border-border-subtle bg-surface-header p-xs hidden md:block">
-                <div class="w-full h-[250px] bg-surface-container border border-border-subtle flex items-center justify-center relative overflow-hidden" data-alt="A clean, minimalist screenshot of a web browser extension interface overlaid on a dense text article. The UI features sharp corners, a stark white background with thin grey borders, and high-contrast typography in Libre Baskerville. The overall aesthetic is strictly academic, flat, and brutalist, displaying extracted metadata points like 'Word Count' and 'Keywords' in a structured grid format without any shadows or gradients." style="background-image: url('../contentAnalyzer.png'); background-size: cover; background-position: center;">
+                <div class="w-full h-[250px] bg-surface-container border border-border-subtle flex items-center justify-center relative overflow-hidden" data-alt="Чистый, минималистичный скриншот интерфейса расширения для веб-браузера, наложенного на плотный текстовый документ. Интерфейс отличается четкими углами, ярко-белым фоном с тонкими серыми границами и контрастной типографикой в стиле Libre Baskerville. Общая эстетика строго академична, плоская и бруталистская, отображает извлеченные метаданные, такие как «Количество слов» и «Ключевые слова», в виде структурированной сетки без теней или градиентов." style="background-image: url('../contentAnalyzer.png'); background-size: cover; background-position: center;">
                 </div>
             </div>
         </div>
-        <!-- Bottom button bar (Full width) -->
+        <!-- Нижняя панель кнопок (на всю ширину) -->
         <div class="w-full mt-xl pt-lg border-t border-border-subtle flex flex-wrap justify-center items-center gap-md">
             <a class="bg-primary-container text-on-primary font-body-bold h-[32px] px-md rounded-none border border-transparent hover:bg-primary-hover flex items-center gap-xs" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" rel="noopener noreferrer" target="_blank">
                 <span class="material-symbols-outlined text-[18px]">download</span> Установить для Chrome
@@ -286,15 +287,18 @@
             <a class="bg-primary-container text-on-primary font-body-bold h-[32px] px-md rounded-none border border-transparent hover:bg-primary-hover flex items-center gap-xs" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" rel="noopener noreferrer" target="_blank">
                 <span class="material-symbols-outlined text-[18px]">download</span> Установить для Firefox
             </a>
+            <a class="bg-primary-container text-on-primary font-body-bold h-[32px] px-md rounded-none border border-transparent hover:bg-primary-hover flex items-center gap-xs" href="https://github.com/sirmonti/contentAnalyzer" rel="noopener noreferrer" target="_blank">
+                <span class="material-symbols-outlined text-[18px]">code</span> Посмотреть на GitHub
+            </a>
         </div>
     </article>
-    
+
     <section class="mt-xxl">
         <h2 class="font-h2-section text-h2-section text-text-primary mb-lg pb-sm border-b border-border-subtle">
             Основные функции
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-            <!-- Feature Card 1 -->
+            <!-- Карточка функции 1 -->
             <div class="bg-surface-article border border-border-subtle pt-0 flex flex-col">
                 <div class="bg-surface-header border-b border-border-subtle p-sm flex items-center gap-xs">
                     <span class="material-symbols-outlined text-text-primary">bolt</span>
@@ -302,12 +306,12 @@
                 </div>
                 <div class="p-md flex-1">
                     <p class="font-body text-body text-text-secondary">
-                        Мгновенно обрабатывает большие документы. Инструмент сканирует видимый DOM и применяет
+                        Обрабатывает большие документы мгновенно. Инструмент сканирует видимый DOM и применяет
                         алгоритмы разбора без перезагрузки страницы, позволяя вам сосредоточиться на чтении.
                     </p>
                 </div>
             </div>
-            <!-- Feature Card 2 -->
+            <!-- Карточка функции 2 -->
             <div class="bg-surface-article border border-border-subtle pt-0 flex flex-col">
                 <div class="bg-surface-header border-b border-border-subtle p-sm flex items-center gap-xs">
                     <span class="material-symbols-outlined text-text-primary">database</span>
@@ -325,7 +329,7 @@
                         </li>
                         <li class="flex gap-sm items-start">
                             <span class="block w-[4px] h-[4px] rounded-full bg-text-secondary mt-[10px]"></span>
-                            <span class="font-body text-body text-text-secondary">Табличная структура числовых данных.</span>
+                            <span class="font-body text-body text-text-secondary">Табличное структурирование числовых данных.</span>
                         </li>
                     </ul>
                 </div>
@@ -337,14 +341,14 @@
                 </div>
                 <div class="p-md flex-1">
                     <p class="font-body text-body text-text-secondary">
-                        Разработано для концентрации внимания и визуального комфорта. Нейтральная цветовая гамма, высокочитаемая
-                        типографика и полное отсутствие отвлекающих анимаций или избыточных элементов.
+                        Разработан для концентрации и визуальной устойчивости. Нейтральная цветовая схема,
+                        высокочитаемая типографика и полное отсутствие отвлекающих анимаций или излишних элементов.
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="mt-xxl border border-border-subtle bg-surface-article pt-0 flex flex-col md:flex-row">
         <div class="bg-surface-header border-b md:border-b-0 md:border-r border-border-subtle p-lg md:w-[300px] flex flex-col justify-center">
             <h3 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">Совместимость и требования</h3>
