@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="extName">Content Analyzer</title>
+    <link rel="stylesheet" href="prism.min.css">
     <style>
         /* ==========================================================================
            COLOR VARIABLES AND BASE STYLES (Whites and Blues)
@@ -248,8 +249,16 @@
             font-weight: 500;
         }
 
-        #saveBtn {
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
             margin: 1.5rem auto;
+            flex-wrap: wrap;
+        }
+
+        #saveBtn {
             padding: 0.8rem 1.5rem;
             background-color: var(--color-blue-primary);
             color: var(--color-white);
@@ -257,12 +266,32 @@
             border-radius: var(--border-radius);
             font-weight: 600;
             cursor: pointer;
-            align-self: center;
             transition: background-color 0.2s;
         }
 
         #saveBtn:hover {
             background-color: var(--color-blue-dark);
+        }
+
+        #abortBtn {
+            padding: 0.8rem 1.5rem;
+            background-color: #dc3545;
+            color: var(--color-white);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #abortBtn:hover {
+            background-color: #c82333;
+        }
+
+        #abortBtn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.65;
         }
 
         /* ==========================================================================
@@ -514,21 +543,43 @@
                 <div class="content-body-title">
                     <h2><span data-i18n="resHeader">Result - </span><span id="serviceName">...</span></h2>
                 </div>
-                <div id="status" style="display:block">
+                <div id="status" style="display:block" role="status" aria-live="polite">
                     <div class="loader"></div>
                     <span data-i18n="statusProcessing">Processing...</span>
                 </div>
                 <!-- Box with the analysis text -->
-                <div class="result-box" id="resultBox" style="display:none"></div>
+                <div id="resultContainer" style="display:none; position: relative; border: 1px solid var(--color-blue-border); border-radius: var(--border-radius); background: var(--color-white); margin: 2rem;">
+                    <div class="result-box" id="resultBox" dir="auto" style="border-radius: 0; min-height: 100px;"></div>
+                    <button id="copyBtn" title="Copy" style="position: absolute; bottom: 10px; right: 10px; background: none; border: none; cursor: pointer; color: var(--color-blue-primary);">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                            <path d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+                        </svg>
+                    </button>
+                </div>
 
-                <!-- Save button -->
-                <button id="saveBtn" data-i18n="resSaveBtn" style="display:none">Save to file</button>
+                <!-- Chat history & Follow-up input -->
+                <div id="chatContainer" style="display:none; margin: 0 2rem 2rem 2rem;">
+                    <div class="form-group" style="display: flex; gap: 0.5rem; align-items: stretch; margin-bottom: 0;">
+                        <textarea id="chatInput" data-i18n="chatPlaceholder" placeholder="Type your follow-up prompt here..." dir="auto" style="flex-grow: 1; resize: vertical; min-height: 40px; border: 1px solid var(--color-blue-border); border-radius: 4px; padding: 0.5rem; font-family: inherit;"></textarea>
+                        <button id="chatSendBtn" class="btn-primary" data-i18n="chatSend" style="align-self: flex-end; padding: 0.5rem 1rem;">Send</button>
+                    </div>
+                </div>
+
+                <!-- Action buttons (Abort / Save) -->
+                <div class="result-actions">
+                    <button id="abortBtn" data-i18n="resAbortBtn" style="display:none">Abort</button>
+                    <button id="saveMdBtn" data-i18n="resSaveMdBtn" style="display:none; margin-right: 0.5rem; background-color: var(--color-blue-primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: 500;">Save as Markdown</button>
+                    <button id="saveHtmlBtn" data-i18n="resSaveHtmlBtn" style="display:none; background-color: #28a745; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: 500;">Save as HTML</button>
+                </div>
             </section>
 
         </main>
     </div>
     <script src="i18n.js"></script>
     <script src="marked.min.js"></script>
+    <script src="purify.min.js"></script>
+    <script src="prism.min.js"></script>
     <script src="result.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {

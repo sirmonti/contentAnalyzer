@@ -1,218 +1,350 @@
 {
-  "extName": {
-    "message": "מנתח תוכן"
-  },
-  "extDesc": {
-    "message": "מעבד תוכן נבחר בעזרת בינה מלאכותית"
-  },
-  "popupTitle": {
-    "message": "ניתוח תוכן"
-  },
-  "selectService": {
-    "message": "שירות בינה מלאכותית:"
-  },
-  "btnExtractBrowser": {
-    "message": "חילוץ בדפדפן"
-  },
-  "btnExtractDisk": {
-    "message": "שמירה בדיסק (.md)"
-  },
-  "statusProcessing": {
-    "message": "מעבד..."
-  },
-  "statusSaved": {
-    "message": "נשמר בהורדות"
-  },
-  "statusSelectService": {
-    "message": "בחר ספק"
-  },
-  "optPageTitle": {
-    "message": "הגדרת שירותים"
-  },
-  "optTitle": {
-    "message": "תצורת בינה מלאכותית"
-  },
-  "optAddService": {
-    "message": "הוספת שירות חדש"
-  },
-  "optNameLabel": {
-    "message": "שם מזהה"
-  },
-  "optNamePlaceholder": {
-    "message": "לדוגמה: Ollama Llama3 Summary"
-  },
-  "optTypeLabel": {
-    "message": "סוג"
-  },
-  "optUrlLabel": {
-    "message": "כתובת השירות"
-  },
-  "optUrlHint": {
-    "message": "המודלים הזמינים ייבדקו בעת הקלדת הכתובת."
-  },
-  "optApiKeyLabel": {
-    "message": "מפתח API (אופציונלי)"
-  },
-  "optModelLabel": {
-    "message": "מודל לשימוש"
-  },
-  "optModelEmpty": {
-    "message": "-- הזן תצורה חוקית --"
-  },
-  "optModelLoading": {
-    "message": "טוען שירותים..."
-  },
-  "optPromptLabel": {
-    "message": "הנחיה"
-  },
-  "optPromptPlaceholder": {
-    "message": "לדוגמה: סכם את המאמר הזה:\\n\\n"
-  },
-  "optSaveBtn": {
-    "message": "שמירת שירות"
-  },
-  "optCancelBtn": {
-    "message": "ביטול"
-  },
-  "optListTitle": {
-    "message": "שירותים מוגדרים"
-  },
-  "thName": {
-    "message": "שם"
-  },
-  "thType": {
-    "message": "סוג"
-  },
-  "thUrl": {
-    "message": "כתובת"
-  },
-  "thModel": {
-    "message": "מודל"
-  },
-  "thActions": {
-    "message": "פעולות"
-  },
-  "btnEdit": {
-    "message": "עריכה"
-  },
-  "btnDelete": {
-    "message": "מחיקה"
-  },
-  "alertServiceExists": {
-    "message": "שירות בשם זה כבר קיים"
-  },
-  "resPageTitle": {
-    "message": "תוצאת AI - מנתח"
-  },
-  "resHeader": {
-    "message": "תוצאה - "
-  },
-  "resSaving": {
-    "message": "שומר..."
-  },
-  "resSaveBtn": {
-    "message": "שמירה כקובץ"
-  },
-  "resInvalidId": {
-    "message": "מזהה ביצוע לא חוקי."
-  },
-  "resDataNotFound": {
-    "message": "נתוני המאמר לא נמצאו."
-  },
-  "resReconnecting": {
-    "message": "מנסה שוב... (ניסיון $1/$2)"
-  },
-  "resConnError": {
-    "message": "שגיאה: החיבור נסגר שוב ושוב באופן בלתי צפוי."
-  },
-  "resAIError": {
-    "message": "שגיאת בינה מלאכותית: $1"
-  },
-  "resDefaultFilename": {
-    "message": "תשובת_בינה_מלאכותית"
-  },
-  "errUnsupportedService": {
-    "message": "שירות לא נתמך: $1"
-  },
-  "errDownload": {
-    "message": "שגיאת הורדה"
-  },
-  "extIconTitle": {
-    "message": "ניתוח תוכן"
-  },
-  "errNoServices": {
-    "message": "אין שירותים מוגדרים."
-  },
-  "errNoModels": {
-    "message": "לא נמצאו מודלים"
-  },
-  "errConn": {
-    "message": "שגיאת חיבור"
-  },
-  "optEditService": {
-    "message": "עריכת שירות"
-  },
-  "optSaveChanges": {
-    "message": "שמירת שינויים"
-  },
-  "errNoTab": {
-    "message": "אין כרטיסייה פעילה"
-  },
-  "errParse": {
-    "message": "שגיאת לכידה: $1"
-  },
-  "tipInstruction": {
-    "message": "🤖 הצבע על החלק לחילוץ ולחץ"
-  },
-  "capAllBtn": {
-    "message": "לכידת הדף כולו"
-  },
-  "resCharCount": {
-    "message": "Query Length (chars)"
-  },
-  "optUseMarkdown": {
-    "message": "Convert content to Markdown (uncheck to process HTML directly)"
-  },
-  "optLinkWeb": {
-    "message": "Link and limit this service to one or more domains"
-  },
-  "optLinkDomains": {
-    "message": "Domains to link (comma separated)"
-  },
-  "optSysPromptsListTitle": {
-    "message": "System Prompts"
-  },
-  "optAddSysPrompt": {
-    "message": "Add New System Prompt"
-  },
-  "optSysPromptNameLabel": {
-    "message": "System Prompt Name"
-  },
-  "optSysPromptNamePlaceholder": {
-    "message": "e.g. Summarizer"
-  },
-  "optSysPromptTextLabel": {
-    "message": "System Prompt"
-  },
-  "optSysPromptTextPlaceholder": {
-    "message": "e.g. You are an expert summarizer..."
-  },
-  "optSaveSysPromptBtn": {
-    "message": "Save System Prompt"
-  },
-  "optSelectSysPromptLabel": {
-    "message": "System Prompt (Optional)"
-  },
-  "optSelectSysPromptDefault": {
-    "message": "-- No System Prompt --"
-  },
-  "optColSysPromptName": {
-    "message": "System Prompt Name"
-  },
-  "optColSysPromptText": {
-    "message": "Text"
-  },
-  "optSysPromptTextLabelOptional": {
-    "message": "System Prompt (Optional)"
-  }
+    "extName": {
+        "message": "מנתח תוכן"
+    },
+    "extDesc": {
+        "message": "מעבד תוכן נבחר בעזרת בינה מלאכותית"
+    },
+    "popupTitle": {
+        "message": "ניתוח תוכן"
+    },
+    "selectService": {
+        "message": "שירות בינה מלאכותית:"
+    },
+    "btnExtractBrowser": {
+        "message": "חילוץ בדפדפן"
+    },
+    "btnExtractDisk": {
+        "message": "שמירה בדיסק (.md)"
+    },
+    "statusProcessing": {
+        "message": "מעבד..."
+    },
+    "statusSaved": {
+        "message": "נשמר בהורדות"
+    },
+    "statusSelectService": {
+        "message": "בחר ספק"
+    },
+    "optPageTitle": {
+        "message": "הגדרת שירותים"
+    },
+    "optTitle": {
+        "message": "תצורת בינה מלאכותית"
+    },
+    "optAddService": {
+        "message": "הוספת שירות חדש"
+    },
+    "optNameLabel": {
+        "message": "שם מזהה"
+    },
+    "optNamePlaceholder": {
+        "message": "לדוגמה: Ollama Llama3 Summary"
+    },
+    "optTypeLabel": {
+        "message": "סוג"
+    },
+    "optUrlLabel": {
+        "message": "כתובת השירות"
+    },
+    "optUrlHint": {
+        "message": "המודלים הזמינים ייבדקו בעת הקלדת הכתובת."
+    },
+    "optApiKeyLabel": {
+        "message": "מפתח API (אופציונלי)"
+    },
+    "optModelLabel": {
+        "message": "מודל לשימוש"
+    },
+    "optModelEmpty": {
+        "message": "-- הזן תצורה חוקית --"
+    },
+    "optModelLoading": {
+        "message": "טוען שירותים..."
+    },
+    "optPromptLabel": {
+        "message": "הנחיה"
+    },
+    "optPromptPlaceholder": {
+        "message": "לדוגמה: סכם את המאמר הזה:\\n\\n"
+    },
+    "optSaveBtn": {
+        "message": "שמירת שירות"
+    },
+    "optCancelBtn": {
+        "message": "ביטול"
+    },
+    "optListTitle": {
+        "message": "שירותים מוגדרים"
+    },
+    "thName": {
+        "message": "שם"
+    },
+    "thType": {
+        "message": "סוג"
+    },
+    "thUrl": {
+        "message": "כתובת"
+    },
+    "thModel": {
+        "message": "מודל"
+    },
+    "thActions": {
+        "message": "פעולות"
+    },
+    "btnEdit": {
+        "message": "עריכה"
+    },
+    "btnDelete": {
+        "message": "מחיקה"
+    },
+    "alertServiceExists": {
+        "message": "שירות בשם זה כבר קיים"
+    },
+    "resPageTitle": {
+        "message": "תוצאת AI - מנתח"
+    },
+    "resHeader": {
+        "message": "תוצאה - "
+    },
+    "resSaving": {
+        "message": "שומר..."
+    },
+    "resSaveBtn": {
+        "message": "שמירה כקובץ"
+    },
+    "resInvalidId": {
+        "message": "מזהה ביצוע לא חוקי."
+    },
+    "resDataNotFound": {
+        "message": "נתוני המאמר לא נמצאו."
+    },
+    "resReconnecting": {
+        "message": "מנסה שוב... (ניסיון $1/$2)"
+    },
+    "resConnError": {
+        "message": "שגיאה: החיבור נסגר שוב ושוב באופן בלתי צפוי."
+    },
+    "resAIError": {
+        "message": "שגיאת בינה מלאכותית: $1"
+    },
+    "resDefaultFilename": {
+        "message": "תשובת_בינה_מלאכותית"
+    },
+    "errUnsupportedService": {
+        "message": "שירות לא נתמך: $1"
+    },
+    "errDownload": {
+        "message": "שגיאת הורדה"
+    },
+    "extIconTitle": {
+        "message": "ניתוח תוכן"
+    },
+    "errNoServices": {
+        "message": "אין שירותים מוגדרים."
+    },
+    "errNoModels": {
+        "message": "לא נמצאו מודלים"
+    },
+    "errConn": {
+        "message": "שגיאת חיבור"
+    },
+    "optEditService": {
+        "message": "עריכת שירות"
+    },
+    "optSaveChanges": {
+        "message": "שמירת שינויים"
+    },
+    "errNoTab": {
+        "message": "אין כרטיסייה פעילה"
+    },
+    "errParse": {
+        "message": "שגיאת לכידה: $1"
+    },
+    "tipInstruction": {
+        "message": "🤖 הצבע על החלק לחילוץ ולחץ"
+    },
+    "capAllBtn": {
+        "message": "לכידת הדף כולו"
+    },
+    "resCharCount": {
+        "message": "Query Length (chars)"
+    },
+    "optUseMarkdown": {
+        "message": "Convert content to Markdown (uncheck to process HTML directly)"
+    },
+    "optLinkWeb": {
+        "message": "Link and limit this service to one or more domains"
+    },
+    "optLinkDomains": {
+        "message": "Domains to link (comma separated)"
+    },
+    "optSysPromptsListTitle": {
+        "message": "System Prompts"
+    },
+    "optAddSysPrompt": {
+        "message": "Add New System Prompt"
+    },
+    "optSysPromptNameLabel": {
+        "message": "System Prompt Name"
+    },
+    "optSysPromptNamePlaceholder": {
+        "message": "e.g. Summarizer"
+    },
+    "optSysPromptTextLabel": {
+        "message": "System Prompt"
+    },
+    "optSysPromptTextPlaceholder": {
+        "message": "e.g. You are an expert summarizer..."
+    },
+    "optSaveSysPromptBtn": {
+        "message": "Save System Prompt"
+    },
+    "optSelectSysPromptLabel": {
+        "message": "System Prompt (Optional)"
+    },
+    "optSelectSysPromptDefault": {
+        "message": "-- No System Prompt --"
+    },
+    "optColSysPromptName": {
+        "message": "System Prompt Name"
+    },
+    "optColSysPromptText": {
+        "message": "Text"
+    },
+    "optSysPromptTextLabelOptional": {
+        "message": "System Prompt (Optional)"
+    },
+    "optImportExportTitle": {
+        "message": "ייצוא / ייבוא תצורה"
+    },
+    "optExportSection": {
+        "message": "ייצוא תצורה"
+    },
+    "optExportPassLabel": {
+        "message": "סיסמה (אופציונלי)"
+    },
+    "optExportPassPlaceholder": {
+        "message": "השאר ריק לקובץ ללא הצפנה"
+    },
+    "optExportBtn": {
+        "message": "ייצוא"
+    },
+    "optImportSection": {
+        "message": "ייבוא תצורה"
+    },
+    "optImportFileLabel": {
+        "message": "בחר קובץ תצורה (.json)"
+    },
+    "optImportPassLabel": {
+        "message": "סיסמה (אם מוצפן)"
+    },
+    "optImportPassPlaceholder": {
+        "message": "הזן סיסמה אם הקובץ מוצפן"
+    },
+    "optImportBtn": {
+        "message": "ייבוא"
+    },
+    "msgExportSuccess": {
+        "message": "התצורה יוצאה בהצלחה."
+    },
+    "msgImportSuccess": {
+        "message": "התצורה יובאה בהצלחה."
+    },
+    "errInvalidSignature": {
+        "message": "קובץ תצורה לא חוקי (חתימה לא חוקית)."
+    },
+    "errInvalidPassword": {
+        "message": "סיסמה שגויה או קובץ פגום."
+    },
+    "errFileRead": {
+        "message": "שגיאה בקריאת הקובץ."
+    },
+    "resHelp": {
+        "message": "עזרה"
+    },
+    "optSavePromptBtn": {
+        "message": "שמור הנחיה"
+    },
+    "optAddPrompt": {
+        "message": "הוסף הנחיה חדשה"
+    },
+    "resPageLang": {
+        "message": "שפת דף"
+    },
+    "optSelectPromptDefault": {
+        "message": "-- השתמש בהנחיה מותאמת אישית --"
+    },
+    "thDomains": {
+        "message": "דומיינים מקושרים"
+    },
+    "optEditPrompt": {
+        "message": "ערוך הנחיה"
+    },
+    "contextSaveMd": {
+        "message": "שמור בחירה כ-Markdown"
+    },
+    "thPrompt": {
+        "message": "הנחיה"
+    },
+    "resContact": {
+        "message": "איש קשר"
+    },
+    "resSysLang": {
+        "message": "שפת מערכת"
+    },
+    "contextSaveHtml": {
+        "message": "שמור בחירה כ-HTML"
+    },
+    "resPrivacy": {
+        "message": "פרטיות"
+    },
+    "optPromptTextLabel": {
+        "message": "טקסט הנחיה"
+    },
+    "optPromptNameLabel": {
+        "message": "שם הנחיה"
+    },
+    "optPromptsListTitle": {
+        "message": "הנחיות מוגדרות"
+    },
+    "optPromptNamePlaceholder": {
+        "message": "דוגמה: סיכום טקסט"
+    },
+    "optPromptTextPlaceholder": {
+        "message": "נתח את הטקסט הזה ו..."
+    },
+    "optSelectPromptLabel": {
+        "message": "השתמש בהנחיה מהרשימה"
+    },
+    "optTypePromptApi": {
+        "message": "Prompt API (מובנה)"
+    },
+    "errPromptApiNotAvailable": {
+        "message": "Prompt API אינו זמין או שאין מודל פעיל בדפדפן זה."
+    },
+    "resAbortBtn": {
+        "message": "עצור ניתוח"
+    },
+    "statusAborted": {
+        "message": "הניתוח הופסק על ידי המשתמש."
+    },
+    "optConfirmPassword": {
+        "message": "אימות סיסמה"
+    },
+    "errPasswordMismatch": {
+        "message": "הסיסמאות אינן תואמות."
+    },
+    "chatPlaceholder": {
+        "message": "הקלד כאן את בקשת ההמשך שלך..."
+    },
+    "chatSend": {
+        "message": "שלח"
+    },
+    "resSaveMdBtn": {
+        "message": "שמור כ-Markdown"
+    },
+    "resSaveHtmlBtn": {
+        "message": "שמור כ-HTML"
+    }
 }

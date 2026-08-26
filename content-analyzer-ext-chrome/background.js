@@ -46,9 +46,108 @@ import * as ollama    from './drivers/ollama.js';
 import * as openai    from './drivers/openai.js';
 import * as anthropic from './drivers/anthropic.js';
 import * as gemini    from './drivers/gemini.js';
+import * as promptApi from './drivers/prompt-api.js';
 
 
 const DEBUG_MODE = false;
+
+function maskSecret(val) {
+    if (!val || typeof val !== 'string') return val;
+    val = val.trim();
+    if (/^bearer\s+/i.test(val)) {
+        const token = val.replace(/^bearer\s+/i, '').trim();
+        if (token.length > 4) {
+            return `Bearer ...${token.slice(-4)}`;
+        }
+        return 'Bearer ****';
+    }
+    if (val.length > 4) {
+        return `...${val.slice(-4)}`;
+    }
+    return '****';
+}
+
+function sanitizeUrl(rawUrl) {
+    if (!rawUrl) return rawUrl;
+    try {
+        const urlStr = typeof rawUrl === 'string' ? rawUrl : (rawUrl.url || rawUrl.toString());
+        const parsed = new URL(urlStr, 'https://dummy-base.local');
+        const sensitiveParams = ['key', 'apikey', 'api_key', 'token', 'secret', 'auth', 'password', 'api-key'];
+        
+        let hasSensitive = false;
+        for (const key of sensitiveParams) {
+            if (parsed.searchParams.has(key)) {
+                parsed.searchParams.set(key, maskSecret(parsed.searchParams.get(key)));
+                hasSensitive = true;
+            }
+        }
+        if (!hasSensitive) {
+            for (const param of parsed.searchParams.keys()) {
+                if (sensitiveParams.includes(param.toLowerCase())) {
+                    parsed.searchParams.set(param, maskSecret(parsed.searchParams.get(param)));
+                }
+            }
+        }
+        
+        if (typeof rawUrl === 'string' && !rawUrl.startsWith('http://') && !rawUrl.startsWith('https://')) {
+            return parsed.pathname + parsed.search;
+        }
+        return parsed.href;
+    } catch (e) {
+        return String(rawUrl).replace(/([?&](?:key|apikey|api_key|token|secret|auth|password)=)([^&]+)/gi, (match, prefix, val) => {
+            return prefix + maskSecret(val);
+        });
+    }
+}
+
+function sanitizeHeaders(headers) {
+    if (!headers) return headers;
+    const sensitiveHeaders = ['authorization', 'x-api-key', 'api-key', 'x-auth-token', 'proxy-authorization', 'cookie'];
+    
+    if (typeof Headers !== 'undefined' && headers instanceof Headers) {
+        const sanitized = {};
+        for (const [key, value] of headers.entries()) {
+            if (sensitiveHeaders.includes(key.toLowerCase())) {
+                sanitized[key] = maskSecret(value);
+            } else {
+                sanitized[key] = value;
+            }
+        }
+        return sanitized;
+    }
+    
+    if (Array.isArray(headers)) {
+        return headers.map(([key, value]) => {
+            if (sensitiveHeaders.includes(String(key).toLowerCase())) {
+                return [key, maskSecret(value)];
+            }
+            return [key, value];
+        });
+    }
+    
+    if (typeof headers === 'object') {
+        const sanitized = {};
+        for (const [key, value] of Object.entries(headers)) {
+            if (sensitiveHeaders.includes(key.toLowerCase())) {
+                sanitized[key] = maskSecret(value);
+            } else {
+                sanitized[key] = value;
+            }
+        }
+        return sanitized;
+    }
+    
+    return headers;
+}
+
+function sanitizeDebugRequest(url, options) {
+    const cleanUrl = sanitizeUrl(url);
+    const cleanOptions = { ...options };
+    if (cleanOptions.headers) {
+        cleanOptions.headers = sanitizeHeaders(cleanOptions.headers);
+    }
+    return { url: cleanUrl, options: cleanOptions };
+}
 
 const originalFetch = globalThis.fetch;
 globalThis.fetch = async function(...args) {
@@ -60,7 +159,7 @@ globalThis.fetch = async function(...args) {
             const errBody = await response.clone().text().catch(()=>"");
             const debugInfo = {
                 _debug: true,
-                request: { url: requestUrl, options: requestOptions },
+                request: sanitizeDebugRequest(requestUrl, requestOptions),
                 response: errBody,
                 status: response.status
             };
@@ -74,7 +173,7 @@ globalThis.fetch = async function(...args) {
             }
             const debugInfo = {
                 _debug: true,
-                request: { url: requestUrl, options: requestOptions },
+                request: sanitizeDebugRequest(requestUrl, requestOptions),
                 response: "Fetch failed: " + e.message
             };
             throw new Error(JSON.stringify(debugInfo));
@@ -92,7 +191,9 @@ const DRIVERS = {
     ollama,
     openai,
     anthropic,
-    gemini
+    gemini,
+    "prompt-api": promptApi,
+    promptApi
 };
 
 // ============================================================
@@ -195,6 +296,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         return true; // IMPORTANT: `true` keeps the channel open for async response
     }
+
+    // ---- ACTION: checkPromptApi ----
+    // Queries whether the browser's Prompt API is available and has an active model.
+    if (message.action === "checkPromptApi") {
+        const driver = DRIVERS["prompt-api"];
+        if (driver && typeof driver.isAvailable === 'function') {
+            driver.isAvailable()
+                .then(available => sendResponse({ success: true, available }))
+                .catch(() => sendResponse({ success: true, available: false }));
+            return true;
+        }
+        sendResponse({ success: true, available: false });
+        return false;
+    }
 });
 
 // ============================================================
@@ -221,9 +336,26 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 chrome.runtime.onConnect.addListener((port) => {
     // Support two port names for historical compatibility
     if (port.name === "ollama-generate" || port.name === "llm-generate") {
+        let abortController = null;
+        let isPortClosed = false;
+
+        port.onDisconnect.addListener(() => {
+            isPortClosed = true;
+            if (abortController) {
+                abortController.abort();
+            }
+        });
 
         port.onMessage.addListener(async (msg) => {
+            if (msg.action === "abort") {
+                if (abortController) {
+                    abortController.abort();
+                }
+                return;
+            }
+
             if (msg.action === "generate") {
+                abortController = new AbortController();
                 try {
                     const type = msg.serviceType || "ollama";
                     const driver = DRIVERS[type];
@@ -237,7 +369,13 @@ chrome.runtime.onConnect.addListener((port) => {
                     // Get the async generator from the driver.
                     // Each `yield` in the driver produces a text chunk.
                     const generator = driver.generate(
-                        { url: msg.url, apikey: msg.apikey, model: msg.model, systemPrompt: msg.systemPrompt },
+                        {
+                            url: msg.url,
+                            apikey: msg.apikey,
+                            model: msg.model,
+                            systemPrompt: msg.systemPrompt,
+                            signal: abortController.signal
+                        },
                         msg.prompt
                     );
 
@@ -245,15 +383,26 @@ chrome.runtime.onConnect.addListener((port) => {
                     // `for await...of` blocks between chunks without consuming CPU,
                     // waiting for each fragment from the LLM server.
                     for await (const chunkText of generator) {
+                        if (isPortClosed || abortController.signal.aborted) {
+                            break;
+                        }
                         port.postMessage({ type: "chunk", chunk: chunkText });
                     }
 
-                    console.log("[Background-Gen] Processing stream has finished.");
-                    port.postMessage({ type: "done" }); // Completion signal to client
+                    if (!isPortClosed && !abortController.signal.aborted) {
+                        console.log("[Background-Gen] Processing stream has finished.");
+                        port.postMessage({ type: "done" }); // Completion signal to client
+                    }
 
                 } catch (e) {
+                    if (abortController && abortController.signal.aborted) {
+                        console.log("[Background-Gen] Stream generation aborted by user.");
+                        return;
+                    }
                     console.error("[Background-Gen] Exception during API request/parsing read:", e);
-                    port.postMessage({ type: "error", error: e.message }); // Propagate error to client
+                    if (!isPortClosed) {
+                        port.postMessage({ type: "error", error: e.message }); // Propagate error to client
+                    }
                 }
             }
         });

@@ -1,67 +1,67 @@
 <div class="max-w-container-max mx-auto p-md md:p-xl w-full">
     <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
         <header class="mb-xl pb-md border-b border-border-subtle">
-            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Расширение Content Analyzer</p>
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Расширение «Анализатор контента»</p>
             <h1 class="font-article-title text-article-title text-text-primary">Руководство по использованию и настройке</h1>
         </header>
-
+        
         <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
-            <p class="mb-sm">Расширение <strong style="white-space:nowrap;">Content Analyzer</strong> предназначено для автоматического извлечения и оценки семантических метаданных в сложных веб-средах. Это расширение работает в браузерах Firefox, Chrome и Chromium; его основная задача — обработка веб-контента путем передачи данных через различные сервисы искусственного интеллекта (ИИ).</p>
-            <p class="mb-sm">В отличие от обычных инструментов для создания кратких обзоров веб-страниц, это расширение позволяет создавать несколько пользовательских ИИ-сервисов, каждый из которых имеет четко определенные инструкции, определяющие, что именно ИИ должен делать с собранной информацией. Вы можете использовать его для извлечения кода, перевода конкретных терминов, анализа тональности, создания целевых отчетов и многого другого.</p>
+            <p class="mb-sm">Расширение <strong>«Анализатор контента»</strong> — это расширение для браузера, предназначенное для автоматического извлечения и оценки семантических метаданных в сложных веб-средах. Это расширение работает в Firefox, Chrome и браузерах на базе Chromium. Его основная цель — обрабатывать веб-контент, передавая его различным службам искусственного интеллекта (ИИ).</p>
+            <p class="mb-sm">В отличие от обычных инструментов для суммирования веб-страниц, это расширение позволяет создавать несколько пользовательских служб ИИ, каждая из которых имеет четко определенный запрос, указывающий, что именно ИИ должен делать с собранной информацией. Вы можете использовать его для извлечения кода, перевода конкретных терминов, анализа тональности, создания целевых отчетов и многого другого.</p>
         </div>
-
-        <nav aria-label="Table of Contents" class="mb-xl bg-surface-header p-md border border-border-subtle">
+        
+        <nav aria-label="Содержание" class="mb-xl bg-surface-header p-md border border-border-subtle">
             <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">Содержание</h2>
             <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
-                <li><a class="hover:text-primary-hover" href="#features">Основные функции</a></li>
-                <li><a class="hover:text-primary-hover" href="#providers">Поддерживаемые ИИ-провайдеры</a></li>
-                <li><a class="hover:text-primary-hover" href="#tags">Динамические теги для запросов</a></li>
+                <li><a class="hover:text-primary-hover" href="#features">Основные возможности</a></li>
+                <li><a class="hover:text-primary-hover" href="#providers">Поддерживаемые поставщики ИИ</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">Динамические теги запросов</a></li>
                 <li><a class="hover:text-primary-hover" href="#examples">Примеры конфигураций</a></li>
                 <li><a class="hover:text-primary-hover" href="#installation">Установка в браузере</a></li>
             </ol>
         </nav>
-
+        
         <div class="space-y-xl">
             <section class="relative" id="features">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">1</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Основные функции</h2>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Основные возможности</h2>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong style="white-space:nowrap;">Настраиваемый захват контента:</strong> Вы можете легко выбрать определенную часть веб-страницы с помощью интерактивного «инструмента выбора» или выбрать возможность захвата всего содержимого страницы.</li>
-                            <li><strong style="white-space:nowrap;">Несколько пользовательских ИИ-запросов и системных запросов:</strong> Создавайте различные сервисы, адаптированные к вашим конкретным потребностям, с помощью пользовательских инструкций и необязательных системных подсказок (например, «Сделать краткое изложение статьи», «Извлечь данные в формате JSON», «Перевести на испанский язык», настроить персональные шаблоны помощников и т. д.).</li>
-                            <li><strong style="white-space:nowrap;">Обслуживание для конкретных доменов:</strong> Вы можете связать свои пользовательские сервисы с определенными веб-доменами. Это помогает поддерживать расширение в чистоте, отображая только соответствующие инструменты ИИ.</li>
-                            <li><strong style="white-space:nowrap;">Широкая совместимость с LLM:</strong> Полная поддержка подключения (включая потоковую передачу текста) к локальным серверам через Ollama, а также облачных API-провайдеров, таких как OpenAI, Anthropic и Google Gemini.</li>
+                            <li><strong>Индивидуальный захват контента:</strong> Вы можете легко выбрать определенную часть веб-страницы с помощью интерактивного «инструмента наведения» или выбрать захват всего содержимого страницы.</li>
+                            <li><strong>Несколько пользовательских запросов ИИ и системных запросов:</strong> Создавайте различные службы, адаптированные к вашим конкретным потребностям, с помощью пользовательских запросов и необязательных системных запросов (например, «Суммировать статью», «Извлечь данные JSON», «Перевести на испанский язык», пользовательские персонажи помощника и т. д.).</li>
+                            <li><strong>Обслуживание, ориентированное на конкретную область:</strong> Вы можете связать свои пользовательские службы с определенными веб-доменами. Это помогает поддерживать чистоту расширения, отображая только соответствующие инструменты ИИ.</li>
+                            <li><strong>Широкая совместимость с LLM:</strong> Полностью поддерживает подключения (включая потоковую передачу текста) к локальным серверам через Ollama, а также облачные API-провайдеры, такие как OpenAI, Anthropic и Google Gemini.</li>
                         </ul>
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="providers">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Поддерживаемые ИИ-провайдеры</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Это расширение разработано таким образом, чтобы быть максимально гибким, позволяя подключаться к различным ведущим на рынке моделям искусственного интеллекта и локальным сервисам. В настоящее время оно поддерживает:</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Поддерживаемые поставщики ИИ</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Это расширение создано с учетом максимальной гибкости, что позволяет подключаться к различным ведущим моделям искусственного интеллекта и локальным службам. В настоящее время оно поддерживает:</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong style="white-space:nowrap;">Claude (Anthropic):</strong> Получите доступ к мощному семейству моделей Claude через их официальный API.</li>
-                            <li><strong style="white-space:nowrap;">Gemini (Google):</strong> Подключайтесь непосредственно к передовым моделям Gemini от Google.</li>
-                            <li><strong style="white-space:nowrap;">ChatGPT (OpenAI и совместимые):</strong> Полностью совместимо с API OpenAI, а также с любыми другими сторонними сервисами, предлагающими совместимую конечную точку OpenAI.</li>
-                            <li><strong style="white-space:nowrap;">Ollama:</strong> Запускайте модели локально и конфиденциально на своем компьютере без отправки данных в облако.</li>
+                            <li><strong>Claude (Anthropic):</strong> Получите доступ к мощной линейке моделей Claude через их официальный API.</li>
+                            <li><strong>Gemini (Google):</strong> Подключайтесь непосредственно к передовым моделям Google Gemini.</li>
+                            <li><strong>ChatGPT (OpenAI и совместимые):</strong> Полностью совместим с API OpenAI, а также с любой другой сторонней службой, предлагающей совместимый с OpenAI API.</li>
+                            <li><strong>Ollama:</strong> Запускайте модели локально и конфиденциально на своем устройстве, не отправляя данные в облако.</li>
                         </ul>
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="tags">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Динамические теги для запросов</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Чтобы сделать ваши ИИ-запросы более контекстуальными и эффективными, вы можете использовать следующие динамические теги как в пользовательских инструкциях, так и в системных подсказках. Расширение автоматически заменит их перед отправкой запроса модели ИИ:</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Динамические теги запросов</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Чтобы сделать ваши запросы ИИ более контекстными и эффективными, вы можете использовать следующие динамические теги как в пользовательских запросах, так и в системных запросах. Расширение автоматически заменит их перед отправкой запроса в модель ИИ:</p>
                         <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
                             <thead>
                                 <tr class="bg-surface-header border-b border-border-subtle">
@@ -80,73 +80,77 @@
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
-                                    <td class="p-sm">Полный URL-адрес веб-страницы, которая в данный момент обрабатывается.</td>
+                                    <td class="p-sm">Полный URL-адрес веб-страницы, обрабатываемой в данный момент.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DOMAIN}</td>
-                                    <td class="p-sm">Основной домен веб-страницы, которая обрабатывается.</td>
+                                    <td class="p-sm">Основной домен веб-страницы, обрабатываемой в данный момент.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
                                     <td class="p-sm">Язык веб-страницы.</td>
                                 </tr>
-                                <tr class="bg-background-canvas">
+                                <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
-                                    <td class="p-sm">Текущая настройка языка системы/браузера.</td>
+                                    <td class="p-sm">Текущая системная/браузерная языковая конфигурация.</td>
+                                </tr>
+                                <tr class="bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{TITLE}</td>
+                                    <td class="p-sm">HTML-заголовок веб-страницы, обрабатываемой в данный момент.</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="examples">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Примеры конфигураций</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Ниже приведены несколько примеров, демонстрирующих, как вы можете структурировать свои сервисы:</p>
-
+                        <p class="font-body text-body text-text-primary mb-md">Ниже приведены несколько примеров, демонстрирующих, как можно структурировать ваши службы:</p>
+                        
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 1: Многоязычный помощник для перевода</h4>
-                            <p class="font-body text-body text-text-primary"><strong style="white-space:nowrap;">Название сервиса:</strong> Перевести на локальный язык<br/><strong style="white-space:nowrap;">Связанные домены:</strong> <em>(Пусто - Доступно везде)</em></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 1: Многоязычный помощник-переводчик</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Название службы:</strong> Перевод на локальный язык<br/><strong>Связанные домены:</strong> <em>(Пусто — доступно везде)</em></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Я профессиональный переводчик. Я просматриваю веб-сайт на языке {LANG} по адресу {URL}, но язык моего браузера — {SYSLANG}. Пожалуйста, точно переведите следующий текст на {SYSLANG}, сохранив исходное форматирование Markdown и текста.
+                                Я профессиональный переводчик. Я просматриваю сайт на языке {LANG} по адресу {URL}, но мой браузер настроен на язык {SYSLANG}. Пожалуйста, точно переведите следующий контент на язык {SYSLANG}, сохранив исходное форматирование Markdown и текста.
                             </div>
                         </div>
-
+                        
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 2: Рецензент кода (для конкретного домена)</h4>
-                            <p class="font-body text-body text-text-primary"><strong style="white-space:nowrap;">Название сервиса:</strong> Обзор кода Python<br/><strong style="white-space:nowrap;">Связанные домены:</strong> github.com, gitlab.com, stackoverflow.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 2: Рецензент кода (для конкретной области)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Название службы:</strong> Рецензирование кода Python<br/><strong>Связанные домены:</strong> github.com, gitlab.com, stackoverflow.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Вы опытный разработчик. Предоставленные ниже фрагменты кода были найдены на {DOMAIN}. Проанализируйте код строго на наличие потенциальных ошибок, уязвимостей в системе безопасности и проблем с кодом. Не объясняйте, что делает код, просто перечислите проблемы и предоставьте исправленную версию.
+                                Вы опытный разработчик. Представленные ниже фрагменты кода были найдены на {DOMAIN}. Проанализируйте код на предмет потенциальных ошибок, уязвимостей в системе безопасности и проблем с кодом. Не объясняйте, что делает код, просто перечислите проблемы и предоставьте исправленную версию.
                             </div>
                         </div>
-
+                        
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 3: Извлечение ключевых сущностей для ежедневного брифинга</h4>
-                            <p class="font-body text-body text-text-primary"><strong style="white-space:nowrap;">Название сервиса:</strong> Extract Key Entities<br/><strong style="white-space:nowrap;">Связанные домены:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 3: Извлечение ежедневной сводки</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Название службы:</strong> Извлечение ключевых сущностей<br/><strong>Связанные домены:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Сегодня {DATE} в {HOUR}. Просмотрите следующую новостную статью и извлеките аккуратный список JSON, содержащий основные «Людей», «Организации» и «Места», упомянутые в тексте.
+                                Сегодня {DATE} в {HOUR}. Просканируйте следующую новостную статью и извлеките аккуратный список в формате JSON, содержащий основные «людей», «организации» и «места», упомянутые в тексте.
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 4: Пользовательский шаблон помощника (системная подсказка)</h4>
-                            <p class="font-body text-body text-text-primary"><strong style="white-space:nowrap;">Название сервиса:</strong> Mario Assistant<br/><strong style="white-space:nowrap;">Системная подсказка:</strong></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Пример 4: Пользовательская личность помощника (системный запрос)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Название службы:</strong> Помощник Марио<br/><strong>Системный запрос:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
-                                Вы Марио, умный и проницательный помощник, ваша задача — максимально эффективно выполнять поставленные перед вами задачи. В заданиях, содержащих временные ссылки, вы должны помнить, что сегодня {DATE}.
+                                Вы Марио, умный и находчивый помощник, ваша задача — максимально эффективно выполнять поставленные задачи. В задачах, содержащих временные ссылки, вы должны помнить, что сегодня {DATE}.
                             </div>
-                            <p class="font-body text-body text-text-primary"><strong style="white-space:nowrap;">Пользовательская подсказка:</strong></p>
+                            <p class="font-body text-body text-text-primary"><strong>Пользовательский запрос:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Проанализируйте следующий текст, полученный с {URL}, и предоставьте краткое изложение основных моментов.
+                                Проанализируйте следующий текст, взятый с {URL}, и предоставьте сводку основных моментов.
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="installation">
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
@@ -154,14 +158,14 @@
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Установка в браузере</h2>
                         <p class="font-body text-body text-text-primary mb-md">Процесс установки осуществляется через официальный репозиторий или путем загрузки распакованного пакета в режиме разработчика.</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
-                            <li><strong style="white-space:nowrap;">Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Скачать из Chrome Web Store</a>.</li>
-                            <li><strong style="white-space:nowrap;">Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Скачать из Firefox Add-ons</a>.</li>
-                            <li><em style="white-space:nowrap;">В качестве альтернативы</em>, вы можете загрузить распакованное расширение в режиме разработчика через <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> или <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
+                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Загрузить из Chrome Web Store</a>.</li>
+                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Загрузить из Firefox Add-ons</a>.</li>
+                            <li><em>Кроме того</em>, вы можете загрузить распакованное расширение в режиме разработчика через <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> или <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
                         </ul>
                         <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
                             <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
                             <div>
-                                <strong style="white-space:nowrap;">Примечание:</strong> Убедитесь, что вы правильно настроили глобальные параметры (ключи API или локальные экземпляры Ollama) на странице параметров расширения перед запуском каких-либо захватов.
+                                <strong>Примечание:</strong> Убедитесь, что вы правильно настроили глобальные параметры (ключи API или локальные экземпляры Ollama) на странице настроек расширения, прежде чем запускать какие-либо захваты.
                             </div>
                         </div>
                     </div>

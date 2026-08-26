@@ -113,25 +113,30 @@ export async function* generate(config, prompt) {
 
     // Gemini specific body format: "contents" with nested "parts".
     // "user" role indicates message comes from human in conversation.
-    const bodyParams = {
-        contents: [
-            {
-                role: "user",
-                parts: [{ text: prompt }]
-            }
-        ]
-    };
+    let contents = [];
+    if (Array.isArray(prompt)) {
+        contents = prompt.map(m => ({
+            role: m.role === "assistant" ? "model" : "user",
+            parts: [{ text: m.content }]
+        }));
+    } else {
+        contents = [{ role: "user", parts: [{ text: prompt }] }];
+    }
+    const bodyParams = { contents: contents };
     if (config.systemPrompt) {
         bodyParams.system_instruction = {
             parts: [{ text: config.systemPrompt }]
         };
     }
 
-    const response = await fetch(fetchUrl, {
+    const fetchOptions = {
         method: "POST",
         headers: headers,
         body: JSON.stringify(bodyParams)
-    });
+    };
+    if (config.signal) fetchOptions.signal = config.signal;
+
+    const response = await fetch(fetchUrl, fetchOptions);
 
     if (!response.ok) {
         let errorMsg = `HTTP ${response.status}`;
@@ -159,41 +164,47 @@ export async function* generate(config, prompt) {
     const decoder = new TextDecoder("utf-8");
     let buffer = ""; // Accumulates partial network data until complete
 
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+    try {
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
 
-        // Decode byte chunk and add to accumulated buffer
-        buffer += decoder.decode(value, { stream: true });
+            // Decode byte chunk and add to accumulated buffer
+            buffer += decoder.decode(value, { stream: true });
 
-        // Split by lines since SSE sends data line by line
-        let lines = buffer.split("\n");
-        buffer = lines.pop(); // The last line might be incomplete: keep it
+            // Split by lines since SSE sends data line by line
+            let lines = buffer.split("\n");
+            buffer = lines.pop(); // The last line might be incomplete: keep it
 
-        for (const line of lines) {
-            const tLine = line.trim();
-            if (!tLine) continue; // Empty line breaks: separators between SSE events
+            for (const line of lines) {
+                const tLine = line.trim();
+                if (!tLine) continue; // Empty line breaks: separators between SSE events
 
-            if (tLine.startsWith("data: ")) {
-                const textData = tLine.substring(6); // Extract JSON after "data: "
-                try {
-                    const json = JSON.parse(textData);
+                if (tLine.startsWith("data: ")) {
+                    const textData = tLine.substring(6); // Extract JSON after "data: "
+                    try {
+                        const json = JSON.parse(textData);
 
-                    // Navigate the nested Gemini response structure:
-                    // candidates[0].content.parts[0].text
-                    // Check each level to avoid errors if any are undefined.
-                    if (
-                        json.candidates &&
-                        json.candidates[0] &&
-                        json.candidates[0].content &&
-                        json.candidates[0].content.parts.length > 0
-                    ) {
-                        yield json.candidates[0].content.parts[0].text;
+                        // Navigate the nested Gemini response structure:
+                        // candidates[0].content.parts[0].text
+                        // Check each level to avoid errors if any are undefined.
+                        if (
+                            json.candidates &&
+                            json.candidates[0] &&
+                            json.candidates[0].content &&
+                            json.candidates[0].content.parts.length > 0
+                        ) {
+                            yield json.candidates[0].content.parts[0].text;
+                        }
+                    } catch (e) {
+                        // Ignore parsing errors from incomplete or malformed SSE lines
                     }
-                } catch (e) {
-                    // Ignore parsing errors from incomplete or malformed SSE lines
                 }
             }
         }
+    } finally {
+        try {
+            reader.cancel();
+        } catch (e) {}
     }
 }

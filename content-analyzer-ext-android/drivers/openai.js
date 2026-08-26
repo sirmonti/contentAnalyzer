@@ -129,7 +129,7 @@ export async function* generate(config, prompt) {
     if (config.systemPrompt) {
         messages.push({ role: "system", content: config.systemPrompt });
     }
-    messages.push({ role: "user", content: prompt });
+    if (Array.isArray(prompt)) { messages.push(...prompt); } else { messages.push({ role: "user", content: prompt }); }
 
     const bodyParams = {
         model: config.model,
@@ -137,11 +137,14 @@ export async function* generate(config, prompt) {
         stream: true
     };
 
-    const response = await fetch(fetchUrl, {
+    const fetchOptions = {
         method: "POST",
         headers: headers,
         body: JSON.stringify(bodyParams)
-    });
+    };
+    if (config.signal) fetchOptions.signal = config.signal;
+
+    const response = await fetch(fetchUrl, fetchOptions);
 
     if (!response.ok) {
         let errorMsg = `HTTP ${response.status}`;
@@ -171,112 +174,83 @@ export async function* generate(config, prompt) {
     let thinkBuffer = ""; // Secondary buffer for <think> block filtering
     let inThink = false;  // State: are we currently inside a <think> block?
 
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+    try {
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
 
-        buffer += decoder.decode(value, { stream: true });
-        let lines = buffer.split("\n");
-        buffer = lines.pop(); // Keep potentially incomplete last line
+            buffer += decoder.decode(value, { stream: true });
+            let lines = buffer.split("\n");
+            buffer = lines.pop(); // Keep potentially incomplete last line
 
-        for (const line of lines) {
-            const tLine = line.trim();
-            if (!tLine) continue;
+            for (const line of lines) {
+                const tLine = line.trim();
+                if (!tLine) continue;
 
-            // SSE data is prefixed with "data: "
-            if (tLine.startsWith("data: ")) {
-                const textData = tLine.substring(6); // Remove "data: "
+                // SSE data is prefixed with "data: "
+                if (tLine.startsWith("data: ")) {
+                    const textData = tLine.substring(6); // Remove "data: "
 
-                // The "data: [DONE]" signal indicates the stream has finished correctly.
-                if (textData === "[DONE]") {
-                    // If text remained in thinkBuffer outside of a <think> block,
-                    // emit it now before finishing so as not to lose the end of the response.
-                    if (!inThink && thinkBuffer.length > 0) yield thinkBuffer;
-                    return; // Exit generator: generation finished
-                }
+                    // The "data: [DONE]" signal indicates the stream has finished correctly.
+                    if (textData === "[DONE]") {
+                        // If text remained in thinkBuffer outside of a <think> block,
+                        // emit it now before finishing so as not to lose the end of the response.
+                        if (!inThink && thinkBuffer.length > 0) yield thinkBuffer;
+                        return; // Exit generator: generation finished
+                    }
 
-                try {
-                    const json = JSON.parse(textData);
+                    try {
+                        const json = JSON.parse(textData);
 
-                    // Extract text fragment from the first choice delta.
-                    // Standard structure is: choices[0].delta.content
-                    if (json.choices && json.choices[0] && json.choices[0].delta && json.choices[0].delta.content) {
-                        const chunk = json.choices[0].delta.content;
+                        // Extract text fragment from the first choice delta.
+                        // Standard structure is: choices[0].delta.content
+                        if (json.choices && json.choices[0] && json.choices[0].delta && json.choices[0].delta.content) {
+                            const chunk = json.choices[0].delta.content;
 
-                        // ---- START: <think> block filtering ----
-                        //
-                        // Accumulate newly received chunk in `thinkBuffer` and process
-                        // in a loop until we can't advance anymore (waiting for more data).
-                        //
-                        // The main challenge is that <think> and </think> tags can
-                        // arrive SPLIT in the middle of a network chunk. For example:
-                        //   chunk 1: "... text <thi"
-                        //   chunk 2: "nk> internal thought..."
-                        //
-                        // To handle this, we always keep the last N characters
-                        // in reserve (N = length of tag to detect) before
-                        // emitting them, in case the next chunk completes the tag.
+                            // ---- START: <think> block filtering ----
+                            thinkBuffer += chunk;
 
-                        thinkBuffer += chunk;
-
-                        while (true) {
-                            if (!inThink) {
-                                // NORMAL MODE: search for the start of a <think> block
-                                const openIdx = thinkBuffer.indexOf("<think>");
-                                if (openIdx !== -1) {
-                                    // Found opening of a thought block.
-                                    // Emit text BEFORE the <think> tag
-                                    // (that text is actual response the user should see).
-                                    if (openIdx > 0) yield thinkBuffer.substring(0, openIdx);
-
-                                    // Switch to "inside <think>" mode.
-                                    inThink = true;
-
-                                    // Discard "<think>" tag (7 characters) from buffer.
-                                    // What remains in thinkBuffer is the internal thought content.
-                                    thinkBuffer = thinkBuffer.substring(openIdx + 7);
-                                    // Continue loop to search immediately for </think> closure
-                                } else {
-                                    // No <think> in current buffer.
-                                    // Safely emit everything except the last 7 characters,
-                                    // which could be the start of an incomplete "<think>" tag.
-                                    // (<think> has 7 characters, so we reserve exactly that).
-                                    if (thinkBuffer.length > 7) {
-                                        const safeChunk = thinkBuffer.substring(0, thinkBuffer.length - 7);
-                                        yield safeChunk;
-                                        thinkBuffer = thinkBuffer.substring(thinkBuffer.length - 7);
+                            while (true) {
+                                if (!inThink) {
+                                    // NORMAL MODE: search for the start of a <think> block
+                                    const openIdx = thinkBuffer.indexOf("<think>");
+                                    if (openIdx !== -1) {
+                                        if (openIdx > 0) yield thinkBuffer.substring(0, openIdx);
+                                        inThink = true;
+                                        thinkBuffer = thinkBuffer.substring(openIdx + 7);
+                                    } else {
+                                        if (thinkBuffer.length > 7) {
+                                            const safeChunk = thinkBuffer.substring(0, thinkBuffer.length - 7);
+                                            yield safeChunk;
+                                            thinkBuffer = thinkBuffer.substring(thinkBuffer.length - 7);
+                                        }
+                                        break; // Wait for more stream data
                                     }
-                                    break; // Wait for more stream data
-                                }
-                            } else {
-                                // INSIDE <think> MODE: search for </think> closure
-                                const closeIdx = thinkBuffer.indexOf("</think>");
-                                if (closeIdx !== -1) {
-                                    // Found closure of the thought block.
-                                    // Discard all internal content (model's thought)
-                                    // and the "</think>" closing tag (8 characters).
-                                    // Return to normal mode to process subsequent text.
-                                    inThink = false;
-                                    thinkBuffer = thinkBuffer.substring(closeIdx + 8);
-                                    // Continue loop to process whatever is after </think>
                                 } else {
-                                    // Still inside <think> block but no closure yet.
-                                    // Discard internal content (thought), keeping
-                                    // only the last 8 characters in reserve.
-                                    // ("</think>" has 8 characters, so we never truncate the tag.)
-                                    if (thinkBuffer.length > 8) {
-                                        thinkBuffer = thinkBuffer.substring(thinkBuffer.length - 8);
+                                    // INSIDE <think> MODE: search for </think> closure
+                                    const closeIdx = thinkBuffer.indexOf("</think>");
+                                    if (closeIdx !== -1) {
+                                        inThink = false;
+                                        thinkBuffer = thinkBuffer.substring(closeIdx + 8);
+                                    } else {
+                                        if (thinkBuffer.length > 8) {
+                                            thinkBuffer = thinkBuffer.substring(thinkBuffer.length - 8);
+                                        }
+                                        break; // Wait for more stream data
                                     }
-                                    break; // Wait for more stream data
                                 }
                             }
+                            // ---- END: <think> block filtering ----
                         }
-                        // ---- END: <think> block filtering ----
+                    } catch (e) {
+                        // Ignore parsing errors for incomplete SSE chunks
                     }
-                } catch (e) {
-                    // Ignore parsing errors for incomplete SSE chunks
                 }
             }
         }
+    } finally {
+        try {
+            reader.cancel();
+        } catch (e) {}
     }
 }

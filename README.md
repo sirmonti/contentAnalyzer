@@ -26,6 +26,7 @@ To make your AI prompts more contextual and powerful, you can utilize the follow
 *   `{DOMAIN}`: The root domain of the web page being processed.
 *   `{LANG}`: The language of the web page. Note: This relies on the page's HTML `<html lang="...">` declaration; the extension does not automatically detect the language if the website omits it.
 *   `{SYSLANG}`: The current system/browser language configuration.
+*   `{TITLE}`: The HTML title of the web page currently being processed.
 
 ---
 

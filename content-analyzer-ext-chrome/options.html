@@ -367,6 +367,7 @@
             <a class="nav-btn" data-target="page-prompt-add" data-i18n="optAddPrompt">Añadir Nuevo Prompt</a>
             <a class="nav-btn" data-target="page-sys-prompts-list" data-i18n="optSysPromptsListTitle">System Prompts Configurados</a>
             <a class="nav-btn" data-target="page-sys-prompt-add" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</a>
+            <a class="nav-btn" data-target="page-import-export" data-i18n="optImportExportTitle">Exportar / Importar Configuración</a>
             <div style="display: flex; gap: 1.5rem; border-left: 1px solid rgba(255, 255, 255, 0.2); padding-left: 1.5rem; align-items: center; margin-left: 0.5rem;">
                 <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
                 <a data-i18n="resPrivacy" target="_new" href="https://sirmonti.github.io/contentAnalyzer/privacy.html">Privacy</a>
@@ -385,6 +386,7 @@
                 <a class="nav-btn" data-target="page-prompt-add" data-i18n="optAddPrompt">Añadir Nuevo Prompt</a>
             <a class="nav-btn" data-target="page-sys-prompts-list" data-i18n="optSysPromptsListTitle">System Prompts Configurados</a>
             <a class="nav-btn" data-target="page-sys-prompt-add" data-i18n="optAddSysPrompt">Añadir Nuevo System Prompt</a>
+            <a class="nav-btn" data-target="page-import-export" data-i18n="optImportExportTitle">Exportar / Importar Configuración</a>
             </nav>
             <nav class="side-nav" aria-label="Support links" style="border-top: 1px solid var(--color-blue-border); margin-top: auto; padding-bottom: 1rem;">
                 <a data-i18n="resHelp" target="_new" href="https://sirmonti.github.io/contentAnalyzer/usage.html">Help</a>
@@ -503,6 +505,44 @@
                 </section>
             </div>
 
+            <!-- PAGE: IMPORT EXPORT -->
+            <div id="page-import-export" class="page">
+                <section class="content-body">
+                    <div class="content-body-title">
+                        <h2 data-i18n="optImportExportTitle">Exportar / Importar Configuración</h2>
+                    </div>
+                    <div class="content-box">
+                        <h3 data-i18n="optExportSection" style="margin-bottom: 1rem; color: var(--color-blue-dark);">Exportar Configuración</h3>
+                        <div class="form-group">
+                            <label data-i18n="optExportPassLabel">Contraseña (opcional)</label>
+                            <input type="password" id="export_password" data-i18n="optExportPassPlaceholder" placeholder="Dejar en blanco para archivo sin cifrar">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="optConfirmPassword">Confirmar contraseña</label>
+                            <input type="password" id="export_password_confirm" placeholder="">
+                        </div>
+                        <div class="form-actions" style="margin-top: 1rem; margin-bottom: 2rem;">
+                            <button type="button" id="btnExport" class="btn-primary" data-i18n="optExportBtn">Exportar</button>
+                        </div>
+                        
+                        <hr style="border: 0; border-top: 1px solid var(--color-blue-border); margin: 2rem 0;">
+                        
+                        <h3 data-i18n="optImportSection" style="margin-bottom: 1rem; color: var(--color-blue-dark);">Importar Configuración</h3>
+                        <div class="form-group">
+                            <label data-i18n="optImportFileLabel">Seleccione el archivo de configuración (.json)</label>
+                            <input type="file" id="import_file" accept=".json" style="padding: 0.5rem; border: 1px solid var(--color-blue-border); border-radius: 4px; width: 100%;">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="optImportPassLabel">Contraseña (si está cifrado)</label>
+                            <input type="password" id="import_password" data-i18n="optImportPassPlaceholder" placeholder="Ingrese contraseña si el archivo está cifrado">
+                        </div>
+                        <div class="form-actions" style="margin-top: 1rem;">
+                            <button type="button" id="btnImport" class="btn-primary" data-i18n="optImportBtn">Importar</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
         </main>
     </div>
 
@@ -550,11 +590,11 @@
         <form id="addPromptForm">
             <div class="form-group">
                 <label data-i18n="optPromptNameLabel">Nombre del Prompt</label>
-                <input type="text" id="p_name" required placeholder="Ej: Resumen de texto" data-i18n="optPromptNamePlaceholder">
+                <input type="text" id="p_name" required placeholder="Ej: Resumen de texto" data-i18n="optPromptNamePlaceholder" dir="auto">
             </div>
             <div class="form-group">
                 <label data-i18n="optPromptTextLabel">Prompt</label>
-                <textarea id="p_prompt" required placeholder="Ej: Analiza este texto y..." data-i18n="optPromptTextPlaceholder" style="min-height: 150px;"></textarea>
+                <textarea id="p_prompt" required placeholder="Ej: Analiza este texto y..." data-i18n="optPromptTextPlaceholder" style="min-height: 150px;" dir="auto"></textarea>
             </div>
             <div class="form-actions">
                 <button type="submit" id="promptSubmitBtn" class="btn-primary" data-i18n="optSavePromptBtn">Guardar Prompt</button>
@@ -568,11 +608,11 @@
         <form id="addSysPromptForm">
             <div class="form-group">
                 <label data-i18n="optSysPromptNameLabel">Nombre del System Prompt</label>
-                <input type="text" id="p_sys_name" required placeholder="Ej: Resumidor" data-i18n="optSysPromptNamePlaceholder">
+                <input type="text" id="p_sys_name" required placeholder="Ej: Resumidor" data-i18n="optSysPromptNamePlaceholder" dir="auto">
             </div>
             <div class="form-group">
                 <label data-i18n="optSysPromptTextLabel">System Prompt</label>
-                <textarea id="p_sys_prompt" required placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder" style="min-height: 150px;"></textarea>
+                <textarea id="p_sys_prompt" required placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder" style="min-height: 150px;" dir="auto"></textarea>
             </div>
             <div class="form-actions">
                 <button type="submit" id="sysPromptSubmitBtn" class="btn-primary" data-i18n="optSaveSysPromptBtn">Guardar System Prompt</button>
@@ -586,30 +626,31 @@
         <form id="addServiceForm">
             <div class="form-group">
                 <label data-i18n="optNameLabel">Nombre identificativo</label>
-                <input type="text" id="m_name" required placeholder="Ej: Ollama Llama3 Resumen" data-i18n="optNamePlaceholder">
+                <input type="text" id="m_name" required placeholder="Ej: Ollama Llama3 Resumen" data-i18n="optNamePlaceholder" dir="auto">
             </div>
             <div class="form-group">
                 <label data-i18n="optTypeLabel">Tipo</label>
-                <select id="m_type">
+                <select id="m_type" dir="auto">
                     <option value="ollama" selected>Ollama</option>
                     <option value="openai">OpenAI (o compatible)</option>
                     <option value="anthropic">Anthropic</option>
                     <option value="gemini">Gemini</option>
+                    <option value="prompt-api" id="opt_prompt_api" style="display:none;" data-i18n="optTypePromptApi">Prompt API (Built-in)</option>
                 </select>
             </div>
             <div class="form-group" id="url_group">
                 <label data-i18n="optUrlLabel">URL del Servicio</label>
-                <input type="url" id="m_url" required placeholder="Ej: http://localhost:11434">
+                <input type="url" id="m_url" required placeholder="Ej: http://localhost:11434" dir="auto">
                 <small id="url_hint" data-i18n="optUrlHint">Al escribir la URL se consultarán los modelos disponibles.</small>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="apikey_group">
                 <label id="apikey_label" data-i18n="optApiKeyLabel">Clave de API (opcional)</label>
-                <input type="text" id="m_apikey">
+                <input type="text" id="m_apikey" dir="auto">
             </div>
             <div class="form-group">
                 <label data-i18n="optModelLabel">Modelo a usar</label>
                 <div style="display: flex; gap: 10px;">
-                    <select id="m_model" required style="flex-grow: 1;">
+                    <select id="m_model" required style="flex-grow: 1;" dir="auto">
                         <option value="" data-i18n="optModelEmpty">-- Introduce configuración válida --</option>
                     </select>
                     <button type="button" id="btnReloadModels" class="btn-secondary" title="Recargar modelos">🔄</button>
@@ -617,21 +658,21 @@
             </div>
             <div class="form-group">
                 <label data-i18n="optPromptLabel">Prompt</label>
-                <textarea id="m_prompt" required placeholder="Ej: Analiza este texto y dime tus conclusiones" data-i18n="optPromptPlaceholder"></textarea>
+                <textarea id="m_prompt" required placeholder="Ej: Analiza este texto y dime tus conclusiones" data-i18n="optPromptPlaceholder" dir="auto"></textarea>
             </div>
             <div class="form-group">
                 <label data-i18n="optSelectPromptLabel">Utilizar prompt de la lista</label>
-                <select id="m_prompt_id">
+                <select id="m_prompt_id" dir="auto">
                     <option value="" data-i18n="optSelectPromptDefault">-- Utilizar prompt específico --</option>
                 </select>
             </div>            <div class="form-group">
                 <label data-i18n="optSysPromptTextLabelOptional">System Prompt (Opcional)</label>
-                <textarea id="m_system_prompt" placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder"></textarea>
+                <textarea id="m_system_prompt" placeholder="Ej: Eres un experto..." data-i18n="optSysPromptTextPlaceholder" dir="auto"></textarea>
             </div>
 
             <div class="form-group">
                 <label data-i18n="optSelectSysPromptLabel">System Prompt (Opcional)</label>
-                <select id="m_system_prompt_id">
+                <select id="m_system_prompt_id" dir="auto">
                     <option value="" data-i18n="optSelectSysPromptDefault">-- Sin System Prompt --</option>
                 </select>
             </div>
@@ -645,7 +686,7 @@
             </div>
             <div class="form-group" id="linked_url_group" style="display:none; margin-top: 1rem;">
                 <label data-i18n="optLinkDomains">Dominios a vincular (separados por comas)</label>
-                <input type="text" id="m_linked_web_url" placeholder="Ej: example.com, openai.com">
+                <input type="text" id="m_linked_web_url" placeholder="Ej: example.com, openai.com" dir="auto">
             </div>
             
             <div class="form-actions">

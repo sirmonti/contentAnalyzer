@@ -47,6 +47,7 @@ const DEBUG_MODE = false;
  *   {DOMAIN}  → Domain only of the source page
  *   {LANG}    → HTML document language (<html lang="...">)
  *   {SYSLANG} → User's system/browser language (navigator.language)
+ *   {TITLE}   → HTML document title (document.title)
  */
 
 // Use `window.browser` (Firefox) with fallback to `window.chrome` to maintain
@@ -118,6 +119,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         pText = pText.replace(/\{DOMAIN\}/g,  domain || "");                      // Page domain
         pText = pText.replace(/\{LANG\}/g,    lang || "NONE");                    // Document language
         pText = pText.replace(/\{SYSLANG\}/g, syslang || navigator.language);     // System language
+        pText = pText.replace(/\{TITLE\}/g,    title || "");                       // Page title
 
         sysPromptText = sysPromptText.replace(/\{DATE\}/g,    new Date().toLocaleDateString());
         sysPromptText = sysPromptText.replace(/\{HOUR\}/g,    new Date().toLocaleTimeString());
@@ -125,31 +127,146 @@ document.addEventListener("DOMContentLoaded", async () => {
         sysPromptText = sysPromptText.replace(/\{DOMAIN\}/g,  domain || "");
         sysPromptText = sysPromptText.replace(/\{LANG\}/g,    lang || "NONE");
         sysPromptText = sysPromptText.replace(/\{SYSLANG\}/g, syslang || navigator.language);
+        sysPromptText = sysPromptText.replace(/\{TITLE\}/g,   title || "");
 
         // Final prompt: user instructions followed by page content.
         // Double line break visually separates instructions from content (Markdown style).
         const promptParams = pText + "\n\n" + markdown;
+        let chatHistory = [{ role: "user", content: promptParams }];
+        let displayMarkdown = "";
 
         document.getElementById("CHARCOUNT").textContent = promptParams.length.toLocaleString();
 
         const statusDiv = document.getElementById("status");
+        const resultContainer = document.getElementById("resultContainer");
         const resultBox = document.getElementById("resultBox");
-        const saveBtn   = document.getElementById("saveBtn");
+        const abortBtn  = document.getElementById("abortBtn");
+        const saveMdBtn = document.getElementById("saveMdBtn");
+        const saveHtmlBtn = document.getElementById("saveHtmlBtn");
+        const copyBtn = document.getElementById("copyBtn");
+        const chatContainer = document.getElementById("chatContainer");
+        const chatInput = document.getElementById("chatInput");
+        const chatSendBtn = document.getElementById("chatSendBtn");
 
-        // ---- MARKDOWN RENDERER ----
+        copyBtn.addEventListener("click", () => {
+            navigator.clipboard.writeText(resultBox.innerText).then(() => {
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = `<svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>`;
+                setTimeout(() => copyBtn.innerHTML = originalHTML, 2000);
+            });
+        });
+
+        chatSendBtn.addEventListener("click", () => {
+            const followUp = chatInput.value.trim();
+            if (!followUp) return;
+            chatHistory.push({ role: "user", content: followUp });
+            displayMarkdown += `**You:** ${followUp}\n\n`;
+            resultBox.innerHTML = parseMarkdown(displayMarkdown);
+            if (typeof Prism !== "undefined") {
+                Prism.highlightAllUnder(resultBox);
+            }
+            chatInput.value = "";
+            chatContainer.style.display = "none";
+            saveMdBtn.style.display = "none";
+            saveHtmlBtn.style.display = "none";
+            statusDiv.style.display = "block";
+            statusDiv.innerHTML = `<div class="loader"></div><span data-i18n="statusProcessing">Processing...</span>`;
+            resultText = ""; // reset for next response
+            isAborted = false;
+            retryCount = 0;
+            startGeneration();
+        });
+
         /**
-         * Converts Markdown syntax to HTML using marked.js.
+         * Converts Markdown syntax to HTML using marked.js, sanitized with DOMPurify.
          *
          * @param {string} text - text in Markdown format.
-         * @returns {string} HTML.
+         * @returns {string} Sanitized HTML.
          */
         function parseMarkdown(text) {
-            return marked.parse(text);
+            const rawHtml = marked.parse(text);
+            return typeof DOMPurify !== "undefined" ? DOMPurify.sanitize(rawHtml) : rawHtml;
         }
+
+        let renderPending = false;
+
+        /**
+         * Renders the current markdown content into the resultBox and scrolls to bottom.
+         */
+        function renderMarkdown() {
+            resultBox.innerHTML = parseMarkdown(displayMarkdown + "**AI:**\n\n" + resultText + "\n\n");
+            resultBox.querySelectorAll('a').forEach(a => {
+                a.setAttribute('target', '_blank');
+                a.setAttribute('rel', 'noopener noreferrer');
+            });
+            if (typeof Prism !== "undefined") {
+                Prism.highlightAllUnder(resultBox);
+            }
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        /**
+         * Schedules a markdown re-render synchronized with screen refresh rate using requestAnimationFrame.
+         * Prevents CPU thrashing and DOM bottlenecking during high-speed token streaming.
+         */
+        function scheduleRender() {
+            if (renderPending) return;
+            renderPending = true;
+            requestAnimationFrame(() => {
+                renderPending = false;
+                renderMarkdown();
+            });
+        }
+
+        // ---- DOWNLOAD / SAVE HELPER ----
+        function setupSaveButton() {
+            saveMdBtn.style.display = "inline-block";
+            saveHtmlBtn.style.display = "inline-block";
+            
+            let cleanTitle = title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            if (!cleanTitle || cleanTitle.trim() === "") {
+                cleanTitle = api.i18n.getMessage("resDefaultFilename") || "ai_response";
+            }
+            
+            saveMdBtn.onclick = () => {
+                const blob = new Blob([displayMarkdown], { type: "text/markdown" });
+                const url = URL.createObjectURL(blob);
+                const filename = cleanTitle + "_ia.md";
+                api.downloads.download({ url: url, filename: filename, saveAs: true })
+                .then(() => setTimeout(() => URL.revokeObjectURL(url), 10000)).catch(err => { console.error(err); URL.revokeObjectURL(url); });
+            };
+            
+            saveHtmlBtn.onclick = () => {
+                const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>${title}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<style>
+body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #333; }
+pre { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+code { background: #f4f4f4; padding: 0.2rem 0.4rem; border-radius: 3px; font-family: monospace; }
+</style>
+</head>
+<body>
+${parseMarkdown(displayMarkdown)}
+</body>
+</html>`;
+                const blob = new Blob([htmlContent], { type: "text/html" });
+                const url = URL.createObjectURL(blob);
+                const filename = cleanTitle + "_ia.html";
+                api.downloads.download({ url: url, filename: filename, saveAs: true })
+                .then(() => setTimeout(() => URL.revokeObjectURL(url), 10000)).catch(err => { console.error(err); URL.revokeObjectURL(url); });
+            };
+        }
+
+
 
         // ---- GENERATION SYSTEM WITH RETRIES ----
         let retryCount = 0;       // Number of retries performed so far
         const MAX_RETRIES = 3;    // Max retries before showing definitive error
+        let isAborted = false;    // User clicked abort button
 
         // IMPORTANT: resultText is declared OUTSIDE startGeneration() so that
         // retries preserve the text already received before the connection failure.
@@ -165,8 +282,14 @@ document.addEventListener("DOMContentLoaded", async () => {
          * this function again until MAX_RETRIES is reached.
          */
         function startGeneration() {
-            let isDone = false;         // true when generation complete or failed definitively
+            if (isAborted) return;
+            let isDone = false;         // true when generation complete, failed, or aborted
             let attemptTimeout = null;  // Handle for active setTimeout to cancel it
+
+            if (abortBtn) {
+                abortBtn.style.display = "inline-block";
+                abortBtn.disabled = false;
+            }
 
             // If it's a retry, inform the user visually.
             // Keep already received text visible (resultText persists between attempts).
@@ -180,6 +303,40 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Open communication port with background.
             // "llm-generate" is the channel name; background.js listens for it with onConnect.
             const port = api.runtime.connect({ name: "llm-generate" });
+
+            if (abortBtn) {
+                abortBtn.onclick = async () => {
+                    if (isDone || isAborted) return;
+                    isAborted = true;
+                    isDone = true;
+
+                    if (attemptTimeout) clearTimeout(attemptTimeout);
+
+                    try {
+                        port.postMessage({ action: "abort" });
+                    } catch (e) {}
+                    try {
+                        port.disconnect();
+                    } catch (e) {}
+
+                    abortBtn.style.display = "none";
+
+                    const abortedMsg = api.i18n.getMessage("statusAborted") || "Analysis stopped by user.";
+                    statusDiv.innerHTML = `<span style="color:#d9534f; font-weight: 500;">${abortedMsg}</span>`;
+                    statusDiv.style.display = "block";
+                    statusDiv.className = "";
+
+                    if (resultText && resultText.trim().length > 0) {
+                        // Show "Save" button so user can download the result
+                    setupSaveButton();
+                    chatHistory.push({role: "assistant", content: resultText});
+                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
+                    chatContainer.style.display = "block";
+                    }
+
+                    await api.storage.local.remove(mKey);
+                };
+            }
 
             /**
              * Resets the inactivity timer.
@@ -210,10 +367,12 @@ document.addEventListener("DOMContentLoaded", async () => {
              * @param {string} [errorMsg=null] - Optional error message to display if not recoverable.
              */
             function triggerRetry(recoverable = true, errorMsg = null) {
-                if (isDone) return; // Avoid duplicate retries
+                if (isDone || isAborted) return; // Avoid duplicate retries or retrying when aborted
                 isDone = true;
                 if (attemptTimeout) clearTimeout(attemptTimeout);
                 port.disconnect(); // Close port before opening a new one
+
+                if (abortBtn) abortBtn.style.display = "none";
 
                 if (recoverable && retryCount < MAX_RETRIES) {
                     retryCount++;
@@ -236,7 +395,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // If port disconnects without us asking (e.g.: service worker
             // suspended by Chrome), treat disconnection as a failure and retry.
             port.onDisconnect.addListener(() => {
-                if (!isDone) {
+                if (!isDone && !isAborted) {
                     console.warn(`Port disconnected unexpectedly (attempt ${retryCount})`);
                     triggerRetry();
                 }
@@ -250,7 +409,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 url:         service.url,               // LLM server base URL
                 model:       service.model,             // Model name to use
                 apikey:      service.apikey,            // Credentials (can be empty)
-                prompt:      promptParams,              // Full prompt: instructions + content
+                prompt:      chatHistory,              // Full prompt: instructions + content
                 systemPrompt: sysPromptText
             });
 
@@ -259,29 +418,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // ---- STREAM MESSAGE LISTENER ----
             port.onMessage.addListener(async (msg) => {
-                if (isDone) return; // Ignore messages if already finished or failed
+                if (isDone || isAborted) return; // Ignore messages if already finished or failed
 
                 if (msg.type === "chunk") {
                     // CHUNK RECEIVED: new text snippet generated by the model
                     resetTimeout(false);                      // Reset timeout between chunks
                     statusDiv.style.display = "none";         // Hide "Processing..." loader
-                    resultBox.style.display = "block";        // Show result area
+                    resultContainer.style.display = "block"; resultBox.style.display = "block";        // Show result area
 
                     if (msg.chunk) {
-                        resultText += msg.chunk;                      // Accumulate text
-                        resultBox.innerHTML = parseMarkdown(resultText); // Re-render everything
-                        
-                        // Force all links generated from Markdown to open in a new tab
-                        resultBox.querySelectorAll('a').forEach(a => {
-                            a.setAttribute('target', '_blank');
-                            a.setAttribute('rel', 'noopener noreferrer');
-                        });
-
-                        window.scrollTo(0, document.body.scrollHeight);  // Auto scroll to bottom
+                        resultText += msg.chunk;              // Accumulate text
+                        scheduleRender();                     // Throttled render via requestAnimationFrame
                     }
 
                 } else if (msg.type === "error") {
                     // LLM ERROR: exception in background or server responded with error.
+                    if (isAborted) return;
+                    if (abortBtn) abortBtn.style.display = "none";
                     if (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE && msg.error && msg.error.includes('{"_debug":true')) {
                         try {
                             const errData = JSON.parse(msg.error);
@@ -299,34 +452,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 } else if (msg.type === "done") {
                     // GENERATION COMPLETED: stream finished correctly
+                    if (isAborted) return;
                     isDone = true;
                     if (attemptTimeout) clearTimeout(attemptTimeout);
 
+                    if (abortBtn) abortBtn.style.display = "none";
+
+                    // Ensure final state is immediately rendered
+                    renderPending = false;
+                    renderMarkdown();
+
                     // Show "Save" button so user can download the result
-                    saveBtn.style.display = "inline-block";
-
-                    // Download button handler
-                    saveBtn.onclick = () => {
-                        const blob = new Blob([resultText], { type: "text/markdown" });
-                        const url = URL.createObjectURL(blob); // Works in extension pages
-                        
-                        let cleanTitle = title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
-                        if (!cleanTitle || cleanTitle.trim() === "") {
-                            cleanTitle = api.i18n.getMessage("resDefaultFilename") || "ai_response";
-                        }
-                        const filename = cleanTitle + "_ia.md"; // "_ia" suffix to distinguish from raw Markdown
-
-                        api.downloads.download({
-                            url: url,
-                            filename: filename,
-                            saveAs: true // OS "Save as" dialog
-                        })
-                        .then(() => setTimeout(() => URL.revokeObjectURL(url), 10000))
-                        .catch(err => {
-                            console.error("Download error:", err);
-                            URL.revokeObjectURL(url);
-                        });
-                    };
+                    setupSaveButton();
+                    chatHistory.push({role: "assistant", content: resultText});
+                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
+                    chatContainer.style.display = "block";
 
                     // Remove storage data to free space.
                     // At this point text is already in `resultText`; we don't need storage.

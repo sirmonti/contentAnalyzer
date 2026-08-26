@@ -1,275 +1,350 @@
 {
-  "extName": {
-    "message": "Analyseur de contenu"
-  },
-  "extDesc": {
-    "message": "Traite le contenu sélectionné avec l'IA"
-  },
-  "popupTitle": {
-    "message": "Analyser le contenu"
-  },
-  "selectService": {
-    "message": "Traiter avec l'IA"
-  },
-  "btnExtractBrowser": {
-    "message": "Extraire dans le navigateur"
-  },
-  "btnExtractDisk": {
-    "message": "Enregistrer sur le disque"
-  },
-  "statusProcessing": {
-    "message": "Traitement..."
-  },
-  "statusSaved": {
-    "message": "Enregistré dans les téléchargements"
-  },
-  "statusSelectService": {
-    "message": "Sélectionnez le fournisseur"
-  },
-  "optPageTitle": {
-    "message": "Configurer les services"
-  },
-  "optTitle": {
-    "message": "Configuration IA"
-  },
-  "optAddService": {
-    "message": "Ajouter un nouveau service"
-  },
-  "optNameLabel": {
-    "message": "Nom d'identification"
-  },
-  "optNamePlaceholder": {
-    "message": "Ex : Résumé Ollama Llama3"
-  },
-  "optTypeLabel": {
-    "message": "Type"
-  },
-  "optUrlLabel": {
-    "message": "URL du service"
-  },
-  "optUrlHint": {
-    "message": "Les modèles disponibles seront interrogés lors de la saisie de l'URL."
-  },
-  "optApiKeyLabel": {
-    "message": "Clé API (facultatif)"
-  },
-  "optModelLabel": {
-    "message": "Modèle à utiliser"
-  },
-  "optModelEmpty": {
-    "message": "-- Entrez une configuration valide --"
-  },
-  "optModelLoading": {
-    "message": "Chargement des services..."
-  },
-  "optPromptLabel": {
-    "message": "Prompt"
-  },
-  "optPromptPlaceholder": {
-    "message": "Analysez ce texte et donnez-moi vos conclusions"
-  },
-  "optSaveBtn": {
-    "message": "Enregistrer le service"
-  },
-  "optCancelBtn": {
-    "message": "Annuler"
-  },
-  "optListTitle": {
-    "message": "Services configurés"
-  },
-  "thName": {
-    "message": "Nom"
-  },
-  "thType": {
-    "message": "Type"
-  },
-  "thUrl": {
-    "message": "URL"
-  },
-  "thDomains": {
-    "message": "Domaines liés"
-  },
-  "thModel": {
-    "message": "Modèle"
-  },
-  "thActions": {
-    "message": "Actions"
-  },
-  "btnEdit": {
-    "message": "Modifier"
-  },
-  "btnDelete": {
-    "message": "Supprimer"
-  },
-  "alertServiceExists": {
-    "message": "Un service avec ce nom existe déjà"
-  },
-  "resPageTitle": {
-    "message": "Résultat IA - Analyseur"
-  },
-  "resHeader": {
-    "message": "Résultat - "
-  },
-  "resSaving": {
-    "message": "Enregistrement..."
-  },
-  "resSaveBtn": {
-    "message": "Enregistrer sous"
-  },
-  "resInvalidId": {
-    "message": "ID d'exécution invalide."
-  },
-  "resDataNotFound": {
-    "message": "Données de l'article introuvables."
-  },
-  "resReconnecting": {
-    "message": "Nouvelle tentative... (Tentative $1/$2)"
-  },
-  "resConnError": {
-    "message": "Erreur : La connexion s'est fermée de manière inattendue de manière répétée."
-  },
-  "resAIError": {
-    "message": "Erreur IA: $1"
-  },
-  "resDefaultFilename": {
-    "message": "reponse_ia"
-  },
-  "errUnsupportedService": {
-    "message": "Service non pris en charge: $1"
-  },
-  "errDownload": {
-    "message": "Erreur de téléchargement"
-  },
-  "extIconTitle": {
-    "message": "Analyser le contenu"
-  },
-  "errNoServices": {
-    "message": "Aucun service actif."
-  },
-  "errNoModels": {
-    "message": "Aucun modele trouve"
-  },
-  "errConn": {
-    "message": "Erreur"
-  },
-  "optEditService": {
-    "message": "Editer"
-  },
-  "optSaveChanges": {
-    "message": "Sauvegarder"
-  },
-  "errNoTab": {
-    "message": "Aucun onglet actif"
-  },
-  "errParse": {
-    "message": "Erreur d'analyse: $1"
-  },
-  "tipInstruction": {
-    "message": "🤖 Pointez la section à extraire et CLIQUEZ"
-  },
-  "capAllBtn": {
-    "message": "Capturer toute la page"
-  },
-  "contextSaveHtml": {
-    "message": "Enregistrer la sélection en HTML"
-  },
-  "contextSaveMd": {
-    "message": "Enregistrer la sélection en Markdown"
-  },
-  "resHelp": {
-    "message": "Aide"
-  },
-  "resPrivacy": {
-    "message": "Confidentialité"
-  },
-  "resContact": {
-    "message": "Contact"
-  },
-  "resSysLang": {
-    "message": "Langue du sistema"
-  },
-  "resPageLang": {
-    "message": "Langue de la page"
-  },
-  "optPromptsListTitle": {
-    "message": "Configured Prompts"
-  },
-  "optAddPrompt": {
-    "message": "Add New Prompt"
-  },
-  "optPromptNameLabel": {
-    "message": "Prompt Name"
-  },
-  "optPromptNamePlaceholder": {
-    "message": "Ex: Text Summary"
-  },
-  "optPromptTextLabel": {
-    "message": "Prompt Text"
-  },
-  "optPromptTextPlaceholder": {
-    "message": "Analyze this text and..."
-  },
-  "optSavePromptBtn": {
-    "message": "Save Prompt"
-  },
-  "optEditPrompt": {
-    "message": "Edit Prompt"
-  },
-  "optSelectPromptLabel": {
-    "message": "Use prompt from the list"
-  },
-  "optSelectPromptDefault": {
-    "message": "-- Use custom prompt --"
-  },
-  "thPrompt": {
-    "message": "Prompt"
-  },
-  "resCharCount": {
-    "message": "Query Length (chars)"
-  },
-  "optUseMarkdown": {
-    "message": "Convert content to Markdown (uncheck to process HTML directly)"
-  },
-  "optLinkWeb": {
-    "message": "Link and limit this service to one or more domains"
-  },
-  "optLinkDomains": {
-    "message": "Domains to link (comma separated)"
-  },
-  "optSysPromptsListTitle": {
-    "message": "System Prompts"
-  },
-  "optAddSysPrompt": {
-    "message": "Add New System Prompt"
-  },
-  "optSysPromptNameLabel": {
-    "message": "System Prompt Name"
-  },
-  "optSysPromptNamePlaceholder": {
-    "message": "e.g. Summarizer"
-  },
-  "optSysPromptTextLabel": {
-    "message": "System Prompt"
-  },
-  "optSysPromptTextPlaceholder": {
-    "message": "e.g. You are an expert summarizer..."
-  },
-  "optSaveSysPromptBtn": {
-    "message": "Save System Prompt"
-  },
-  "optSelectSysPromptLabel": {
-    "message": "System Prompt (Optional)"
-  },
-  "optSelectSysPromptDefault": {
-    "message": "-- No System Prompt --"
-  },
-  "optColSysPromptName": {
-    "message": "System Prompt Name"
-  },
-  "optColSysPromptText": {
-    "message": "Text"
-  },
-  "optSysPromptTextLabelOptional": {
-    "message": "System Prompt (Optional)"
-  }
+    "extName": {
+        "message": "Analyseur de contenu"
+    },
+    "extDesc": {
+        "message": "Traite le contenu sélectionné avec l'IA"
+    },
+    "popupTitle": {
+        "message": "Analyser le contenu"
+    },
+    "selectService": {
+        "message": "Traiter avec l'IA"
+    },
+    "btnExtractBrowser": {
+        "message": "Extraire dans le navigateur"
+    },
+    "btnExtractDisk": {
+        "message": "Enregistrer sur le disque"
+    },
+    "statusProcessing": {
+        "message": "Traitement..."
+    },
+    "statusSaved": {
+        "message": "Enregistré dans les téléchargements"
+    },
+    "statusSelectService": {
+        "message": "Sélectionnez le fournisseur"
+    },
+    "optPageTitle": {
+        "message": "Configurer les services"
+    },
+    "optTitle": {
+        "message": "Configuration IA"
+    },
+    "optAddService": {
+        "message": "Ajouter un nouveau service"
+    },
+    "optNameLabel": {
+        "message": "Nom d'identification"
+    },
+    "optNamePlaceholder": {
+        "message": "Ex : Résumé Ollama Llama3"
+    },
+    "optTypeLabel": {
+        "message": "Type"
+    },
+    "optUrlLabel": {
+        "message": "URL du service"
+    },
+    "optUrlHint": {
+        "message": "Les modèles disponibles seront interrogés lors de la saisie de l'URL."
+    },
+    "optApiKeyLabel": {
+        "message": "Clé API (facultatif)"
+    },
+    "optModelLabel": {
+        "message": "Modèle à utiliser"
+    },
+    "optModelEmpty": {
+        "message": "-- Entrez une configuration valide --"
+    },
+    "optModelLoading": {
+        "message": "Chargement des services..."
+    },
+    "optPromptLabel": {
+        "message": "Prompt"
+    },
+    "optPromptPlaceholder": {
+        "message": "Analysez ce texte et donnez-moi vos conclusions"
+    },
+    "optSaveBtn": {
+        "message": "Enregistrer le service"
+    },
+    "optCancelBtn": {
+        "message": "Annuler"
+    },
+    "optListTitle": {
+        "message": "Services configurés"
+    },
+    "thName": {
+        "message": "Nom"
+    },
+    "thType": {
+        "message": "Type"
+    },
+    "thUrl": {
+        "message": "URL"
+    },
+    "thDomains": {
+        "message": "Domaines liés"
+    },
+    "thModel": {
+        "message": "Modèle"
+    },
+    "thActions": {
+        "message": "Actions"
+    },
+    "btnEdit": {
+        "message": "Modifier"
+    },
+    "btnDelete": {
+        "message": "Supprimer"
+    },
+    "alertServiceExists": {
+        "message": "Un service avec ce nom existe déjà"
+    },
+    "resPageTitle": {
+        "message": "Résultat IA - Analyseur"
+    },
+    "resHeader": {
+        "message": "Résultat - "
+    },
+    "resSaving": {
+        "message": "Enregistrement..."
+    },
+    "resSaveBtn": {
+        "message": "Enregistrer sous"
+    },
+    "resInvalidId": {
+        "message": "ID d'exécution invalide."
+    },
+    "resDataNotFound": {
+        "message": "Données de l'article introuvables."
+    },
+    "resReconnecting": {
+        "message": "Nouvelle tentative... (Tentative $1/$2)"
+    },
+    "resConnError": {
+        "message": "Erreur : La connexion s'est fermée de manière inattendue de manière répétée."
+    },
+    "resAIError": {
+        "message": "Erreur IA: $1"
+    },
+    "resDefaultFilename": {
+        "message": "reponse_ia"
+    },
+    "errUnsupportedService": {
+        "message": "Service non pris en charge: $1"
+    },
+    "errDownload": {
+        "message": "Erreur de téléchargement"
+    },
+    "extIconTitle": {
+        "message": "Analyser le contenu"
+    },
+    "errNoServices": {
+        "message": "Aucun service actif."
+    },
+    "errNoModels": {
+        "message": "Aucun modele trouve"
+    },
+    "errConn": {
+        "message": "Erreur"
+    },
+    "optEditService": {
+        "message": "Editer"
+    },
+    "optSaveChanges": {
+        "message": "Sauvegarder"
+    },
+    "errNoTab": {
+        "message": "Aucun onglet actif"
+    },
+    "errParse": {
+        "message": "Erreur d'analyse: $1"
+    },
+    "tipInstruction": {
+        "message": "🤖 Pointez la section à extraire et CLIQUEZ"
+    },
+    "capAllBtn": {
+        "message": "Capturer toute la page"
+    },
+    "contextSaveHtml": {
+        "message": "Enregistrer la sélection en HTML"
+    },
+    "contextSaveMd": {
+        "message": "Enregistrer la sélection en Markdown"
+    },
+    "resHelp": {
+        "message": "Aide"
+    },
+    "resPrivacy": {
+        "message": "Confidentialité"
+    },
+    "resContact": {
+        "message": "Contact"
+    },
+    "resSysLang": {
+        "message": "Langue du sistema"
+    },
+    "resPageLang": {
+        "message": "Langue de la page"
+    },
+    "optPromptsListTitle": {
+        "message": "Configured Prompts"
+    },
+    "optAddPrompt": {
+        "message": "Add New Prompt"
+    },
+    "optPromptNameLabel": {
+        "message": "Prompt Name"
+    },
+    "optPromptNamePlaceholder": {
+        "message": "Ex: Text Summary"
+    },
+    "optPromptTextLabel": {
+        "message": "Prompt Text"
+    },
+    "optPromptTextPlaceholder": {
+        "message": "Analyze this text and..."
+    },
+    "optSavePromptBtn": {
+        "message": "Save Prompt"
+    },
+    "optEditPrompt": {
+        "message": "Edit Prompt"
+    },
+    "optSelectPromptLabel": {
+        "message": "Use prompt from the list"
+    },
+    "optSelectPromptDefault": {
+        "message": "-- Use custom prompt --"
+    },
+    "thPrompt": {
+        "message": "Prompt"
+    },
+    "resCharCount": {
+        "message": "Query Length (chars)"
+    },
+    "optUseMarkdown": {
+        "message": "Convert content to Markdown (uncheck to process HTML directly)"
+    },
+    "optLinkWeb": {
+        "message": "Link and limit this service to one or more domains"
+    },
+    "optLinkDomains": {
+        "message": "Domains to link (comma separated)"
+    },
+    "optSysPromptsListTitle": {
+        "message": "System Prompts"
+    },
+    "optAddSysPrompt": {
+        "message": "Add New System Prompt"
+    },
+    "optSysPromptNameLabel": {
+        "message": "System Prompt Name"
+    },
+    "optSysPromptNamePlaceholder": {
+        "message": "e.g. Summarizer"
+    },
+    "optSysPromptTextLabel": {
+        "message": "System Prompt"
+    },
+    "optSysPromptTextPlaceholder": {
+        "message": "e.g. You are an expert summarizer..."
+    },
+    "optSaveSysPromptBtn": {
+        "message": "Save System Prompt"
+    },
+    "optSelectSysPromptLabel": {
+        "message": "System Prompt (Optional)"
+    },
+    "optSelectSysPromptDefault": {
+        "message": "-- No System Prompt --"
+    },
+    "optColSysPromptName": {
+        "message": "System Prompt Name"
+    },
+    "optColSysPromptText": {
+        "message": "Text"
+    },
+    "optSysPromptTextLabelOptional": {
+        "message": "System Prompt (Optional)"
+    },
+    "optImportExportTitle": {
+        "message": "Exporter / Importer la Configuration"
+    },
+    "optExportSection": {
+        "message": "Exporter la Configuration"
+    },
+    "optExportPassLabel": {
+        "message": "Mot de passe (optionnel)"
+    },
+    "optExportPassPlaceholder": {
+        "message": "Laisser vide pour un fichier non chiffré"
+    },
+    "optExportBtn": {
+        "message": "Exporter"
+    },
+    "optImportSection": {
+        "message": "Importer la Configuration"
+    },
+    "optImportFileLabel": {
+        "message": "Sélectionnez le fichier de configuration (.json)"
+    },
+    "optImportPassLabel": {
+        "message": "Mot de passe (si chiffré)"
+    },
+    "optImportPassPlaceholder": {
+        "message": "Entrez le mot de passe si le fichier est chiffré"
+    },
+    "optImportBtn": {
+        "message": "Importer"
+    },
+    "msgExportSuccess": {
+        "message": "Configuration exportée avec succès."
+    },
+    "msgImportSuccess": {
+        "message": "Configuration importée avec succès."
+    },
+    "errInvalidSignature": {
+        "message": "Fichier de configuration invalide (signature invalide)."
+    },
+    "errInvalidPassword": {
+        "message": "Mot de passe incorrect ou fichier corrompu."
+    },
+    "errFileRead": {
+        "message": "Erreur lors de la lecture du fichier."
+    },
+    "optTypePromptApi": {
+        "message": "Prompt API (Intégrée)"
+    },
+    "errPromptApiNotAvailable": {
+        "message": "Prompt API n'est pas disponible ou aucun modèle actif n'est prêt dans ce navigateur."
+    },
+    "resAbortBtn": {
+        "message": "Arrêter l'analyse"
+    },
+    "statusAborted": {
+        "message": "Analyse arrêtée par l'utilisateur."
+    },
+    "optConfirmPassword": {
+        "message": "Confirmer le mot de passe"
+    },
+    "errPasswordMismatch": {
+        "message": "Les mots de passe ne correspondent pas."
+    },
+    "chatPlaceholder": {
+        "message": "Tapez votre prompt de suivi ici..."
+    },
+    "chatSend": {
+        "message": "Envoyer"
+    },
+    "resSaveMdBtn": {
+        "message": "Enregistrer au format Markdown"
+    },
+    "resSaveHtmlBtn": {
+        "message": "Enregistrer au format HTML"
+    }
 }

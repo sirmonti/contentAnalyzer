@@ -267,16 +267,16 @@
         </header>
 
         <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
-            <p class="mb-sm"><strong>コンテンツアナライザー</strong>は、複雑なウェブ環境でセマンティックメタデータの自動抽出および評価を行うように設計されたブラウザ拡張機能です。この拡張機能は、Firefox、Chrome、および Chromium ベースのブラウザで動作し、その主な目的は、さまざまな人工知能（AI）サービスを通じてウェブコンテンツを処理することです。</p>
-            <p class="mb-sm">一般的なウェブページ要約ツールとは異なり、この拡張機能では、複数のカスタム AI サービスを作成でき、それぞれのサービスに高度に特化したプロンプトを設定することで、収集された情報に対して AI が正確に行うべきことを指示できます。これを使用して、コードの抽出、特定の用語の翻訳、感情分析、ターゲットを絞ったレポートの生成などを行うことができます。</p>
+            <p class="mb-sm"><strong>コンテンツアナライザー</strong>は、複雑なWeb環境におけるセマンティックメタデータの自動抽出と評価のために設計されたブラウザ拡張機能です。この拡張機能は、Firefox、Chrome、およびChromiumベースのブラウザで動作し、その主な目的は、さまざまな人工知能（AI）サービスを通じてWebコンテンツを処理することです。</p>
+            <p class="mb-sm">一般的なWebページ要約ツールとは異なり、この拡張機能を使用すると、AIが収集した情報に対して正確に何を行うかを指定する、高度に特化したプロンプトを持つ複数のカスタムAIサービスを作成できます。これを使用して、コードの抽出、特定の用語の翻訳、感情分析、ターゲットレポートの生成などを行うことができます。</p>
         </div>
 
-        <nav aria-label="目次" class="mb-xl bg-surface-header p-md border border-border-subtle">
-            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">操作索引</h2>
+        <nav aria-label="Table of Contents" class="mb-xl bg-surface-header p-md border border-border-subtle">
+            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">目次</h2>
             <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
                 <li><a class="hover:text-primary-hover" href="#features">主な機能</a></li>
-                <li><a class="hover:text-primary-hover" href="#providers">サポートされている AI プロバイダー</a></li>
-                <li><a class="hover:text-primary-hover" href="#tags">動的プロンプトタグ</a></li>
+                <li><a class="hover:text-primary-hover" href="#providers">対応するAIプロバイダー</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">動的なプロンプトタグ</a></li>
                 <li><a class="hover:text-primary-hover" href="#examples">設定例</a></li>
                 <li><a class="hover:text-primary-hover" href="#installation">ブラウザへのインストール</a></li>
             </ol>
@@ -290,10 +290,10 @@
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">主な機能</h2>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong>カスタムコンテンツのキャプチャ:</strong> インタラクティブな「ホバーツール」を使用してウェブページの特定の部分を選択したり、ページ全体のコンテンツをキャプチャすることを選択できます。</li>
-                            <li><strong>複数のカスタム AI プロンプトとシステムプロンプト:</strong> カスタムユーザープロンプトとオプションのシステムプロンプト（例：「記事の要約」、「JSON データの抽出」、「スペイン語への翻訳」、カスタムアシスタントのペルソナなど）を使用して、ニーズに合わせて調整されたさまざまなサービスを作成できます。</li>
-                            <li><strong>ドメイン固有のサービス:</strong> カスタムサービスを特定のウェブドメインに関連付けることができます。これにより、関連する AI ツールのみを表示することで、拡張機能を整理できます。</li>
-                            <li><strong>広範な LLM の互換性:</strong> Ollama を介したローカルサーバーとの接続（テキストストリーミングを含む）や、OpenAI、Anthropic、Google Gemini などのクラウド API プロバイダーとの完全な互換性をサポートします。</li>
+                            <li><strong>カスタムコンテンツキャプチャ:</strong> インタラクティブな「ホバーツール」を使用して、Webページの特定の部分を簡単に選択するか、ページ全体のコンテンツをキャプチャすることを選択できます。</li>
+                            <li><strong>複数のカスタムAIプロンプトとシステムプロンプト:</strong> カスタムユーザープロンプトとオプションのシステムプロンプト（例：「記事の要約」、「JSONデータの抽出」、「スペイン語への翻訳」、カスタムアシスタントのペルソナなど）を使用して、正確なニーズに合わせて調整されたさまざまなサービスを作成できます。</li>
+                            <li><strong>ドメイン固有のサービス:</strong> カスタムサービスを特定のWebドメインにリンクできます。これにより、関連するAIツールのみを表示することで、拡張機能を整理できます。</li>
+                            <li><strong>幅広いLLMとの互換性:</strong> Ollamaを介したローカルサーバーとの接続（テキストストリーミングを含む）や、OpenAI、Anthropic、Google GeminiなどのクラウドAPIプロバイダーとの接続を完全にサポートします。</li>
                         </ul>
                     </div>
                 </div>
@@ -304,13 +304,13 @@
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">サポートされている AI プロバイダー</h2>
-                        <p class="font-body text-body text-text-primary mb-md">この拡張機能は、業界をリードするさまざまな人工知能モデルおよびローカルサービスに接続できるように、高度な柔軟性を備えて設計されています。現在、以下のプロバイダーをサポートしています。</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">対応するAIプロバイダー</h2>
+                        <p class="font-body text-body text-text-primary mb-md">この拡張機能は、さまざまな主要な人工知能モデルおよびローカルサービスに接続できるように、高い柔軟性を持つように構築されています。現在、次のプロバイダーをサポートしています。</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong>Claude (Anthropic):</strong> Anthropic の公式 API を介して強力な Claude ファミリーモデルにアクセスできます。</li>
-                            <li><strong>Gemini (Google):</strong> Google の高度な Gemini モデルに直接接続できます。</li>
-                            <li><strong>ChatGPT (OpenAI &amp; 互換性のあるもの):</strong> OpenAI の API と完全に互換性があり、また、OpenAI 互換のエンドポイントを提供するサードパーティ製サービスにも対応しています。</li>
-                            <li><strong>Ollama:</strong> モデルをローカルでプライベートに実行し、データをクラウドに送信することなく使用できます。</li>
+                            <li><strong>Claude (Anthropic):</strong> 公式APIを通じて、強力なClaudeモデルファミリーにアクセスできます。</li>
+                            <li><strong>Gemini (Google):</strong> Googleの高度なGeminiモデルに直接接続できます。</li>
+                            <li><strong>ChatGPT (OpenAI & 互換性のあるもの):</strong> OpenAIのAPIと完全に互換性があり、OpenAI互換のエンドポイントを提供する他のサードパーティサービスにも対応しています。</li>
+                            <li><strong>Ollama:</strong> モデルをローカルでプライベートに実行し、データをクラウドに送信する必要はありません。</li>
                         </ul>
                     </div>
                 </div>
@@ -321,8 +321,8 @@
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">動的プロンプトタグ</h2>
-                        <p class="font-body text-body text-text-primary mb-md">AI プロンプトをより文脈に沿って強力にするために、ユーザープロンプトとシステムプロンプトの両方で次の動的タグを使用できます。拡張機能は、プロンプトを AI モデルに送信する前に自動的にこれらのタグを置き換えます。</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">動的なプロンプトタグ</h2>
+                        <p class="font-body text-body text-text-primary mb-md">AIプロンプトをよりコンテキストに合わせ、より効果的にするために、ユーザープロンプトとシステムプロンプトの両方で次の動的タグを使用できます。拡張機能は、AIモデルにプロンプトを送信する前に、これらのタグを自動的に置換します。</p>
                         <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
                             <thead>
                                 <tr class="bg-surface-header border-b border-border-subtle">
@@ -333,27 +333,31 @@
                             <tbody>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DATE}</td>
-                                    <td class="p-sm">ローカル形式で現在の日に置き換えられます。</td>
+                                    <td class="p-sm">現在のローカル形式の日付に置き換えられます。</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{HOUR}</td>
-                                    <td class="p-sm">ローカル形式で現在の時間に置き換えられます。</td>
+                                    <td class="p-sm">現在のローカル形式の時間に置き換えられます。</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
-                                    <td class="p-sm">現在処理中のウェブページの完全な URL です。</td>
+                                    <td class="p-sm">現在処理中のWebページの完全なURLです。</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DOMAIN}</td>
-                                    <td class="p-sm">処理中のウェブページのルートドメインです。</td>
+                                    <td class="p-sm">処理中のWebページのルートドメインです。</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
-                                    <td class="p-sm">ウェブページの言語です。</td>
+                                    <td class="p-sm">Webページの言語です。</td>
                                 </tr>
-                                <tr class="bg-background-canvas">
+                                <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
                                     <td class="p-sm">現在のシステム/ブラウザの言語設定です。</td>
+                                </tr>
+                                <tr class="bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{TITLE}</td>
+                                    <td class="p-sm">現在処理中のWebページのHTMLタイトルです。</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -367,41 +371,41 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">設定例</h2>
-                        <p class="font-body text-body text-text-primary mb-md">以下に、サービスの構成方法のいくつかの例を示します。</p>
+                        <p class="font-body text-body text-text-primary mb-md">以下に、サービスを構成する方法のいくつかの例を示します。</p>
 
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例 1: 多言語翻訳アシスタント</h4>
-                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> ローカル言語に翻訳する<br /><strong>リンクされたドメイン:</strong> (空 - すべての場所で利用可能)</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例1：多言語翻訳アシスタント</h4>
+                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> ローカル言語に翻訳<br/><strong>リンクされたドメイン:</strong> <em>（空 - どこでも利用可能）</em></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                私はプロの翻訳家です。{LANG} で書かれたサイトを閲覧しており、ブラウザは {SYSLANG} に設定されています。以下のコンテンツを {SYSLANG} に正確に翻訳し、元のマークダウンとテキストの書式を保持してください。
+                                私はプロの翻訳家です。私は、{LANG}言語のサイトを閲覧していますが、私のブラウザは{SYSLANG}に設定されています。次のコンテンツを{SYSLANG}に正確に翻訳し、元のマークダウンとテキストの書式設定を保持してください。
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例 2: コードレビューアー (ドメイン固有)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> Python コードレビュー<br /><strong>リンクされたドメイン:</strong> github.com、gitlab.com、stackoverflow.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例2：コードレビューアー（ドメイン固有）</h4>
+                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> Pythonコードレビュー<br/><strong>リンクされたドメイン:</strong> github.com、gitlab.com、stackoverflow.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                あなたは熟練した開発者です。以下に示すコードスニペットは {DOMAIN} で見つかりました。潜在的なバグ、セキュリティ上の脆弱性、およびコーディングの悪い点を厳密に分析してください。コードが何をするのかを説明するのではなく、問題をリストし、修正されたバージョンを提供します。
+                                あなたは熟練した開発者です。以下のコードスニペットは{DOMAIN}で見つかりました。潜在的なバグ、セキュリティの脆弱性、およびコードのにおいを厳密に分析してください。コードが何をするのかを説明しないでください。問題をリストし、修正されたバージョンを提供してください。
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例 3: 日次ブリーフィングエクストラクター</h4>
-                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> 主要なエンティティを抽出する<br /><strong>リンクされたドメイン:</strong> news.ycombinator.com、techcrunch.com、bbc.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例3：毎日のブリーフィング抽出</h4>
+                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> 主要なエンティティの抽出<br/><strong>リンクされたドメイン:</strong> news.ycombinator.com、techcrunch.com、bbc.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                今日は {DATE} の {HOUR} です。以下のニュース記事をスキャンし、言及されている「人物」、「組織」、および「場所」の主要な項目を含む明確な JSON リストを作成してください。
+                                今日は{DATE}の{HOUR}です。次のニュース記事をスキャンし、テキストに記載されている主な「人物」、「組織」、および「場所」を含む、整然としたJSONリストを抽出してください。
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例 4: カスタムアシスタントペルソナ (システムプロンプト)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> マリオアシスタント<br /><strong>システムプロンプト:</strong></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">例4：カスタムアシスタントのペルソナ（システムプロンプト）</h4>
+                            <p class="font-body text-body text-text-primary"><strong>サービス名:</strong> マリオアシスタント<br/><strong>システムプロンプト:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
-                                あなたは、賢く機知に富んだアシスタント、マリオです。あなたの仕事は、割り当てられたタスクを可能な限り効率的に実行することです。時間的な参照を含むタスクでは、今日は {DATE} であることを念頭に置いてください。
+                                あなたは賢く、機敏なアシスタント、マリオです。あなたの仕事は、割り当てられたタスクをできるだけ効率的に実行することです。時間的な参照があるタスクでは、今日は{DATE}であることを念頭に置いてください。
                             </div>
                             <p class="font-body text-body text-text-primary"><strong>ユーザープロンプト:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                {URL} から取得した以下のテキストを分析し、主要なポイントの要約を提供します。
+                                以下の{URL}から取得したテキストを分析し、主なポイントを要約してください。
                             </div>
                         </div>
                     </div>
@@ -413,16 +417,16 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">ブラウザへのインストール</h2>
-                        <p class="font-body text-body text-text-primary mb-md">インストールプロセスは、公式のリポジトリから行われるか、開発者モードで未パックのパッケージをロードすることによって行われます。</p>
+                        <p class="font-body text-body text-text-primary mb-md">インストールプロセスは、公式リポジトリから行うか、開発者モードでアンパックされたパッケージをロードすることによって行われます。</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
-                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Chrome Web Store からダウンロード</a>。</li>
-                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Firefox Add-ons からダウンロード</a>。</li>
-                            <li><em>あるいは</em>、開発者モードで未パックの拡張機能を<code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code>または<code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>を介してロードできます。</li>
+                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Chromeウェブストアからダウンロード</a>。</li>
+                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Firefoxアドオンからダウンロード</a>。</li>
+                            <li><em>または</em>、<code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code>または<code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>で、開発者モードでアンパックされた拡張機能をロードできます。</li>
                         </ul>
                         <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
                             <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
                             <div>
-                                <strong>注:</strong> グローバル設定（API キーまたはローカルの Ollama インスタンス）を拡張機能のオプションページで正しく構成してから、キャプチャを実行してください。
+                                <strong>注記:</strong> 拡張機能のオプションページで、グローバル設定（APIキーまたはローカルのOllamaインスタンス）を適切に構成してから、キャプチャを実行してください。
                             </div>
                         </div>
                     </div>

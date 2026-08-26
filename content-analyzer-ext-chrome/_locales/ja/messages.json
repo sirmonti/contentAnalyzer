@@ -1,275 +1,350 @@
 {
-  "extName": {
-    "message": "コンテンツアナライザー"
-  },
-  "extDesc": {
-    "message": "選択したコンテンツをAIで処理します"
-  },
-  "popupTitle": {
-    "message": "コンテンツを分析"
-  },
-  "selectService": {
-    "message": "AIで処理"
-  },
-  "btnExtractBrowser": {
-    "message": "ブラウザで抽出"
-  },
-  "btnExtractDisk": {
-    "message": "ディスクに保存"
-  },
-  "statusProcessing": {
-    "message": "処理中..."
-  },
-  "statusSaved": {
-    "message": "ダウンロードに保存"
-  },
-  "statusSelectService": {
-    "message": "プロバイダを選択"
-  },
-  "optPageTitle": {
-    "message": "サービスを構成"
-  },
-  "optTitle": {
-    "message": "AI設定"
-  },
-  "optAddService": {
-    "message": "新しいサービスを追加"
-  },
-  "optNameLabel": {
-    "message": "識別名"
-  },
-  "optNamePlaceholder": {
-    "message": "例：Ollama Llama3 要約"
-  },
-  "optTypeLabel": {
-    "message": "タイプ"
-  },
-  "optUrlLabel": {
-    "message": "サービス URL"
-  },
-  "optUrlHint": {
-    "message": "URLを入力すると、利用可能なモデルが照会されます。"
-  },
-  "optApiKeyLabel": {
-    "message": "API キー（オプション）"
-  },
-  "optModelLabel": {
-    "message": "使用するモデル"
-  },
-  "optModelEmpty": {
-    "message": "-- 有効な構成を入力 --"
-  },
-  "optModelLoading": {
-    "message": "サービスをロード中..."
-  },
-  "optPromptLabel": {
-    "message": "プロンプト"
-  },
-  "optPromptPlaceholder": {
-    "message": "このテキストを分析し、結論を出してください"
-  },
-  "optSaveBtn": {
-    "message": "サービスを保存"
-  },
-  "optCancelBtn": {
-    "message": "キャンセル"
-  },
-  "optListTitle": {
-    "message": "構成されたサービス"
-  },
-  "thName": {
-    "message": "名前"
-  },
-  "thType": {
-    "message": "タイプ"
-  },
-  "thUrl": {
-    "message": "URL"
-  },
-  "thDomains": {
-    "message": "リンクされたドメイン"
-  },
-  "thModel": {
-    "message": "モデル"
-  },
-  "thActions": {
-    "message": "アクション"
-  },
-  "btnEdit": {
-    "message": "編集"
-  },
-  "btnDelete": {
-    "message": "削除"
-  },
-  "alertServiceExists": {
-    "message": "その名前のサービスはすでに存在します"
-  },
-  "resPageTitle": {
-    "message": "AI結果 - アナライザー"
-  },
-  "resHeader": {
-    "message": "結果 - "
-  },
-  "resSaving": {
-    "message": "保存中..."
-  },
-  "resSaveBtn": {
-    "message": "ファイルとして保存"
-  },
-  "resInvalidId": {
-    "message": "無効なID。"
-  },
-  "resDataNotFound": {
-    "message": "記事データが見つかりません。"
-  },
-  "resReconnecting": {
-    "message": "再試行しています... (試行 $1/$2)"
-  },
-  "resConnError": {
-    "message": "エラー：接続が予期せず繰り返し切断されました。"
-  },
-  "resAIError": {
-    "message": "AIエラー: $1"
-  },
-  "resDefaultFilename": {
-    "message": "ai_応答"
-  },
-  "errUnsupportedService": {
-    "message": "サポートされていないサービス: $1"
-  },
-  "errDownload": {
-    "message": "ダウンロードエラー"
-  },
-  "extIconTitle": {
-    "message": "コンテンツを分析"
-  },
-  "errNoServices": {
-    "message": "アクティブなサービスはありません。"
-  },
-  "errNoModels": {
-    "message": "モデルなし"
-  },
-  "errConn": {
-    "message": "エラー"
-  },
-  "optEditService": {
-    "message": "編集"
-  },
-  "optSaveChanges": {
-    "message": "保存"
-  },
-  "errNoTab": {
-    "message": "アクティブなタブがありません"
-  },
-  "errParse": {
-    "message": "解析エラー: $1"
-  },
-  "tipInstruction": {
-    "message": "🤖 抽出するセクションをポイントしてクリックします"
-  },
-  "capAllBtn": {
-    "message": "ページ全体をキャプチャ"
-  },
-  "contextSaveHtml": {
-    "message": "選択範囲をHTMLとして保存"
-  },
-  "contextSaveMd": {
-    "message": "選択範囲をMarkdownとして保存"
-  },
-  "resHelp": {
-    "message": "ヘルプ"
-  },
-  "resPrivacy": {
-    "message": "プライバシー"
-  },
-  "resContact": {
-    "message": "お問い合わせ"
-  },
-  "resSysLang": {
-    "message": "システム言語"
-  },
-  "resPageLang": {
-    "message": "ページの言語"
-  },
-  "optPromptsListTitle": {
-    "message": "Configured Prompts"
-  },
-  "optAddPrompt": {
-    "message": "Add New Prompt"
-  },
-  "optPromptNameLabel": {
-    "message": "Prompt Name"
-  },
-  "optPromptNamePlaceholder": {
-    "message": "Ex: Text Summary"
-  },
-  "optPromptTextLabel": {
-    "message": "Prompt Text"
-  },
-  "optPromptTextPlaceholder": {
-    "message": "Analyze this text and..."
-  },
-  "optSavePromptBtn": {
-    "message": "Save Prompt"
-  },
-  "optEditPrompt": {
-    "message": "Edit Prompt"
-  },
-  "optSelectPromptLabel": {
-    "message": "Use prompt from the list"
-  },
-  "optSelectPromptDefault": {
-    "message": "-- Use custom prompt --"
-  },
-  "thPrompt": {
-    "message": "Prompt"
-  },
-  "resCharCount": {
-    "message": "Query Length (chars)"
-  },
-  "optUseMarkdown": {
-    "message": "Convert content to Markdown (uncheck to process HTML directly)"
-  },
-  "optLinkWeb": {
-    "message": "Link and limit this service to one or more domains"
-  },
-  "optLinkDomains": {
-    "message": "Domains to link (comma separated)"
-  },
-  "optSysPromptsListTitle": {
-    "message": "System Prompts"
-  },
-  "optAddSysPrompt": {
-    "message": "Add New System Prompt"
-  },
-  "optSysPromptNameLabel": {
-    "message": "System Prompt Name"
-  },
-  "optSysPromptNamePlaceholder": {
-    "message": "e.g. Summarizer"
-  },
-  "optSysPromptTextLabel": {
-    "message": "System Prompt"
-  },
-  "optSysPromptTextPlaceholder": {
-    "message": "e.g. You are an expert summarizer..."
-  },
-  "optSaveSysPromptBtn": {
-    "message": "Save System Prompt"
-  },
-  "optSelectSysPromptLabel": {
-    "message": "System Prompt (Optional)"
-  },
-  "optSelectSysPromptDefault": {
-    "message": "-- No System Prompt --"
-  },
-  "optColSysPromptName": {
-    "message": "System Prompt Name"
-  },
-  "optColSysPromptText": {
-    "message": "Text"
-  },
-  "optSysPromptTextLabelOptional": {
-    "message": "System Prompt (Optional)"
-  }
+    "extName": {
+        "message": "コンテンツアナライザー"
+    },
+    "extDesc": {
+        "message": "選択したコンテンツをAIで処理します"
+    },
+    "popupTitle": {
+        "message": "コンテンツを分析"
+    },
+    "selectService": {
+        "message": "AIで処理"
+    },
+    "btnExtractBrowser": {
+        "message": "ブラウザで抽出"
+    },
+    "btnExtractDisk": {
+        "message": "ディスクに保存"
+    },
+    "statusProcessing": {
+        "message": "処理中..."
+    },
+    "statusSaved": {
+        "message": "ダウンロードに保存"
+    },
+    "statusSelectService": {
+        "message": "プロバイダを選択"
+    },
+    "optPageTitle": {
+        "message": "サービスを構成"
+    },
+    "optTitle": {
+        "message": "AI設定"
+    },
+    "optAddService": {
+        "message": "新しいサービスを追加"
+    },
+    "optNameLabel": {
+        "message": "識別名"
+    },
+    "optNamePlaceholder": {
+        "message": "例：Ollama Llama3 要約"
+    },
+    "optTypeLabel": {
+        "message": "タイプ"
+    },
+    "optUrlLabel": {
+        "message": "サービス URL"
+    },
+    "optUrlHint": {
+        "message": "URLを入力すると、利用可能なモデルが照会されます。"
+    },
+    "optApiKeyLabel": {
+        "message": "API キー（オプション）"
+    },
+    "optModelLabel": {
+        "message": "使用するモデル"
+    },
+    "optModelEmpty": {
+        "message": "-- 有効な構成を入力 --"
+    },
+    "optModelLoading": {
+        "message": "サービスをロード中..."
+    },
+    "optPromptLabel": {
+        "message": "プロンプト"
+    },
+    "optPromptPlaceholder": {
+        "message": "このテキストを分析し、結論を出してください"
+    },
+    "optSaveBtn": {
+        "message": "サービスを保存"
+    },
+    "optCancelBtn": {
+        "message": "キャンセル"
+    },
+    "optListTitle": {
+        "message": "構成されたサービス"
+    },
+    "thName": {
+        "message": "名前"
+    },
+    "thType": {
+        "message": "タイプ"
+    },
+    "thUrl": {
+        "message": "URL"
+    },
+    "thDomains": {
+        "message": "リンクされたドメイン"
+    },
+    "thModel": {
+        "message": "モデル"
+    },
+    "thActions": {
+        "message": "アクション"
+    },
+    "btnEdit": {
+        "message": "編集"
+    },
+    "btnDelete": {
+        "message": "削除"
+    },
+    "alertServiceExists": {
+        "message": "その名前のサービスはすでに存在します"
+    },
+    "resPageTitle": {
+        "message": "AI結果 - アナライザー"
+    },
+    "resHeader": {
+        "message": "結果 - "
+    },
+    "resSaving": {
+        "message": "保存中..."
+    },
+    "resSaveBtn": {
+        "message": "ファイルとして保存"
+    },
+    "resInvalidId": {
+        "message": "無効なID。"
+    },
+    "resDataNotFound": {
+        "message": "記事データが見つかりません。"
+    },
+    "resReconnecting": {
+        "message": "再試行しています... (試行 $1/$2)"
+    },
+    "resConnError": {
+        "message": "エラー：接続が予期せず繰り返し切断されました。"
+    },
+    "resAIError": {
+        "message": "AIエラー: $1"
+    },
+    "resDefaultFilename": {
+        "message": "ai_応答"
+    },
+    "errUnsupportedService": {
+        "message": "サポートされていないサービス: $1"
+    },
+    "errDownload": {
+        "message": "ダウンロードエラー"
+    },
+    "extIconTitle": {
+        "message": "コンテンツを分析"
+    },
+    "errNoServices": {
+        "message": "アクティブなサービスはありません。"
+    },
+    "errNoModels": {
+        "message": "モデルなし"
+    },
+    "errConn": {
+        "message": "エラー"
+    },
+    "optEditService": {
+        "message": "編集"
+    },
+    "optSaveChanges": {
+        "message": "保存"
+    },
+    "errNoTab": {
+        "message": "アクティブなタブがありません"
+    },
+    "errParse": {
+        "message": "解析エラー: $1"
+    },
+    "tipInstruction": {
+        "message": "🤖 抽出するセクションをポイントしてクリックします"
+    },
+    "capAllBtn": {
+        "message": "ページ全体をキャプチャ"
+    },
+    "contextSaveHtml": {
+        "message": "選択範囲をHTMLとして保存"
+    },
+    "contextSaveMd": {
+        "message": "選択範囲をMarkdownとして保存"
+    },
+    "resHelp": {
+        "message": "ヘルプ"
+    },
+    "resPrivacy": {
+        "message": "プライバシー"
+    },
+    "resContact": {
+        "message": "お問い合わせ"
+    },
+    "resSysLang": {
+        "message": "システム言語"
+    },
+    "resPageLang": {
+        "message": "ページの言語"
+    },
+    "optPromptsListTitle": {
+        "message": "Configured Prompts"
+    },
+    "optAddPrompt": {
+        "message": "Add New Prompt"
+    },
+    "optPromptNameLabel": {
+        "message": "Prompt Name"
+    },
+    "optPromptNamePlaceholder": {
+        "message": "Ex: Text Summary"
+    },
+    "optPromptTextLabel": {
+        "message": "Prompt Text"
+    },
+    "optPromptTextPlaceholder": {
+        "message": "Analyze this text and..."
+    },
+    "optSavePromptBtn": {
+        "message": "Save Prompt"
+    },
+    "optEditPrompt": {
+        "message": "Edit Prompt"
+    },
+    "optSelectPromptLabel": {
+        "message": "Use prompt from the list"
+    },
+    "optSelectPromptDefault": {
+        "message": "-- Use custom prompt --"
+    },
+    "thPrompt": {
+        "message": "Prompt"
+    },
+    "resCharCount": {
+        "message": "Query Length (chars)"
+    },
+    "optUseMarkdown": {
+        "message": "Convert content to Markdown (uncheck to process HTML directly)"
+    },
+    "optLinkWeb": {
+        "message": "Link and limit this service to one or more domains"
+    },
+    "optLinkDomains": {
+        "message": "Domains to link (comma separated)"
+    },
+    "optSysPromptsListTitle": {
+        "message": "System Prompts"
+    },
+    "optAddSysPrompt": {
+        "message": "Add New System Prompt"
+    },
+    "optSysPromptNameLabel": {
+        "message": "System Prompt Name"
+    },
+    "optSysPromptNamePlaceholder": {
+        "message": "e.g. Summarizer"
+    },
+    "optSysPromptTextLabel": {
+        "message": "System Prompt"
+    },
+    "optSysPromptTextPlaceholder": {
+        "message": "e.g. You are an expert summarizer..."
+    },
+    "optSaveSysPromptBtn": {
+        "message": "Save System Prompt"
+    },
+    "optSelectSysPromptLabel": {
+        "message": "System Prompt (Optional)"
+    },
+    "optSelectSysPromptDefault": {
+        "message": "-- No System Prompt --"
+    },
+    "optColSysPromptName": {
+        "message": "System Prompt Name"
+    },
+    "optColSysPromptText": {
+        "message": "Text"
+    },
+    "optSysPromptTextLabelOptional": {
+        "message": "System Prompt (Optional)"
+    },
+    "optImportExportTitle": {
+        "message": "設定のエクスポート / インポート"
+    },
+    "optExportSection": {
+        "message": "設定のエクスポート"
+    },
+    "optExportPassLabel": {
+        "message": "パスワード（オプション）"
+    },
+    "optExportPassPlaceholder": {
+        "message": "暗号化しない場合は空白のままにします"
+    },
+    "optExportBtn": {
+        "message": "エクスポート"
+    },
+    "optImportSection": {
+        "message": "設定のインポート"
+    },
+    "optImportFileLabel": {
+        "message": "設定ファイル（.json）を選択"
+    },
+    "optImportPassLabel": {
+        "message": "パスワード（暗号化されている場合）"
+    },
+    "optImportPassPlaceholder": {
+        "message": "ファイルが暗号化されている場合はパスワードを入力してください"
+    },
+    "optImportBtn": {
+        "message": "インポート"
+    },
+    "msgExportSuccess": {
+        "message": "設定が正常にエクスポートされました。"
+    },
+    "msgImportSuccess": {
+        "message": "設定が正常にインポートされました。"
+    },
+    "errInvalidSignature": {
+        "message": "無効な設定ファイル（無効な署名）。"
+    },
+    "errInvalidPassword": {
+        "message": "パスワードが間違っているか、ファイルが破損しています。"
+    },
+    "errFileRead": {
+        "message": "ファイルの読み取りエラー。"
+    },
+    "optTypePromptApi": {
+        "message": "Prompt API (組み込み)"
+    },
+    "errPromptApiNotAvailable": {
+        "message": "Prompt APIが利用できないか、このブラウザで有効なモデルが準備されていません。"
+    },
+    "resAbortBtn": {
+        "message": "分析を中止"
+    },
+    "statusAborted": {
+        "message": "ユーザーによって分析が中止されました。"
+    },
+    "optConfirmPassword": {
+        "message": "パスワードの確認"
+    },
+    "errPasswordMismatch": {
+        "message": "パスワードが一致しません。"
+    },
+    "chatPlaceholder": {
+        "message": "ここにフォローアッププロンプトを入力してください..."
+    },
+    "chatSend": {
+        "message": "送信"
+    },
+    "resSaveMdBtn": {
+        "message": "Markdownとして保存"
+    },
+    "resSaveHtmlBtn": {
+        "message": "HTMLとして保存"
+    }
 }

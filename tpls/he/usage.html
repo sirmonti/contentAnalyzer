@@ -2,21 +2,21 @@
     <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
         <header class="mb-xl pb-md border-b border-border-subtle">
             <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">תוסף ניתוח תוכן</p>
-            <h1 class="font-article-title text-article-title text-text-primary">מדריך שימוש והגדרה</h1>
+            <h1 class="font-article-title text-article-title text-text-primary">מדריך שימוש והגדרות</h1>
         </header>
 
         <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
-            <p class="mb-sm">התוסף <strong class="underline">מנתח התוכן</strong> הוא תוסף דפדפן שנועד לחילוץ והערכה אוטומטיים של מטא-נתונים סמנטיים בסביבות אינטרנט מורכבות. תוסף זה פועל בדפדפני Firefox, Chrome ודפדפנים המבוססים על Chromium. מטרתו העיקרית היא לעבד תוכן אינטרנט על ידי העברתו דרך שירותי בינה מלאכותית (AI) שונים.</p>
-            <p class="mb-sm">בשונה ממייצרי תקצירים טיפוסיים של דפי אינטרנט, תוסף זה מאפשר ליצור מספר שירותי AI מותאמים אישית, כל אחד עם הנחיה ספציפית במיוחד המכתיבה בדיוק מה ה-AI צריך לעשות עם המידע שנאסף. ניתן להשתמש בו כדי לחלץ קוד, לתרגם מונחים ספציפיים, לנתח רגשות, ליצור דוחות ממוקדים ועוד.</p>
+            <p class="mb-sm">התוסף <strong">ניתוח תוכן</strong> הוא תוסף דפדפן שנועד לחילוץ והערכה אוטומטית של מטא-נתונים סמנטיים בסביבות אינטרנט מורכבות. תוסף זה פועל בדפדפני Firefox, Chrome ודפדפנים מבוססי Chromium. מטרתו העיקרית היא לעבד תוכן אינטרנט על ידי העברתו דרך שירותי בינה מלאכותית (AI) שונים.</p>
+            <p class="mb-sm">בשונה ממסכמי דפי אינטרנט טיפוסיים, תוסף זה מאפשר ליצור מספר שירותי AI מותאמים אישית, כאשר לכל אחד מהם יש הנחיה ספציפית מאוד שמגדירה בדיוק מה ה-AI צריך לעשות עם המידע שנאסף. ניתן להשתמש בו כדי לחלץ קוד, לתרגם מונחים ספציפיים, לנתח סנטימנט, ליצור דוחות ממוקדים ועוד.</p>
         </div>
 
-        <nav aria-label="Table of Contents" class="mb-xl bg-surface-header p-md border border-border-subtle">
-            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">תוכן עניינים</h2>
+        <nav aria-label="תוכן עניינים" class="mb-xl bg-surface-header p-md border border-border-subtle">
+            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">אינדקס הפעלה</h2>
             <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
                 <li><a class="hover:text-primary-hover" href="#features">תכונות עיקריות</a></li>
                 <li><a class="hover:text-primary-hover" href="#providers">ספקי AI נתמכים</a></li>
                 <li><a class="hover:text-primary-hover" href="#tags">תגיות דינמיות להנחיות</a></li>
-                <li><a class="hover:text-primary-hover" href="#examples">דוגמאות תצורה</a></li>
+                <li><a class="hover:text-primary-hover" href="#examples">תצורות לדוגמה</a></li>
                 <li><a class="hover:text-primary-hover" href="#installation">התקנה בדפדפן</a></li>
             </ol>
         </nav>
@@ -29,10 +29,10 @@
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">תכונות עיקריות</h2>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong class="underline">לכידת תוכן מותאמת אישית:</strong> ניתן לבחור בקלות חלק ספציפי בדף אינטרנט באמצעות "כלי ריחוף" אינטראקטיבי, או לבחור ללכוד את כל תוכן הדף.</li>
-                            <li><strong class="underline">הנחיות מערכת מותאמות אישית מרובות:</strong> צור שירותים שונים המותאמים בדיוק לצרכים שלך עם הנחיות משתמש מותאמות אישית והנחיות מערכת אופציונליות (לדוגמה, "סכם מאמר", "חלץ נתוני JSON", "תרגם לספרדית", פרופילים מותאמים אישית של עוזרים וירטואליים ועוד).</li>
-                            <li><strong class="underline">שירות ספציפי לתחום:</strong> ניתן לקשר את השירותים המותאמים אישית שלך לדומיינים ספציפיים באינטרנט. זה עוזר לשמור על הסדר בתוסף שלך על ידי הצגת כלי AI רלוונטיים בלבד.</li>
-                            <li><strong class="underline">תאימות רחבה ל-LLM:</strong> תמיכה מלאה בחיבורים (כולל הזרמת טקסט) לשרתים מקומיים באמצעות Ollama, כמו גם לספקי API בענן כגון OpenAI, Anthropic ו-Google Gemini.</li>
+                            <li><strong">לכידת תוכן מותאמת אישית:</strong> ניתן לבחור בקלות חלק ספציפי מדף אינטרנט באמצעות "כלי ריחוף" אינטראקטיבי, או לבחור ללכוד את כל תוכן הדף.</li>
+                            <li><strong">מספר הנחיות מערכת והנחיות AI מותאמות אישית:</strong> צור שירותים שונים המותאמים לצרכים המדויקים שלך עם הנחיות משתמש מותאמות אישית והנחיות מערכת אופציונליות (לדוגמה, "סכם מאמר", "חלץ נתוני JSON", "תרגם לספרדית", אישיות עוזר מותאמת אישית וכו').</li>
+                            <li><strong">שירות ספציפי לתחום:</strong> ניתן לקשר את השירותים המותאמים אישית שלך לתחומי אינטרנט ספציפיים. זה עוזר לשמור על סדר בתוסף על ידי הצגת כלי AI רלוונטיים בלבד.</li>
+                            <li><strong">תאימות רחבה ל-LLM:</strong> תומך באופן מלא בחיבורים (כולל הזרמת טקסט) לשרתים מקומיים באמצעות Ollama, כמו גם ספקי API בענן כגון OpenAI, Anthropic ו-Google Gemini.</li>
                         </ul>
                     </div>
                 </div>
@@ -44,12 +44,12 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">ספקי AI נתמכים</h2>
-                        <p class="font-body text-body text-text-primary mb-md">תוסף זה בנוי להיות גמיש מאוד, ומאפשר לך להתחבר למגוון של מודלים מתקדמים של בינה מלאכותית ושירותים מקומיים. כיום, הוא תומך ב:</p>
+                        <p class="font-body text-body text-text-primary mb-md">תוסף זה בנוי להיות גמיש מאוד, ומאפשר לך להתחבר למגוון רחב של מודלים של בינה מלאכותית מובילים בתעשייה ושירותים מקומיים. כיום, הוא תומך ב:</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong class="underline">Claude (Anthropic):</strong> גש למשפחת המודלים העוצמתית של Claude דרך ה-API הרשמי שלהם.</li>
-                            <li><strong class="underline">Gemini (Google):</strong> התחבר ישירות למודלי Gemini המתקדמים של Google.</li>
-                            <li><strong class="underline">ChatGPT (OpenAI ושותפים):</strong> תואם לחלוטין ל-API של OpenAI, כמו גם לכל שירות צד שלישי אחר המציע נקודת קצה התואמת ל-OpenAI.</li>
-                            <li><strong class="underline">Ollama:</strong> הפעל מודלים באופן מקומי ובאופן פרטי במכשיר שלך מבלי לשלוח נתונים לענן.</li>
+                            <li><strong">Claude (Anthropic):</strong> גש למשפחת המודלים החזקה של Claude דרך ה-API הרשמי שלהם.</li>
+                            <li><strong">Gemini (Google):</strong> התחבר ישירות למודלי Gemini המתקדמים של Google.</li>
+                            <li><strong">ChatGPT (OpenAI &amp; תואמים):</strong> תואם באופן מלא ל-API של OpenAI, כמו גם לכל שירות צד שלישי אחר המציע נקודת קצה תואמת ל-OpenAI.</li>
+                            <li><strong">Ollama:</strong> הפעל מודלים באופן מקומי ובאופן פרטי במכשיר שלך מבלי לשלוח נתונים לענן.</li>
                         </ul>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">תגיות דינמיות להנחיות</h2>
-                        <p class="font-body text-body text-text-primary mb-md">כדי להפוך את הנחיות ה-AI שלך לקונטקסטואליות וחזקות יותר, תוכל להשתמש בתגיות הדינמיות הבאות הן בהנחיות משתמש והן בהנחיות מערכת. התוסף יחליף אותן באופן אוטומטי לפני שליחת ההנחיה למודל ה-AI:</p>
+                        <p class="font-body text-body text-text-primary mb-md">כדי להפוך את הנחיות ה-AI שלך לקוהרנטיות ובעלות תועלת רבה יותר, תוכל להשתמש בתגיות הדינמיות הבאות הן בהנחיות משתמש והן בהנחיות מערכת. התוסף יחליף אותן באופן אוטומטי לפני שליחת ההנחיה למודל ה-AI:</p>
                         <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
                             <thead>
                                 <tr class="bg-surface-header border-b border-border-subtle">
@@ -90,9 +90,13 @@
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
                                     <td class="p-sm">השפה של דף האינטרנט.</td>
                                 </tr>
-                                <tr class="bg-background-canvas">
+                                <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
                                     <td class="p-sm">תצורת השפה הנוכחית של המערכת/דפדפן.</td>
+                                </tr>
+                                <tr class="bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{TITLE}</td>
+                                    <td class="p-sm">כותרת ה-HTML של דף האינטרנט הנוכחי שעובר עיבוד.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -105,40 +109,40 @@
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">דוגמאות לתצורות</h2>
-                        <p class="font-body text-body text-text-primary mb-md">להלן מספר דוגמאות המציגות כיצד ניתן לבנות את השירותים שלך:</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">תצורות לדוגמה</h2>
+                        <p class="font-body text-body text-text-primary mb-md">להלן מספר דוגמאות הממחישות כיצד ניתן לבנות את השירותים שלך:</p>
 
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">דוגמה 1: עוזר תרגום רב לשוני</h4>
-                            <p class="font-body text-body text-text-primary"><strong class="underline">שם השירות:</strong שתרגם לשפה המקומית<br /><strong class="underline">דומיינים מקושרים:</strong> <em >(ריק - זמין בכל מקום)</em></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">דוגמה 1: עוזר תרגום רב-לשוני</h4>
+                            <p class="font-body text-body text-text-primary"><strong">שם שירות:</strong> תרגום לשפה המקומית<br/><strong">דומיינים מקושרים:</strong> <em>(ריק - זמין בכל מקום)</em></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                אני גולש באתר בשפה {LANG} בכתובת {URL}, אך הדפדפן שלי מוגדר ל-{SYSLANG}. אנא תרגם במדויק את התוכן הבא לשפה {SYSLANG}, תוך שמירה על העיצוב המקורי של הטקסט והסימון.
+                                אני גולש באתר בשפה {LANG} בכתובת {URL}, אך הדפדפן שלי מוגדר ל-{SYSLANG}. אנא תרגם במדויק את התוכן הבא ל-{SYSLANG}, תוך שמירה על העיצוב המקורי של טקסט וסימון.
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
                             <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">דוגמה 2: בודק קוד (ספציפי לתחום)</h4>
-                            <p class="font-body text-body text-text-primary"><strong class="underline">שם השירות:</strong בדיקת קוד Python<br /><strong class="underline">דומיינים מקושרים:</strong github.com, gitlab.com, stackoverflow.com</p>
+                            <p class="font-body text-body text-text-primary"><strong">שם שירות:</strong> בדיקת קוד Python<br/><strong">דומיינים מקושרים:</strong> github.com, gitlab.com, stackoverflow.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                אתה מפתח מומחה. קטעי הקוד המסופקים נמצאו ב-{DOMAIN}. נתח את הקוד במיוחד עבור באגים פוטנציאליים, נקודות תורפה של אבטחה ובעיות בעיצוב הקוד. אל תסביר מה הקוד עושה, רשום רק את הבעיות וספק גרסה מתוקנת.
+                                אתה מפתח מומחה. קטעי הקוד המסופקים נמצאו ב-{DOMAIN}. נתח את הקוד במבט קפדני לגבי באגים פוטנציאליים, נקודות תורפה באבטחה ובעיות קוד. אל תסביר מה הקוד עושה, פשוט רשום את הבעיות וספק גרסה מתוקנת.
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">דוגמה 3: מחלץ תמצית יומית</h4>
-                            <p class="font-body text-body text-text-primary"><strong class="underline">שם השירות:</strong חלץ ישויות מפתח<br /><strong class="underline">דומיינים מקושרים:</strong news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">דוגמה 3: חילוץ תקציר יומי</h4>
+                            <p class="font-body text-body text-text-primary"><strong">שם שירות:</strong> חילוץ ישויות עיקריות<br/><strong">דומיינים מקושרים:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                היום הוא {DATE} בשעה {HOUR}. סרוק את מאמר החדשות הבא וחלץ רשימת JSON מסודרת המכילה את "האנשים", ה"ארגונים" וה"מקומות" העיקריים המוזכרים בטקסט.
+                                היום הוא {DATE} בשעה {HOUR}. סרוק את מאמר החדשות הבא וחלץ רשימת JSON מסודרת המכילה את "האנשים", "הארגונים" ו"המיקומים" העיקריים המוזכרים בטקסט.
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">דוגמה 4: פרופיל עוזר מותאם אישית (הנחיית מערכת)</h4>
-                            <p class="font-body text-body text-text-primary"><strong class="underline">שם השירות:</strong עוזר מאריו<br /><strong class="underline">הנחיית מערכת:</strong></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">דוגמה 4: אישיות עוזר מותאמת אישית (הנחיית מערכת)</h4>
+                            <p class="font-body text-body text-text-primary"><strong">שם שירות:</strong> עוזר מריו<br/><strong">הנחיית מערכת:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
-                                אתה מאריו, עוזר חכם וחד. תפקידך הוא לבצע את המשימות שהוקצו לך ביעילות ככל האפשר. במשימות שיש להן התייחסויות לזמן, עליך לזכור שהיום הוא {DATE}.
+                                אתה מריו, עוזר חכם וחד, תפקידך הוא לבצע את המשימות המוטלות עליך בצורה היעילה ביותר. במשימות הכוללות התייחסויות לזמן, עליך לזכור שהיום הוא {DATE}.
                             </div>
-                            <p class="font-body text-body text-text-primary"><strong class="underline">הנחיית משתמש:</strong></p>
+                            <p class="font-body text-body text-text-primary"><strong">הנחיית משתמש:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
                                 נתח את הטקסט הבא שנלקח מ-{URL} וספק סיכום של הנקודות העיקריות.
                             </div>
@@ -152,16 +156,16 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">התקנה בדפדפן</h2>
-                        <p class="font-body text-body text-text-primary mb-md">תהליך ההתקנה נעשה דרך המאגר הרשמי או על ידי טעינת החבילה הלא ארוזה במצב מפתח.</p>
+                        <p class="font-body text-body text-text-primary mb-md">תהליך ההתקנה מתבצע דרך המאגר הרשמי או על ידי טעינת החבילה הלא ארוזה במצב מפתח.</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
-                            <li><strong class="underline">Google Chrome:</strong><a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">הורד מחנות האינטרנט של Chrome</a>.</li>
-                            <li><strong class="underline">Mozilla Firefox:</strong><a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">הורד מתוספים עבור Firefox</a>.</li>
-                            <li><em >בנוסף</em>, תוכל לטעון את התוסף הלא ארוז במצב מפתח דרך <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> או <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
+                            <li><strong">Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">הורד מחנות האפליקציות של Chrome</a>.</li>
+                            <li><strong">Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">הורד מתוספים של Firefox</a>.</li>
+                            <li><em>לחלופין</em>, תוכל לטעון את התוסף הלא ארוז במצב מפתח דרך <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> או <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
                         </ul>
                         <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
                             <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
                             <div>
-                                <strong class="underline">שים לב:</strong> ודא שהגדרת את ההגדרות הגלובליות (מפתחות API או מופעי Ollama מקומיים) כראוי בדף האפשרויות של התוסף לפני הפעלת לכידות כלשהן.
+                                <strong">שים לב:</strong> ודא שהגדרת את ההגדרות הגלובליות (מפתחות API או מופעי Ollama מקומיים) כראוי בדף האפשרויות של התוסף לפני הפעלת לכידות כלשהן.
                             </div>
                         </div>
                     </div>

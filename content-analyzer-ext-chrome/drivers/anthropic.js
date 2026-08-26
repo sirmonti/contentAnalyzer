@@ -121,18 +121,21 @@ export async function* generate(config, prompt) {
     const bodyParams = {
         model: config.model,
         max_tokens: 4096,
-        messages: [{ role: "user", content: prompt }], // Single-turn message format
+        messages: Array.isArray(prompt) ? prompt : [{ role: "user", content: prompt }], // Single-turn message format
         stream: true  // Enables Server-Sent Events mode
     };
     if (config.systemPrompt) {
         bodyParams.system = config.systemPrompt;
     }
 
-    const response = await fetch(fetchUrl, {
+    const fetchOptions = {
         method: "POST",
         headers: headers,
         body: JSON.stringify(bodyParams)
-    });
+    };
+    if (config.signal) fetchOptions.signal = config.signal;
+
+    const response = await fetch(fetchUrl, fetchOptions);
 
     if (!response.ok) {
         let errorMsg = `HTTP ${response.status}`;
@@ -161,40 +164,46 @@ export async function* generate(config, prompt) {
     const decoder = new TextDecoder("utf-8");
     let buffer = ""; // Accumulates partial data between network chunks
 
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+    try {
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
 
-        // Accumulate text and split into lines to process event by event.
-        // SSE uses "\n" as field separator and "\n\n" to separate full events.
-        buffer += decoder.decode(value, { stream: true });
-        let lines = buffer.split("\n");
-        buffer = lines.pop(); // The last line might be incomplete; keep it
+            // Accumulate text and split into lines to process event by event.
+            // SSE uses "\n" as field separator and "\n\n" to separate full events.
+            buffer += decoder.decode(value, { stream: true });
+            let lines = buffer.split("\n");
+            buffer = lines.pop(); // The last line might be incomplete; keep it
 
-        for (const line of lines) {
-            const tLine = line.trim();
-            if (!tLine) continue; // Empty lines separate SSE events: ignore
+            for (const line of lines) {
+                const tLine = line.trim();
+                if (!tLine) continue; // Empty lines separate SSE events: ignore
 
-            // SSE data fields are prefixed with "data: "
-            // "event: " fields indicate event type but we don't process them
-            // directly because we read it from the JSON itself (`type` field).
-            if (tLine.startsWith("data: ")) {
-                const textData = tLine.substring(6); // Remove "data: " prefix
-                try {
-                    const json = JSON.parse(textData);
+                // SSE data fields are prefixed with "data: "
+                // "event: " fields indicate event type but we don't process them
+                // directly because we read it from the JSON itself (`type` field).
+                if (tLine.startsWith("data: ")) {
+                    const textData = tLine.substring(6); // Remove "data: " prefix
+                    try {
+                        const json = JSON.parse(textData);
 
-                    // The `content_block_delta` event is the one carrying generated text.
-                    // Its structure is:
-                    //   { "type": "content_block_delta", "delta": { "type": "text_delta", "text": "..." } }
-                    if (json.type === "content_block_delta" && json.delta && json.delta.text) {
-                        yield json.delta.text;
+                        // The `content_block_delta` event is the one carrying generated text.
+                        // Its structure is:
+                        //   { "type": "content_block_delta", "delta": { "type": "text_delta", "text": "..." } }
+                        if (json.type === "content_block_delta" && json.delta && json.delta.text) {
+                            yield json.delta.text;
+                        }
+                        // Other event types (message_start, message_delta, message_stop, etc.)
+                        // contain metadata about the message but not generated text; ignored.
+                    } catch (e) {
+                        // If JSON is incomplete or malformed (rare but possible), ignore it.
                     }
-                    // Other event types (message_start, message_delta, message_stop, etc.)
-                    // contain metadata about the message but not generated text; ignored.
-                } catch (e) {
-                    // If JSON is incomplete or malformed (rare but possible), ignore it.
                 }
             }
         }
+    } finally {
+        try {
+            reader.cancel();
+        } catch (e) {}
     }
 }

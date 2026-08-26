@@ -70,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Only update the element if the API returned a non-empty string,
         // which prevents clearing elements whose keys are not translated.
         if (msg) {
-            if (el.tagName === "INPUT" && el.hasAttribute("placeholder")) {
-                // Special case: <input> fields with placeholders.
+            if ((el.tagName === "INPUT" || el.tagName === "TEXTAREA") && el.hasAttribute("placeholder")) {
+                // Special case: <input> and <textarea> fields with placeholders.
                 // We don't set text as content (inputs don't show text),
                 // but as the placeholder attribute so it appears as a hint.
                 el.placeholder = msg;

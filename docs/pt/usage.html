@@ -265,23 +265,23 @@
             <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Extensão Analisador de Conteúdo</p>
             <h1 class="font-article-title text-article-title text-text-primary">Guia de Uso e Configuração</h1>
         </header>
-
+        
         <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
-            <p class="mb-sm">O <strong>Analisador de Conteúdo</strong> é uma extensão de navegador projetada para a extração e avaliação automatizada de metadados semânticos em ambientes web complexos. Esta extensão funciona no Firefox, Chrome e navegadores derivados do Chromium; seu objetivo principal é processar o conteúdo da web, passando-o por vários serviços de Inteligência Artificial (IA).</p>
-            <p class="mb-sm">Ao contrário dos resumos típicos de páginas da web, esta extensão permite criar vários serviços de IA personalizados, cada um com um prompt altamente específico que define exatamente o que a IA deve fazer com as informações coletadas. Você pode usá-la para extrair código, traduzir termos específicos, analisar sentimentos, gerar relatórios direcionados e muito mais.</p>
+            <p class="mb-sm">O <strong>Analisador de Conteúdo</strong> é uma extensão de navegador projetada para a extração e avaliação automatizadas de metadados semânticos em ambientes web complexos. Esta extensão funciona no Firefox, Chrome e navegadores derivados do Chromium, e seu principal objetivo é processar o conteúdo da web, passando-o por vários serviços de Inteligência Artificial (IA).</p>
+            <p class="mb-sm">Ao contrário dos resumos típicos de páginas da web, esta extensão permite criar vários serviços de IA personalizados, cada um com um prompt altamente específico que determina exatamente o que a IA deve fazer com as informações coletadas. Você pode usá-lo para extrair código, traduzir termos específicos, analisar o sentimento, gerar relatórios direcionados e muito mais.</p>
         </div>
-
+        
         <nav aria-label="Índice" class="mb-xl bg-surface-header p-md border border-border-subtle">
             <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">Índice</h2>
             <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
                 <li><a class="hover:text-primary-hover" href="#features">Principais Recursos</a></li>
                 <li><a class="hover:text-primary-hover" href="#providers">Provedores de IA Suportados</a></li>
-                <li><a class="hover:text-primary-hover" href="#tags">Tags Dinâmicas para Prompts</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">Tags Dinâmicas do Prompt</a></li>
                 <li><a class="hover:text-primary-hover" href="#examples">Exemplos de Configurações</a></li>
                 <li><a class="hover:text-primary-hover" href="#installation">Instalação no Navegador</a></li>
             </ol>
         </nav>
-
+        
         <div class="space-y-xl">
             <section class="relative" id="features">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
@@ -290,22 +290,22 @@
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Principais Recursos</h2>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong>Captura de Conteúdo Personalizada:</strong> Você pode selecionar facilmente uma parte específica de uma página da web usando uma "ferramenta interativa" ou optar por capturar todo o conteúdo da página.</li>
-                            <li><strong>Múltiplos Prompts e Prompts de Sistema Personalizados:</strong> Crie diferentes serviços personalizados para suas necessidades exatas, com prompts de usuário personalizados e prompts de sistema opcionais (por exemplo, "Resumir artigo", "Extrair dados JSON", "Traduzir para espanhol", personalidades de assistente personalizadas, etc.).</li>
-                            <li><strong>Serviços Específicos de Domínio:</strong> Você pode vincular seus serviços personalizados a domínios da web específicos. Isso ajuda a manter sua extensão organizada, mostrando apenas as ferramentas de IA relevantes.</li>
-                            <li><strong>Ampla Compatibilidade com LLMs:</strong> Suporta totalmente conexões (incluindo streaming de texto) com servidores locais via Ollama, bem como provedores de API em nuvem, como OpenAI, Anthropic e Google Gemini.</li>
+                            <li><strong>Captura de Conteúdo Personalizada:</strong> Você pode selecionar facilmente uma parte específica de uma página da web usando uma "ferramenta de seleção interativa" ou optar por capturar todo o conteúdo da página.</li>
+                            <li><strong>Múltiplos Prompts e Prompts de Sistema de IA Personalizados:</strong> Crie diferentes serviços adaptados às suas necessidades exatas, com prompts de usuário personalizados e prompts de sistema opcionais (por exemplo, "Resumir artigo", "Extrair dados JSON", "Traduzir para espanhol", personalidades de assistente personalizadas, etc.).</li>
+                            <li><strong>Serviço Específico de Domínio:</strong> Você pode vincular seus serviços personalizados a domínios da web específicos. Isso ajuda a manter sua extensão organizada, exibindo apenas as ferramentas de IA relevantes.</li>
+                            <li><strong>Ampla Compatibilidade com LLM:</strong> Suporta totalmente conexões (incluindo streaming de texto) com servidores locais via Ollama, bem como provedores de API em nuvem, como OpenAI, Anthropic e Google Gemini.</li>
                         </ul>
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="providers">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Provedores de IA Suportados</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Esta extensão foi projetada para ser altamente flexível, permitindo que você se conecte a uma variedade de modelos de Inteligência Artificial líderes do setor e serviços locais. Atualmente, ela suporta:</p>
+                        <p class="font-body text-body text-text-primary mb-md">Esta extensão foi projetada para ser altamente flexível, permitindo que você se conecte a uma variedade de modelos de Inteligência Artificial e serviços locais líderes do setor. Atualmente, ela suporta:</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
                             <li><strong>Claude (Anthropic):</strong> Acesse a poderosa família de modelos Claude por meio de sua API oficial.</li>
                             <li><strong>Gemini (Google):</strong> Conecte-se diretamente aos avançados modelos Gemini do Google.</li>
@@ -315,14 +315,14 @@
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="tags">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Tags Dinâmicas para Prompts</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Para tornar seus prompts de IA mais contextuais e poderosos, você pode usar as seguintes tags dinâmicas em prompts de usuário e prompts de sistema. A extensão substituirá automaticamente essas tags antes de enviar o prompt para o modelo de IA:</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Tags Dinâmicas do Prompt</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Para tornar seus prompts de IA mais contextuais e poderosos, você pode usar as seguintes tags dinâmicas em prompts de usuário e prompts de sistema. A extensão substituirá automaticamente as tags antes de enviar o prompt para o modelo de IA:</p>
                         <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
                             <thead>
                                 <tr class="bg-surface-header border-b border-border-subtle">
@@ -333,11 +333,11 @@
                             <tbody>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DATE}</td>
-                                    <td class="p-sm">Substituído pela data atual em seu formato local.</td>
+                                    <td class="p-sm">Substituído pela data atual no formato local.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{HOUR}</td>
-                                    <td class="p-sm">Substituído pela hora atual em seu formato local.</td>
+                                    <td class="p-sm">Substituído pela hora atual no formato local.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
@@ -351,16 +351,20 @@
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
                                     <td class="p-sm">O idioma da página da web.</td>
                                 </tr>
-                                <tr class="bg-background-canvas">
+                                <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
                                     <td class="p-sm">A configuração atual de idioma do sistema/navegador.</td>
+                                </tr>
+                                <tr class="bg-surface-lowest">
+                                    <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{TITLE}</td>
+                                    <td class="p-sm">O título HTML da página da web que está sendo processada.</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="examples">
                 <div class="absolute left-0 top-0 bottom-0 border-l border-dotted border-border-subtle ml-[11px] mt-lg z-0"></div>
                 <div class="flex items-start gap-md relative z-10">
@@ -368,36 +372,36 @@
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Exemplos de Configurações</h2>
                         <p class="font-body text-body text-text-primary mb-md">Abaixo estão alguns exemplos que mostram como você pode estruturar seus serviços:</p>
-
+                        
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
                             <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemplo 1: Assistente de Tradução Multilíngue</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Traduzir para o idioma local<br /><strong>Domínios vinculados:</strong> <em>(Vazio - Disponível em todos os lugares)</em></p>
+                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Traduzir para o idioma local<br/><strong>Domínios Vinculados:</strong> <em>(Vazio - Disponível em todos os lugares)</em></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Atue como um tradutor profissional. Estou navegando em um site no idioma {LANG} em {URL}, mas meu navegador está configurado para {SYSLANG}. Traduza com precisão o seguinte conteúdo para {SYSLANG}, mantendo a formatação original de markdown e texto.
+                                Atue como um tradutor profissional. Estou navegando em um site no idioma {LANG} em {URL}, mas meu navegador está configurado para {SYSLANG}. Traduza com precisão o seguinte conteúdo para {SYSLANG}, mantendo a formatação original de Markdown e texto.
                             </div>
                         </div>
-
+                        
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemplo 2: Avaliador de Código (Específico do Domínio)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Análise de código Python<br /><strong>Domínios vinculados:</strong> github.com, gitlab.com, stackoverflow.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemplo 2: Revisor de Código (Específico do Domínio)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Revisão de Código Python<br/><strong>Domínios Vinculados:</strong> github.com, gitlab.com, stackoverflow.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Você é um desenvolvedor experiente. Os trechos de código fornecidos abaixo foram encontrados em {DOMAIN}. Analise o código estritamente para identificar possíveis bugs, vulnerabilidades de segurança e problemas de codificação. Não explique o que o código faz; apenas liste os problemas e forneça uma versão corrigida.
+                                Você é um desenvolvedor experiente. Os trechos de código fornecidos abaixo foram encontrados em {DOMAIN}. Analise o código estritamente para possíveis bugs, vulnerabilidades de segurança e problemas de código. Não explique o que o código faz, apenas liste os problemas e forneça uma versão corrigida.
                             </div>
                         </div>
-
+                        
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemplo 3: Extrator de Informações Diárias</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Extrair Entidades Chave<br /><strong>Domínios vinculados:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemplo 3: Extrator de Resumo Diário</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Extrair Entidades Chave<br/><strong>Domínios Vinculados:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Hoje é {DATE} às {HOUR}. Analise o seguinte artigo de notícias e extraia uma lista JSON organizada contendo os principais "Pessoas", "Organizações" e "Locais" mencionados no texto.
+                                Hoje é {DATE} às {HOUR}. Analise o seguinte artigo de notícias e extraia uma lista JSON organizada contendo as principais "Pessoas", "Organizações" e "Locais" mencionados no texto.
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemplo 4: Personalidade de Assistente Personalizada (Prompt do Sistema)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Assistente Mario<br /><strong>Prompt do Sistema:</strong></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Exemplo 4: Persona de Assistente Personalizada (Prompt de Sistema)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Nome do Serviço:</strong> Assistente Mario<br/><strong>Prompt de Sistema:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
-                                Você é o Mario, um assistente inteligente e perspicaz. Sua tarefa é cumprir as tarefas atribuídas a você da forma mais eficiente possível. Nas tarefas que têm referências temporais, você deve ter em mente que hoje é {DATE}.
+                                Você é Mario, um assistente inteligente e perspicaz, e seu trabalho é cumprir as tarefas atribuídas a você da forma mais eficiente possível. Nas tarefas que têm referências temporais, você deve ter em mente que hoje é {DATE}.
                             </div>
                             <p class="font-body text-body text-text-primary"><strong>Prompt do Usuário:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
@@ -407,22 +411,22 @@
                     </div>
                 </div>
             </section>
-
+            
             <section class="relative" id="installation">
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Instalação no Navegador</h2>
-                        <p class="font-body text-body text-text-primary mb-md">O processo de instalação é feito através do repositório oficial ou carregando o pacote descompactado em modo de desenvolvedor.</p>
+                        <p class="font-body text-body text-text-primary mb-md">O processo de instalação é feito por meio do repositório oficial ou carregando o pacote descompactado no modo de desenvolvedor.</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
-                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Baixe na Chrome Web Store</a>.</li>
-                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Baixe no Add-ons do Firefox</a>.</li>
-                            <li><em>Alternativamente</em>, você pode carregar a extensão descompactada em modo de desenvolvedor via <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> ou <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
+                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Baixe da Chrome Web Store</a>.</li>
+                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Baixe dos Complementos do Firefox</a>.</li>
+                            <li><em>Alternativamente</em>, você pode carregar a extensão descompactada no modo de desenvolvedor através de <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> ou <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
                         </ul>
                         <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
                             <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
                             <div>
-                                <strong>Observação:</strong> Certifique-se de ter configurado corretamente as configurações globais (chaves de API ou instâncias locais do Ollama) na página de Opções da extensão antes de executar qualquer captura.
+                                <strong>Observação:</strong> Certifique-se de ter configurado as configurações globais (chaves de API ou instâncias locais do Ollama) corretamente na página de Opções da extensão antes de executar quaisquer capturas.
                             </div>
                         </div>
                     </div>

@@ -174,6 +174,70 @@ function initNavigation() {
 // ============================================================
 
 /**
+ * Checks whether the Prompt API is available in the current browser or background.
+ * @returns {Promise<boolean>}
+ */
+async function checkPromptApiAvailability() {
+    // 1. Direct check in current window context
+    try {
+        const aiObj = (typeof window !== 'undefined' && window.ai) || (typeof self !== 'undefined' && self.ai) || globalThis.ai;
+        if (aiObj && aiObj.languageModel) {
+            if (typeof aiObj.languageModel.availability === 'function') {
+                const status = await aiObj.languageModel.availability();
+                if (status === 'readily' || status === 'after-download') return true;
+            } else if (typeof aiObj.languageModel.capabilities === 'function') {
+                const caps = await aiObj.languageModel.capabilities();
+                if (caps.available === 'readily' || caps.available === 'after-download') return true;
+            } else if (typeof aiObj.canCreateTextSession === 'function') {
+                const status = await aiObj.canCreateTextSession();
+                if (status === 'readily' || status === 'after-download') return true;
+            } else {
+                return true;
+            }
+        }
+    } catch(e) {}
+
+    // 2. Check via background message (if background context has self.ai)
+    try {
+        const res = await api.runtime.sendMessage({ action: "checkPromptApi" });
+        if (res && res.success && res.available) {
+            return true;
+        }
+    } catch(e) {}
+
+    return false;
+}
+
+/**
+ * Updates the visibility of the Prompt API option in the provider type dropdown.
+ * If Prompt API is supported and active, or if any existing service uses it, the option is shown.
+ */
+async function updatePromptApiVisibility() {
+    const isAvail = await checkPromptApiAvailability();
+    const promptApiOpt = document.getElementById("opt_prompt_api");
+    const hasPromptApiService = servicesList.some(s => s.type === "prompt-api");
+
+    if (isAvail || hasPromptApiService) {
+        if (promptApiOpt) {
+            promptApiOpt.style.display = "";
+            promptApiOpt.disabled = false;
+        } else {
+            const select = document.getElementById("m_type");
+            const opt = document.createElement("option");
+            opt.value = "prompt-api";
+            opt.id = "opt_prompt_api";
+            opt.textContent = api.i18n.getMessage("optTypePromptApi") || "Prompt API (Built-in)";
+            select.appendChild(opt);
+        }
+    } else {
+        if (promptApiOpt) {
+            promptApiOpt.style.display = "none";
+            promptApiOpt.disabled = true;
+        }
+    }
+}
+
+/**
  * Loads the services saved in storage.local and renders the table.
  * Also initializes the form in "New service" (empty) state.
  */
@@ -194,6 +258,8 @@ async function loadServices() {
     if (migrationNeeded) {
         await api.storage.local.set({ llm_services: servicesList });
     }
+
+    await updatePromptApiVisibility();
 
     renderTable();
     renderPromptsTable();
@@ -358,6 +424,7 @@ document.getElementById("m_type").addEventListener("change", (e) => {
     const modelSelect  = document.getElementById("m_model");
     const apikeyLabel  = document.getElementById("apikey_label");
     const apiKeyInput  = document.getElementById("m_apikey");
+    const apikeyGroup  = document.getElementById("apikey_group") || apiKeyInput.parentElement;
     const urlHint      = document.getElementById("url_hint");
 
     // Reset model selector when changing provider (models are different)
@@ -367,6 +434,7 @@ document.getElementById("m_type").addEventListener("change", (e) => {
         urlGroup.style.display = "block";  // Show URL group
         mUrl.required = true;              // URL is mandatory for Ollama
         urlHint.textContent = api.i18n.getMessage("optUrlHint") || "Models will be queried as you type the URL.";
+        apikeyGroup.style.display = "block";
         apikeyLabel.textContent = api.i18n.getMessage("optApiKeyLabel") || "API Key (optional)";
         apiKeyInput.required = false;      // Ollama doesn't require API key
 
@@ -379,6 +447,7 @@ document.getElementById("m_type").addEventListener("change", (e) => {
         urlGroup.style.display = "block";
         mUrl.required = true;
         urlHint.textContent = "e.g.: https://api.openai.com/v1 or compatible";
+        apikeyGroup.style.display = "block";
         apikeyLabel.textContent = "API Key";
         apiKeyInput.required = true; // OpenAI always requires API key
 
@@ -387,11 +456,20 @@ document.getElementById("m_type").addEventListener("change", (e) => {
             mUrl.value = "https://api.openai.com";
         }
 
+    } else if (type === "prompt-api") {
+        urlGroup.style.display = "none";  // Hide URL field
+        mUrl.required = false;
+        mUrl.value = "";
+        apikeyGroup.style.display = "none"; // Hide API key field (local execution)
+        apiKeyInput.required = false;
+        apiKeyInput.value = "";
+
     } else {
         // anthropic, gemini: URL is hardcoded in drivers, not configured here
         urlGroup.style.display = "none";  // Hide URL field
         mUrl.required = false;
         mUrl.value = "";                  // Clear previous value to not save it
+        apikeyGroup.style.display = "block";
         apikeyLabel.textContent = "API Key";
         apiKeyInput.required = true;      // Cloud always requires API key
     }
@@ -558,6 +636,15 @@ function renderTable() {
             
             // Show modal
             document.getElementById("edit-modal").classList.add("active");
+
+            // If editing a prompt-api service, ensure option is enabled/visible
+            if (srv.type === "prompt-api") {
+                const promptApiOpt = document.getElementById("opt_prompt_api");
+                if (promptApiOpt) {
+                    promptApiOpt.style.display = "";
+                    promptApiOpt.disabled = false;
+                }
+            }
 
             // Preload all form fields with service values
             document.getElementById("m_name").value      = srv.name;
@@ -947,3 +1034,199 @@ document.getElementById("addSysPromptForm").addEventListener("submit", async (e)
     populateSysPromptsDropdown();
     navigateTo('page-sys-prompts-list');
 });
+
+
+// ============================================================
+// IMPORT / EXPORT LOGIC
+// ============================================================
+
+async function deriveKey(password, salt) {
+    const enc = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey(
+        "raw",
+        enc.encode(password),
+        "PBKDF2",
+        false,
+        ["deriveBits", "deriveKey"]
+    );
+    return crypto.subtle.deriveKey(
+        {
+            name: "PBKDF2",
+            salt: salt,
+            iterations: 100000,
+            hash: "SHA-256"
+        },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        true,
+        ["encrypt", "decrypt"]
+    );
+}
+
+function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+}
+
+function base64ToArrayBuffer(base64) {
+    const binary_string = window.atob(base64);
+    const len = binary_string.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+
+
+async function compressData(data) {
+    const stream = new Blob([data]).stream();
+    const compressedStream = stream.pipeThrough(new CompressionStream('gzip'));
+    const response = new Response(compressedStream);
+    return await response.arrayBuffer();
+}
+
+async function decompressData(buffer) {
+    const stream = new Blob([buffer]).stream();
+    const decompressedStream = stream.pipeThrough(new DecompressionStream('gzip'));
+    const response = new Response(decompressedStream);
+    return await response.arrayBuffer();
+}
+
+document.getElementById('btnExport').addEventListener('click', async () => {
+    const password = document.getElementById('export_password').value;
+    const confirmPassword = document.getElementById('export_password_confirm').value;
+
+    if (password !== confirmPassword) {
+        alert(api.i18n.getMessage("errPasswordMismatch") || "Las contraseñas no coinciden.");
+        return;
+    }
+    
+    const data = await api.storage.local.get(["llm_services", "prompts", "systemPrompts"]);
+    const payload = JSON.stringify(data);
+    
+    let exportObj = {
+        signature: "content-analyzer-config-v1",
+        encrypted: false
+    };
+
+    if (password) {
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        
+        const key = await deriveKey(password, salt);
+        
+        const enc = new TextEncoder();
+        const compressedData = await compressData(enc.encode(payload));
+        
+        const encryptedContent = await crypto.subtle.encrypt(
+            { name: "AES-GCM", iv: iv },
+            key,
+            compressedData
+        );
+        
+        exportObj.encrypted = true;
+        exportObj.compressed = true;
+        exportObj.salt = arrayBufferToBase64(salt);
+        exportObj.iv = arrayBufferToBase64(iv);
+        exportObj.data = arrayBufferToBase64(encryptedContent);
+    } else {
+        exportObj.data = data;
+    }
+    
+    const blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `content-analyzer-config-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    
+    URL.revokeObjectURL(url);
+    alert(api.i18n.getMessage("msgExportSuccess") || "Configuración exportada exitosamente.");
+    document.getElementById('export_password').value = '';
+});
+
+document.getElementById('btnImport').addEventListener('click', async () => {
+    const fileInput = document.getElementById('import_file');
+    const password = document.getElementById('import_password').value;
+    
+    if (!fileInput.files.length) {
+        alert(api.i18n.getMessage("errFileRead") || "Error al leer el archivo.");
+        return;
+    }
+    
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = async (e) => {
+        try {
+            const importedObj = JSON.parse(e.target.result);
+            
+            if (importedObj.signature !== "content-analyzer-config-v1") {
+                throw new Error("Invalid signature");
+            }
+            
+            let dataToSave;
+            
+            if (importedObj.encrypted) {
+                if (!password) {
+                    alert(api.i18n.getMessage("errInvalidPassword") || "Contraseña incorrecta o archivo corrupto.");
+                    return;
+                }
+                
+                try {
+                    const salt = base64ToArrayBuffer(importedObj.salt);
+                    const iv = base64ToArrayBuffer(importedObj.iv);
+                    const encryptedData = base64ToArrayBuffer(importedObj.data);
+                    
+                    const key = await deriveKey(password, salt);
+                    
+                    const decryptedContent = await crypto.subtle.decrypt(
+                        { name: "AES-GCM", iv: new Uint8Array(iv) },
+                        key,
+                        encryptedData
+                    );
+                    
+                    let finalContent = decryptedContent;
+                    if (importedObj.compressed) {
+                        finalContent = await decompressData(decryptedContent);
+                    }
+                    
+                    const dec = new TextDecoder();
+                    dataToSave = JSON.parse(dec.decode(finalContent));
+                } catch (cryptoErr) {
+                    alert(api.i18n.getMessage("errInvalidPassword") || "Contraseña incorrecta o archivo corrupto.");
+                    return;
+                }
+            } else {
+                dataToSave = importedObj.data;
+            }
+            
+            await api.storage.local.set({
+                llm_services: dataToSave.llm_services || [],
+                prompts: dataToSave.prompts || [],
+                systemPrompts: dataToSave.systemPrompts || []
+            });
+            
+            alert(api.i18n.getMessage("msgImportSuccess") || "Configuración importada exitosamente.");
+            
+            location.reload();
+            
+        } catch (err) {
+            console.error(err);
+            if (err.message === "Invalid signature") {
+                alert(api.i18n.getMessage("errInvalidSignature") || "Archivo de configuración inválido (firma inválida).");
+            } else {
+                alert(api.i18n.getMessage("errFileRead") || "Error al leer el archivo.");
+            }
+        }
+    };
+    
+    reader.readAsText(file);
+});
+
