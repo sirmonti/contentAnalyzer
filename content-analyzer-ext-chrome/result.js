@@ -189,12 +189,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         let renderPending = false;
+        let renderRafId = null;
 
         /**
          * Renders the current markdown content into the resultBox and scrolls to bottom.
          */
         function renderMarkdown() {
-            resultBox.innerHTML = parseMarkdown(displayMarkdown + "**AI:**\n\n" + resultText + "\n\n");
+            const currentTurn = resultText ? "**AI:**\n\n" + resultText + "\n\n" : "";
+            resultBox.innerHTML = parseMarkdown(displayMarkdown + currentTurn);
             resultBox.querySelectorAll('a').forEach(a => {
                 a.setAttribute('target', '_blank');
                 a.setAttribute('rel', 'noopener noreferrer');
@@ -212,8 +214,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         function scheduleRender() {
             if (renderPending) return;
             renderPending = true;
-            requestAnimationFrame(() => {
+            renderRafId = requestAnimationFrame(() => {
                 renderPending = false;
+                renderRafId = null;
                 renderMarkdown();
             });
         }
@@ -326,12 +329,19 @@ ${parseMarkdown(displayMarkdown)}
                     statusDiv.style.display = "block";
                     statusDiv.className = "";
 
+                    if (renderRafId) {
+                        cancelAnimationFrame(renderRafId);
+                        renderRafId = null;
+                    }
+                    renderPending = false;
+
                     if (resultText && resultText.trim().length > 0) {
-                        // Show "Save" button so user can download the result
-                    setupSaveButton();
-                    chatHistory.push({role: "assistant", content: resultText});
-                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
-                    chatContainer.style.display = "block";
+                        displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
+                        chatHistory.push({role: "assistant", content: resultText});
+                        resultText = "";
+                        renderMarkdown();
+                        setupSaveButton();
+                        chatContainer.style.display = "block";
                     }
 
                     await api.storage.local.remove(mKey);
@@ -370,6 +380,13 @@ ${parseMarkdown(displayMarkdown)}
                 if (isDone || isAborted) return; // Avoid duplicate retries or retrying when aborted
                 isDone = true;
                 if (attemptTimeout) clearTimeout(attemptTimeout);
+                if (renderRafId) {
+                    cancelAnimationFrame(renderRafId);
+                    renderRafId = null;
+                }
+                renderPending = false;
+                resultText = ""; // Clear buffer so retry starts clean
+
                 port.disconnect(); // Close port before opening a new one
 
                 if (abortBtn) abortBtn.style.display = "none";
@@ -455,21 +472,27 @@ ${parseMarkdown(displayMarkdown)}
                     if (isAborted) return;
                     isDone = true;
                     if (attemptTimeout) clearTimeout(attemptTimeout);
+                    if (renderRafId) {
+                        cancelAnimationFrame(renderRafId);
+                        renderRafId = null;
+                    }
+                    renderPending = false;
 
                     if (abortBtn) abortBtn.style.display = "none";
 
-                    // Ensure final state is immediately rendered
-                    renderPending = false;
+                    // Commit current response to displayMarkdown and reset turn buffer
+                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
+                    chatHistory.push({role: "assistant", content: resultText});
+                    resultText = ""; // Clear buffer so no duplicate renders can happen
+
+                    // Final render of committed displayMarkdown
                     renderMarkdown();
 
                     // Show "Save" button so user can download the result
                     setupSaveButton();
-                    chatHistory.push({role: "assistant", content: resultText});
-                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
                     chatContainer.style.display = "block";
 
                     // Remove storage data to free space.
-                    // At this point text is already in `resultText`; we don't need storage.
                     await api.storage.local.remove(mKey);
                 }
             });

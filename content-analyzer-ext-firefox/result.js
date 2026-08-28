@@ -189,12 +189,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         let renderPending = false;
+        let renderRafId = null;
 
         /**
          * Renders the current markdown content into the resultBox and scrolls to bottom.
          */
         function renderMarkdown() {
-            resultBox.innerHTML = parseMarkdown(displayMarkdown + "**AI:**\n\n" + resultText + "\n\n");
+            const currentTurn = resultText ? "**AI:**\n\n" + resultText + "\n\n" : "";
+            resultBox.innerHTML = parseMarkdown(displayMarkdown + currentTurn);
             resultBox.querySelectorAll('a').forEach(a => {
                 a.setAttribute('target', '_blank');
                 a.setAttribute('rel', 'noopener noreferrer');
@@ -212,8 +214,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         function scheduleRender() {
             if (renderPending) return;
             renderPending = true;
-            requestAnimationFrame(() => {
+            renderRafId = requestAnimationFrame(() => {
                 renderPending = false;
+                renderRafId = null;
                 renderMarkdown();
             });
         }
@@ -326,12 +329,19 @@ ${parseMarkdown(displayMarkdown)}
                     statusDiv.style.display = "block";
                     statusDiv.className = "";
 
+                    if (renderRafId) {
+                        cancelAnimationFrame(renderRafId);
+                        renderRafId = null;
+                    }
+                    renderPending = false;
+
                     if (resultText && resultText.trim().length > 0) {
-                        // Show "Save" button so user can download the result
-                    setupSaveButton();
-                    chatHistory.push({role: "assistant", content: resultText});
-                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
-                    chatContainer.style.display = "block";
+                        displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
+                        chatHistory.push({role: "assistant", content: resultText});
+                        resultText = "";
+                        renderMarkdown();
+                        setupSaveButton();
+                        chatContainer.style.display = "block";
                     }
 
                     await api.storage.local.remove(mKey);
@@ -342,17 +352,14 @@ ${parseMarkdown(displayMarkdown)}
              * Resets the inactivity timer.
              *
              * NOTE CHROME vs FIREFOX:
-             * In Chrome both timeouts are 120s (2 min) because the service worker
-             * has shorter lifespan restrictions than Firefox's persistent background
-             * script (where 300s and 30s are used respectively).
+             * In Firefox, we use 300s (5 min) for the first chunk to accommodate local LLMs (Ollama)
+             * that need to load weights into VRAM, and 30s between subsequent chunks.
              *
-             * @param {boolean} isFirstChunk - Not used in Chrome; both delays are equal (120s).
+             * @param {boolean} isFirstChunk - If true, applies 300s timeout; if false, 30s.
              */
             function resetTimeout(isFirstChunk) {
                 if (attemptTimeout) clearTimeout(attemptTimeout);
-                // In Chrome, we use 120s for both cases (first chunk and between chunks)
-                // to adapt to service worker limitations.
-                const delay = isFirstChunk ? 120000 : 120000; // 2 minutes in both cases
+                const delay = isFirstChunk ? 300000 : 30000;
                 attemptTimeout = setTimeout(() => {
                     console.warn(`Hanging connection timeout (attempt ${retryCount})`);
                     triggerRetry();
@@ -370,6 +377,13 @@ ${parseMarkdown(displayMarkdown)}
                 if (isDone || isAborted) return; // Avoid duplicate retries or retrying when aborted
                 isDone = true;
                 if (attemptTimeout) clearTimeout(attemptTimeout);
+                if (renderRafId) {
+                    cancelAnimationFrame(renderRafId);
+                    renderRafId = null;
+                }
+                renderPending = false;
+                resultText = ""; // Clear buffer so retry starts clean
+
                 port.disconnect(); // Close port before opening a new one
 
                 if (abortBtn) abortBtn.style.display = "none";
@@ -413,7 +427,7 @@ ${parseMarkdown(displayMarkdown)}
                 systemPrompt: sysPromptText
             });
 
-            // Start waiting timeout (2 min for first chunk in Chrome)
+            // Start waiting timeout (300s for first chunk in Firefox)
             resetTimeout(true);
 
             // ---- STREAM MESSAGE LISTENER ----
@@ -455,21 +469,27 @@ ${parseMarkdown(displayMarkdown)}
                     if (isAborted) return;
                     isDone = true;
                     if (attemptTimeout) clearTimeout(attemptTimeout);
+                    if (renderRafId) {
+                        cancelAnimationFrame(renderRafId);
+                        renderRafId = null;
+                    }
+                    renderPending = false;
 
                     if (abortBtn) abortBtn.style.display = "none";
 
-                    // Ensure final state is immediately rendered
-                    renderPending = false;
+                    // Commit current response to displayMarkdown and reset turn buffer
+                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
+                    chatHistory.push({role: "assistant", content: resultText});
+                    resultText = ""; // Clear buffer so no duplicate renders can happen
+
+                    // Final render of committed displayMarkdown
                     renderMarkdown();
 
                     // Show "Save" button so user can download the result
                     setupSaveButton();
-                    chatHistory.push({role: "assistant", content: resultText});
-                    displayMarkdown += "**AI:**\n\n" + resultText + "\n\n";
                     chatContainer.style.display = "block";
 
                     // Remove storage data to free space.
-                    // At this point text is already in `resultText`; we don't need storage.
                     await api.storage.local.remove(mKey);
                 }
             });
