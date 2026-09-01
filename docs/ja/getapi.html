@@ -263,14 +263,14 @@
     <article
         class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
         <header class="mb-xl pb-md border-b border-border-subtle">
-            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">コンテンツ分析
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Content Analyzer
                 拡張機能</p>
-            <h1 class="font-article-title text-article-title text-text-primary">無料のAPIキーを入手する</h1>
+            <h1 class="font-article-title text-article-title text-text-primary">無料のAPIキーを取得する</h1>
         </header>
 
         <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
-            <p class="mb-sm"><strong style="font-weight: bold;">コンテンツ分析</strong>を効果的に使用するには、AIプロバイダーを設定する必要があります。一部のプロバイダーは利用料金を請求しますが、優れた無料オプションも用意されています。</p>
-            <p class="mb-sm">以下に、一般的なプラットフォーム（Google Gemini、OpenRouter、Groq、Mistral AI、Ollama）で無料のAPIキーを取得またはサービスを設定する方法を示します。</p>
+            <p class="mb-sm"><strong>Content Analyzer</strong>を効果的に活用するには、AIプロバイダーを設定する必要があります。一部のプロバイダーは利用料金を請求しますが、優れた無料のオプションも用意されています。</p>
+            <p class="mb-sm">以下に、主要なプラットフォーム（Google Gemini、OpenRouter、Groq、Mistral AI、およびOllama）において、無料のAPIキーを取得、またはサービスを設定するための手順を記載します。</p>
         </div>
 
         <div class="space-y-xl">
@@ -281,13 +281,14 @@
                         1</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Google Gemini</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Googleは、Google AI Studioを通じて高度なGeminiモデルへのアクセスを提供しています。開発者向けに寛大な無料枠を用意しています。無料で利用できるモデルは、「gemini-3.1-flash-lite」や「gemini-flash-lite-latest」など、名前に「lite」という単語が含まれているものです。</p>
+                        <p class="font-body text-body text-text-primary mb-md">Googleは、Google AI Studioを通じて高度なGeminiモデルへのアクセスを提供しています。開発者向けに充実した無料枠が提供されています。なお、無料で利用できるのは、名称に「lite」が含まれるモデル（例：<code>gemini-3.1-flash-lite</code> または <code>gemini-flash-lite-latest</code> など）です。</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
-                            <li><a class="text-primary hover:underline" href="https://aistudio.google.com/" target="_new">Google AI Studio</a>ウェブサイトにアクセスしてください。</li>
-                            <li>Googleアカウントでログインします。</li>
-                            <li>左側のナビゲーションメニューで、「APIキーを取得」をクリックします。</li>
-                            <li>「APIキーを作成」ボタンをクリックします。既存のGoogle Cloudプロジェクトで作成するか、AI Studioに新しいプロジェクトを作成させることができます。</li>
-                            <li>生成されたキーをコピーし、コンテンツ分析のオプションページにあるGeminiプロバイダー設定の下に貼り付けます。</li>
+                            <li><a class="text-primary hover:underline" href="https://aistudio.google.com/"
+                                    target="_new">Google AI Studio</a>のウェブサイトにアクセスします。</li>
+                            <li>Googleアカウントでサインインします。</li>
+                            <li>左側のナビゲーションメニューから、<strong>「Get API key」</strong>をクリックします。</li>
+                            <li><strong>「Create API key」</strong>ボタンをクリックします。既存のGoogle Cloudプロジェクト内で作成するか、AI Studioに新しいプロジェクトを作成してもらうかを選択できます。</li>
+                            <li>生成されたキーをコピーし、Content AnalyzerのオプションページにあるGeminiプロバイダーの設定に貼り付けます。</li>
                         </ul>
                     </div>
                 </div>
@@ -300,13 +301,14 @@
                         2</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">OpenRouter.ai</h2>
-                        <p class="font-body text-body text-text-primary mb-md">OpenRouterは、複数のAIモデルの統合インターフェースです。さまざまなプロバイダーのモデルをまとめ、いくつかの高品質なモデルを完全に無料で利用できます。</p>
+                        <p class="font-body text-body text-text-primary mb-md">OpenRouterは、複数のAIモデルのための統合インターフェースです。さまざまなプロバイダーのモデルを集約しており、いくつかの高品質なモデルを完全に無料で利用できます。</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
-                            <li><a class="text-primary hover:underline" href="https://openrouter.ai/" target="_new">OpenRouter.ai</a>ホームページにアクセスします。</li>
+                            <li><a class="text-primary hover:underline" href="https://openrouter.ai/"
+                                    target="_new">OpenRouter.ai</a>のホームページにアクセスします。</li>
                             <li>既存のアカウント（Google、GitHubなど）を使用してサインアップまたはログインします。</li>
-                            <li>ログイン後、メインメニューまたはアカウント設定から「キー」セクションに移動します。</li>
-                            <li>「キーを作成」をクリックします。「コンテンツ分析」などの名前を付けます。</li>
-                            <li>新しいAPIキーをコピーします。コンテンツ分析では、OpenAI互換オプションを選択し、ベースURLを<code style="font-family: monospace;">https://openrouter.ai/api/v1</code>に設定し、選択したモデルのID（例：<code style="font-family: monospace;">google/gemini-2.5-flash:free</code>）を入力することで、このキーを使用できます。</li>
+                            <li>ログイン後、メインメニューまたはアカウント設定から<strong>「Keys」</strong>セクションに移動します。</li>
+                            <li><strong>「Create Key」</strong>をクリックします。「Content Analyzer」などの名前を付けます。</li>
+                            <li>新しく生成されたAPIキーをコピーします。Content Analyzerで<strong>OpenRouter</strong>のプロバイダーオプションを選択し、APIキーを貼り付け、選択したモデルのID（例：<code>google/gemini-2.5-flash:free</code>）を選択または入力します。</li>
                         </ul>
                     </div>
                 </div>
@@ -320,54 +322,57 @@
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Groq</h2>
                         <p class="font-body text-body text-text-primary mb-md">Groqは、オープンソースのAIモデルに対して非常に高速な推論を提供します。現在、開発者向けに高性能な無料枠を提供しています。</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
-                            <li><a class="text-primary hover:underline" href="https://console.groq.com/" target="_new">Groq Console</a>にアクセスします。</li>
-                            <li>サインアップするか、既存のアカウントでログインします。</li>
-                            <li>サイドバーの「APIキー」セクションに移動します。</li>
-                            <li>「APIキーを作成」をクリックし、わかりやすい名前を付けます。</li>
-                            <li>生成されたAPIキーをコピーします。コンテンツ分析では、OpenAI互換オプションを使用し、ベースURLを<code style="font-family: monospace;">https://api.groq.com/openai/v1</code>に設定し、選択したモデルのID（例：<code style="font-family: monospace;">llama3-8b-8192</code>）を入力します。</li>
+                            <li><a class="text-primary hover:underline" href="https://console.groq.com/"
+                                    target="_new">Groq Console</a>にアクセスします。</li>
+                            <li>既存のアカウントを使用してサインアップまたはログインします。</li>
+                            <li>サイドバーの<strong>「API Keys」</strong>セクションに移動します。</li>
+                            <li><strong>「Create API Key」</strong>をクリックし、分かりやすい名前を付けます。</li>
+                            <li>生成されたAPIキーをコピーします。Content Analyzerで<strong>Groq</strong>のプロバイダーオプションを選択し、APIキーを貼り付け、リストから選択したモデル（例：<code>llama-3.3-70b-versatile</code>）を選択します。</li>
                         </ul>
                     </div>
                 </div>
             </section>
-            <section class="relative" id="mistral">
-                <div class="flex items-start gap-md relative z-10">
-                    <div
-                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
-                        4</div>
-                    <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Mistral AI</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Mistral AIは、La Plateformeを通じて最先端のオープンおよび商用モデルへのアクセスを提供し、開発者が試行できるように無料枠を用意しています。</p>
-                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
-                            <li><a class="text-primary hover:underline" href="https://console.mistral.ai/" target="_new">Mistral AI Console</a>にアクセスします。</li>
-                            <li>アカウントにサインアップするか、ログインします。</li>
-                            <li>ワークスペースのナビゲーションから「APIキー」セクションに移動します。</li>
-                            <li>「新しいキーを作成」をクリックし、生成されたAPIキーをコピーします。</li>
-                            <li>コンテンツ分析では、OpenAI互換オプションを選択し、ベースURLを<code style="font-family: monospace;">https://api.mistral.ai/v1</code>に設定し、選択したモデルID（例：<code style="font-family: monospace;">mistral-small-latest</code>）を入力します。</li>
-                        </ul>
+                <section class="relative" id="mistral">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            4</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Mistral AI</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Mistral AIは、La Plateformeを通じて最先端のオープンモデルおよび商用モデルへのアクセスを提供しており、開発者が試行するための無料枠を提供しています。</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li><a class="text-primary hover:underline" href="https://console.mistral.ai/"
+                                        target="_new">Mistral AI Console</a>にアクセスします。</li>
+                                <li>アカウントにサインアップまたはログインします。</li>
+                                <li>ワークスペースのナビゲーションから<strong>「API Keys」</strong>セクションに移動します。</li>
+                                <li><strong>「Create new key」</strong>をクリックし、生成されたAPIキーをコピーします。</li>
+                                <li>Content Analyzerで<strong>Mistral AI</strong>のプロバイダーオプションを選択し、APIキーを貼り付け、リストから選択したモデル（例：<code>mistral-small-latest</code>、<code>mistral-large-latest</code>、または<code>codestral-latest</code>）を選択します。</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="relative" id="ollama">
-                <div class="flex items-start gap-md relative z-10">
-                    <div
-                        class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
-                        5</div>
-                    <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Ollama (ollama.com)</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Ollamaは、オンラインAPIサービスを提供し、ウェブプラットフォームを介して直接ホストされているモデルに接続できます。</p>
-                        <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
-                            <li><a class="text-primary hover:underline" href="https://ollama.com/" target="_new">Ollama.com</a>ウェブサイトにアクセスします。</li>
-                            <li>アカウントにログインするか、まだ持っていない場合はサインアップします。</li>
-                            <li>ページの上部右にあるユーザーメニューをクリックします。</li>
-                            <li>「設定」オプションを選択します。</li>
-                            <li>「キー」セクションを選択します。</li>
-                            <li>「APIキーを追加」をクリックしてAPIキーを生成します。</li>
-                            <li>コンテンツ分析では、「Ollama」APIタイプを選択し、ベースURLを<code style="font-family: monospace;">https://ollama.com/</code>に設定し、選択したモデルID（例：<code style="font-family: monospace;">gemma4:31b</code>）を入力します。</li>
-                        </ul>
+                <section class="relative" id="ollama">
+                    <div class="flex items-start gap-md relative z-10">
+                        <div
+                            class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">
+                            5</div>
+                        <div class="w-full">
+                            <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Ollama (ollama.com)</h2>
+                            <p class="font-body text-body text-text-primary mb-md">Ollamaは、Webプラットフォームを通じてホストされたモデルに直接接続できるオンラインAPIサービスを提供しています。</p>
+                            <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm mb-md">
+                                <li><a class="text-primary hover:underline" href="https://ollama.com/"
+                                        target="_new">Ollama.com</a>のウェブサイトにアクセスします。</li>
+                                <li>アカウントにログインするか、まだお持ちでない場合はサインアップします。</li>
+                                <li>ページ右上のユーザーメニューをクリックします。</li>
+                                <li><strong>「Settings」</strong>オプションを選択します。</li>
+                                <li><strong>「Keys」</strong>セクションを選択します。</li>
+                                <li><strong>「Add API key」</strong>をクリックし、APIキーを生成します。</li>
+                                <li>Content Analyzerで<strong>Ollama</strong>のAPIタイプを選択し、Base URLを<code>https://ollama.com/</code>に設定し、選択したモデルID（例：<code>gemma4:31b</code>）を入力します。</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
         </div>
     </article>
 </div>

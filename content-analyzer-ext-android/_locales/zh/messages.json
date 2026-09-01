@@ -346,5 +346,11 @@
     },
     "resSaveHtmlBtn": {
         "message": "另存为 HTML"
+    },
+    "optTypeOllama": {
+        "message": "Ollama (或兼容)"
+    },
+    "optTypeOpenAi": {
+        "message": "OpenAI (或兼容)"
     }
 }

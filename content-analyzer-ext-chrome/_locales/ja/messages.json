@@ -346,5 +346,11 @@
     },
     "resSaveHtmlBtn": {
         "message": "HTMLとして保存"
+    },
+    "optTypeOllama": {
+        "message": "Ollama (または互換)"
+    },
+    "optTypeOpenAi": {
+        "message": "OpenAI (または互換)"
     }
 }

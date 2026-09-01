@@ -263,21 +263,21 @@
             <div class="max-w-container-max mx-auto p-md md:p-xl w-full">
     <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
         <header class="mb-xl pb-md border-b border-border-subtle">
-            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Estensione Analizzatore di Contenuti</p>
-            <h1 class="font-article-title text-article-title text-text-primary">Guida all'utilizzo e alla configurazione</h1>
+            <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">Estensione Content Analyzer</p>
+            <h1 class="font-article-title text-article-title text-text-primary">Guida all'uso e alla configurazione</h1>
         </header>
         
         <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
-            <p class="mb-sm">L'<strong>Analizzatore di Contenuti</strong> è un'estensione per browser progettata per l'estrazione e la valutazione automatica di metadati semantici in ambienti web complessi. Questa estensione funziona su Firefox, Chrome e browser derivati da Chromium; il suo scopo principale è elaborare i contenuti web, passandoli attraverso vari servizi di Intelligenza Artificiale (IA).</p>
-            <p class="mb-sm">A differenza dei tipici strumenti di riepilogo di pagine web, questa estensione consente di creare più servizi di IA personalizzati, ciascuno con un prompt altamente specifico che determina esattamente cosa l'IA deve fare con le informazioni raccolte. Puoi usarla per estrarre codice, tradurre termini specifici, analizzare il sentiment, generare report mirati e molto altro.</p>
+            <p class="mb-sm">Il <strong>Content Analyzer</strong> è un'estensione del browser progettata per l'estrazione automatizzata e la valutazione dei metadati semantici in ambienti web complessi. Questa estensione funziona su Firefox, Chrome e browser derivati da Chromium; il suo scopo principale è elaborare i contenuti web passandoli attraverso vari servizi di Intelligenza Artificiale (AI).</p>
+            <p class="mb-sm">A differenza dei normali riassumitori di pagine web, questa estensione ti permette di creare più servizi AI personalizzati, ognuno con un prompt altamente specifico che indica esattamente cosa l'intelligenza artificiale debba fare con le informazioni raccolte. Puoi utilizzarla per estrarre codice, tradurre termini specifici, analizzare il sentiment, generare report mirati e molto altro ancora.</p>
         </div>
         
-        <nav aria-label="Indice" class="mb-xl bg-surface-header p-md border border-border-subtle">
-            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">Indice</h2>
+        <nav aria-label="Indice dei contenuti" class="mb-xl bg-surface-header p-md border border-border-subtle">
+            <h2 class="font-h3-subsection text-h3-subsection text-text-primary mb-sm">Indice operativo</h2>
             <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
                 <li><a class="hover:text-primary-hover" href="#features">Funzionalità principali</a></li>
-                <li><a class="hover:text-primary-hover" href="#providers">Provider di IA supportati</a></li>
-                <li><a class="hover:text-primary-hover" href="#tags">Tag dinamici per i prompt</a></li>
+                <li><a class="hover:text-primary-hover" href="#providers">Fornitori AI supportati</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">Tag dinamici per prompt</a></li>
                 <li><a class="hover:text-primary-hover" href="#examples">Esempi di configurazione</a></li>
                 <li><a class="hover:text-primary-hover" href="#installation">Installazione nel browser</a></li>
             </ol>
@@ -291,10 +291,10 @@
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Funzionalità principali</h2>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong>Acquisizione di contenuti personalizzata:</strong> È possibile selezionare facilmente una parte specifica di una pagina web utilizzando uno strumento interattivo "a cursore", oppure scegliere di acquisire l'intero contenuto della pagina.</li>
-                            <li><strong>Prompt e prompt di sistema personalizzati multipli:</strong> Crea diversi servizi personalizzati in base alle tue esigenze specifiche, con prompt utente personalizzati e prompt di sistema opzionali (ad esempio, "Riassumi l'articolo", "Estrai i dati JSON", "Traduci in spagnolo", personalità di assistente personalizzate, ecc.).</li>
-                            <li><strong>Servizi specifici per dominio:</strong> Puoi collegare i tuoi servizi personalizzati a domini web specifici. Questo aiuta a mantenere l'estensione ordinata, mostrando solo gli strumenti di IA pertinenti.</li>
-                            <li><strong>Ampia compatibilità con gli LLM:</strong> Supporta completamente le connessioni (incluso lo streaming di testo) con server locali tramite Ollama, nonché provider di API cloud come OpenAI, Anthropic e Google Gemini.</li>
+                            <li><strong>Cattura contenuti personalizzata:</strong> Puoi selezionare facilmente una parte specifica di una pagina web utilizzando uno "strumento hover" interattivo, oppure scegliere di catturare l'intero contenuto della pagina.</li>
+                            <li><strong>Prompt AI personalizzati e System Prompt multipli:</strong> Crea diversi servizi personalizzati in base alle tue esigenze specifiche con prompt utente personalizzati e System Prompt opzionali (ad esempio, "Riassumi articolo", "Estrai dati JSON", "Traduci in spagnolo", ruoli di assistente personalizzati, ecc.).</li>
+                            <li><strong>Servizi per domini specifici:</strong> Puoi collegare i tuoi servizi personalizzati a domi web specifici. Questo aiuta a mantenere pulita l'estensione mostrando solo gli strumenti AI pertinenti.</li>
+                            <li><strong>Ampia compatibilità con i modelli LLM:</strong> Supporta pienamente le connessioni (incluso lo streaming di testo) con server locali tramite Ollama, così come i fornitori di API cloud come Anthropic (Claude), Google Gemini, Groq, OpenRouter, Mistral AI e OpenAI.</li>
                         </ul>
                     </div>
                 </div>
@@ -305,13 +305,16 @@
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Provider di IA supportati</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Questa estensione è progettata per essere altamente flessibile, consentendo di connettersi a una varietà di modelli di Intelligenza Artificiale e servizi locali leader del settore. Attualmente, supporta:</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Fornitori AI supportati</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Questa estensione è progettata per essere altamente flessibile, consentendoti di connetterti a una varietà di modelli di Intelligenza Artificiale leader del settore e servizi locali. Attualmente, supporta:</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
                             <li><strong>Claude (Anthropic):</strong> Accedi alla potente famiglia di modelli Claude tramite la loro API ufficiale.</li>
-                            <li><strong>Gemini (Google):</strong> Connettiti direttamente agli avanzati modelli Gemini di Google.</li>
-                            <li><strong>ChatGPT (OpenAI e compatibili):</strong> Completamente compatibile con l'API di OpenAI, nonché con qualsiasi altro servizio di terze parti che offre un endpoint compatibile con OpenAI.</li>
-                            <li><strong>Ollama:</strong> Esegui modelli in locale e in modo privato sulla tua macchina, senza inviare dati al cloud.</li>
+                            <li><strong>Gemini (Google):</strong> Connettiti direttamente ai modelli avanzati Gemini di Google.</li>
+                            <li><strong>Groq:</strong> Inferenza ultra-rapida con modelli dedicati Llama, Mixtral e Gemma.</li>
+                            <li><strong>OpenRouter:</strong> Accesso unificato a un vasto catalogo di modelli AI da più fornitori.</li>
+                            <li><strong>Mistral AI:</strong> Connettiti ai modelli Mistral di ultima generazione, sia open che commerciali, tramite la loro API ufficiale.</li>
+                            <li><strong>ChatGPT (OpenAI e compatibili):</strong> Completamente compatibile con l'API di OpenAI, così come con qualsiasi altro servizio di terze parti che offra un endpoint compatibile con OpenAI.</li>
+                            <li><strong>Ollama (o compatibili):</strong> Esegui modelli localmente e in modo privato sul tuo dispositivo senza inviare dati in cloud.</li>
                         </ul>
                     </div>
                 </div>
@@ -322,11 +325,11 @@
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Tag dinamici per i prompt</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Per rendere i tuoi prompt di IA più contestuali e potenti, puoi utilizzare i seguenti tag dinamici sia nei prompt utente che nei prompt di sistema. L'estensione sostituirà automaticamente questi tag prima di inviare il prompt al modello di IA:</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Tag dinamici per prompt</h2>
+                        <p class="font-body text-body text-text-primary mb-md">Per rendere i tuoi prompt AI più contestuali e potenti, puoi utilizzare i seguenti tag dinamici sia nei prompt utente che nei System Prompt. L'estensione li sostituirà automaticamente prima di inviare il prompt al modello di IA:</p>
                         <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
-                            <thead>
-                                <tr class="bg-surface-header border-b border-border-subtle">
+                            <thead class="border-b border-border-subtle">
+                                <tr class="bg-surface-header">
                                     <th class="p-sm font-body-bold border-r border-border-subtle w-[120px]">Tag</th>
                                     <th class="p-sm font-body-bold">Descrizione</th>
                                 </tr>
@@ -334,19 +337,19 @@
                             <tbody>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DATE}</td>
-                                    <td class="p-sm">Sostituito dalla data corrente nel formato locale.</td>
+                                    <td class="p-sm">Sostituito dalla data corrente nel tuo formato locale.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{HOUR}</td>
-                                    <td class="p-sm">Sostituito dall'ora corrente nel formato locale.</td>
+                                    <td class="p-sm">Sostituito dall'ora corrente nel tuo formato locale.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
-                                    <td class="p-sm">L'URL completo della pagina web attualmente in elaborazione.</td>
+                                    <td class="p-sm">L'URL completo della pagina web attualmente in fase di elaborazione.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DOMAIN}</td>
-                                    <td class="p-sm">Il dominio principale della pagina web in elaborazione.</td>
+                                    <td class="p-sm">Il dominio principale della pagina web in fase di elaborazione.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{LANG}</td>
@@ -354,11 +357,11 @@
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
-                                    <td class="p-sm">La configurazione corrente della lingua del sistema/browser.</td>
+                                    <td class="p-sm">La configurazione della lingua del sistema/browser.</td>
                                 </tr>
                                 <tr class="bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{TITLE}</td>
-                                    <td class="p-sm">Il titolo HTML della pagina web attualmente in elaborazione.</td>
+                                    <td class="p-sm">Il titolo HTML della pagina web attualmente in fase di elaborazione.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -372,41 +375,41 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Esempi di configurazione</h2>
-                        <p class="font-body text-body text-text-primary mb-md">Di seguito sono riportati alcuni esempi che mostrano come puoi strutturare i tuoi servizi:</p>
+                        <p class="font-body text-body text-text-primary mb-md">Di seguito sono riportati alcuni esempi di come puoi strutturare i tuoi servizi:</p>
                         
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
                             <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Esempio 1: Assistente di traduzione multilingue</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome del servizio:</strong> Traduci nella lingua locale<br/><strong>Domini collegati:</strong> <em>(Vuoto - Disponibile ovunque)</em></p>
+                            <p class="font-body text-body text-text-primary"><strong>Nome servizio:</strong> Traduci nella lingua locale<br/><strong>Domini collegati:</strong> <em>(Vuoto - Disponibile ovunque)</em></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Agisci come un traduttore professionista. Sto navigando in un sito nella lingua {LANG} all'indirizzo {URL}, ma il mio browser è impostato su {SYSLANG}. Per favore, traduci accuratamente il seguente contenuto in {SYSLANG}, mantenendo intatta la formattazione originale del markdown e del testo.
+                                Agisci come un traduttore professionista. Sto navigando in un sito in lingua {LANG} all'indirizzo {URL}, ma il mio browser è impostato su {SYSLANG}. Traduci accuratamente il contenuto seguente in {SYSLANG}, mantenendo intatti il formato markdown e la formattazione del testo.
                             </div>
                         </div>
                         
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Esempio 2: Revisore di codice (specifico per dominio)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome del servizio:</strong> Revisione del codice Python<br/><strong>Domini collegati:</strong> github.com, gitlab.com, stackoverflow.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Esempio 2: Revisione del codice (specifico per dominio)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Nome servizio:</strong> Revisione codice Python<br/><strong>Domini collegati:</strong> github.com, gitlab.com, stackoverflow.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Sei uno sviluppatore esperto. I frammenti di codice forniti di seguito sono stati trovati su {DOMAIN}. Analizza il codice per potenziali bug, vulnerabilità di sicurezza e problemi di stile del codice. Non spiegare cosa fa il codice, elenca solo i problemi e fornisci una versione corretta.
+                                Sei uno sviluppatore esperto. I frammenti di codice riportati di seguito sono stati trovati su {DOMAIN}. Analizza il codice esclusivamente per bug potenziali, vulnerabilità di sicurezza e "code smell". Non spiegare cosa faccia il codice, elenchi solo i problemi e fornisci una versione corretta.
                             </div>
                         </div>
                         
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Esempio 3: Estrattore di informazioni per il briefing giornaliero</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome del servizio:</strong> Estrai le entità chiave<br/><strong>Domini collegati:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Esempio 3: Estrattore di notizie quotidiane</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Nome servizio:</strong> Estrai entità chiave<br/><strong>Domini collegati:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Oggi è {DATE} alle {HOUR}. Scansiona il seguente articolo di notizie ed estrai una lista JSON ordinata contenente i principali "Personaggi", "Organizzazioni" e "Luoghi" menzionati nel testo.
+                                Oggi è {DATE} alle {HOUR}. Analizza il seguente articolo di notizie ed estrai una lista JSON pulita contenente le principali "Persone", "Organizzazioni" e "Luoghi" menzionati nel testo.
                             </div>
                         </div>
 
                         <div class="bg-surface-header border border-border-subtle p-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Esempio 4: Personalità di assistente personalizzata (prompt di sistema)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>Nome del servizio:</strong> Assistente Mario<br/><strong>Prompt di sistema:</strong></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">Esempio 4: Persona assistente personalizzata (System Prompt)</h4>
+                            <p class="font-body text-body text-text-primary"><strong>Nome servizio:</strong> Assistente Mario<br/><strong>System Prompt:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
-                                Sei Mario, un assistente intelligente e perspicace, il tuo compito è svolgere le attività assegnate nel modo più efficiente possibile. Nelle attività che hanno riferimenti temporali, devi tenere presente che oggi è {DATE}.
+                                Sei Mario, un assistente intelligente e perspicace; il tuo compito è svolgere le attività assegnate il più efficientemente possibile. Per le attività con riferimenti temporali, devi tenere a mente che oggi è {DATE}
                             </div>
                             <p class="font-body text-body text-text-primary"><strong>Prompt utente:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                Analizza il seguente testo acquisito da {URL} e fornisce un riepilogo dei punti principali.
+                                Analizza il testo seguente catturato da {URL} e fornisci un riassunto dei punti principali.
                             </div>
                         </div>
                     </div>
@@ -418,16 +421,16 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">Installazione nel browser</h2>
-                        <p class="font-body text-body text-text-primary mb-md">L'installazione avviene tramite il repository ufficiale o caricando il pacchetto non compresso in modalità sviluppatore.</p>
+                        <p class="font-body text-body text-text-primary mb-md">Il processo di installazione avviene tramite il repository ufficiale oppure caricando il pacchetto non impacchettato in modalità sviluppatore.</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
-                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Scarica dal Chrome Web Store</a>.</li>
-                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Scarica dagli Add-on di Firefox</a>.</li>
-                            <li><em>In alternativa</em>, puoi caricare l'estensione non compresso in modalità sviluppatore tramite <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> o <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
+                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Scarica da Chrome Web Store</a>.</li>
+                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Scarica da Firefox Add-ons</a>.</li>
+                            <li><em>In alternativa</em>, puoi caricare l'estensione non impacchettata in modalità sviluppatore tramite <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> o <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>.</li>
                         </ul>
                         <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
                             <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
                             <div>
-                                <strong>Nota:</strong> Assicurati di aver configurato correttamente le impostazioni globali (chiavi API o istanze Ollama locali) nella pagina delle opzioni dell'estensione prima di eseguire qualsiasi acquisizione.
+                                <strong>Nota:</strong> Assicurati di aver configurato correttamente le impostazioni globali (Chiavi API o istanze locali Ollama) nella pagina Opzioni dell'estensione prima di eseguire qualsiasi cattura.
                             </div>
                         </div>
                     </div>

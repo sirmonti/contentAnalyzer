@@ -48,6 +48,7 @@ import * as anthropic  from './drivers/anthropic.js';
 import * as gemini     from './drivers/gemini.js';
 import * as groq       from './drivers/groq.js';
 import * as openrouter from './drivers/openrouter.js';
+import * as mistral    from './drivers/mistral.js';
 import * as promptApi  from './drivers/prompt-api.js';
 
 
@@ -196,6 +197,7 @@ const DRIVERS = {
     gemini,
     groq,
     openrouter,
+    mistral,
     "prompt-api": promptApi,
     promptApi
 };

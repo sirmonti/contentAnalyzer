@@ -346,5 +346,11 @@
     },
     "resSaveHtmlBtn": {
         "message": "حفظ كـ HTML"
+    },
+    "optTypeOllama": {
+        "message": "Ollama (أو متوافق)"
+    },
+    "optTypeOpenAi": {
+        "message": "OpenAI (أو متوافق)"
     }
 }

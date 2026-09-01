@@ -264,12 +264,12 @@
     <article class="w-full max-w-container-max mx-auto p-md lg:p-xl bg-surface-article border border-border-subtle flex-1">
         <header class="mb-xl pb-md border-b border-border-subtle">
             <p class="font-label-ui text-label-ui text-text-secondary uppercase tracking-widest mb-xs">콘텐츠 분석기 확장 프로그램</p>
-            <h1 class="font-article-title text-article-title text-text-primary">사용 및 구성 가이드</h1>
+            <h1 class="font-article-title text-article-title text-text-primary">사용 및 설정 가이드</h1>
         </header>
         
         <div class="font-body text-body text-text-primary mb-xl leading-relaxed">
-            <p class="mb-sm"><strong>콘텐츠 분석기</strong>는 복잡한 웹 환경에서 의미론적 메타데이터를 자동으로 추출하고 평가하도록 설계된 브라우저 확장 프로그램입니다. 이 확장 프로그램은 Firefox, Chrome 및 Chromium 기반 브라우저에서 작동하며, 핵심 목적은 다양한 인공 지능(AI) 서비스를 통해 웹 콘텐츠를 처리하는 것입니다.</p>
-            <p class="mb-sm">일반적인 웹 페이지 요약 도구와 달리, 이 확장 프로그램을 사용하면 AI가 수집된 정보로 무엇을 해야 하는지 정확히 지정하는 매우 구체적인 프롬프트를 가진 여러 개의 사용자 지정 AI 서비스를 만들 수 있습니다. 이를 사용하여 코드 추출, 특정 용어 번역, 감성 분석, 대상 보고서 생성 등을 수행할 수 있습니다.</p>
+            <p class="mb-sm"><strong class="font-bold">콘텐츠 분석기</strong>는 복잡한 웹 환경에서 의미론적 메타데이터를 자동으로 추출하고 평가하기 위해 설계된 브라우저 확장 프로그램입니다. 이 확장 프로그램은 Firefox, Chrome 및 Chromium 기반 브라우저에서 작동하며, 주요 목적은 웹 콘텐츠를 다양한 인공지능(AI) 서비스를 통해 처리하는 것입니다.</p>
+            <p class="mb-sm">일반적인 웹 페이지 요약 도구와 달리, 이 확장 프로그램은 각각의 역할이 정의된 고도로 구체적인 프롬프트를 기반으로 여러 개의 맞춤형 AI 서비스를 생성할 수 있게 해줍니다. 이를 사용하여 코드를 추출하거나, 특정 용어를 번역하고, 감성 분석을 수행하거나, 타겟팅된 보고서를 생성하는 등 다양한 작업을 수행할 수 있습니다.</p>
         </div>
         
         <nav aria-label="목차" class="mb-xl bg-surface-header p-md border border-border-subtle">
@@ -277,8 +277,8 @@
             <ol class="list-decimal list-inside font-body text-body text-primary underline space-y-xs ml-sm">
                 <li><a class="hover:text-primary-hover" href="#features">주요 기능</a></li>
                 <li><a class="hover:text-primary-hover" href="#providers">지원되는 AI 제공업체</a></li>
-                <li><a class="hover:text-primary-hover" href="#tags">동적 프롬프트 태그</a></li>
-                <li><a class="hover:text-primary-hover" href="#examples">예제 구성</a></li>
+                <li><a class="hover:text-primary-hover" href="#tags">프롬프트 동적 태그</a></li>
+                <li><a class="hover:text-primary-hover" href="#examples">설정 예시</a></li>
                 <li><a class="hover:text-primary-hover" href="#installation">브라우저 설치</a></li>
             </ol>
         </nav>
@@ -291,10 +291,10 @@
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">주요 기능</h2>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong>맞춤형 콘텐츠 캡처:</strong> 대화형 "마우스 오버 도구"를 사용하여 웹 페이지의 특정 부분을 쉽게 선택하거나 전체 페이지 콘텐츠를 캡처하도록 선택할 수 있습니다.</li>
-                            <li><strong>다중 사용자 지정 AI 프롬프트 및 시스템 프롬프트:</strong> 사용자 지정 프롬프트와 선택적 시스템 프롬프트(예: "기사 요약", "JSON 데이터 추출", "스페인어로 번역", 사용자 지정 어시스턴트 페르소나 등)를 사용하여 정확한 요구 사항에 맞는 다양한 서비스를 만듭니다.</li>
-                            <li><strong>도메인별 서비스:</strong> 사용자 지정 서비스를 특정 웹 도메인과 연결할 수 있습니다. 이렇게 하면 관련 AI 도구만 표시하여 확장 프로그램을 깔끔하게 유지하는 데 도움이 됩니다.</li>
-                            <li><strong>광범위한 LLM 호환성:</strong> Ollama를 통해 로컬 서버와의 연결(텍스트 스트리밍 포함)과 OpenAI, Anthropic 및 Google Gemini와 같은 클라우드 API 제공업체와의 연결을 완벽하게 지원합니다.</li>
+                            <li><strong class="font-bold">맞춤형 콘텐츠 캡처:</strong> 상호작용형 "호버 도구"를 사용하여 웹 페이지의 특정 부분을 쉽게 선택하거나, 페이지 전체 내용을 캡처하도록 선택할 수 있습니다.</li>
+                            <li><strong class="font-bold">다수의 맞춤형 AI 프롬프트 및 시스템 프롬프트:</strong> 사용자 맞춤형 프롬프트와 선택적 시스템 프롬프트(예: "기사 요약", "JSON 데이터 추출", "스페인어로 번역", 맞춤형 비서 페르소나 등)를 통해 사용자의 필요에 딱 맞는 다양한 서비스를 생성할 수 있습니다.</li>
+                            <li><strong class="font-bold">도메인 특화 서비스:</strong> 맞춤형 서비스를 특정 웹 도메인에 연결할 수 있습니다. 이를 통해 관련성 있는 AI 도구만 표시하여 확장 프로그램을 깔끔하게 관리할 수 있습니다.</li>
+                            <li><strong class="font-bold">광범위한 LLM 호환성:</strong> Ollama를 통한 로컬 서버 연결(텍스트 스트리밍 포함)뿐만 아니라 Anthropic(Claude), Google Gemini, Groq, OpenRouter, Mistral AI, 그리고 OpenAI와 같은 클라우드 API 제공업체를 모두 지원합니다.</li>
                         </ul>
                     </div>
                 </div>
@@ -306,12 +306,15 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">2</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">지원되는 AI 제공업체</h2>
-                        <p class="font-body text-body text-text-primary mb-md">이 확장 프로그램은 다양한 업계 최고의 인공 지능 모델 및 로컬 서비스에 연결할 수 있도록 매우 유연하게 구축되었습니다. 현재 지원하는 서비스는 다음과 같습니다.</p>
+                        <p class="font-body text-body text-text-primary mb-md">이 확장 프로그램은 높은 유연성을 갖도록 구축되어, 다양한 업계 선도적인 인공지능 모델 및 로컬 서비스에 연결할 수 있습니다. 현재 지원되는 항목은 다음과 같습니다:</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-sm">
-                            <li><strong>Claude(Anthropic):</strong> 공식 API를 통해 강력한 Claude 제품군에 액세스합니다.</li>
-                            <li><strong>Gemini(Google):</strong> Google의 고급 Gemini 모델에 직접 연결합니다.</li>
-                            <li><strong>ChatGPT(OpenAI 및 호환):</strong> OpenAI의 API 및 OpenAI 호환 엔드포인트를 제공하는 다른 타사 서비스와 완벽하게 호환됩니다.</li>
-                            <li><strong>Ollama:</strong> 데이터를 클라우드로 보내지 않고 로컬에서 개인적으로 모델을 실행합니다.</li>
+                            <li><strong class="font-bold">Claude (Anthropic):</strong> 공식 API를 통해 강력한 Claude 모델군에 액세스할 수 있습니다.</li>
+                            <li><strong class="font-bold">Gemini (Google):</strong> Google의 고급 Gemini 모델에 직접 연결됩니다.</li>
+                            <li><strong class="font-bold">Groq:</strong> 전용 Llama, Mixtral, Gemma 모델을 통한 초고속 추론을 지원합니다.</li>
+                            <li><strong class="font-bold">OpenRouter:</strong> 여러 제공업체의 방대한 AI 모델 카탈로그에 통합적으로 액세스할 수 있습니다.</li>
+                            <li><strong class="font-bold">Mistral AI:</strong> 공식 API를 통해 최첨단 오픈 및 상용 Mistral 모델에 연결됩니다.</li>
+                            <li><strong class="font-bold">ChatGPT (OpenAI 및 호환 서비스):</strong> OpenAI의 API뿐만 아니라, OpenAI 호환 엔드포인트를 제공하는 모든 제3자 서비스와 완벽하게 호환됩니다.</li>
+                            <li><strong class="font-bold">Ollama (또는 호환 서비스):</strong> 데이터를 클라우드로 전송하지 않고 사용자 기기에서 로컬로 프라이빗하게 모델을 실행할 수 있습니다.</li>
                         </ul>
                     </div>
                 </div>
@@ -322,23 +325,23 @@
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">3</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">동적 프롬프트 태그</h2>
-                        <p class="font-body text-body text-text-primary mb-md">AI 프롬프트를 더욱 상황에 맞게 효과적으로 만들려면 사용자 프롬프트와 시스템 프롬프트 모두에서 다음 동적 태그를 사용할 수 있습니다. 확장 프로그램은 AI 모델에 프롬프트를 보내기 전에 자동으로 해당 태그를 대체합니다.</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">프롬프트 동적 태그</h2>
+                        <p class="font-body text-body text-text-primary mb-md">AI 프롬프트를 더욱 문맥에 맞고 강력하게 만들기 위해, 사용자 프롬프트와 시스템 프롬프트 모두에서 다음 동적 태그를 활용할 수 있습니다. 확장 프로그램은 AI 모델에 프롬프트를 전송하기 전에 이 태그를 자동으로 치환합니다:</p>
                         <table class="w-full text-left border-collapse border border-border-subtle mt-md font-body text-body">
-                            <thead class="bg-surface-header border-b border-border-subtle">
-                                <tr class="bg-surface-header border-b border-border-subtle">
+                            <thead class="border-b border-border-subtle">
+                                <tr class="bg-surface-header">
                                     <th class="p-sm font-body-bold border-r border-border-subtle w-[120px]">태그</th>
                                     <th class="p-sm font-body-bold">설명</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-surface-lowest">
+                            <tbody>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{DATE}</td>
-                                    <td class="p-sm">현재 로컬 형식의 날짜로 대체됩니다.</td>
+                                    <td class="p-sm">사용자의 지역 형식에 따른 현재 날짜로 대체됩니다.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{HOUR}</td>
-                                    <td class="p-sm">현재 로컬 형식의 시간으로 대체됩니다.</td>
+                                    <td class="p-sm">사용자의 지역 형식에 따른 현재 시간으로 대체됩니다.</td>
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{URL}</td>
@@ -354,7 +357,7 @@
                                 </tr>
                                 <tr class="border-b border-border-subtle bg-background-canvas">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{SYSLANG}</td>
-                                    <td class="p-sm">현재 시스템/브라우저 언어 구성입니다.</td>
+                                    <td class="p-sm">현재 시스템/브라우저 언어 설정입니다.</td>
                                 </tr>
                                 <tr class="bg-surface-lowest">
                                     <td class="p-sm border-r border-border-subtle font-code text-primary font-bold">{TITLE}</td>
@@ -371,42 +374,42 @@
                 <div class="flex items-start gap-md relative z-10">
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">4</div>
                     <div class="w-full">
-                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">예제 구성</h2>
-                        <p class="font-body text-body text-text-primary mb-md">다음은 서비스를 구성하는 방법을 보여주는 몇 가지 예입니다.</p>
+                        <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">설정 예시</h2>
+                        <p class="font-body text-body text-text-primary mb-md">다음은 서비스를 구축하는 방법을 보여주는 몇 가지 예시입니다:</p>
                         
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 1: 다국어 번역 어시스턴트</h4>
-                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> 현지 언어로 번역<br/><strong>연결된 도메인:</strong> <em>(비어 있음 - 어디에서나 사용 가능)</em></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예시 1: 다국어 번역 비서</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">서비스 이름:</strong> 로컬 언어로 번역<br/><strong class="font-bold">연결된 도메인:</strong> <em class="italic">(비어 있음 - 모든 곳에서 사용 가능)</em></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                저는 전문 번역가입니다. 웹 사이트를 {LANG} 언어로 보고 있는데, 브라우저 언어는 {SYSLANG}입니다. 다음 콘텐츠를 {SYSLANG}으로 정확하게 번역하고, 원래 마크다운 및 텍스트 형식을 유지하십시오.
+                                전문 번역가로 활동하십시오. 저는 {URL}에 있는 {LANG} 언어 사이트를 탐색 중이지만, 제 브라우저는 {SYSLANG}로 설정되어 있습니다. 원본 마크다운과 텍스트 형식을 유지하면서 다음 내용을 {SYSLANG}로 정확하게 번역해 주세요.
                             </div>
                         </div>
                         
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 2: 코드 검토자(도메인별)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> Python 코드 검토<br/><strong>연결된 도메인:</strong> github.com, gitlab.com, stackoverflow.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예시 2: 코드 검토기 (도메인 특화)</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">서비스 이름:</strong> 파이썬 코드 검토<br/><strong class="font-bold">연결된 도메인:</strong> github.com, gitlab.com, stackoverflow.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                당신은 숙련된 개발자입니다. 아래 코드 스니펫은 {DOMAIN}에서 찾았습니다. 잠재적인 버그, 보안 취약점 및 코드 문제에 대해 엄격하게 분석하십시오. 코드가 수행하는 작업을 설명하지 말고, 문제를 나열하고 수정된 버전을 제공하십시오.
+                                당신은 전문 개발자입니다. 아래 제공된 코드 스니펫은 {DOMAIN}에서 발견되었습니다. 잠재적인 버그, 보안 취약점 및 코드 스멜(code smell)을 엄격하게 분석하십시오. 코드가 무엇을 하는지 설명하지 말고, 문제점 목록과 수정된 버전을 제공하십시오.
                             </div>
                         </div>
                         
                         <div class="bg-surface-header border border-border-subtle p-md mb-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 3: 일일 브리핑 추출기</h4>
-                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> 핵심 엔터티 추출<br/><strong>연결된 도메인:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예시 3: 일일 브리핑 추출기</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">서비스 이름:</strong> 주요 개체 추출<br/><strong class="font-bold">연결된 도메인:</strong> news.ycombinator.com, techcrunch.com, bbc.com</p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                오늘은 {DATE}이고 시간은 {HOUR}입니다. 다음 뉴스 기사를 스캔하고 "사람", "조직" 및 "위치"의 주요 항목을 포함하는 깔끔한 JSON 목록을 추출하십시오.
+                                오늘은 {DATE} {HOUR}입니다. 다음 뉴스 기사를 스캔하고 본문에서 언급된 주요 '인물', '조직', '장소'를 포함하는 깔끔한 JSON 리스트를 추출하십시오.
                             </div>
                         </div>
-                        
+
                         <div class="bg-surface-header border border-border-subtle p-md">
-                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예제 4: 사용자 지정 어시스턴트 페르소나(시스템 프롬프트)</h4>
-                            <p class="font-body text-body text-text-primary"><strong>서비스 이름:</strong> 마리오 어시스턴트<br/><strong>시스템 프롬프트:</strong></p>
+                            <h4 class="font-h4-heading text-h4-heading text-text-primary mb-xs">예시 4: 맞춤형 비서 페르소나 (시스템 프롬프트)</h4>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">서비스 이름:</strong> 마리오 비서<br/><strong class="font-bold">시스템 프롬프트:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal mb-xs">
-                                당신은 똑똑하고 재치 있는 어시스턴트인 마리오입니다. 당신의 임무는 할당된 작업을 가능한 한 효율적으로 수행하는 것입니다. 시간에 대한 참조가 있는 작업에서는 오늘이 {DATE}라는 점을 염두에 두어야 합니다.
+                                당신은 똑똑하고 날카로운 비서인 마리이며, 당신의 임무는 할당된 업무를 가능한 한 효율적으로 완수하는 것입니다. 시간적 언급이 포함된 업무의 경우, 오늘이 {DATE}임을 반드시 유념하십시오.
                             </div>
-                            <p class="font-body text-body text-text-primary"><strong>사용자 프롬프트:</strong></p>
+                            <p class="font-body text-body text-text-primary"><strong class="font-bold">사용자 프롬프트:</strong></p>
                             <div class="bg-surface-lowest border border-border-subtle p-sm mt-sm font-code text-code text-text-secondary whitespace-normal">
-                                {URL}에서 캡처한 다음 텍스트를 분석하고 주요 내용을 요약하십시오.
+                                {URL}에서 캡처한 다음 텍스트를 분석하고 주요 사항을 요약해 주십시오.
                             </div>
                         </div>
                     </div>
@@ -418,16 +421,16 @@
                     <div class="w-6 h-6 rounded-full bg-surface-header border border-border-subtle flex items-center justify-center font-code text-code text-text-primary shrink-0 mt-[3px]">5</div>
                     <div class="w-full">
                         <h2 class="font-h2-section text-h2-section text-text-primary mb-sm">브라우저 설치</h2>
-                        <p class="font-body text-body text-text-primary mb-md">설치 프로세스는 공식 리포지토리를 통해 또는 개발자 모드에서 압축 해제된 패키지를 로드하여 수행됩니다.</p>
+                        <p class="font-body text-body text-text-primary mb-md">설치 과정은 공식 저장소를 통하거나 개발자 모드에서 압축을 해제한 패키지를 로드하여 진행됩니다.</p>
                         <ul class="list-disc font-body text-body text-text-primary ml-xl space-y-xs mb-md">
-                            <li><strong>Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Chrome 웹 스토어에서 다운로드</a>합니다.</li>
-                            <li><strong>Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Firefox 부가 기능에서 다운로드</a>합니다.</li>
-                            <li><em>또는</em> 개발자 모드에서 <code>chrome://extensions/</code> 또는 <code>about:debugging</code>을 통해 압축 해제된 확장 프로그램을 로드할 수 있습니다.</li>
+                            <li><strong class="font-bold">Google Chrome:</strong> <a class="text-primary hover:underline" href="https://chromewebstore.google.com/detail/content-analyzer/cndehniodlhipncgohienlblmjidhaja" target="_new">Chrome 웹 스토어에서 다운로드</a>.</li>
+                            <li><strong class="font-bold">Mozilla Firefox:</strong> <a class="text-primary hover:underline" href="https://addons.mozilla.org/en-US/firefox/addon/content-analyzer/" target="_new">Firefox 부가 기능에서 다운로드</a>.</li>
+                            <li><em class="italic">대신</em>, <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">chrome://extensions/</code> 또는 <code class="font-code text-code bg-surface-container px-xs py-[2px] border border-border-subtle">about:debugging</code>을 통해 개발자 모드에서 압축을 해제한 확장 프로그램을 로드할 수 있습니다.</li>
                         </ul>
                         <div class="bg-primary-fixed border-l-4 border-primary p-md text-on-primary-fixed font-body text-body flex gap-sm items-start">
                             <span class="material-symbols-outlined text-primary mt-[2px]">info</span>
                             <div>
-                                <strong>참고:</strong> 확장 프로그램의 옵션 페이지에서 전역 설정을 올바르게 구성(API 키 또는 로컬 Ollama 인스턴스)한 후 캡처를 실행하십시오.
+                                <strong class="font-bold">참고:</strong> 캡처를 시작하기 전에 확장 프로그램의 옵션 페이지에서 전역 설정(API 키 또는 로컬 Ollama 인스턴스)이 올바르게 구성되었는지 확인하십시오.
                             </div>
                         </div>
                     </div>

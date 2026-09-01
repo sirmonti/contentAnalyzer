@@ -346,5 +346,11 @@
     },
     "resSaveHtmlBtn": {
         "message": "HTML로 저장"
+    },
+    "optTypeOllama": {
+        "message": "Ollama (또는 호환)"
+    },
+    "optTypeOpenAi": {
+        "message": "OpenAI (또는 호환)"
     }
 }

@@ -346,5 +346,11 @@
     },
     "resSaveHtmlBtn": {
         "message": "Save as HTML"
+    },
+    "optTypeOllama": {
+        "message": "Ollama (or compatible)"
+    },
+    "optTypeOpenAi": {
+        "message": "OpenAI (or compatible)"
     }
 }
