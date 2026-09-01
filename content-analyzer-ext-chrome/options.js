@@ -23,7 +23,7 @@ function showDebugPopup(debugInfo) {
  * This page allows the user to manage the AI services available in the extension.
  * For each service, the following can be configured:
  *   - Descriptive name of the service
- *   - Provider type: ollama | openai | anthropic | gemini
+ *   - Provider type: ollama | openai | anthropic | gemini | groq | openrouter | prompt-api
  *   - Server URL (only for Ollama and OpenAI-compatible servers)
  *   - API Key (depending on the provider)
  *   - Model to use (dynamically queried from the API)
@@ -292,10 +292,10 @@ document.getElementById("btnReloadModels").addEventListener("click", () => {
  *
  * Preliminary validations before making the request:
  *   - Ollama and OpenAI-compatible servers require a valid URL starting with "http".
- *   - OpenAI, Anthropic, and Gemini require an API key for authentication.
+ *   - OpenAI, Anthropic, Gemini, Groq, and OpenRouter require an API key for authentication.
  *
- * @param {string} url    - Server base URL (empty for Anthropic/Gemini).
- * @param {string} type   - Provider type: "ollama"|"openai"|"anthropic"|"gemini".
+ * @param {string} url    - Server base URL (empty for Anthropic/Gemini/Groq/OpenRouter).
+ * @param {string} type   - Provider type: "ollama"|"openai"|"anthropic"|"gemini"|"groq"|"openrouter"|"prompt-api".
  * @param {string} apikey - API Key (can be empty for Ollama without authentication).
  */
 function fetchModelsCombo(url, type, apikey, isManual = false) {
@@ -305,7 +305,7 @@ function fetchModelsCombo(url, type, apikey, isManual = false) {
     }
 
     // Validation: Cloud providers need an API key for authentication
-    if ((type === "openai" || type === "anthropic" || type === "gemini") && !apikey) {
+    if ((type === "openai" || type === "anthropic" || type === "gemini" || type === "groq" || type === "openrouter") && !apikey) {
         return; // Wait for the user to enter the key
     }
 
@@ -433,7 +433,7 @@ document.getElementById("m_type").addEventListener("change", (e) => {
         apiKeyInput.value = "";
 
     } else {
-        // anthropic, gemini: URL is hardcoded in drivers, not configured here
+        // anthropic, gemini, groq, openrouter: URL is hardcoded in drivers, not configured here
         urlGroup.style.display = "none";  // Hide URL field
         mUrl.required = false;
         mUrl.value = "";                  // Clear previous value to not save it

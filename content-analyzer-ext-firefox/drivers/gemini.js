@@ -46,6 +46,48 @@
  */
 
 /**
+ * Formats a clean, concise HTTP error message from the response status and body.
+ *
+ * @param {number} status - HTTP status code.
+ * @param {string} errBody - Raw response text.
+ * @returns {string} Clean error string without request dumps.
+ */
+function formatHttpError(status, errBody) {
+    let errorMsg = `HTTP ${status}`;
+    if (!errBody || typeof errBody !== "string" || !errBody.trim()) return errorMsg;
+    try {
+        const errJson = JSON.parse(errBody);
+        if (errJson) {
+            if (typeof errJson.error === "string") {
+                return `${errorMsg}: ${errJson.error}`;
+            }
+            if (errJson.error && typeof errJson.error.message === "string") {
+                return `${errorMsg}: ${errJson.error.message}`;
+            }
+            if (typeof errJson.message === "string") {
+                return `${errorMsg}: ${errJson.message}`;
+            }
+            if (typeof errJson.detail === "string") {
+                return `${errorMsg}: ${errJson.detail}`;
+            }
+            if (Array.isArray(errJson.detail) && errJson.detail.length > 0) {
+                const details = errJson.detail.map(d => (d && d.msg) ? d.msg : (typeof d === "string" ? d : JSON.stringify(d))).join("; ");
+                return `${errorMsg}: ${details}`;
+            }
+            if (errJson.error_description && typeof errJson.error_description === "string") {
+                return `${errorMsg}: ${errJson.error_description}`;
+            }
+        }
+    } catch (e) {}
+
+    const clean = errBody.trim();
+    if (clean.length > 200) {
+        return `${errorMsg}: ${clean.slice(0, 200)}...`;
+    }
+    return `${errorMsg}: ${clean}`;
+}
+
+/**
  * Retrieves the list of available models from the Google Gemini API.
  *
  * The "models/" prefix returned by the API is removed to expose only
@@ -64,21 +106,8 @@ export async function fetchModels(config) {
         let errorMsg = `HTTP ${res.status}`;
         try {
             const errBody = await res.text();
-            const errJson = JSON.parse(errBody);
-            if (errJson.error) {
-                if (typeof errJson.error === 'string') {
-                    errorMsg += `: ${errJson.error}`;
-                } else if (errJson.error.message) {
-                    errorMsg += `: ${errJson.error.message}`;
-                } else {
-                    errorMsg += `: ${errBody}`;
-                }
-            } else {
-                errorMsg += `: ${errBody}`;
-            }
-        } catch (e) {
-            // ignore JSON parse error
-        }
+            errorMsg = formatHttpError(res.status, errBody);
+        } catch (e) {}
         throw new Error(errorMsg);
     }
     const data = await res.json();
@@ -206,21 +235,8 @@ export async function* generate(config, prompt) {
         let errorMsg = `HTTP ${response.status}`;
         try {
             const errBody = await response.text();
-            const errJson = JSON.parse(errBody);
-            if (errJson.error) {
-                if (typeof errJson.error === 'string') {
-                    errorMsg += `: ${errJson.error}`;
-                } else if (errJson.error.message) {
-                    errorMsg += `: ${errJson.error.message}`;
-                } else {
-                    errorMsg += `: ${errBody}`;
-                }
-            } else {
-                errorMsg += `: ${errBody}`;
-            }
-        } catch (e) {
-            // ignore JSON parse error
-        }
+            errorMsg = formatHttpError(response.status, errBody);
+        } catch (e) {}
         throw new Error(errorMsg);
     }
 

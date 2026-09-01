@@ -188,6 +188,83 @@ document.addEventListener("DOMContentLoaded", async () => {
             return typeof DOMPurify !== "undefined" ? DOMPurify.sanitize(rawHtml) : rawHtml;
         }
 
+        /**
+         * Extracts a clean, human-readable error message from any error string or debug payload.
+         * Prevents full JSON / request dumps when DEBUG_MODE is false.
+         *
+         * @param {string|Object} rawError - Raw error message or JSON string.
+         * @returns {string} Clean error message.
+         */
+        function getCleanErrorMessage(rawError) {
+            if (!rawError) return api.i18n.getMessage("resConnError") || "Error: Connection closed unexpectedly.";
+            if (typeof rawError !== "string") {
+                try {
+                    rawError = JSON.stringify(rawError);
+                } catch (e) {
+                    return String(rawError);
+                }
+            }
+
+            const trimmed = rawError.trim();
+
+            // 1. Try parsing JSON directly
+            try {
+                const parsed = JSON.parse(trimmed);
+                if (parsed && typeof parsed === "object") {
+                    if (parsed._debug) {
+                        const statusPrefix = parsed.status ? `HTTP ${parsed.status}` : "Error";
+                        if (parsed.response) {
+                            const subClean = getCleanErrorMessage(parsed.response);
+                            if (subClean && subClean !== parsed.response && !subClean.startsWith("{")) {
+                                return parsed.status && !subClean.startsWith("HTTP") ? `${statusPrefix}: ${subClean}` : subClean;
+                            }
+                            if (typeof parsed.response === "string" && parsed.response.length < 200 && !parsed.response.startsWith("{")) {
+                                return `${statusPrefix}: ${parsed.response}`;
+                            }
+                        }
+                        return statusPrefix;
+                    }
+                    if (parsed.error) {
+                        if (typeof parsed.error === "string") return parsed.error;
+                        if (parsed.error.message && typeof parsed.error.message === "string") return parsed.error.message;
+                    }
+                    if (parsed.message && typeof parsed.message === "string") {
+                        return parsed.message;
+                    }
+                    if (parsed.detail) {
+                        if (typeof parsed.detail === "string") return parsed.detail;
+                        if (Array.isArray(parsed.detail)) {
+                            return parsed.detail.map(d => (d && d.msg) ? d.msg : (typeof d === "string" ? d : JSON.stringify(d))).join("; ");
+                        }
+                    }
+                }
+            } catch (e) {}
+
+            // 2. Check if string is in format "HTTP 4xx: {json}"
+            const httpMatch = trimmed.match(/^(HTTP\s+\d+)(?::\s*([\s\S]*))?$/i);
+            if (httpMatch) {
+                const prefix = httpMatch[1];
+                const body = httpMatch[2];
+                if (body) {
+                    const bodyClean = getCleanErrorMessage(body);
+                    if (bodyClean && bodyClean !== body && !bodyClean.startsWith("{")) {
+                        return `${prefix}: ${bodyClean}`;
+                    }
+                    if (body.length > 200) {
+                        return `${prefix}: ${body.slice(0, 200)}...`;
+                    }
+                    return `${prefix}: ${body}`;
+                }
+                return prefix;
+            }
+
+            if (trimmed.length > 250) {
+                return trimmed.slice(0, 250) + "...";
+            }
+
+            return trimmed;
+        }
+
         let renderPending = false;
         let renderRafId = null;
 
@@ -398,9 +475,10 @@ ${parseMarkdown(displayMarkdown)}
                     // No more retries: either by exceeding MAX_RETRIES or non-recoverable error
                     let finalMsg = api.i18n.getMessage("resConnError") || "Error: Connection closed unexpectedly.";
                     if (errorMsg) {
+                        const cleanMsg = (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE) ? errorMsg : getCleanErrorMessage(errorMsg);
                         // Escape HTML
                         const escapeDiv = document.createElement("div");
-                        escapeDiv.textContent = errorMsg;
+                        escapeDiv.textContent = cleanMsg;
                         finalMsg = escapeDiv.innerHTML;
                     }
                     statusDiv.innerHTML = `<span style="color:#ff5555">${finalMsg}</span>`;
@@ -463,9 +541,10 @@ ${parseMarkdown(displayMarkdown)}
                     }
                     // HTTP 4xx errors (authentication, model not found, etc.) are not
                     // recoverable with retries; we only retry for network or 5xx errors.
-                    console.error("AI Error:", msg.error);
-                    const isRecoverable = !msg.error || !/HTTP 4\d\d/.test(msg.error);
-                    triggerRetry(isRecoverable, msg.error); // Retry only if error is recoverable
+                    const cleanError = (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE) ? msg.error : getCleanErrorMessage(msg.error);
+                    console.error("AI Error:", cleanError);
+                    const isRecoverable = !msg.error || (!/HTTP 4\d\d/.test(msg.error) && !/HTTP 4\d\d/.test(cleanError));
+                    triggerRetry(isRecoverable, cleanError); // Retry only if error is recoverable
 
                 } else if (msg.type === "done") {
                     // GENERATION COMPLETED: stream finished correctly
@@ -503,7 +582,8 @@ ${parseMarkdown(displayMarkdown)}
 
     } catch (e) {
         // Catch unexpected errors (e.g.: corrupt storage, malformed data)
-        const msg = api.i18n.getMessage("resAIError", [e.message]) || `AI Error: ${e.message}`;
+        const cleanMsg = (typeof DEBUG_MODE !== 'undefined' && DEBUG_MODE) ? e.message : getCleanErrorMessage(e.message);
+        const msg = api.i18n.getMessage("resAIError", [cleanMsg]) || `AI Error: ${cleanMsg}`;
         document.getElementById("status").innerHTML = `<span style="color:#ff5555">${msg}</span>`;
         document.getElementById("status").className = ""; // Remove loading animation
     }

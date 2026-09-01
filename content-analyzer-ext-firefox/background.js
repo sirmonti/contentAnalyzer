@@ -35,11 +35,13 @@
  * without needing to use switch/case.
  */
 
-import * as ollama    from './drivers/ollama.js';
-import * as openai    from './drivers/openai.js';
-import * as anthropic from './drivers/anthropic.js';
-import * as gemini    from './drivers/gemini.js';
-import * as promptApi from './drivers/prompt-api.js';
+import * as ollama     from './drivers/ollama.js';
+import * as openai     from './drivers/openai.js';
+import * as anthropic  from './drivers/anthropic.js';
+import * as gemini     from './drivers/gemini.js';
+import * as groq       from './drivers/groq.js';
+import * as openrouter from './drivers/openrouter.js';
+import * as promptApi  from './drivers/prompt-api.js';
 
 
 const DEBUG_MODE = false;
@@ -187,6 +189,8 @@ const DRIVERS = {
     openai,
     anthropic,
     gemini,
+    groq,
+    openrouter,
     "prompt-api": promptApi,
     promptApi
 };
